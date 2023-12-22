@@ -9,6 +9,7 @@ class DonorInfo extends Model
 {
     use HasFactory;
 
+    protected $table='donors_info';
     protected $fillable=[
         'donor_id',
         'description'
