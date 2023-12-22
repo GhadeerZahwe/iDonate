@@ -5,16 +5,17 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class DonorsInfo extends Model
+class OrderItem extends Model
 {
     use HasFactory;
 
     protected $fillable=[
-        'donor_id',
-        'description'
+        'order_id',
+        'description',
+        'total_weight',
     ];
-    
-    public function donor(){
-        return $this->belongsTo(User::class,'donor_id');
+
+    public function order(){
+        return $this->belongsTo(Order::class,'order_id');
     }
 }
