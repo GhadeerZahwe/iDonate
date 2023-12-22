@@ -14,4 +14,8 @@ class DeliveryInfo extends Model
         'license_number',
         'profile_image'
     ];
+
+    public function delivery(){
+        return $this->belongsTo(User::class,'delivery_id');
+    }
 }
