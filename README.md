@@ -5,7 +5,7 @@
 <!-- project philosophy -->
 <img src="./readme/title2.svg"/>
 
-> A mobile app designed to facilitate the donation process of excess food, clothes, and different wastes, aiming to connect donors with those in need through a streamlined platform, enhancing the efficiency of waste distribution and contributing to a more sustainable and compassionate community.
+> A mobile app is designed to facilitate the donation process of excess food wastes, connecting donors with delivery drivers, offering features like live tracking for donors. Complemented by a desktop admin panel, the system enhances food waste distribution, fostering a more sustainable and compassionate community."
 
 ## User Stories
 
@@ -14,14 +14,14 @@
 - As a donor, I want to be able to track the live location of the delivery, so that I can stay updated about whether my order is received and donation completed or not yet.
 - As a donor (individual, restaurant, or store), I want to donate excess food easily, so that I can contribute to reducing food waste in my community.
 - As a donor, I want to be able to view all my current donation, so that I can easily keep track of my ongoing contributions and stay informed about the status of each donation.
-- As a donor, I want to be able to view my completed orders so that I can maintain a detailed record of my order history.
+- As a donor, I want to be able to view my completed orders so that I can maintain a detailed record in my order history.
 
 ### Delivery:
 
-- As a delivery driver, I want to be able to add a trip, so that passengers can make reservations.
+- As a delivery driver, I want to be able to accept an order, ensuring that the donor is promptly informed and the status of the donation order is promptly updated.
 - As a delivery driver, I want to scan the QR code of the donor, so that the order status is updated.
+- As a delivery driver, I want to be able to view my completed orders so that I can maintain a detailed record in my order history.
 - As a delivery driver, I want to be able to view all donation orders, so that I can manage my schedule effectively.
-- As a delivery driver, I want to be able to view my completed orders so that I can maintain a detailed record of my order history.
 
 ### Admin:
 
