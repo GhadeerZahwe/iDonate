@@ -14,4 +14,7 @@ class DonorsInfo extends Model
         'description'
     ];
     
+    public function donor(){
+        return $this->belongsTo(User::class,'donor_id');
+    }
 }
