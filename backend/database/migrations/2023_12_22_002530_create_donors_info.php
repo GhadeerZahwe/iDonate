@@ -17,7 +17,6 @@ return new class extends Migration
             $table->foreign('donor_id')->references('id')->on('users')->where('user_type','donor');
             $table->timestamps();
             $table->text('description');
-            $table->index('donor_id');
 
         });
 
