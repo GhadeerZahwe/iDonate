@@ -18,7 +18,7 @@
 
 ### Delivery:
 
-- As a delivery driver, I want to be able to accept an order, ensuring that the donor is promptly informed and the status of the donation order is promptly updated.
+- As a delivery driver, I want to be able to accept an order, so that I ensure that the donor is promptly informed and the status of the donation order is promptly updated.
 - As a delivery driver, I want to scan the QR code of the donor, so that the order status is updated.
 - As a delivery driver, I want to be able to view my completed orders so that I can maintain a detailed record in my order history.
 - As a delivery driver, I want to be able to view all donation orders, so that I can manage my schedule effectively.
