@@ -7,10 +7,27 @@
 
 > A mobile app designed to facilitate the donation process of excess food, clothes, and different wastes, aiming to connect donors with those in need through a streamlined platform, enhancing the efficiency of waste distribution and contributing to a more sustainable and compassionate community.
 
-### User Stories
-- As a user, I want to browse the menu, so I can find my favorite coffee drinks.
-- As a user, I want to customize my order, so I can add or remove ingredients according to my preferences.
-- As a user, I want to pay for my order through the app, so I can avoid waiting in line at the store.
+## User Stories
+
+### Donor:
+
+- As a donor, I want to be able to track the live location of the delivery, so that I can stay updated about whether my order is received and donation completed or not yet.
+- As a donor (individual, restaurant, or store), I want to donate excess food easily, so that I can contribute to reducing food waste in my community.
+- As a donor, I want to be able to view all my current donation, so that I can easily keep track of my ongoing contributions and stay informed about the status of each donation.
+- As a donor, I want to be able to view my completed orders so that I can maintain a detailed record of my order history.
+
+### Delivery:
+
+- As a delivery driver, I want to be able to add a trip, so that passengers can make reservations.
+- As a delivery driver, I want to scan the QR code of the donor, so that the order status is updated.
+- As a delivery driver, I want to be able to view all donation orders, so that I can manage my schedule effectively.
+- As a delivery driver, I want to be able to view my completed orders so that I can maintain a detailed record of my order history.
+
+### Admin:
+
+- As an admin, I want to be able to view real-time information about both users, so that I can monitor the system's performance.
+- As an admin, I want to be able to approve registered delivery drivers, so that only authorized drivers can provide their services.
+- As an admin, I want to be able to delete users, so that I can ensure the smooth functioning of the app's services.
 
 <br><br>
 
@@ -20,13 +37,15 @@
 > We designed Coffee Express using wireframes and mockups, iterating on the design until we reached the ideal layout for easy navigation and a seamless user experience.
 
 ### Wireframes
-| Login screen  | Register screen |  Landing screen |
-| ---| ---| ---|
+
+| Login screen                            | Register screen                       | Landing screen                        |
+| --------------------------------------- | ------------------------------------- | ------------------------------------- |
 | ![Landing](./readme/demo/1440x1024.png) | ![fsdaf](./readme/demo/1440x1024.png) | ![fsdaf](./readme/demo/1440x1024.png) |
 
 ### Mockups
-| Home screen  | Menu Screen | Order Screen |
-| ---| ---| ---|
+
+| Home screen                             | Menu Screen                           | Order Screen                          |
+| --------------------------------------- | ------------------------------------- | ------------------------------------- |
 | ![Landing](./readme/demo/1440x1024.png) | ![fsdaf](./readme/demo/1440x1024.png) | ![fsdaf](./readme/demo/1440x1024.png) |
 
 <br><br>
@@ -37,17 +56,19 @@
 > Using the wireframes and mockups as a guide, we implemented the Coffee Express app with the following features:
 
 ### User Screens (Mobile)
-| Login screen  | Register screen | Landing screen | Loading screen |
-| ---| ---| ---| ---|
+
+| Login screen                              | Register screen                         | Landing screen                          | Loading screen                          |
+| ----------------------------------------- | --------------------------------------- | --------------------------------------- | --------------------------------------- |
 | ![Landing](https://placehold.co/900x1600) | ![fsdaf](https://placehold.co/900x1600) | ![fsdaf](https://placehold.co/900x1600) | ![fsdaf](https://placehold.co/900x1600) |
-| Home screen  | Menu Screen | Order Screen | Checkout Screen |
+| Home screen                               | Menu Screen                             | Order Screen                            | Checkout Screen                         |
 | ![Landing](https://placehold.co/900x1600) | ![fsdaf](https://placehold.co/900x1600) | ![fsdaf](https://placehold.co/900x1600) | ![fsdaf](https://placehold.co/900x1600) |
 
 ### Admin Screens (Web)
-| Login screen  | Register screen |  Landing screen |
-| ---| ---| ---|
+
+| Login screen                            | Register screen                       | Landing screen                        |
+| --------------------------------------- | ------------------------------------- | ------------------------------------- |
 | ![Landing](./readme/demo/1440x1024.png) | ![fsdaf](./readme/demo/1440x1024.png) | ![fsdaf](./readme/demo/1440x1024.png) |
-| Home screen  | Menu Screen | Order Screen |
+| Home screen                             | Menu Screen                           | Order Screen                          |
 | ![Landing](./readme/demo/1440x1024.png) | ![fsdaf](./readme/demo/1440x1024.png) | ![fsdaf](./readme/demo/1440x1024.png) |
 
 <br><br>
@@ -55,7 +76,7 @@
 <!-- Tech stack -->
 <img src="./readme/title5.svg"/>
 
-###  iDonate is built using the following technologies:
+### iDonate is built using the following technologies:
 
 - This project uses the React Native app development framework. React Native is a cross-platform hybrid app development platform which allows us to use a single codebase for apps on mobile, desktop, and the web.
 
@@ -71,7 +92,8 @@
 ### Prerequisites
 
 This is an example of how to list things you need to use the software and how to install them.
-* npm
+
+- npm
   ```sh
   npm install npm@latest -g
   ```
@@ -91,7 +113,7 @@ _Below is an example of how you can instruct your audience on installing and set
    ```
 4. Enter your API in `config.js`
    ```js
-   const API_KEY = 'ENTER YOUR API';
+   const API_KEY = "ENTER YOUR API";
    ```
 
 Now, you should be able to run Coffee Express locally and explore its features.
