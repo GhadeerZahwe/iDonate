@@ -19,12 +19,7 @@ return new class extends Migration
             $table->string('license_number');
             $table->string('profile_image');
             $table->timestamps();
-
-            $table->index('delivery_id');
-            $table->index(['delivery_id','is_approved']);
         });
-
-  
 
     }
 
