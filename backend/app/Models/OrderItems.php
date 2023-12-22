@@ -14,4 +14,8 @@ class OrderItems extends Model
         'description',
         'total_weight',
     ];
+
+    public function order(){
+        return $this->belongsTo(Orders::class,'order_id');
+    }
 }
