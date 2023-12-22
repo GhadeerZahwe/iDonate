@@ -12,7 +12,8 @@ class DeliveryInfo extends Model
         'delivery_id',
         'is_approved',
         'license_number',
-        'profile_image'
+        'profile_image',
+        'mobility_type'
     ];
 
     public function delivery(){

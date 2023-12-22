@@ -83,6 +83,7 @@ class AuthController extends Controller
             'license_number'=>$request->license_number,
             'profile_image'=>$request->profile_image,
             'is_approved'=>$request->is_approved??0,
+             'mobility_type'=>$request->mobility_type,
         ]);
       }
 
