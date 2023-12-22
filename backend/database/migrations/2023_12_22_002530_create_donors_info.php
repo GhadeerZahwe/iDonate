@@ -16,7 +16,7 @@ return new class extends Migration
             $table->unsignedBigInteger('donor_id');
             $table->foreign('donor_id')->references('id')->on('users')->where('user_type','donor');
             $table->timestamps();
-
+            $table->text('description');
             $table->index('donor_id');
 
         });

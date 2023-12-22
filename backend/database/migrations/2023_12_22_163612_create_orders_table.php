@@ -11,25 +11,25 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('orders_info', function (Blueprint $table) {
+        Schema::create('orders', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('donor_id');
             $table->foreign('donor_id')->references('id')->on('users')->where('user_type','donor');
+
             $table->unsignedBigInteger('delivery_id')->nullable();
             $table->foreign('delivery_id')->references('id')->on('users')->where('user_type','delivery')->onDelete('set null');
+            
             $table->enum('status',['pending','received','on_the_way','delivered'])->default('pending');
             $table->text('description');
-            $table->decimal('weight_of_food',8,2);
+            $table->float('total_weight',8,2);
             $table->string('pickup_within');
-            $table->string('destination');
             $table->dateTime('pickup_time');
-            $table->string('qr_code');
-            $table->timestamps();
+            $table->string('location_pickup');
 
-            //for optimization
-        $table->index('donor_id');
-        $table->index('delivery_id');
-        $table->index('status');
+            $table->unsignedBigInteger('location_id');
+            $table->foreign('location_id')->references('id')->on('location');
+         
+            $table->timestamps();
         });
 
     }
@@ -39,6 +39,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('orders_info');
+        Schema::dropIfExists('orders');
     }
 };
