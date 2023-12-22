@@ -19,5 +19,17 @@ class Orders extends Model
         'pickup_time',
         'location_pickup',
         'location_id'
-    ]
+    ];
+
+    public function donor(){
+        return $this->belongsTo(User::class,'donor_id');
+    }
+
+    public function delivery(){
+        return $this->belongsTo(User::class,'delivery_id');
+    }
+
+    public function location(){
+        return $this->belongsTo(Location::class, 'location_id');
+    }
 }
