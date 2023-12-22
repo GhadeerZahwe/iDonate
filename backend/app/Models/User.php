@@ -42,4 +42,13 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+
+    public function sentMessages(){
+        return $this->hasMany(Message::class,'sender_id');
+    }
+
+    public function receivedMessages(){
+        return $this->hasMany(Message::class,'receiver_id');
+    }
 }
