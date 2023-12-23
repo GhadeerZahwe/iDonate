@@ -27,7 +27,7 @@ return new class extends Migration
             $table->string('location_pickup');
 
             $table->unsignedBigInteger('location_id');
-            $table->foreign('location_id')->references('id')->on('location');
+            $table->foreign('location_id')->references('id')->on('locations');
          
             $table->timestamps();
         });
