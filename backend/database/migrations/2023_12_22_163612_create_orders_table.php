@@ -23,9 +23,8 @@ return new class extends Migration
             $table->text('description');
             $table->float('total_weight',8,2);
             $table->string('pickup_within');
-            $table->dateTime('pickup_time');
             $table->string('location_pickup');
-
+            $table->date('date')->default(now());
             $table->unsignedBigInteger('location_id');
             $table->foreign('location_id')->references('id')->on('locations');
          

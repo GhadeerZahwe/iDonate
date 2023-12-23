@@ -16,7 +16,7 @@ return new class extends Migration
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users');
             $table->decimal('latitude',10,7);
-            $table->decimal('longtitude',10,7);
+            $table->decimal('longitude',10,7);
             $table->text('description');
             $table->timestamps();
         });

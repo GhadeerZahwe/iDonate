@@ -29,7 +29,7 @@ class Order extends Model
         return $this->belongsTo(User::class,'delivery_id');
     }
 
-    public function location(){
+    public function locations(){
         return $this->belongsTo(Location::class, 'location_id');
     }
 
