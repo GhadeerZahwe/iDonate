@@ -18,4 +18,14 @@ class DonorController extends Controller
             'donors'=>$donors
         ]);
     }
+
+    public function getDonorsFullName(){
+        $user=Auth::user();
+        $first_name=$user->first_name;
+        $last_name=$user->last_name;
+        return response()->json([
+            'first_name'=>$first_name,
+            'last_name'=>$last_name,
+        ]);
+    }
 }
