@@ -19,13 +19,24 @@ class DonorController extends Controller
         ]);
     }
 
-    public function getDonorsFullName(){
+    public function getDonorFullName(){
+     if(auth()->check()){
+       
         $user=Auth::user();
-        $first_name=$user->first_name;
-        $last_name=$user->last_name;
-        return response()->json([
-            'first_name'=>$first_name,
-            'last_name'=>$last_name,
-        ]);
-    }
+
+       if($user->user_type==='admin'){
+        $donors=User::where('user_type','donor')
+        ->join('donors_info','users.id','=','donors_info.donor_id')
+        ->select('users.first_name','users.last_name','users.email','users.phone')
+        ->get();
+
+        return response()->json(['donors'=> $donors]);
+
+        } else{
+        return response()->json(['error'=>'Permission Denied'],403);
+    }        
+     } else{
+        return response()->json(['error'=>'User not authenticated'],401);
+    }  
+  } 
 }

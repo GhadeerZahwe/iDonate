@@ -23,4 +23,4 @@ Route::post('/logout', [AuthController::class, "logout"]);
 Route::post('/refresh', [AuthController::class, "refresh"]);
 
 Route::get('/getAllDonors', [DonorController::class, "getAllDonors"]);
-Route::get('/getDonorsFullName', [DonorController::class, "getDonorsFullName"]);
+Route::get('/getDonorFullName', [DonorController::class, "getDonorFullName"]);
