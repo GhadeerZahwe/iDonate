@@ -19,7 +19,7 @@ class DonorController extends Controller
         ]);
     }
 
-    public function getDonorFullName(){
+    public function getDonorsData(){
      if(auth()->check()){
        
         $user=Auth::user();
@@ -27,7 +27,7 @@ class DonorController extends Controller
        if($user->user_type==='admin'){
         $donors=User::where('user_type','donor')
         ->join('donors_info','users.id','=','donors_info.donor_id')
-        ->select('users.first_name','users.last_name','users.email','users.phone')
+        ->select('users.first_name','users.last_name','users.email','users.phone','users.id','donors_info.description')
         ->get();
 
         return response()->json(['donors'=> $donors]);
@@ -39,4 +39,16 @@ class DonorController extends Controller
         return response()->json(['error'=>'User not authenticated'],401);
     }  
   } 
+
+    public function getFullName(){
+    $user=Auth::user();
+
+    $first_name=$user->first_name;
+    $last_name=$user->last_name;
+    
+    return response()->json([
+        'first_name'=>$first_name,
+        'last_name'=>$last_name,
+    ]);
+}
 }
