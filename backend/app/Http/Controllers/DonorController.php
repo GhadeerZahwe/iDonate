@@ -188,11 +188,13 @@ class DonorController extends Controller
             return response()->json(['error'=>'Permission Denied.'],403);
         }
         
+        return DB::transaction(function () use ($order){
+
+        Location::where('id', $order->location_id)->delete();
         $order->orderItems()->delete();
         $order->delete();
 
-        return response()->json(['message' => 'Donation order canceled successfully'], 200);
-
+        return response()->json(['message' => 'Donation order canceled successfully'], 200);  
+        });
     }
-   
 }
