@@ -134,6 +134,18 @@ class DonorController extends Controller
         return response()->json(['error'=>'Permission Denied!',403]);
      }
 
+     $request->validate([
+        'description'=> 'required|string',
+        'total_weight'=> 'required|numeric',
+        'pickup_within'=>'required|string',
+        'date'=>'required|date',
+        'location_pickup'=>'required|string',
+        'latitude'=>'required|numeric',
+        'longitude'=>'required|numeric',
+        'items.*.description'=>'string',
+        'items.*.total_wight'=>'numeric',
+     ]);
+
 
     }
    
