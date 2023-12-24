@@ -22,7 +22,15 @@ Route::post('/login', [AuthController::class, "login"]);
 Route::post('/logout', [AuthController::class, "logout"]);
 Route::post('/refresh', [AuthController::class, "refresh"]);
 
-Route::get('/getAllDonors', [DonorController::class, "getAllDonors"]);
-Route::get('/getFullName', [DonorController::class, "getFullName"]);
-Route::get('/getDonorDonations', [DonorController::class, "getDonorDonations"]);
-Route::post('/addDonation', [DonorController::class, "addDonation"]);
+
+Route::group(['middleware'=>'idonate_authenticate'],function(){
+
+
+    Route::get('/getAllDonors', [DonorController::class, "getAllDonors"]);
+    Route::get('/getFullName', [DonorController::class, "getFullName"]);
+    Route::get('/getDonorDonations', [DonorController::class, "getDonorDonations"]);
+    Route::post('/addDonation', [DonorController::class, "addDonation"]);
+    
+
+
+});
