@@ -179,5 +179,12 @@ class DonorController extends Controller
       });
 
     }
+
+    public function cancelDonation($orderId){
+        $donor= Auth::user();
+
+        $order = Order::findorFail($orderId);
+
+    }
    
 }
