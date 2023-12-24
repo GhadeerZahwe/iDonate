@@ -146,6 +146,17 @@ class DonorController extends Controller
         'items.*.total_wight'=>'numeric',
      ]);
 
+      return DB::transaction (function () use ($donor, $order, $request){
+       $location = Location::find($order->location_id);
+       $location->update([
+        'user_id'=>$donor->id,
+        'latitude'=>$request->input('latitude'),
+        'longitude'=> $request->input('longitude'),
+        'description'=>$request->input('location_description'),
+       ]);
+
+
+      });
 
     }
    
