@@ -187,6 +187,11 @@ class DonorController extends Controller
         if($donor->id !== $order->donor_id){
             return response()->json(['error'=>'Permission Denied.'],403);
         }
+        
+        $order->orderItems()->delete();
+        $order->delete();
+
+        return response()->json(['message' => 'Donation order canceled successfully'], 200);
 
     }
    
