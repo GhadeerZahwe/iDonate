@@ -155,7 +155,15 @@ class DonorController extends Controller
         'description'=>$request->input('location_description'),
        ]);
 
+      $order->update([
+        'description'=> $request->input('description'),
+        'total_weight'=>$request->input('total_weight'),
+        'pickup_within'=>$request->input('pickup_within'),
+        'date'=>$request->input('date'),
+        'location_pickup'=>$request->input('location_pickup'),
+      ]);
 
+      
       });
 
     }
