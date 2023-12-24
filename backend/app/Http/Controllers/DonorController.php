@@ -181,20 +181,28 @@ class DonorController extends Controller
     }
 
     public function cancelDonation($orderId){
-        $donor= Auth::user();
+        $donor = Auth::user();
 
-        $order = Order::findorFail($orderId);
-        if($donor->id !== $order->donor_id){
-            return response()->json(['error'=>'Permission Denied.'],403);
-        }
-        
-        return DB::transaction(function () use ($order){
-        Order::where('location_id',$order->location_id)->update(['location_id'=>null]);
-        Location::where('id', $order->location_id)->delete();
+    return DB::transaction(function () use ($donor, $orderId) {
+        $order = Order::where('id', $orderId)
+            ->where('donor_id', $donor->id)
+            ->with('location')
+            ->firstOrFail();
+
+        $location = $order->location;
+
+        // Delete order items
         $order->orderItems()->delete();
+
+        // Delete the order
         $order->delete();
 
-        return response()->json(['message' => 'Donation order canceled successfully'], 200);  
-        });
+        // Delete the location
+        if ($location) {
+            $location->delete();
+        }
+
+        return response()->json(['message' => 'Donation order canceled successfully'], 200);
+    });
     }
 }
