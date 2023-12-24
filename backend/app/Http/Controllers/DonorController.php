@@ -184,6 +184,9 @@ class DonorController extends Controller
         $donor= Auth::user();
 
         $order = Order::findorFail($orderId);
+        if($donor->id !== $order->donor_id){
+            return response()->json(['error'=>'Permission Denied.'],403);
+        }
 
     }
    
