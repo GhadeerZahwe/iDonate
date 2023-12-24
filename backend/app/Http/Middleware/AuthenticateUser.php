@@ -21,7 +21,7 @@ class AuthenticateUser
             return $next($request);
         }
         return response()->json([
-            "message"=>'Not authenticated'
+            "message"=>'Not authenticated.'
         ]);
     }
 }
