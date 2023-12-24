@@ -126,7 +126,13 @@ class DonorController extends Controller
 
 
     public function editDonation(Request $request, $orderId){
-    
+     $donor= Auth::user();
+
+     $order= Order::findOrFail($orderId);
+
+     if($donor->id !== $order->donor_id){
+        return response()->json(['error'=>'Permission Denied!',403]);
+     }
 
 
     }
