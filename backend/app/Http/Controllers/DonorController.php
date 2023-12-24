@@ -163,7 +163,19 @@ class DonorController extends Controller
         'location_pickup'=>$request->input('location_pickup'),
       ]);
 
-      
+      $order->orderItems()->delete();
+
+      if($request->has('items')){
+        foreach($request->input('items') as $item){
+            $orderItem=new OrderItem([
+                'description'=>$item['description'],
+                'total_weight'=>$item['total_weight'],
+            ]);
+
+            $order->orderItems()->save($orderItem);
+        }
+      }
+
       });
 
     }
