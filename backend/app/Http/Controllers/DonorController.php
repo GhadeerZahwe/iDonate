@@ -175,7 +175,7 @@ class DonorController extends Controller
             $order->orderItems()->save($orderItem);
         }
       }
-       return response()->json(['message'=> 'Donation update successfully.']);
+       return response()->json(['message'=> 'Donation updated successfully.'],200);
       });
 
     }
