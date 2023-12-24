@@ -189,7 +189,7 @@ class DonorController extends Controller
         }
         
         return DB::transaction(function () use ($order){
-
+        Order::where('location_id',$order->location_id)->update(['location_id'=>null]);
         Location::where('id', $order->location_id)->delete();
         $order->orderItems()->delete();
         $order->delete();
