@@ -27,11 +27,12 @@ Route::post('/refresh', [AuthController::class, "refresh"]);
 
 Route::group(['middleware'=>'idonate_authenticate'],function(){
 
-
+   Route::group(['middleware'=>'admin_authorize'],function(){
     Route::get('/getAllDonors', [AdminController::class, "getAllDonors"]);
     Route::get('/getAllDeliveries', [AdminController::class, "getAllDeliveries"]);
     Route::post('/acceptDelivery/{deliveryId}',[AdminController::class,"acceptDelivery"]);
     Route::post('/cancelDeliveryAcceptance/{deliveryId}',[AdminController::class,"cancelDeliveryAcceptance"]);
+   });
     
     Route::get('/getFullName', [DonorController::class, "getFullName"]);
     Route::get('/getDonorDonations', [DonorController::class, "getDonorDonations"]);
