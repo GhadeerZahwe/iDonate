@@ -185,9 +185,25 @@ class DonorController extends Controller
     });
     }
 
-   public function getDonorLocation($driver_id){
+   public function getDonorLocation($donor_id){
     try{
-        
+        $user=Auth::user();
+
+        if(!$user){
+            return response()->json(['error'=>'Not authenticated.'],401);
+        }
+
+        if($user->user_type !== 'donor'){
+            return response()->json(['error'=> 'Permission Denied.'],403);
+        }
+
+        if($user->id != $donor_id){
+            return response()->json(['error'=>'Not authorized'],403);
+        }
+
+        $locations=Location::where('user_id',$donor_id)->get();
+        return response()->json(['Locations'=>$locations]);
+
     }catch(\Exception $e){
         return response()->json(['error'=> $e->getMessage()],500);
     }
