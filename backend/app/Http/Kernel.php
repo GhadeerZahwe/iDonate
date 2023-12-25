@@ -3,6 +3,7 @@
 namespace App\Http;
 use App\Http\Middleware\AuthenticateUser;
 use App\Http\Middleware\AuthorizeAdmin;
+use App\Http\Middleware\AuthorizeDonor;
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
 
 class Kernel extends HttpKernel
@@ -57,6 +58,7 @@ class Kernel extends HttpKernel
         'auth' => \App\Http\Middleware\Authenticate::class,
         'idonate_authenticate'=>AuthenticateUser::class,
         'admin_authorize'=>AuthorizeAdmin::class,
+        'donor_authorize'=>AuthorizeDonor::class,
         'auth.basic' => \Illuminate\Auth\Middleware\AuthenticateWithBasicAuth::class,
         'auth.session' => \Illuminate\Session\Middleware\AuthenticateSession::class,
         'cache.headers' => \Illuminate\Http\Middleware\SetCacheHeaders::class,
