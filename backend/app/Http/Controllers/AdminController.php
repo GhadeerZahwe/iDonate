@@ -87,7 +87,23 @@ class AdminController extends Controller
 
     public function cancelDeliveryAcceptance(Request $request, $deliveryId){
         try{
+          $user=Auth::user();
 
+          if($user->user_type === 'admin')
+          {
+            $delivery=DeliveryInfo::find($deliveryId);
+
+            if(!$delivery){
+                return response()->json(['error'=>'Delivery Not Found.'],404);
+            }
+
+            $delivery->is_approved=false;
+            $delivery->save();
+
+            return response()->json(['message'=>'Delivery acceptance canceled successfully.']);
+          }else{
+            return response()->json(['error'=>'Permission Denied.'],403);
+          }
         }catch(\Exception $e){
             return response()->json(['error'=>$e->getMessage()],500);
 
