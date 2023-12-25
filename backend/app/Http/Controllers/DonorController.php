@@ -184,4 +184,13 @@ class DonorController extends Controller
         return response()->json(['message' => 'Donation order canceled successfully'], 200);
     });
     }
+
+   public function getDonorLocation($driver_id){
+    try{
+        
+    }catch(\Exception $e){
+        return response()->json(['error'=> $e->getMessage()],500);
+    }
+   }
+
 }
