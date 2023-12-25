@@ -37,6 +37,7 @@ Route::group(['middleware'=>'idonate_authenticate'],function(){
    Route::group(['middleware'=>'donor_authorize'],function(){
     Route::get('/getFullName', [DonorController::class, "getFullName"]);
     Route::get('/getDonorDonations', [DonorController::class, "getDonorDonations"]);
+    Route::get('/getDonorLocation/{donor_id}', [DonorController::class, "getDonorLocation"]);
     Route::post('/addDonation', [DonorController::class, "addDonation"]);
     Route::post('/editDonation/{orderId}',[DonorController::class, "editDonation"]);
     Route::delete('/cancelDonation/{orderId}',[DonorController::class, "cancelDonation"]);
