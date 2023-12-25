@@ -30,6 +30,7 @@ Route::group(['middleware'=>'idonate_authenticate'],function(){
 
     Route::get('/getAllDonors', [AdminController::class, "getAllDonors"]);
     Route::get('/getAllDeliveries', [AdminController::class, "getAllDeliveries"]);
+    
     Route::get('/getFullName', [DonorController::class, "getFullName"]);
     Route::get('/getDonorDonations', [DonorController::class, "getDonorDonations"]);
     Route::post('/addDonation', [DonorController::class, "addDonation"]);
