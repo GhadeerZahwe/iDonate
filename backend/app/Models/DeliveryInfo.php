@@ -8,6 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class DeliveryInfo extends Model
 {
     use HasFactory;
+    protected $table = 'delivery_info';
+
     protected $fillable=[
         'delivery_id',
         'is_approved',

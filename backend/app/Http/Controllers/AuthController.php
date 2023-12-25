@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+use Illuminate\Database\QueryException; 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -45,11 +46,17 @@ class AuthController extends Controller
     }
 
     public function register(Request $request){
+        try{
         $request->validate([
             'first_name' => 'required|string|max:255',
             'last_name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:6',
+            'phone' => 'required|string', 
+            'license_number' => $request->user_type == 'delivery' ? 'required|string' : '',
+            'is_approved' => $request->user_type == 'delivery' ? 'required|boolean' : '',
+            'mobility_type' => $request->user_type == 'delivery' ? 'required|string' : '',
+            'profile_image' => $request->user_type == 'delivery' ? 'image|mimes:jpeg,png,jpg,gif|max:2048' : '',
         ]);
 
         $user = User::create([
@@ -68,26 +75,23 @@ class AuthController extends Controller
             ]);
          }
 
-
-         if($request->user_type=='delivery'){
-           $user->profile_image=$request->profile_image? $request->profile_image : "NA";
-
-           if($request->hasFile('profile_image')){
-            $imagePath= $request-> file ('profile_image')->store('images','public');
-
-            $user->profile_image = basename($imagePath);
-           }
-
-           $delivery_info = DeliveryInfo::create([
-            'delivery_id'=>$user->id,
-            'license_number'=>$request->license_number,
-            'profile_image'=>$request->profile_image,
-            'is_approved'=>$request->is_approved??0,
-             'mobility_type'=>$request->mobility_type,
+    if ($request->user_type == 'delivery') {
+        $deliveryInfo = new DeliveryInfo([
+            'delivery_id' => $user->id,
+            'license_number' => $request->license_number,
+            'is_approved' => $request->is_approved ?? 0,
+            'profile_image' => $user->profile_image,
+            'mobility_type' => $request->mobility_type,
         ]);
-      }
 
+        if ($request->hasFile('profile_image')) {
+            $imagePath = $request->file('profile_image')->store('images', 'public');
+            $deliveryInfo->profile_image = basename($imagePath);
+        }
+        $deliveryInfo->save();
+    }
         $token = Auth::login($user);
+
         return response()->json([
             'status' => 'success',
             'message' => 'User created successfully',
@@ -97,7 +101,13 @@ class AuthController extends Controller
                 'type' => 'bearer',
             ]
         ]);
-    }
+    } catch (QueryException $e) {
+        // Handle database query exceptions
+        return response()->json(['error' => $e->getMessage()], 500);
+    } catch (\Exception $e) {
+        // Handle other exceptions
+        return response()->json(['error' => $e->getMessage()], 500);
+    }}
 
     public function logout()
     {

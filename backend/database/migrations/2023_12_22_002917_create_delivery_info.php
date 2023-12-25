@@ -17,7 +17,7 @@ return new class extends Migration
             $table->foreign('delivery_id')->references('id')->on('users')->where('user_type','delivery');
             $table->boolean('is_approved');
             $table->string('license_number');
-            $table->string('profile_image');
+            $table->string('profile_image')->nullable();
             $table->timestamps();
         });
 
