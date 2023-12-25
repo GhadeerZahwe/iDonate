@@ -4,6 +4,7 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Symfony\Component\HttpFoundation\Response;
 
 class AuthorizeDonor
@@ -15,6 +16,10 @@ class AuthorizeDonor
      */
     public function handle(Request $request, Closure $next): Response
     {
-        return $next($request);
+        $user=Auth::user();
+        if($user->user_type=== 'donor'){
+            return $next($request);
+        }
+        return response()->json(['error'=>'Not authorized as a Donor.']);
     }
 }
