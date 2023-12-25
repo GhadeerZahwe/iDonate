@@ -58,4 +58,14 @@ class AdminController extends Controller
             return response()->json(['error' => $e->getMessage()], 500);
         }
     }
+
+    public function acceptDelivery(Request $request, $deliveryId){
+        try{
+
+        }catch(\Exception $e){
+            return response()->json(['error'=>$e->getMessage()],500);
+
+        }
+
+    }
 }
