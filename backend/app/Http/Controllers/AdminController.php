@@ -84,4 +84,13 @@ class AdminController extends Controller
         }
 
     }
+
+    public function cancelDeliveryAcceptance(Request $request, $deliveryId){
+        try{
+
+        }catch(\Exception $e){
+            return response()->json(['error'=>$e->getMessage()],500);
+
+        }
+    }
 }
