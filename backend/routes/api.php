@@ -27,7 +27,7 @@ Route::post('/refresh', [AuthController::class, "refresh"]);
 Route::group(['middleware'=>'idonate_authenticate'],function(){
 
 
-    Route::get('/getAllDonors', [DonorController::class, "getAllDonors"]);
+    //Route::get('/getAllDonors', [AdminController::class, "getAllDonors"]);
     Route::get('/getAllDeliveries', [DeliveryController::class, "getAllDeliveries"]);
     Route::get('/getFullName', [DonorController::class, "getFullName"]);
     Route::get('/getDonorDonations', [DonorController::class, "getDonorDonations"]);
