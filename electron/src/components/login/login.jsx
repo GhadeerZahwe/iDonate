@@ -28,6 +28,16 @@ const Login = () => {
             placeholder="Enter your Password"
             ref={passwordRef}
           />
+          <div className="login-button-div">
+            <button
+              type="submit"
+              className="login-button"
+              id="login-button"
+              onClick={saveToken}
+            >
+              Login
+            </button>
+          </div>
         </div>
       </div>
     </div>
