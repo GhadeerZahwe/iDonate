@@ -17,6 +17,17 @@ const Login = () => {
             placeholder="Enter your email"
             ref={emailRef}
           />
+          <label htmlFor="password" className="password_title">
+            Password
+            <br />
+            <br />
+          </label>
+          <input
+            type="password"
+            id="password"
+            placeholder="Enter your Password"
+            ref={passwordRef}
+          />
         </div>
       </div>
     </div>
