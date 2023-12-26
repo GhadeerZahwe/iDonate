@@ -1,6 +1,18 @@
-import React from "react";
+import React, { useRef } from "react";
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
+  const navigate = useNavigate();
+  const emailRef = useRef("");
+  const passwordRef = useRef("");
+
+  const saveToken = async () => {
+    const email = emailRef.current.value;
+    const password = passwordRef.current.value;
+
+    const formData = new FormData();
+  };
+
   return (
     <div className="lgn-container">
       <div className="login-container">
