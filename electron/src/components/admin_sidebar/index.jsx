@@ -18,7 +18,12 @@ const AdminSidebar = () => {
 
   return (
     <div className="side-panel">
-      <img className="logo" src={logo} alt="logo"></img>
+      <img
+        className="logo"
+        src={logo}
+        alt="logo"
+        style={{ width: "70px", height: "auto" }}
+      />
       <div className="donor-btn" id="users-btn" onClick={goDonors}>
         Donors
       </div>
