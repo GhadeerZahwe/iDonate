@@ -248,3 +248,27 @@ a {
   margin-top: 5%;
   text-align: center;
 }
+
+@media only screen and (max-width: 600px) {
+  .header h1 {
+    position: static;
+    font-size: 3rem;
+    transform: none;
+  }
+  .register-container,
+  .login-container {
+    border-radius: 40px;
+    width: 70%;
+  }
+  .landing_row {
+    flex-direction: column;
+    padding: 40px 20px;
+  }
+  .landing_row img {
+    height: 400px;
+  }
+  .landing_row button {
+    padding: 0.6rem 1.2rem;
+    margin: 0.6rem 1.2rem;
+  }
+}
