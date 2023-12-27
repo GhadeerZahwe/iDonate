@@ -13,9 +13,12 @@ const DeliveriesTable = () => {
             <th>Phone</th>
             <th>Mobility Type</th>
             <th>License Number</th>
-            <th></th>
+            <th>Actions</th>
           </tr>
         </thead>
+        <tbody id="tbody">
+          {!!data && data.map((item) => <Tr data={item} />)}
+        </tbody>
       </table>
     </div>
   );
