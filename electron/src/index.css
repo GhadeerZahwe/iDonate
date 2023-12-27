@@ -152,3 +152,18 @@ tr:hover {
 tr:hover .approve_btn {
   background-color: #146c94;
 }
+
+.content {
+  display: inline-block;
+}
+
+.content-title {
+  font-size: 46px;
+  margin-left: 25vw;
+  margin-top: 20vh;
+}
+
+a {
+  text-decoration: none;
+  color: black;
+}
