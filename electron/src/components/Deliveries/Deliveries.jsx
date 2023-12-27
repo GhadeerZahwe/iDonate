@@ -17,7 +17,17 @@ const Tr = (props) => {
       Authorization: "Bearer" + localStorage.getItem("token"),
     });
   };
-  return <div></div>;
+  return (
+    <tr>
+      <td>{props.data.first_name}</td>
+      <td>{props.data.last_name}</td>
+      <td>{props.data.email}</td>
+      <td>{props.data.phone}</td>
+      <td>{props.data.mobility_type}</td>
+      <td>{props.data.license_number}</td>
+      <td></td>
+    </tr>
+  );
 };
 
 export default Tr;
