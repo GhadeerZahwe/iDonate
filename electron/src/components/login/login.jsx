@@ -1,5 +1,6 @@
 import React, { useRef } from "react";
 import { useNavigate } from "react-router-dom";
+import UseHttp from "../../hooks/http-hook";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -11,6 +12,14 @@ const Login = () => {
     const password = passwordRef.current.value;
 
     const formData = new FormData();
+    formData.append("email", email);
+    formData.append("password", password);
+    const data = await UseHttp("login", "POST", formData);
+    console.log("data", data.authorisation.token);
+    if (data.user) {
+      localStorage.setItem("token", data.authorisation.token);
+      navigate("/admin-panel");
+    }
   };
 
   return (
