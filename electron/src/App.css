@@ -272,3 +272,28 @@ a {
     margin: 0.6rem 1.2rem;
   }
 }
+
+@media only screen and (min-width: 601px) and (max-width: 1000px) {
+  .register-container,
+  .login-container {
+    border-radius: 40px;
+    width: 50%;
+  }
+  .header h1 {
+    position: static;
+    font-size: 3rem;
+    transform: none;
+  }
+
+  .landing_row {
+    flex-direction: column;
+    padding: 40px 20px;
+  }
+  .landing_row button {
+    padding: 0.6rem 1.2rem;
+    margin: 0.6rem 1.2rem;
+  }
+  .landing_row img {
+    height: 80%;
+  }
+}
