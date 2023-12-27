@@ -25,7 +25,14 @@ const Tr = (props) => {
       <td>{props.data.phone}</td>
       <td>{props.data.mobility_type}</td>
       <td>{props.data.license_number}</td>
-      <td></td>
+      <td className="btn-container">
+        <div
+          className="delete_btn"
+          onClick={() => deleteDriver(props.data.delivery_id)}
+        >
+          Delete
+        </div>
+      </td>
     </tr>
   );
 };
