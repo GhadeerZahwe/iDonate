@@ -1,7 +1,15 @@
 import React, { useEffect, useState } from "react";
 import Tr from "../Deliveries/Deliveries";
+import UseHttp from "../../hooks/http-hook";
 
 const DeliveriesTable = () => {
+  const [data, setData] = useState("");
+  useEffect(() => {
+    const sendRequest = async () => {
+      const myData = await UseHttp("getAllDeliveries", "GET", "");
+      setData(myData.deliveries);
+    };
+  });
   return (
     <div className="table-container">
       <table>
