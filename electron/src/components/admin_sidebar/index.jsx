@@ -1,7 +1,7 @@
 import React from "react";
 
-const index = () => {
-  return <div>index</div>;
+const AdminSidebar = () => {
+  return <div>AdminSidebar</div>;
 };
 
-export default index;
+export default AdminSidebar;
