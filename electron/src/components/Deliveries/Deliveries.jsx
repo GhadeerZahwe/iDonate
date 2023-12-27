@@ -10,6 +10,13 @@ const Tr = (props) => {
       Authorization: "Bearer" + localStorage.getItem("token"),
     });
   };
+
+  const approveDriver = async (delivery_id) => {
+    formData.append("id", delivery_id);
+    const data = await UseHttp("acceptDelivery", "POST", formData, {
+      Authorization: "Bearer" + localStorage.getItem("token"),
+    });
+  };
   return <div></div>;
 };
 
