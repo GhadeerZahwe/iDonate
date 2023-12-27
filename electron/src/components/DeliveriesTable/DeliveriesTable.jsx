@@ -9,6 +9,7 @@ const DeliveriesTable = () => {
       const myData = await UseHttp("getAllDeliveries", "GET", "");
       setData(myData.deliveries);
     };
+    sendRequest();
   });
   return (
     <div className="table-container">
