@@ -60,10 +60,29 @@ body {
   z-index: 2;
 }
 
+.side-title {
+  padding: 10vh 5vh;
+  font-size: 3rem;
+  color: #06283d;
+}
+
 .admin_name {
   position: absolute;
   margin-left: 5vw;
   margin-top: 3vh;
   font-size: 26px;
   color: #fff;
+}
+
+.logout {
+  background-color: rgba(0, 0, 0, 0);
+  color: #fff;
+  font-size: 26em;
+  margin-top: 3vh;
+  margin-left: 70vw;
+  border: none;
+}
+
+.logout:hover {
+  color: red;
 }
