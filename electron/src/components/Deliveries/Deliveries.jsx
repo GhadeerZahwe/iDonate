@@ -32,6 +32,14 @@ const Tr = (props) => {
         >
           Delete
         </div>
+        {props.data.is_approved === 0 ? (
+          <div
+            className="approve_btn"
+            onClick={() => approveDriver(props.data.delivery_id)}
+          >
+            Approve
+          </div>
+        ) : null}
       </td>
     </tr>
   );
