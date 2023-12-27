@@ -1,3 +1,9 @@
+:root {
+  --blue: #1363df;
+  --dark_blue: #06283d;
+  --cyan: #47b5ff;
+  --light_blue: #dff6ff;
+}
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
@@ -6,22 +12,13 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
-
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
-    monospace;
-}
-
-:root {
-  --blue: #1363df;
-  --dark_blue: #06283d;
-  --cyan: #47b5ff;
-  --light_blue: #dff6ff;
-}
-
 a {
   color: #ffffff;
   margin: 2%;
+}
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
 }
 
 body {
@@ -45,12 +42,10 @@ body {
   height: 10vh;
   z-index: 1;
 }
-
 .logo {
   margin-top: 50px;
   margin-left: 40px;
 }
-
 .side-panel {
   position: absolute;
   flex-direction: column;
@@ -59,13 +54,6 @@ body {
   height: 1000px;
   z-index: 2;
 }
-
-.side-title {
-  padding: 10vh 5vh;
-  font-size: 3rem;
-  color: #06283d;
-}
-
 .admin_name {
   position: absolute;
   margin-left: 5vw;
@@ -73,34 +61,38 @@ body {
   font-size: 26px;
   color: #fff;
 }
-
 .logout {
-  background-color: rgba(0, 0, 0, 0);
-  color: #fff;
-  font-size: 26em;
-  margin-top: 3vh;
   margin-left: 70vw;
+  margin-top: 3vh;
+  font-size: 26px;
+  color: #fff;
+  background-color: rgba(0, 0, 0, 0);
   border: none;
 }
-
 .logout:hover {
   color: red;
 }
 
+.side-title {
+  padding: 10vh 5vh;
+  font-size: 3rem;
+  color: #06283d;
+}
+
 .donor-btn {
-  color: #fff;
   text-align: center;
   margin-top: 15vh;
   padding: 2vh;
-  font-size: 1.5 rem;
+  font-size: 1.5rem;
+  color: #fff;
 }
 
 .driver-btn {
-  color: #fff;
   text-align: center;
-  padding: 2vh;
   margin-top: 5vh;
-  font-size: 1.5 rem;
+  padding: 2vh;
+  font-size: 1.5rem;
+  color: #fff;
 }
 
 .users-btn:active {
@@ -114,45 +106,37 @@ body {
   background-color: #06283d;
   color: #47b5ff;
 }
-
 .products-btn {
   padding: 5%;
   margin-top: 3vh;
   padding-left: 5vw;
   font-size: 1.5vw;
 }
-
 table {
   width: 70vw;
   margin-left: 25vw;
   margin-top: 8vh;
 }
-
 th,
 td {
   border: 2px solid #ddd;
   padding: 8px;
   text-align: center;
 }
-
 th {
   font-size: 18px;
   font-weight: bold;
 }
-
 td {
   font-size: 16px;
   vertical-align: middle;
 }
-
 tr:hover {
   background-color: #6cc1ff;
 }
-
 tr:hover .approve_btn {
   background-color: #146c94;
 }
-
 .content {
   display: inline-block;
 }
@@ -180,7 +164,6 @@ a {
   background-color: #bface2;
   border-radius: 10px;
 }
-
 .add_product_button {
   margin-left: 70%;
   padding: 10px;
@@ -194,13 +177,14 @@ a {
   border-radius: 10px;
 }
 
+/* Registeration page */
+
 .lgn-container {
   display: flex;
   align-items: center;
   justify-content: center;
   height: 80vh;
 }
-
 .login-container {
   border-radius: 40px;
   background-color: #146c94;
@@ -209,7 +193,6 @@ a {
   box-sizing: border-box;
   height: 60vh;
 }
-
 .register-title,
 .login-title {
   text-align: center;
@@ -220,7 +203,6 @@ a {
 .register-form {
   margin-top: 10%;
 }
-
 .register-form input,
 .login-form input {
   display: block;
@@ -233,7 +215,6 @@ a {
   box-sizing: border-box;
   font-size: 16px;
 }
-
 .register-link {
   margin-top: 3%;
   text-align: center;
@@ -247,13 +228,11 @@ a {
   display: flex;
   justify-content: space-between;
 }
-
 .login-button-div {
   display: flex;
   justify-content: center;
   align-items: center;
 }
-
 .login-button {
   display: block;
   width: 50%;
@@ -267,13 +246,11 @@ a {
   cursor: pointer;
   margin: 10% 0%;
 }
-
 .login-button:hover {
   color: black;
   background-color: var(--light_blue);
   border: 1px black solid;
 }
-
 .login-form {
   margin-top: 10%;
 }

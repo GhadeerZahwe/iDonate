@@ -5,15 +5,15 @@ const AdminSidebar = () => {
   const navigate = useNavigate();
 
   const goDonors = () => {
-    navigate("/admin-panel");
+    navigate("/admin_panel");
   };
 
   const goDrivers = () => {
-    navigate("/admin-panel/drivers");
+    navigate("/admin_panel/drivers");
   };
 
   const goDonations = () => {
-    navigate("/admin-panel/donations");
+    navigate("/admin_panel/donations");
   };
 
   return (

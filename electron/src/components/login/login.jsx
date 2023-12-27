@@ -18,7 +18,7 @@ const Login = () => {
     console.log("data", data.authorisation.token);
     if (data.user) {
       localStorage.setItem("token", data.authorisation.token);
-      navigate("/admin-panel");
+      navigate("/admin_panel");
     }
   };
 
