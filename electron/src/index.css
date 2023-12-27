@@ -18,3 +18,35 @@ code {
   --cyan: #47b5ff;
   --light_blue: #dff6ff;
 }
+
+a {
+  color: #ffffff;
+  margin: 2%;
+}
+
+body {
+  background-color: #e9eefb;
+  font-family: "Poppins", sans-serif;
+}
+
+.container {
+  display: flex;
+}
+
+.container2 {
+  display: flex;
+}
+
+.navbar {
+  background-color: rgba(20, 108, 148, 0.9);
+  width: 85%;
+  position: absolute;
+  margin-left: 15%;
+  height: 10vh;
+  z-index: 1;
+}
+
+.logo {
+  margin-top: 50px;
+  margin-left: 40px;
+}
