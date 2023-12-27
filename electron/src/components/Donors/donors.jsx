@@ -11,7 +11,18 @@ const Tr = (props) => {
   };
   return (
     <tr>
-      <td>{}</td>
+      <td>{props.data.first_name}</td>
+      <td>{props.data.last_name}</td>
+      <td>{props.data.email}</td>
+      <td>{props.data.phone}</td>
+      <td>
+        <div
+          className="delete_btn"
+          onClick={() => deleteDonor(props.data.donor_id)}
+        >
+          Delete
+        </div>
+      </td>
     </tr>
   );
 };
