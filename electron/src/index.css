@@ -167,3 +167,28 @@ a {
   text-decoration: none;
   color: black;
 }
+
+.delete {
+  padding: 10px;
+  background-color: #3e54ac;
+  margin-right: 10px;
+  border-radius: 10px;
+}
+
+.edit {
+  padding: 10px;
+  background-color: #bface2;
+  border-radius: 10px;
+}
+.add_product_button {
+  margin-left: 70%;
+  padding: 10px;
+  background-color: #655dbb;
+  border-radius: 10px;
+}
+
+.home {
+  padding: 10px;
+  background: #655dbb;
+  border-radius: 10px;
+}
