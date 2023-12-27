@@ -2,9 +2,8 @@ import React, { useEffect, useState } from "react";
 
 const DeliveriesTable = () => {
   return (
-    <div>
-      Deliveries
-      <div></div>
+    <div className="table-container">
+      <table></table>
     </div>
   );
 };
