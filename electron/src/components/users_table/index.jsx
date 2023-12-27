@@ -1,7 +1,19 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import Tr from "../Donors/donors";
+import UseHttp from "../../hooks/http-hook";
+useEffect;
+useState;
 
 const UsersTable = () => {
-  //getAllDonors
+  const [data, setData] = useState("");
+  useEffect(() => {
+    const sendRequest = async () => {
+      const myData = await UseHttp("getAllDonors", "GET", "");
+      setData(myData.donors);
+      console.log(myData);
+    };
+    sendRequest();
+  });
   return (
     <div className="table-container">
       <table>
