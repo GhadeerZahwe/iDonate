@@ -35,3 +35,46 @@ body {
 .container2 {
   display: flex;
 }
+
+.navbar {
+  background-color: #06283d;
+  display: flex;
+  width: 100%;
+  height: 10vh;
+}
+
+.side-panel {
+  display: flex;
+  flex-direction: column;
+  background-color: #1363df;
+  width: fit-content;
+  min-height: 100vh;
+}
+
+.admin-title {
+  margin-left: 17vw;
+  margin-top: 2vh;
+  font-size: 42px;
+  color: #47b5ff;
+}
+
+.logout {
+  margin-right: 3vw;
+  margin-top: 3vh;
+  font-size: 22px;
+  color: rgb(201, 52, 52);
+}
+
+.side-title {
+  padding: 10vh 5vh;
+  font-size: 3rem;
+  color: #06283d;
+}
+
+.users-btn {
+  text-align: center;
+  margin-top: 15vh;
+  padding: 2vh;
+  font-size: 1.8rem;
+  color: #06283d;
+}
