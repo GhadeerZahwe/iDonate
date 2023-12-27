@@ -3,6 +3,7 @@ import logo from "./logo.png";
 
 const AdminSidebar = () => {
   const navigate = useNavigate();
+
   const goDonors = () => {
     navigate("/admin-panel");
   };
@@ -10,6 +11,11 @@ const AdminSidebar = () => {
   const goDrivers = () => {
     navigate("/admin-panel/drivers");
   };
+
+  const goDonations = () => {
+    navigate("/admin-panel/donations");
+  };
+
   return (
     <div className="side-panel">
       <img className="logo" src={logo} alt="logo"></img>
