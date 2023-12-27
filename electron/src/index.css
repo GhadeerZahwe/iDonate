@@ -50,3 +50,20 @@ body {
   margin-top: 50px;
   margin-left: 40px;
 }
+
+.side-panel {
+  position: absolute;
+  flex-direction: column;
+  background-color: #146c94;
+  width: 15%;
+  height: 1000px;
+  z-index: 2;
+}
+
+.admin_name {
+  position: absolute;
+  margin-left: 5vw;
+  margin-top: 3vh;
+  font-size: 26px;
+  color: #fff;
+}
