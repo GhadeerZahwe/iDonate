@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Tr from "../Donors/donors";
 import UseHttp from "../../hooks/http-hook";
-useEffect;
-useState;
 
 const UsersTable = () => {
   const [data, setData] = useState("");
