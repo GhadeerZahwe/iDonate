@@ -15,6 +15,9 @@ const UsersTable = () => {
             <th>Action</th>
           </tr>
         </thead>
+        <tbody id="tbody">
+          {!!data && data.map((item) => <Tr data={item} />)}
+        </tbody>
       </table>
     </div>
   );
