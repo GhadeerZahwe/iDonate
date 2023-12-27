@@ -86,3 +86,38 @@ body {
 .logout:hover {
   color: red;
 }
+
+.donor-btn {
+  color: #fff;
+  text-align: center;
+  margin-top: 15vh;
+  padding: 2vh;
+  font-size: 1.5 rem;
+}
+
+.driver-btn {
+  color: #fff;
+  text-align: center;
+  padding: 2vh;
+  margin-top: 5vh;
+  font-size: 1.5 rem;
+}
+
+.users-btn:active {
+  background-color: #6cc1ff;
+  color: #6cc1ff;
+}
+
+.donor-btn:hover,
+.users-btn:hover,
+.driver-btn:hover {
+  color: #47b5ff;
+  background-color: #06283d;
+}
+
+.users-btn {
+  padding: 5%;
+  margin-top: 3vh;
+  padding-left: 5vw;
+  font-size: 1.5em;
+}
