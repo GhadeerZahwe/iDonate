@@ -7,7 +7,13 @@ const Drivers = () => {
     <body>
       <AdminSidebar />
       <AdminHeader />
-      <div></div>
+      <div className="container2">
+        <div className="content">
+          <h1 className="content-title" id="content-title">
+            Delivery Drivers
+          </h1>
+        </div>
+      </div>
     </body>
   );
 };
