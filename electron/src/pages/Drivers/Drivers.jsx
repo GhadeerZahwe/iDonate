@@ -1,6 +1,7 @@
 import React from "react";
 import AdminSidebar from "../../components/admin_sidebar";
 import AdminHeader from "../../components/admin_header";
+import DeliveriesTable from "../../components/DeliveriesTable/DeliveriesTable";
 
 const Drivers = () => {
   return (
@@ -12,6 +13,7 @@ const Drivers = () => {
           <h1 className="content-title" id="content-title">
             Delivery Drivers
           </h1>
+          <DeliveriesTable />
         </div>
       </div>
     </body>
