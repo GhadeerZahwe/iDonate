@@ -69,29 +69,6 @@ body {
   cursor: pointer;
 }
 
-table {
-  width: 70vw;
-  margin-left: 8vw;
-  margin-top: 8vh;
-}
-th,
-td {
-  border: 2px solid #ddd;
-  padding: 8px;
-  text-align: center;
-}
-th {
-  font-size: 18px;
-  font-weight: bold;
-}
-td {
-  font-size: 16px;
-  vertical-align: middle;
-}
-tr:hover {
-  background-color: #1363df;
-}
-
 .content {
   display: inline-block;
 }
