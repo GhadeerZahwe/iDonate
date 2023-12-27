@@ -7,6 +7,9 @@ const AdminSidebar = () => {
     navigate("/admin-panel");
   };
 
+  const goDrivers = () => {
+    navigate("/admin-panel/drivers");
+  };
   return (
     <div className="side-panel">
       <img className="logo" src={logo} alt="logo"></img>
