@@ -10,6 +10,9 @@ const AdminSidebar = () => {
       <div className="donor-btn" id="users-btn" onClick={goDonors}>
         Donors
       </div>
+      <div className="driver-btn" id="users-btn" onClick={goDrivers}>
+        Drivers
+      </div>
     </div>
   );
 };
