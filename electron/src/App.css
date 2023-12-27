@@ -153,16 +153,22 @@ a {
   .register-container,
   .login-container {
     border-radius: 40px;
-    width: 50vw;
-    height: 85vh;
+    width: 45vw;
+    height: 83vh;
   }
-
+  .navbar {
+    height: 12%;
+  }
   .header h1 {
     position: static;
     font-size: 3rem;
     transform: none;
   }
 
+  .logo {
+    margin-top: 50px;
+    margin-left: 20px;
+  }
   .landing_row {
     flex-direction: column;
     padding: 40px 20px;

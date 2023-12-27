@@ -44,7 +44,7 @@ body {
 }
 .logo {
   margin-top: 50px;
-  margin-left: 40px;
+  margin-left: 50px;
 }
 .side-panel {
   position: absolute;
@@ -188,10 +188,10 @@ a {
 .login-container {
   border-radius: 40px;
   background-color: #146c94;
-  width: 40%;
+  width: 35vw;
   padding: 50px;
   box-sizing: border-box;
-  height: 64vh;
+  height: 65vh;
 }
 .register-title,
 .login-title {
