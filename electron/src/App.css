@@ -78,3 +78,43 @@ body {
   font-size: 1.8rem;
   color: #06283d;
 }
+
+.users-btn:hover,
+.products-btn:hover {
+  background-color: #06283d;
+  color: #47b5ff;
+}
+
+.products-btn {
+  padding: 5%;
+  margin-top: 3vh;
+  padding-left: 5vw;
+  font-size: 1.5vw;
+}
+
+table {
+  width: 70vw;
+  margin-left: 8vw;
+  margin-top: 8vh;
+}
+
+th,
+td {
+  border: 2px solid #ddd;
+  padding: 8px;
+  text-align: center;
+}
+
+th {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+td {
+  font-size: 16px;
+  vertical-align: middle;
+}
+
+tr:hover {
+  background-color: #1363df;
+}
