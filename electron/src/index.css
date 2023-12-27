@@ -183,15 +183,15 @@ a {
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 80vh;
+  height: 95vh;
 }
 .login-container {
   border-radius: 40px;
   background-color: #146c94;
-  width: 30%;
+  width: 40%;
   padding: 50px;
   box-sizing: border-box;
-  height: 60vh;
+  height: 64vh;
 }
 .register-title,
 .login-title {
