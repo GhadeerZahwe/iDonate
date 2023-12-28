@@ -1,4 +1,5 @@
 import React from "react";
+import "./style.css";
 import UseHttp from "../../hooks/http-hook";
 
 const Tr = (props) => {
