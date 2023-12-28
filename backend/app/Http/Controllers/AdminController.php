@@ -114,6 +114,12 @@ class AdminController extends Controller
 
     public function deleteUser(Request $request){
         try{
+            if(auth()->user()->user_type!== 'admin'){
+                return response()->json([
+                    'status'=>'error',
+                    'message'=>'Unauthorized: Only admin users can delete users.',
+                ],401);
+            }
 
         }catch(\Exception $e){
            return response()->json([
