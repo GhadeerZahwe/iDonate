@@ -11,29 +11,30 @@ use Illuminate\Http\Request;
 
 class AdminController extends Controller
 {
-    public function getAllDonors(){
+    public function getAllDonors()
+    {
         try {
-            if(auth()->check()){
-                $user=Auth::user();
+            if (auth()->check()) {
+                $user = Auth::user();
     
-                if($user->user_type==='admin'){
-                    $donors=User::withTrashed()
-                        ->where('user_type','donor')
-                        ->join('donors_info','users.id','=','donors_info.donor_id')
-                        ->get();
+                if ($user->user_type === 'admin') {
+                    $donors = User::where('user_type', 'donor')
+        ->where('is_deleted', '0') // Exclude soft-deleted records
+        ->join('donors_info', 'users.id', '=', 'donors_info.donor_id')
+        ->get();
     
-                    return response()->json(['donors'=> $donors]);
-    
-                } else{
-                    return response()->json(['error'=>'Permission Denied'],403);
-                }        
-            } else{
-                return response()->json(['error'=>'User not authenticated'],401);
-            }  
+                    return response()->json(['donors' => $donors]);
+                } else {
+                    return response()->json(['error' => 'Permission Denied'], 403);
+                }
+            } else {
+                return response()->json(['error' => 'User not authenticated'], 401);
+            }
         } catch (\Exception $e) {
             return response()->json(['error' => $e->getMessage()], 500);
         }
     }
+    
 
   public function getAllDeliveries()
     {

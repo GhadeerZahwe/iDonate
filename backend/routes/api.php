@@ -33,6 +33,7 @@ Route::group(['middleware'=>'idonate_authenticate'],function(){
     Route::get('/getAllDeliveries', [AdminController::class, "getAllDeliveries"]);
     Route::post('/acceptDelivery/{deliveryId}',[AdminController::class,"acceptDelivery"]);
     Route::post('/cancelDeliveryAcceptance/{deliveryId}',[AdminController::class,"cancelDeliveryAcceptance"]);
+    Route::delete('/deleteUser/{id}',[AdminController::class,"deleteUser"]);
    });
     
    Route::group(['middleware'=>'donor_authorize'],function(){
