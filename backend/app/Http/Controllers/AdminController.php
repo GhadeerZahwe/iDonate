@@ -212,6 +212,7 @@ class AdminController extends Controller
                 ->first();
     
             if (!$donorUser) {
+                
                 return response()->json([
                     'status' => 'error',
                     'message' => 'Donor user not found.',
@@ -219,6 +220,7 @@ class AdminController extends Controller
             }
     
     
+
         } catch (QueryException $e) {
             // Handle database query exceptions
             return response()->json([
