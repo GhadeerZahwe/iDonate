@@ -130,16 +130,22 @@ class AdminController extends Controller
             'status'=>$action,
             'message'=>'User deleted successfully.',
         ]);
-    }catch{
-        
+    } catch (QueryException $e) {
+        // Handle database query exceptions
+        return response()->json([
+            'status' => 'error',
+            'message' => 'Error deleting user.',
+            'error' => $e->getMessage(),
+        ], 500);
+
+    } catch (\Exception $e) {
+        // Handle other exceptions
+        return response()->json([
+            'status' => 'error',
+            'message' => 'An error occurred during user deletion.',
+            'error' => $e->getMessage(),
+        ], 500);
     }
 
-        }catch(\Exception $e){
-           return response()->json([
-            'status'=>'error',
-            'message' =>'An error occured during user deletion.',
-            'error'=>$e -> getMessage(),
-           ],500);
-        }
     }
 }
