@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Database\QueryException;
+use Illuminate\Support\Facades\DB;
 use App\Models\User;
 use App\Models\DeliveryInfo;
 use App\Models\DonorInfo;
@@ -109,5 +111,6 @@ class AdminController extends Controller
 
         }
     }
+
     
 }
