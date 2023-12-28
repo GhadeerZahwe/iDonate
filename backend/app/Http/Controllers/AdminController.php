@@ -113,6 +113,53 @@ class AdminController extends Controller
         }
     }
 
+    
+
+    public function deleteDelivery(Request $request, $deliveryId)
+{
+    try {
+        if (auth()->user()->user_type !== 'admin') {
+            return response()->json([
+                'status' => 'error',
+                'message' => 'Unauthorized: Only admin users can delete users.',
+            ], 401);
+        }
+
+        // Check if the delivery user exists
+        $deliveryUser = User::where('id', $deliveryId)
+            ->where('user_type', 'delivery')
+            ->first();
+
+        if (!$deliveryUser) {
+            return response()->json([
+                'status' => 'error',
+                'message' => 'Delivery user not found.',
+            ], 404);
+        }
+
+        $deliveryUser->delete();
+
+        return response()->json([
+            'status' => 'success',
+            'message' => 'Delivery user and associated info deleted successfully.',
+        ]);
+    } catch (QueryException $e) {
+        // Handle database query exceptions
+        return response()->json([
+            'status' => 'error',
+            'message' => 'Error deleting delivery user.',
+            'error' => $e->getMessage(),
+        ], 500);
+    } catch (\Exception $e) {
+        // Handle other exceptions
+        return response()->json([
+            'status' => 'error',
+            'message' => 'An error occurred during delivery user deletion.',
+            'error' => $e->getMessage(),
+        ], 500);
+
+    }}
+
     public function deleteUser(Request $request){
         try{
             if(auth()->user()->user_type!== 'admin'){
@@ -149,50 +196,10 @@ class AdminController extends Controller
     }
 
     }
-
     public function deleteDonor(Request $request, $donorId)
-{
-    try {
-        if (auth()->user()->user_type !== 'admin') {
-            return response()->json([
-                'status' => 'error',
-                'message' => 'Unauthorized: Only admin users can delete donors.',
-            ], 401);
-        }
-
-        // Check if the delivery user exists
-        $donorUser = User::where('id', $donorId)
-            ->where('user_type', 'delivery')
-            ->first();
-
-        if (!$donorUser) {
-            return response()->json([
-                'status' => 'error',
-                'message' => 'Donor user not found.',
-            ], 404);
-        }
-
-        $donorUser->delete();
-
-        return response()->json([
-            'status' => 'success',
-            'message' => 'Donor user and associated info deleted successfully.',
-        ]);
-    } catch (QueryException $e) {
-        // Handle database query exceptions
-        return response()->json([
-            'status' => 'error',
-            'message' => 'Error deleting donor user.',
-            'error' => $e->getMessage(),
-        ], 500);
-    } catch (\Exception $e) {
-        // Handle other exceptions
-        return response()->json([
-            'status' => 'error',
-            'message' => 'An error occurred during donor user deletion.',
-            'error' => $e->getMessage(),
-        ], 500);
+    {
+       
     }
-}
+    
 
 }
