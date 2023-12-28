@@ -5,8 +5,8 @@ const Tr = (props) => {
   const formData = new FormData();
   const deleteDonor = async (donor_id) => {
     formData.append("id", donor_id);
-    const data = await UseHttp("delete_user", "POST", formData, {
-      Authorization: "Bearer" + localStorage.getItem("token"),
+    const data = await UseHttp(`deleteUser/${donor_id}`, "DELETE", formData, {
+      Authorization: "Bearer " + localStorage.getItem("token"),
     });
   };
   return (
@@ -23,7 +23,11 @@ const Tr = (props) => {
         >
           Delete
         </div> */}
-        <button class="btn" type="button">
+        <button
+          className="btn"
+          type="button"
+          onClick={() => deleteDonor(props.data.donor_id)}
+        >
           <strong>DELETE</strong>
           <div id="container-stars">
             <div id="stars"></div>
