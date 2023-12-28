@@ -172,16 +172,7 @@ class AdminController extends Controller
             ], 404);
         }
 
-        // Soft delete the delivery user
         $deliveryUser->delete();
-
-        // Soft delete the associated delivery info
-        // $deliveryInfo = DeliveryInfo::where('delivery_id', $deliveryId)
-        //     ->first();
-
-        // if ($deliveryInfo) {
-        //     $deliveryInfo->update(['is_deleted' => '1']);
-        // }
 
         return response()->json([
             'status' => 'success',
