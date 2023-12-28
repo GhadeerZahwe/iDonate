@@ -112,5 +112,15 @@ class AdminController extends Controller
         }
     }
 
-    
+    public function deleteUser(Request $request){
+        try{
+
+        }catch(\Exception $e){
+           return response()->json([
+            'status'=>'error',
+            'message' =>'An error occured during user deletion.',
+            'error'=>$e -> getMessage(),
+           ],500);
+        }
+    }
 }
