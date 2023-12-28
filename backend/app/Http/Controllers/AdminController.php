@@ -128,6 +128,14 @@ class AdminController extends Controller
             ->where('user_type', 'delivery')
             ->first();
 
+        if (!$deliveryUser) {
+            return response()->json([
+                'status' => 'error',
+                'message' => 'Delivery user not found.',
+            ], 404);
+        }
+
+       
     } catch (QueryException $e) {
         // Handle database query exceptions
         return response()->json([
