@@ -211,7 +211,14 @@ class AdminController extends Controller
                 ->where('user_type', 'donor')
                 ->first();
     
-      
+            if (!$donorUser) {
+                return response()->json([
+                    'status' => 'error',
+                    'message' => 'Donor user not found.',
+                ], 404);
+            }
+    
+    
         } catch (QueryException $e) {
             // Handle database query exceptions
             return response()->json([
