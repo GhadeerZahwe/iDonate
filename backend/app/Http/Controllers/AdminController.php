@@ -220,6 +220,10 @@ class AdminController extends Controller
     
             $donorUser->delete();
     
+            return response()->json([
+                'status' => 'success',
+                'message' => 'Donor user and associated info deleted successfully.',
+            ]);
         } catch (QueryException $e) {
             // Handle database query exceptions
             return response()->json([
