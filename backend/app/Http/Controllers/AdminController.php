@@ -113,8 +113,6 @@ class AdminController extends Controller
         }
     }
 
-    
-
     public function deleteDelivery(Request $request, $deliveryId)
 {
     try {
@@ -160,42 +158,6 @@ class AdminController extends Controller
 
     }}
 
-    public function deleteUser(Request $request){
-        try{
-            if(auth()->user()->user_type!== 'admin'){
-                return response()->json([
-                    'status'=>'error',
-                    'message'=>'Unauthorized: Only admin users can delete users.',
-                ],401);
-            }
-         $donor_id=$request->id;
-         //soft delete the user
-         $action=DB::transaction(function() use ($donor_id){
-            return User::where('id', $donor_id)->update(['is_deleted'=>'1']);
-         });
-
-        return response()->json([
-            'status'=>$action,
-            'message'=>'User deleted successfully.',
-        ]);
-    } catch (QueryException $e) {
-        // Handle database query exceptions
-        return response()->json([
-            'status' => 'error',
-            'message' => 'Error deleting user.',
-            'error' => $e->getMessage(),
-        ], 500);
-
-    } catch (\Exception $e) {
-        // Handle other exceptions
-        return response()->json([
-            'status' => 'error',
-            'message' => 'An error occurred during user deletion.',
-            'error' => $e->getMessage(),
-        ], 500);
-    }
-
-    }
     public function deleteDonor(Request $request, $donorId)
     {
         try {
