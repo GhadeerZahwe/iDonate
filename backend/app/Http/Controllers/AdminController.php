@@ -206,7 +206,14 @@ class AdminController extends Controller
                 ], 401);
             }
     
-     
+        
+        } catch (QueryException $e) {
+            // Handle database query exceptions
+            return response()->json([
+                'status' => 'error',
+                'message' => 'Error deleting donor user.',
+                'error' => $e->getMessage(),
+            ], 500);
         } catch (\Exception $e) {
             // Handle other exceptions
             return response()->json([
