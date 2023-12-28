@@ -16,13 +16,24 @@ const Tr = (props) => {
       <td>{props.data.email}</td>
       <td>{props.data.phone}</td>
       <td>{props.data.description}</td>
-      <td>
-        <div
+      <td className="delete-cell">
+        {/* <div
           className="delete_btn"
           onClick={() => deleteDonor(props.data.donor_id)}
         >
           Delete
-        </div>
+        </div> */}
+        <button class="btn" type="button">
+          <strong>DELETE</strong>
+          <div id="container-stars">
+            <div id="stars"></div>
+          </div>
+
+          <div id="glow">
+            <div class="circle"></div>
+            <div class="circle"></div>
+          </div>
+        </button>
       </td>
     </tr>
   );
