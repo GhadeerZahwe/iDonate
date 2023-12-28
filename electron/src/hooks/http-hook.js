@@ -16,6 +16,7 @@ const UseHttp = async (url, method = "GET", body = "", header = {}) => {
     console.error(error.message);
     throw error;
   }
+
   return data;
 };
 

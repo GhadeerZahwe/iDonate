@@ -84,28 +84,28 @@ a {
   margin-right: 10px;
   border-radius: 10px;
 }
+
 .btn {
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 9rem;
+  width: 7rem;
   overflow: hidden;
   margin: auto; /* Center the button horizontally */
   margin-top: 10px; /* Adjust the top margin as needed */
-  height: 3rem;
+  height: 2.5rem;
   background-size: 300% 300%;
   backdrop-filter: blur(1rem);
   border-radius: 5rem;
-  transition: 0.5s;
   cursor: pointer;
-
+  transition: 0.5s;
   animation: gradient_301 5s ease infinite;
   border: double 4px transparent;
   background-image: linear-gradient(#212121, #212121),
     linear-gradient(
       137.48deg,
       #ff0000 4%,
-      #021520 45%,
+      #af0000 45%,
       #ff0000 57%,
       #ff0000 87%
     );
@@ -159,7 +159,6 @@ strong {
   z-index: 1;
   background-color: #ff0000;
 }
-
 .btn:hover {
   transform: scale(1.1);
 }
@@ -206,10 +205,7 @@ strong {
   height: 500%;
   animation: animStar 60s linear infinite;
 }
-.delete-cell {
-  text-align: center;
-  vertical-align: middle;
-}
+
 #stars::before {
   background-image: radial-gradient(#ffffff 1px, transparent 1%);
   background-size: 50px 50px;
@@ -253,17 +249,17 @@ strong {
 @keyframes pulse_3011 {
   0% {
     transform: scale(0.75);
-    box-shadow: 0 0 0 0 rgba(226, 2, 2, 0.7);
+    box-shadow: 0 0 0 0 rgba(0, 0, 0, 0.7);
   }
 
   70% {
     transform: scale(1);
-    box-shadow: 0 0 0 10px rgba(226, 0, 0, 0);
+    box-shadow: 0 0 0 10px rgba(0, 0, 0, 0);
   }
 
   100% {
     transform: scale(0.75);
-    box-shadow: 0 0 0 0 rgba(226, 0, 0, 0);
+    box-shadow: 0 0 0 0 rgba(0, 0, 0, 0);
   }
 }
 

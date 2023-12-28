@@ -3,6 +3,7 @@
   flex-direction: row;
   gap: 7px;
   width: 15rem;
+  justify-content: center;
 }
 
 #container-stars-delete {
@@ -62,6 +63,35 @@
   z-index: -1;
 }
 
+.btn-delete {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 0;
+  width: 7rem;
+  overflow: hidden;
+  margin-top: 8px; /* Adjust the top margin as needed */
+  height: 2.5rem;
+  background-size: 300% 300%;
+  backdrop-filter: blur(1rem);
+  border-radius: 5rem;
+  transition: 0.5s;
+  cursor: pointer;
+
+  animation: gradient_301 5s ease infinite;
+  border: double 4px transparent;
+  background-image: linear-gradient(#212121, #212121),
+    linear-gradient(
+      137.48deg,
+      #ff0000 4%,
+      #8d0101 45%,
+      #ff0000 57%,
+      #ff0000 87%
+    );
+  background-origin: border-box;
+  background-clip: content-box, border-box;
+}
+
 .circle-delete:nth-of-type(1) {
   background: rgba(243, 18, 1, 0.87);
 }
@@ -79,7 +109,7 @@
   background-size: 50px 50px;
   opacity: 0.5;
 }
-.btn-delete {
+.btn-cancel {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -88,7 +118,7 @@
   overflow: hidden;
   margin-left: 0; /* Center the button horizontally */
   margin-top: 10px; /* Adjust the top margin as needed */
-  height: 3rem;
+  height: 2rem;
   background-size: 300% 300%;
   backdrop-filter: blur(1rem);
   border-radius: 5rem;
@@ -127,15 +157,35 @@
   background-color: #ff0000;
 }
 
+.btn-cancel:hover {
+  transform: scale(1.1);
+}
+
+.btn-cancel:active {
+  border: double 4px #ff0000;
+  background-origin: border-box;
+  background-clip: content-box, border-box;
+  animation: none;
+}
+
+.btn-cancel:active .circle {
+  background: #ff0000;
+}
+
+.btn-cancel:hover #container-stars-delete {
+  z-index: 1;
+  background-color: #ff0000;
+}
+
 .btn-approve {
   display: flex;
   justify-content: center;
   cursor: pointer;
   align-items: center;
-  width: 6.8rem;
+  width: 7rem;
   margin-top: 9px;
   overflow: hidden;
-  height: 3rem;
+  height: 2rem;
   background-size: 300% 300%;
   backdrop-filter: blur(1rem);
   border-radius: 5rem;

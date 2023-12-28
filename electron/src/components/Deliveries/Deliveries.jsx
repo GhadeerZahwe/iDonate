@@ -23,22 +23,8 @@ const Tr = (props) => {
           Authorization: "Bearer " + localStorage.getItem("token"),
         }
       );
-      if (data.success) {
-        console.log(
-          is_approved === 0 ? "Approval successful" : "Cancellation successful"
-        );
-        // Update the state after successful API call
-        setIsApproved(is_approved === 0 ? 1 : 0);
-
-        // No need to trigger a re-fetch of data or update the UI here
-        // The component will re-render due to the state change
-      } else {
-        console.error(
-          is_approved === 0 ? "Approval failed:" : "Cancellation failed:",
-          data.error
-        );
-        // Handle the error, show a message, etc.
-      }
+      // Update the state after successful API call
+      setIsApproved(is_approved === 0 ? 1 : 0);
     } catch (error) {
       console.error("Error:", error.message);
       // Handle other errors if necessary
@@ -47,9 +33,26 @@ const Tr = (props) => {
     }
   };
 
-  useEffect(() => {
-    console.log("is_approved updated:", isApproved);
-  }, [isApproved]);
+  const handleDeleteClick = async (deliveryId) => {
+    formData.append("id", deliveryId);
+    try {
+      setIsProcessing(true);
+      const data = await UseHttp(
+        `deleteDelivery/${deliveryId}`,
+        "DELETE",
+        formData,
+        {
+          Authorization: "Bearer " + localStorage.getItem("token"),
+        }
+      );
+      console.log("Deletion successful".data);
+    } catch (error) {
+      console.error("Error:", error.message);
+      // Handle other errors if necessary
+    } finally {
+      setIsProcessing(false);
+    }
+  };
 
   return (
     <tr>
@@ -64,28 +67,46 @@ const Tr = (props) => {
         {isProcessing ? (
           <div>Processing...</div>
         ) : (
-          <div
-            className={isApproved ? "btn-delete" : "btn-approve"}
-            onClick={() =>
-              handleButtonClick(
-                props.data.delivery_info.delivery_id,
-                props.data.delivery_info.is_approved
-              )
-            }
-          >
-            <strong>{isApproved ? "CANCEL" : "APPROVE"}</strong>
-            <div id={`container-stars-${isApproved ? "delete" : "approve"}`}>
-              <div id={`stars-${isApproved ? "delete" : "approve"}`}></div>
+          <>
+            <div
+              className={isApproved ? "btn-cancel" : "btn-approve"}
+              onClick={() =>
+                handleButtonClick(
+                  props.data.delivery_info.delivery_id,
+                  isApproved
+                )
+              }
+            >
+              <strong>{isApproved ? "CANCEL" : "APPROVE"}</strong>
+              <div id={`container-stars-${isApproved ? "delete" : "approve"}`}>
+                <div id={`stars-${isApproved ? "delete" : "approve"}`}></div>
+              </div>
+              <div id={`glow-${isApproved ? "delete" : "approve"}`}>
+                <div
+                  className={`circle-${isApproved ? "delete" : "approve"}`}
+                ></div>
+                <div
+                  className={`circle-${isApproved ? "delete" : "approve"}`}
+                ></div>
+              </div>
             </div>
-            <div id={`glow-${isApproved ? "delete" : "approve"}`}>
-              <div
-                className={`circle-${isApproved ? "delete" : "approve"}`}
-              ></div>
-              <div
-                className={`circle-${isApproved ? "delete" : "approve"}`}
-              ></div>
-            </div>
-          </div>
+            <button
+              className="btn"
+              type="button"
+              onClick={() =>
+                handleDeleteClick(props.data.delivery_info.delivery_id)
+              }
+            >
+              <strong>DELETE</strong>
+              <div id={`container-stars`}>
+                <div id={`stars`}></div>
+              </div>
+              <div id={`glow`}>
+                <div className={`circle`}></div>
+                <div className={`circle`}></div>
+              </div>
+            </button>
+          </>
         )}
       </td>
     </tr>
