@@ -47,34 +47,44 @@ class AuthController extends Controller
 
     public function adminLogin(Request $request)
     {
-        $request->validate([
-            'email' => 'required|string|email',
-            'password' => 'required|string',
-        ]);
-
-        // Attempt to authenticate the user as an admin
-        $credentials = $request->only('email', 'password');
-        $user = User::where('email', $credentials['email'])->where('user_type', 'admin')->first();
-
-        if (!$user || !Hash::check($credentials['password'], $user->password)) {
+        try {
+            $request->validate([
+                'email' => 'required|string|email',
+                'password' => 'required|string',
+            ]);
+    
+            // Attempt to authenticate the user as an admin
+            $credentials = $request->only('email', 'password');
+            $user = User::where('email', $credentials['email'])->where('user_type', 'admin')->first();
+    
+            if (!$user || !Hash::check($credentials['password'], $user->password)) {
+                return response()->json([
+                    'status' => 'error',
+                    'message' => 'Unauthorized',
+                ], 401);
+            }
+    
+            $token = Auth::login($user);
+    
+            return response()->json([
+                'status' => 'success',
+                'user' => $user,
+                'authorisation' => [
+                    'token' => $token,
+                    'type' => 'bearer',
+                ]
+            ]);
+        } catch (\Exception $e) {
+            // Handle exceptions
             return response()->json([
                 'status' => 'error',
-                'message' => 'Unauthorized',
-            ], 401);
+                'message' => 'An error occurred during admin login',
+                'error' => $e->getMessage(),
+            ], 500);
         }
-
-        $token = Auth::login($user);
-
-        return response()->json([
-            'status' => 'success',
-            'user' => $user,
-            'authorisation' => [
-                'token' => $token,
-                'type' => 'bearer',
-            ]
-        ]);
     }
     
+
     public function register(Request $request){
         try{
         $request->validate([

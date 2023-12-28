@@ -21,6 +21,7 @@ use App\Http\Controllers\DeliveryController;
 
 Route::post('/register', [AuthController::class, "register"]);
 Route::post('/login', [AuthController::class, "login"]);
+Route::post('/adminLogin', [AuthController::class, "adminLogin"]);
 Route::post('/logout', [AuthController::class, "logout"]);
 Route::post('/refresh', [AuthController::class, "refresh"]);
 
