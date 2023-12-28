@@ -29,7 +29,7 @@ const UsersTable = () => {
           </tr>
         </thead>
         <tbody id="tbody">
-          {!!data && data.map((item) => <Tr data={item} />)}
+          {!!data && data.map((item) => <Tr data={item} key={item.id} />)}
         </tbody>
       </table>
     </div>
