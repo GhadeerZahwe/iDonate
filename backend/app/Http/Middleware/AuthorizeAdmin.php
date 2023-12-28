@@ -17,9 +17,10 @@ class AuthorizeAdmin
     public function handle(Request $request, Closure $next): Response
     {
         $user=Auth::user();
+    
         if($user->user_type==='admin'){
             return $next($request);
         }
-        return response()->json(['error'=>'Not authorized as an Admin.']);
+        return response()->json(['error'=>'Not authorized as an Admin. ' . $user->user_type]);
     }
 }

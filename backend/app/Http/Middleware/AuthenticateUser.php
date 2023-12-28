@@ -22,6 +22,6 @@ class AuthenticateUser
         }
         return response()->json([
             "message"=>'Not authenticated.'
-        ]);
+        ], 401);
     }
 }
