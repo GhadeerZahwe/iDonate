@@ -5,7 +5,7 @@ import DeliveriesTable from "../../components/DeliveriesTable/DeliveriesTable";
 
 const Drivers = () => {
   return (
-    <body>
+    <div>
       <AdminSidebar />
       <AdminHeader />
       <div className="container2">
@@ -16,7 +16,7 @@ const Drivers = () => {
           <DeliveriesTable />
         </div>
       </div>
-    </body>
+    </div>
   );
 };
 
