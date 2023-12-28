@@ -135,7 +135,8 @@ class AdminController extends Controller
             ], 404);
         }
 
-       
+        $deliveryUser->delete();
+
     } catch (QueryException $e) {
         // Handle database query exceptions
         return response()->json([
