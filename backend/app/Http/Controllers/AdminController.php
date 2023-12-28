@@ -126,6 +126,14 @@ class AdminController extends Controller
             return User::where('id', $donor_id)->update(['is_deleted'=>'1']);
          });
 
+        return response()->json([
+            'status'=>$action,
+            'message'=>'User deleted successfully.',
+        ]);
+    }catch{
+        
+    }
+
         }catch(\Exception $e){
            return response()->json([
             'status'=>'error',
