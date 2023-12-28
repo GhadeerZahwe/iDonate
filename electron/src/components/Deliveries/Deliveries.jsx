@@ -23,8 +23,8 @@ const Tr = (props) => {
       <td>{props.data.last_name}</td>
       <td>{props.data.email}</td>
       <td>{props.data.phone}</td>
-      <td>{props.data.mobility_type}</td>
-      <td>{props.data.license_number}</td>
+      <td>{props.data.delivery_info.mobility_type}</td>
+      <td>{props.data.delivery_info.license_number}</td>
       <td className="btn-container">
         <div
           className="delete_btn"

@@ -6,7 +6,10 @@ const UsersTable = () => {
   const [data, setData] = useState("");
   useEffect(() => {
     const sendRequest = async () => {
-      const myData = await UseHttp("getAllDonors", "GET", "");
+      console.log(localStorage.getItem("token"));
+      const myData = await UseHttp("getAllDonors", "GET", "", {
+        Authorization: "Bearer" + localStorage.getItem("token"),
+      });
       setData(myData.donors);
       console.log(myData);
     };

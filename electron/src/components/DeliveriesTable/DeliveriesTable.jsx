@@ -6,11 +6,13 @@ const DeliveriesTable = () => {
   const [data, setData] = useState("");
   useEffect(() => {
     const sendRequest = async () => {
-      const myData = await UseHttp("getAllDeliveries", "GET", "");
+      const myData = await UseHttp("getAllDeliveries", "GET", "", {
+        Authorization: "Bearer" + localStorage.getItem("token"),
+      });
       setData(myData.deliveries);
     };
     sendRequest();
-  });
+  }, []);
   return (
     <div className="table-container">
       <table>
