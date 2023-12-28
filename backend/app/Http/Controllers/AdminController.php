@@ -206,7 +206,12 @@ class AdminController extends Controller
                 ], 401);
             }
     
-        
+            // Check if the donor user exists
+            $donorUser = User::where('id', $donorId)
+                ->where('user_type', 'donor')
+                ->first();
+    
+      
         } catch (QueryException $e) {
             // Handle database query exceptions
             return response()->json([
