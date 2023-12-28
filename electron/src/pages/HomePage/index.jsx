@@ -5,7 +5,7 @@ import UsersTable from "../../components/users_table";
 
 const HomePage = () => {
   return (
-    <body>
+    <div>
       <AdminSidebar />
       <AdminHeader />
       <div className="container2">
@@ -16,7 +16,7 @@ const HomePage = () => {
           <UsersTable />
         </div>
       </div>
-    </body>
+    </div>
   );
 };
 
