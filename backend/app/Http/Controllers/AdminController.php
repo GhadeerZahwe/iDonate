@@ -198,7 +198,23 @@ class AdminController extends Controller
     }
     public function deleteDonor(Request $request, $donorId)
     {
-       
+        try {
+            if (auth()->user()->user_type !== 'admin') {
+                return response()->json([
+                    'status' => 'error',
+                    'message' => 'Unauthorized: Only admin users can delete donors.',
+                ], 401);
+            }
+    
+     
+        } catch (\Exception $e) {
+            // Handle other exceptions
+            return response()->json([
+                'status' => 'error',
+                'message' => 'An error occurred during donor user deletion.',
+                'error' => $e->getMessage(),
+            ], 500);
+        }
     }
     
 
