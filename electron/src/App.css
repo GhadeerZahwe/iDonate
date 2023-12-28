@@ -97,6 +97,8 @@ a {
   backdrop-filter: blur(1rem);
   border-radius: 5rem;
   transition: 0.5s;
+  cursor: pointer;
+
   animation: gradient_301 5s ease infinite;
   border: double 4px transparent;
   background-image: linear-gradient(#212121, #212121),
