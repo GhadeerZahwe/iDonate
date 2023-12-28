@@ -149,4 +149,59 @@ class AdminController extends Controller
     }
 
     }
+
+    public function deleteDelivery(Request $request, $deliveryId)
+{
+    try {
+        if (auth()->user()->user_type !== 'admin') {
+            return response()->json([
+                'status' => 'error',
+                'message' => 'Unauthorized: Only admin users can delete users.',
+            ], 401);
+        }
+
+        // Check if the delivery user exists
+        $deliveryUser = User::where('id', $deliveryId)
+            ->where('user_type', 'delivery')
+            ->first();
+
+        if (!$deliveryUser) {
+            return response()->json([
+                'status' => 'error',
+                'message' => 'Delivery user not found.',
+            ], 404);
+        }
+
+        // Soft delete the delivery user
+        $deliveryUser->delete();
+
+        // Soft delete the associated delivery info
+        // $deliveryInfo = DeliveryInfo::where('delivery_id', $deliveryId)
+        //     ->first();
+
+        // if ($deliveryInfo) {
+        //     $deliveryInfo->update(['is_deleted' => '1']);
+        // }
+
+        return response()->json([
+            'status' => 'success',
+            'message' => 'Delivery user and associated info deleted successfully.',
+        ]);
+    } catch (QueryException $e) {
+        // Handle database query exceptions
+        return response()->json([
+            'status' => 'error',
+            'message' => 'Error deleting delivery user.',
+            'error' => $e->getMessage(),
+        ], 500);
+    } catch (\Exception $e) {
+        // Handle other exceptions
+        return response()->json([
+            'status' => 'error',
+            'message' => 'An error occurred during delivery user deletion.',
+            'error' => $e->getMessage(),
+        ], 500);
+    }
+}
+
 }
