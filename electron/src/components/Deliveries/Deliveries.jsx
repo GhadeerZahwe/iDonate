@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./style.css"; // Import the CSS file
 import UseHttp from "../../hooks/http-hook";
 
@@ -11,10 +11,8 @@ const Tr = (props) => {
 
   const handleButtonClick = async (delivery_id, is_approved) => {
     formData.append("id", delivery_id);
-
     try {
       setIsProcessing(true);
-
       const data = await UseHttp(
         is_approved === 0
           ? `acceptDelivery/${delivery_id}`
@@ -25,16 +23,15 @@ const Tr = (props) => {
           Authorization: "Bearer " + localStorage.getItem("token"),
         }
       );
-
       if (data.success) {
         console.log(
           is_approved === 0 ? "Approval successful" : "Cancellation successful"
         );
-
         // Update the state after successful API call
         setIsApproved(is_approved === 0 ? 1 : 0);
 
-        // trigger a re-fetch of data or update the UI as needed
+        // No need to trigger a re-fetch of data or update the UI here
+        // The component will re-render due to the state change
       } else {
         console.error(
           is_approved === 0 ? "Approval failed:" : "Cancellation failed:",
@@ -49,6 +46,10 @@ const Tr = (props) => {
       setIsProcessing(false);
     }
   };
+
+  useEffect(() => {
+    console.log("is_approved updated:", isApproved);
+  }, [isApproved]);
 
   return (
     <tr>
