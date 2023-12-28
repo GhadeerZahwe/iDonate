@@ -120,6 +120,11 @@ class AdminController extends Controller
                     'message'=>'Unauthorized: Only admin users can delete users.',
                 ],401);
             }
+         $donor_id=$request->id;
+         //soft delete the user
+         $action=DB::transaction(function() use ($donor_id){
+            return User::where('id', $donor_id)->update(['is_deleted'=>'1']);
+         });
 
         }catch(\Exception $e){
            return response()->json([
