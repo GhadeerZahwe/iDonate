@@ -123,7 +123,11 @@ class AdminController extends Controller
             ], 401);
         }
 
-    
+        // Check if the delivery user exists
+        $deliveryUser = User::where('id', $deliveryId)
+            ->where('user_type', 'delivery')
+            ->first();
+
     } catch (QueryException $e) {
         // Handle database query exceptions
         return response()->json([
