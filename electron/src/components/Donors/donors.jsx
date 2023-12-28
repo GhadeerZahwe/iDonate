@@ -5,7 +5,7 @@ const Tr = (props) => {
   const formData = new FormData();
   const deleteDonor = async (donor_id) => {
     formData.append("id", donor_id);
-    const data = await UseHttp(`deleteUser/${donor_id}`, "DELETE", formData, {
+    const data = await UseHttp(`deleteDonor/${donor_id}`, "DELETE", formData, {
       Authorization: "Bearer " + localStorage.getItem("token"),
     });
   };
