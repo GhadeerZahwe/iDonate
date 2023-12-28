@@ -67,7 +67,7 @@ class AdminController extends Controller
          $user = Auth::user();
 
          if($user->user_type === 'admin'){
-            $delivery=DeliveryInfo::find($deliveryId);
+            $delivery = DeliveryInfo::query()->where('delivery_id',$deliveryId)->first();
 
             if(!$delivery){
                 return response()->json(['error'=> 'Delivery Not Found'], 404);
@@ -94,7 +94,7 @@ class AdminController extends Controller
 
           if($user->user_type === 'admin')
           {
-            $delivery=DeliveryInfo::find($deliveryId);
+            $delivery = DeliveryInfo::query()->where('delivery_id',$deliveryId)->first();
 
             if(!$delivery){
                 return response()->json(['error'=>'Delivery Not Found.'],404);
