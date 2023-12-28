@@ -123,24 +123,7 @@ class AdminController extends Controller
             ], 401);
         }
 
-        // Check if the delivery user exists
-        $deliveryUser = User::where('id', $deliveryId)
-            ->where('user_type', 'delivery')
-            ->first();
-
-        if (!$deliveryUser) {
-            return response()->json([
-                'status' => 'error',
-                'message' => 'Delivery user not found.',
-            ], 404);
-        }
-
-        $deliveryUser->delete();
-
-        return response()->json([
-            'status' => 'success',
-            'message' => 'Delivery user and associated info deleted successfully.',
-        ]);
+    
     } catch (QueryException $e) {
         // Handle database query exceptions
         return response()->json([
