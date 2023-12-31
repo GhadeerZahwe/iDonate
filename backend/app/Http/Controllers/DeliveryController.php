@@ -11,5 +11,12 @@ class DeliveryController extends Controller
 {
     public function getDonations(Request $request){
         $user=Auth::user();
+        if($user->user_type === 'delivery'){
+            try{
+
+            }catch(\Exception $e){
+                return response()->json(['error'=>'An error occured while retrieving donations.'],500);
+            }
+        }
     }
 }
