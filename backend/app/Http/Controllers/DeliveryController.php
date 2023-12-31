@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 
 class DeliveryController extends Controller
 {
-    public function getDonations(Request $request){
+    public function getDeliveryDonations(Request $request){
         $user=Auth::user();
         if($user->user_type === 'delivery'){
             try{
