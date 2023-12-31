@@ -13,6 +13,7 @@ class Order extends Model
         'donor_id',
         'delivery_id',
         'status',
+        'date',
         'description',
         'total_weight',
         'pickup_within',

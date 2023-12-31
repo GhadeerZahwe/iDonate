@@ -27,5 +27,11 @@ class DeliveryController extends Controller
         ->where('status',$status)
         ->with(['donor','orderItems'])
         ->get();
+
+        $formattedDonations=$donations->map(function($donation){
+            return $donation;
+        });
+        
+        return $formattedDonations;
     }
 }
