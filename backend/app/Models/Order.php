@@ -19,7 +19,8 @@ class Order extends Model
         'pickup_within',
         'pickup_time',
         'location_pickup',
-        'location_id'
+        'location_id',
+        'is_approved',
     ];
 
     public function donor(){
