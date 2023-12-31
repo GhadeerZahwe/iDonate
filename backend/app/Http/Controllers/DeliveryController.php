@@ -15,8 +15,10 @@ class DeliveryController extends Controller
             try{
 
             }catch(\Exception $e){
-                return response()->json(['error'=>'An error occured while retrieving donations.'],500);
+                return response()->json(['error' => $e->getMessage()], 500);
             }
+        }else{
+            return response()->json(['error' => 'Permission Denied'], 403);
         }
     }
 }
