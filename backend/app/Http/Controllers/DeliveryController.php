@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Auth;
 use App\Models\DeliveryInfo;
+use App\Models\DonorInfo;
+use App\Models\OrderItem;
+use App\Models\Location;
 use App\Models\User;
 use App\Models\Order;
 use Illuminate\Http\Request;
@@ -31,16 +34,20 @@ class DeliveryController extends Controller
         }
     }
 
-    private function getDonationsByStatus($user,$status){
-        $donations= Order::where('delivery_id',$user->id)
-        ->where('status',$status)
-        ->with(['donor','orderItems'])
-        ->get();
+    private function getDonationsByStatus($user, $status)
+    {
+        $donations = Order::where('delivery_id', $user->id)
+            ->where('status', $status)
+            ->with(['donor', 'orderItems', 'locations'])
+            ->get();
 
-        $formattedDonations=$donations->map(function($donation){
+        $formattedDonations = $donations->map(function ($donation) {
             return $donation;
         });
-        
+    
         return $formattedDonations;
     }
+
+    
+    
 }
