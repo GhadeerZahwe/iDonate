@@ -15,10 +15,12 @@ class DeliveryController extends Controller
             try{
               $pendingDonations=$this->getDonationsByStatus($user,'pending');
               $onTheWayDonations=$this->getDonationsByStatus($user,'on_the_way');
+              $receivedDonations=$this->getDonationsByStatus($user,'received');
 
               return response()->json([
                 'Pending_Donations'=>$pendingDonations,
-                'On_The_Way'=>$onTheWayDonations,
+                'On_The_Way_Donations'=>$onTheWayDonations,
+                'Completed_Donations'=>$receivedDonations,
               ]);
 
 
