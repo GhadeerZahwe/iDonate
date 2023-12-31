@@ -14,9 +14,11 @@ class DeliveryController extends Controller
         if($user->user_type === 'delivery'){
             try{
               $pendingDonations=$this->getDonationsByStatus($user,'pending');
+              $onTheWayDonations=$this->getDonationsByStatus($user,'on_the_way');
 
               return response()->json([
                 'Pending_Donations'=>$pendingDonations,
+                'On_The_Way'=>$onTheWayDonations,
               ]);
 
 
