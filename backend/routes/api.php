@@ -46,9 +46,9 @@ Route::group(['middleware'=>'idonate_authenticate'],function(){
     Route::delete('/cancelDonation/{orderId}',[DonorController::class, "cancelDonation"]);
    });
     
-//    Route::group(['midlleware'=>'delivery_authorize'],function(){
+   Route::group(['midlleware'=>'delivery_authorize'],function(){
 
-//    });
+   });
     
 
 

@@ -23,7 +23,6 @@ class DeliveryController extends Controller
                 'Completed_Donations'=>$receivedDonations,
               ]);
 
-
             }catch(\Exception $e){
                 return response()->json(['error' => $e->getMessage()], 500);
             }
