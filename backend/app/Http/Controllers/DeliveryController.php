@@ -13,7 +13,13 @@ class DeliveryController extends Controller
         $user=Auth::user();
         if($user->user_type === 'delivery'){
             try{
-              
+              $pendingDonations=$this->getDonationsByStatus($user,'pending');
+
+              return response()->json([
+                'Pending_Donations'=>$pendingDonations,
+              ]);
+
+
             }catch(\Exception $e){
                 return response()->json(['error' => $e->getMessage()], 500);
             }
