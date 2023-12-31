@@ -9,5 +9,7 @@ use Illuminate\Http\Request;
 
 class DeliveryController extends Controller
 {
-    
+    public function getDonations(Request $request){
+        $user=Auth::user();
+    }
 }
