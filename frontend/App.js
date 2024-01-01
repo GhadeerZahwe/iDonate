@@ -1,11 +1,12 @@
 import { StatusBar } from "expo-status-bar";
 import { StyleSheet, Text, View } from "react-native";
-
+import Background from "./components/Background/Background";
 export default function App() {
   return (
     <View style={styles.container}>
-      <Text>Ghadder Hiiiii</Text>
-      <StatusBar style="auto" />
+      <Background />
+      <Text>Ghadder Hiiiiwssssssi</Text>
+      {/* <StatusBar style="auto" /> */}
     </View>
   );
 }
