@@ -135,4 +135,13 @@ public function returnToOnTheWay(Request $request, $orderId)
         return response()->json(['error' => $e->getMessage()], 500);
     }
 }
+
+public function getCompletedOrders(Request $request){
+    try{
+
+    }catch(\Exception $e){
+        return response()->json(['error'=> $e->getMessage()],500);
+    }
+}
+
 }
