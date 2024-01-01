@@ -3,14 +3,16 @@ import Background from "../../components/Background/Background";
 import Greeting from "../../components/Greeting/Greeting";
 import Logo from "../../components/Logo/logo";
 import Search from "../../components/Search/Search";
+import Donorcard from "../../components/DonorCard/DonorCard";
 
 const DonorMain = () => {
   return (
     <View>
       <Background />
       <Logo />
-      <Greeting />
-      <Search />
+      {/* <Greeting />
+      <Search /> */}
+      <Donorcard />
     </View>
   );
 };
