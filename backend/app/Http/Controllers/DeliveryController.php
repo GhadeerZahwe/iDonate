@@ -167,7 +167,8 @@ public function getOnTheWayOrders(Request $request){
         ->where('status','on_the_way')
         ->with(['donor','orderItems','locations'])
         ->get();
-        
+
+        return response()->json(['On_The_Way_Orders'=>$onTheWayOrders]);
     }catch(\Exception $e){
         return response()->json(['error'=> $e->getMessage()],500);
     }
