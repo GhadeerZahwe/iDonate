@@ -1,7 +1,14 @@
-import React from "react";
-
+import { StyleSheet, View, Image, Text } from "react-native";
+import Background from "../../components/Background/Background";
+import Greeting from "../../components/Greeting/Greeting";
+import Logo from "../../components/Logo/logo";
 const DonorMain = () => {
-  return <div>DonorMain</div>;
+  return (
+    <View>
+      <Background />
+      <Logo />
+    </View>
+  );
 };
 
-export default DonorMain;
+const styles = StyleSheet.create({});
