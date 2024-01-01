@@ -176,5 +176,11 @@ public function getOnTheWayOrders(Request $request)
     }
 }
 
+public function getPendingOrders(Request $request){
+    try{
 
+    }catch(){
+        
+    }
+}
 }
