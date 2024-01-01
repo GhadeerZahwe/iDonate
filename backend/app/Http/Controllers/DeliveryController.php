@@ -115,7 +115,10 @@ public function returnToOnTheWay(Request $request, $orderId){
             return response()->json(['error'=>'Not authenticated.'], 403);
         }
 
-        
+        $order=Order::where('id',$orderId)
+        ->where('status','delivered')
+        ->where('delivery_id',$delivery->id)
+        ->first();
     }catch(\Exception $e){
      return response()->json(['error'=> $e->getMessage()], 500);
     }
