@@ -7,6 +7,7 @@ const DonorMain = () => {
     <View>
       <Background />
       <Logo />
+      <Greeting />
     </View>
   );
 };
