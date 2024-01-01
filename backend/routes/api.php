@@ -47,7 +47,8 @@ Route::group(['middleware'=>'idonate_authenticate'],function(){
    });
     
    Route::group(['midlleware'=>'delivery_authorize'],function(){
-    
+      Route::post('/acceptOrder/{orderId}',[DeliveryController::class,"acceptOrder"]);
+
    });
     
 

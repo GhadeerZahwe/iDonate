@@ -12,40 +12,41 @@ use Illuminate\Http\Request;
 
 class DeliveryController extends Controller
 {
-   public function acceptOrder(Request $request, $orderId){
-    try{
-     
-     $delivery=Auth::user;
-     if($delivery->user_type !== 'delivery'){
-        return response()->json(['error'=>'Permission Denied.'],403);
-     }
-
-     $order= Order::where('id',$orderId)
-     ->where('status','pending')
-     ->whereNull('delivery_id')
-     ->with('orderItems')
-     ->first();
-
-     if(!$order){
-        return response()->json(['error'=>'Order not found or already assigned.'],404);
-     }
-
-     $totalWeight= $order->total_weight;
-     if(($totalWeight>30 && $delivery->mobility_type=== 'motorcycle')||
-     ($totalWeight>40 && !in_array($delivery->mobility_type,['car','van']))||
-     ($totalWeight>50 && $delivery->mobility_type==='van')){
-        return response()->json(['error'=>'Cannot take this order with your current vehicle type.'],400);
-     }
-
-     $order->is_approved=true;
-     $order->delivery_id=$delivery->id;
-     $order->status='on_the_way';
-     $order->save();
-
-     return response()->json(['Success_Message'=>'Order accepted successfully and status updated to on the way.'],200);
-    }catch(\Exception $e){
-        return response()->json(['error'=> $e->getMessage()],500);
+    public function acceptOrder(Request $request, $orderId)
+    {
+        try {
+            $delivery = Auth::user();
+            if ($delivery->user_type !== 'delivery') {
+                return response()->json(['error' => 'Permission Denied'], 403);
+            }
+    
+            $order = Order::where('id', $orderId)
+                ->where('status', 'pending')
+                ->whereNull('delivery_id') 
+                ->with('orderItems') 
+                ->first();
+    
+            if (!$order) {
+                return response()->json(['error' => 'Order not found or already assigned'], 404);
+            }
+    
+            $totalWeight = $order->total_weight;
+    
+            if (($totalWeight > 30 && $delivery->mobility_type === 'motorcycle') ||
+                ($totalWeight > 40 && !in_array($delivery->mobility_type, ['car', 'van'])) ||
+                ($totalWeight > 50 && $delivery->mobility_type !== 'van')) {
+                return response()->json(['error' => 'Cannot take this order with your current vehicle type.'], 400);
+            }
+    
+            $order->is_approved = true;
+            $order->delivery_id = $delivery->id; 
+            $order->status = 'on_the_way'; 
+            $order->save();
+    
+            return response()->json(['Success_Message' => 'Order accepted successfully and status updated to on the way.'], 200);
+    
+        } catch (\Exception $e) {
+            return response()->json(['error' => $e->getMessage()], 500);
+        }
     }
-   }
-
 }
