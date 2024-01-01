@@ -126,6 +126,7 @@ public function returnToOnTheWay(Request $request, $orderId){
 
        $order->status('on_the_way');
        $order->save();
+       return response()->json(['message'=>'Status returned to on the way successfully.'],200);
     }catch(\Exception $e){
      return response()->json(['error'=> $e->getMessage()], 500);
     }
