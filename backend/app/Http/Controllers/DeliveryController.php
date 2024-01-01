@@ -49,4 +49,12 @@ class DeliveryController extends Controller
             return response()->json(['error' => $e->getMessage()], 500);
         }
     }
+
+    public function cancelOrder(Request $request, $orderId){
+        try{
+
+        }catch(\Exception $e){
+            return response()->json(['error'=> $e->getMessage()],500);
+        }
+    }
 }
