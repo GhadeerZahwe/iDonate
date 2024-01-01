@@ -1,13 +1,17 @@
 import { StyleSheet, Text, View } from "react-native";
 import Background from "./components/Background/Background";
 import Logo from "./components/Logo/logo";
+import DonorMain from "./Screens/DonorMain/DonorMain";
+import Search from "./components/Search/Search";
+
 export default function App() {
   return (
     <View>
-      <Logo />
+      <Search />
+      {/* <Logo />
 
       <Background />
-      <Logo />
+      <Logo /> */}
     </View>
   );
 }

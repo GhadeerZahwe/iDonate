@@ -11,5 +11,6 @@ const DonorMain = () => {
     </View>
   );
 };
+export default DonorMain;
 
 const styles = StyleSheet.create({});

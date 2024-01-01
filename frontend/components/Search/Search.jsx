@@ -7,6 +7,7 @@ const Search = () => {
       style={{
         height: 40,
         top: 400,
+        marginLeft: 20,
       }}
       placeholder="Search"
     />
