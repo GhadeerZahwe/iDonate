@@ -99,6 +99,7 @@ public function updateOrderStatus(Request $request, $orderId){
     $order->status='delivered';
     $order->save();
 
+    return response()->json(['Success_Message'=>'The donation process has been completed and delivered.'],200);
     }catch(\Exception $e){
        return response()->json(['error'=> $e->getMessage()],500);
 }
