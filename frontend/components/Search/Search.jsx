@@ -9,9 +9,15 @@ const Search = () => {
         top: 160,
         left: 40,
         position: "absolute",
+        zIndex: 2,
+        width: 300,
+        borderWidth: 1,
+        borderColor: "#FFF",
+        borderRadius: 5,
+        paddingHorizontal: 10,
       }}
       placeholder="Search"
-      //   placeholderTextColor="#FFF"
+      placeholderTextColor="#FFF"
     />
   );
 };
