@@ -80,28 +80,31 @@ class DeliveryController extends Controller
     }
 }
 
-public function updateOrderStatus(Request $request, $orderId){
-   try{
-     $delivery=Auth::user();
-    if($delivery->user_type !== 'delivery'){
-        return response()->json(['error'=>'Not authenticated.'],403);
+
+public function updateOrderStatus(Request $request, $orderId)
+{
+    try {
+        $delivery = Auth::user();
+        if ($delivery->user_type !== 'delivery') {
+            return response()->json(['error' => 'Permission Denied'], 403);
+        }
+
+        $order = Order::where('id', $orderId)
+            ->where('status', 'on_the_way')
+            ->where('delivery_id', $delivery->id) 
+            ->first();
+
+        if (!$order) {
+            return response()->json(['error' => 'Order not found or cannot be updated'], 404);
+        }
+
+        $order->status = 'delivered';
+        $order->save();
+
+        return response()->json(['message' => 'The donation process has been completed and delivered.'], 200);
+
+    } catch (\Exception $e) {
+        return response()->json(['error' => $e->getMessage()], 500);
     }
-
-    $order=Order::where('id',$orderId)
-    ->where('status', 'on_the_way')
-    ->where('delivery_id', $delivery->id)
-    ->first();
-
-    if(!$order){
-        return response()->json(['error'=>'Order not found or cannot be updated!'],404);
-    }
-
-    $order->status='delivered';
-    $order->save();
-
-    return response()->json(['Success_Message'=>'The donation process has been completed and delivered.'],200);
-    }catch(\Exception $e){
-       return response()->json(['error'=> $e->getMessage()],500);
-}
 }
 }
