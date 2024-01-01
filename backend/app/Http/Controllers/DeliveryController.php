@@ -20,6 +20,12 @@ class DeliveryController extends Controller
         return response()->json(['error'=>'Permission Denied.'],403);
      }
 
+     $order= Order::where('id',$orderId)
+     ->where('status','pending')
+     ->whereNull('delivery_id')
+     ->with('orderItems')
+     ->first();
+
     }catch(\Exception $e){
         return response()->json(['error'=> $e->getMessage()],500);
     }
