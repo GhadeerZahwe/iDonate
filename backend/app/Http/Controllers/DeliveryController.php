@@ -156,5 +156,11 @@ public function getCompletedOrders(Request $request)
     }
 }
 
+public function getOnTheWayOrders(Request $request){
+    try{
+    }catch(\Exception $e){
+        return response()->json(['error'=> $e->getMessage()],500);
+    }
+}
 
 }
