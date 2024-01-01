@@ -138,6 +138,10 @@ public function returnToOnTheWay(Request $request, $orderId)
 
 public function getCompletedOrders(Request $request){
     try{
+   $delivery=Auth::user();
+   if($delivery->user_type !== 'delivery'){
+    return response()->json(['error'=>'Permission Denied.'],403);
+   }
 
     }catch(\Exception $e){
         return response()->json(['error'=> $e->getMessage()],500);
