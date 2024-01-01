@@ -36,6 +36,9 @@ class DeliveryController extends Controller
      ($totalWeight>50 && $delivery->mobility_type==='van')){
         return response()->json(['error'=>'Cannot take this order with your current vehicle type.'],400);
      }
+
+     $order->is_approved=true;
+     $order->delivery_id=$delivery->id;
     }catch(\Exception $e){
         return response()->json(['error'=> $e->getMessage()],500);
     }
