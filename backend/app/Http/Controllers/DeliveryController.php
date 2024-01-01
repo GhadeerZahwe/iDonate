@@ -148,6 +148,7 @@ public function getCompletedOrders(Request $request){
    ->where(['donor','orderItems','locations'])
    ->get();
    
+   return response()->json(['Completed_Orders'=> $completedOrders],200);
     }catch(\Exception $e){
         return response()->json(['error'=> $e->getMessage()],500);
     }
