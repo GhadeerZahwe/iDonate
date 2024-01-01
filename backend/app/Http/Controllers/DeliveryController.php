@@ -15,7 +15,9 @@ class DeliveryController extends Controller
    public function acceptOrder(Request $request, $orderId){
     try{
 
-    }catch()
+    }catch(\Exception $e){
+        return response()->json(['error'=> $e->getMessage()],500);
+    }
    }
 
 }
