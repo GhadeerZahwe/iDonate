@@ -143,6 +143,11 @@ public function getCompletedOrders(Request $request){
     return response()->json(['error'=>'Permission Denied.'],403);
    }
 
+   $completedOrders=Order::where('delivery_id',$delivery->id)
+   ->where('status','delivered')
+   ->where(['donor','orderItems','locations'])
+   ->get();
+   
     }catch(\Exception $e){
         return response()->json(['error'=> $e->getMessage()],500);
     }
