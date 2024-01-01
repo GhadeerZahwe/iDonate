@@ -156,22 +156,25 @@ public function getCompletedOrders(Request $request)
     }
 }
 
-public function getOnTheWayOrders(Request $request){
-    try{
-        $delivery=Auth::user();
-        if($delivery->user_type !== 'delivery'){
-            return response()->json(['error'=>'Permission Denied.'],403);
+public function getOnTheWayOrders(Request $request)
+{
+    try {
+        $delivery = Auth::user();
+        if ($delivery->user_type !== 'delivery') {
+            return response()->json(['error' => 'Permission Denied'], 403);
         }
 
-        $onTheWayOrders=Order::where('id',$orderId)
-        ->where('status','on_the_way')
-        ->with(['donor','orderItems','locations'])
-        ->get();
+        $onTheWayOrders = Order::where('delivery_id', $delivery->id)
+            ->where('status', 'on_the_way')
+            ->with(['donor', 'orderItems', 'locations'])
+            ->get();
 
-        return response()->json(['On_The_Way_Orders'=>$onTheWayOrders]);
-    }catch(\Exception $e){
-        return response()->json(['error'=> $e->getMessage()],500);
+        return response()->json(['on_the_way_orders' => $onTheWayOrders], 200);
+
+    } catch (\Exception $e) {
+        return response()->json(['error' => $e->getMessage()], 500);
     }
 }
+
 
 }
