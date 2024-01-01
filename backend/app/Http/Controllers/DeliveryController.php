@@ -124,6 +124,8 @@ public function returnToOnTheWay(Request $request, $orderId){
             return response()->json(['error'=>'Order not found or cannot be updated.'],404);
         }
 
+       $order->status('on_the_way');
+       $order->save();
     }catch(\Exception $e){
      return response()->json(['error'=> $e->getMessage()], 500);
     }
