@@ -26,6 +26,10 @@ class DeliveryController extends Controller
      ->with('orderItems')
      ->first();
 
+     if(!$order){
+        return response()->json(['error'=>'Order not found or already assigned.'],404);
+     }
+
     }catch(\Exception $e){
         return response()->json(['error'=> $e->getMessage()],500);
     }
