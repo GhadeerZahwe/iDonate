@@ -12,6 +12,10 @@ use Illuminate\Http\Request;
 
 class DeliveryController extends Controller
 {
-   
+   public function acceptOrder(Request $request, $orderId){
+    try{
+
+    }catch()
+   }
 
 }
