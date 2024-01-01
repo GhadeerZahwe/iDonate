@@ -176,19 +176,24 @@ public function getOnTheWayOrders(Request $request)
     }
 }
 
-public function getPendingOrders(Request $request){
-    try{
-     $delivery=Auth::user();
-     if($delivery->user_type !== 'delivery'){
-        return response()->json(['error'=>'Permission Denied.'],403);
-     }
+public function getPendingOrders(Request $request)
+{
+    try {
+        $delivery = Auth::user();
+        if ($delivery->user_type !== 'delivery') {
+            return response()->json(['error' => 'Permission Denied'], 403);
+        }
 
-     $pendingOrders=Order::whereNull('delivery_id')
-     ->where('status','pending')
-     ->with(['order','orderItems','locations'])
-     ->get();
-    }catch(\Exception $e){
-    return response()->json(['error'=> $e->getMessage()],500);
+        $pendingOrders = Order::whereNull('delivery_id')
+            ->where('status', 'pending')
+            ->with(['donor', 'orderItems', 'locations'])
+            ->get();
+
+        return response()->json(['pending_orders' => $pendingOrders], 200);
+
+    } catch (\Exception $e) {
+        return response()->json(['error' => $e->getMessage()], 500);
     }
 }
+
 }
