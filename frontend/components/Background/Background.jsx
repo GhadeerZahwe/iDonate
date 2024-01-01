@@ -6,8 +6,8 @@ function Background() {
     <Image
       source={require("../../assets/rectangle.png")}
       style={{
-        width: 370,
-        height: 340,
+        width: "100%",
+        height: "73%",
         zIndex: -1,
       }}
     />

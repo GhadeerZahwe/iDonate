@@ -6,10 +6,12 @@ const Search = () => {
     <TextInput
       style={{
         height: 40,
-        top: 400,
-        marginLeft: 20,
+        top: 160,
+        left: 40,
+        position: "absolute",
       }}
       placeholder="Search"
+      //   placeholderTextColor="#FFF"
     />
   );
 };
