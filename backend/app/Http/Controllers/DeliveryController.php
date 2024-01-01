@@ -92,6 +92,12 @@ public function updateOrderStatus(Request $request, $orderId){
     ->where('delivery_id', $delivery->id)
     ->first();
 
+    if(!$order){
+        return response()->json(['error'=>'Order not found or cannot be updated!'],404);
+    }
+
+    
+
     }catch(\Exception $e){
        return response()->json(['error'=> $e->getMessage()],500);
 }
