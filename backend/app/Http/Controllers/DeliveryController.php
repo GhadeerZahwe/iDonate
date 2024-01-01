@@ -182,6 +182,11 @@ public function getPendingOrders(Request $request){
      if($delivery->user_type !== 'delivery'){
         return response()->json(['error'=>'Permission Denied.'],403);
      }
+
+     $pendingOrders=Order::whereNull('delivery_id')
+     ->where('status','pending')
+     ->with(['order','orderItems','locations'])
+     ->get();
     }catch(\Exception $e){
     return response()->json(['error'=> $e->getMessage()],500);
     }
