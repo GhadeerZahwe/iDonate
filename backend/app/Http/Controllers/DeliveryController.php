@@ -39,6 +39,9 @@ class DeliveryController extends Controller
 
      $order->is_approved=true;
      $order->delivery_id=$delivery->id;
+     $order->status='on_the_way';
+     $order->save();
+     
     }catch(\Exception $e){
         return response()->json(['error'=> $e->getMessage()],500);
     }
