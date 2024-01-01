@@ -96,7 +96,8 @@ public function updateOrderStatus(Request $request, $orderId){
         return response()->json(['error'=>'Order not found or cannot be updated!'],404);
     }
 
-    
+    $order->status='delivered';
+    $order->save();
 
     }catch(\Exception $e){
        return response()->json(['error'=> $e->getMessage()],500);
