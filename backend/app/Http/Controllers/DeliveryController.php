@@ -108,27 +108,31 @@ public function updateOrderStatus(Request $request, $orderId)
     }
 }
 
-public function returnToOnTheWay(Request $request, $orderId){
-    try{
-        $delivery=Auth::user();
-        if($delivery->user_type!== 'delivery'){
-            return response()->json(['error'=>'Not authenticated.'], 403);
+
+public function returnToOnTheWay(Request $request, $orderId)
+{
+    try {
+        $delivery = Auth::user();
+        if ($delivery->user_type !== 'delivery') {
+            return response()->json(['error' => 'Permission Denied'], 403);
         }
 
-        $order=Order::where('id',$orderId)
-        ->where('status','delivered')
-        ->where('delivery_id',$delivery->id)
-        ->first();
+        $order = Order::where('id', $orderId)
+            ->where('status', 'delivered')
+            ->where('delivery_id', $delivery->id) 
+            ->first();
 
-        if(!$order){
-            return response()->json(['error'=>'Order not found or cannot be updated.'],404);
+        if (!$order) {
+            return response()->json(['error' => 'Order not found or cannot be updated'], 404);
         }
 
-       $order->status('on_the_way');
-       $order->save();
-       return response()->json(['message'=>'Status returned to on the way successfully.'],200);
-    }catch(\Exception $e){
-     return response()->json(['error'=> $e->getMessage()], 500);
+        $order->status = 'on_the_way';
+        $order->save();
+
+        return response()->json(['Success' => 'Order status updated to on the way'], 200);
+
+    } catch (\Exception $e) {
+        return response()->json(['error' => $e->getMessage()], 500);
     }
 }
 }
