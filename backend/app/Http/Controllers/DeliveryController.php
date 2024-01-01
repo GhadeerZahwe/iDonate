@@ -81,10 +81,13 @@ class DeliveryController extends Controller
 }
 
 public function updateOrderStatus(Request $request, $orderId){
-try{
-
-}catch(\Exception $e){
-    return response()->json(['error'=> $e->getMessage()],500);
+   try{
+     $delivery=Auth::user();
+    if($delivery->user_type !== 'delivery'){
+        return response()->json(['error'=>'Not authenticated.'],403);
+    }
+    }catch(\Exception $e){
+       return response()->json(['error'=> $e->getMessage()],500);
 }
 }
 }
