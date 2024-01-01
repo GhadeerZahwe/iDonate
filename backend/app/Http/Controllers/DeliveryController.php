@@ -107,4 +107,12 @@ public function updateOrderStatus(Request $request, $orderId)
         return response()->json(['error' => $e->getMessage()], 500);
     }
 }
+
+public function returnToOnTheWay(Request $request, $orderId){
+    try{
+
+    }catch(\Exception $e){
+     return response()->json(['error'=> $e->getMessage()], 500);
+    }
+}
 }
