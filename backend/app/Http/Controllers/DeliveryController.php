@@ -50,31 +50,33 @@ class DeliveryController extends Controller
         }
     }
 
-    public function cancelOrder(Request $request, $orderId){
-        try{
-          $delivery=Auth::user();
-          if($delivery->user_type !== 'delivery'){
-           return response()->json(['error'=> 'Permission Denied.'],403);
-          }
-
-         $order= Order::where('id', $orderId)
-         ->where('status','on_the_way')
-         ->where('delivery_id', $delivery->id)
-         ->first();
-
-        if(!$order){
-            return response()->json(['error'=>'Order not found or cannot be canceled.'],404);
+  
+    public function cancelOrder(Request $request, $orderId)
+{
+    try {
+        $delivery = Auth::user();
+        if ($delivery->user_type !== 'delivery') {
+            return response()->json(['error' => 'Permission Denied'], 403);
         }
 
-        $order->staus='pending';
-        $order->is_approved=false;
-        $order->delivery_id=null;
+        $order = Order::where('id', $orderId)
+            ->where('status', 'on_the_way')
+            ->where('delivery_id', $delivery->id) 
+            ->first();
+
+        if (!$order) {
+            return response()->json(['error' => 'Order not found or cannot be canceled'], 404);
+        }
+
+        $order->status = 'pending';
+        $order->is_approved = false; 
+        $order->delivery_id = null;
         $order->save();
 
-        return response()->json(['Success_Message'=>'Order canceled Successfully.'],200);
+        return response()->json(['message' => 'Order canceled successfully'], 200);
 
-        }catch(\Exception $e){
-            return response()->json(['error'=> $e->getMessage()],500);
-        }
+    } catch (\Exception $e) {
+        return response()->json(['error' => $e->getMessage()], 500);
     }
+}
 }
