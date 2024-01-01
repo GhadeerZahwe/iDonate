@@ -62,6 +62,10 @@ class DeliveryController extends Controller
          ->where('delivery_id', $delivery->id)
          ->first();
 
+        if(!$order){
+            return response()->json(['error'=>'Order not found or cannot be canceled.'],404);
+        }
+
         }catch(\Exception $e){
             return response()->json(['error'=> $e->getMessage()],500);
         }
