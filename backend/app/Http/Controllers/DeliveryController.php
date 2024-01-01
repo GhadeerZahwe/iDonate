@@ -179,8 +179,8 @@ public function getOnTheWayOrders(Request $request)
 public function getPendingOrders(Request $request){
     try{
 
-    }catch(){
-        
+    }catch(\Exception $e){
+    return response()->json(['error'=> $e->getMessage()],500);
     }
 }
 }
