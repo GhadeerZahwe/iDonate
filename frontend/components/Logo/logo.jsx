@@ -6,9 +6,9 @@ const Logo = () => {
     <Image
       source={require("../../assets/logo.png")}
       style={{
-        width: 170,
-        height: 40,
-        marginTop: 30,
+        width: 150,
+        height: 50,
+        // marginTop: 30,
         marginLeft: 30,
         top: 40,
         position: "absolute",
