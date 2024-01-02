@@ -3,10 +3,10 @@ import { Image } from "react-native";
 const CenteredLogo = () => {
   return (
     <Image
-      source={require("../../assetes/CenteredLogo.png")}
+      source={require("../../assets/CenteredLogo.png")}
       style={{
-        marginLeft: 150,
-        top: 110,
+        marginLeft: 50,
+        top: 100,
         position: "absolute",
         zIndex: 2,
       }}

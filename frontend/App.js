@@ -5,12 +5,14 @@ import DonorMain from "./Screens/DonorMain/DonorMain";
 import Search from "./components/Search/Search";
 import Order from "./components/Order/Order";
 import RegisterLogo from "./components/RegisterLogo/RegisterLogo";
+import CenteredLogo from "./components/CenteredLogo/CenteredLogo";
+
 export default function App() {
   return (
     <View>
-      <RegisterLogo />
+      {/* <RegisterLoago /> */}
       {/* <DonorMain /> */}
-
+      <CenteredLogo />
       {/* <Order /> */}
       {/* <Search /> */}
       {/* <Logo />
