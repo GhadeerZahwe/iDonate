@@ -13,8 +13,8 @@ import RegisterDonor from "./Screens/Auth/RegisterDonor";
 export default function App() {
   return (
     <View>
-      <RegisterDonor />
-      {/* <Login /> */}
+      {/* <RegisterDonor /> */}
+      <Login />
       {/* <PreRegister /> */}
       {/* <RegisterLoago /> */}
       {/* <DonorMain /> */}

@@ -51,7 +51,6 @@ export default function Login() {
     <ScrollView style={{ backgroundColor: "#F6F1F1" }}>
       <Background />
       <CenteredLogo />
-      <Text style={styles.welcome_title}>Welcome!</Text>
       <View style={{ gap: 20 }}>
         <TextInput
           style={styles.TextInput}
@@ -78,9 +77,9 @@ export default function Login() {
         style={{
           fontSize: 17,
           color: "#000",
-          top: 150,
-          left: 75,
-          marginBottom: 400,
+          top: 40,
+          left: 40,
+          marginBottom: 500,
         }}
       >
         Don't have an account?{" "}
@@ -93,8 +92,8 @@ const styles = StyleSheet.create({
   welcome_title: {
     fontSize: 32,
     fontWeight: "bold",
-    textAlign: "center", // Center the text
-    marginBottom: 20, // Add margin at the bottom
+    textAlign: "center",
+    marginBottom: 100,
   },
   TextInput: {
     backgroundColor: "#FFF",
@@ -102,8 +101,9 @@ const styles = StyleSheet.create({
     width: 300,
     borderRadius: 15,
     top: 20,
-    alignSelf: "center", // Center the input
-    elevation: 10,
+    height: 50,
+    alignSelf: "center",
+    elevation: 20,
   },
   Login_btn: {
     backgroundColor: "#146C94",
@@ -112,13 +112,13 @@ const styles = StyleSheet.create({
     marginTop: 7,
     top: 20,
     borderRadius: 15,
-    alignSelf: "center", // Center the button horizontally
-    marginTop: 20, // Add margin at the top
-    elevation: 5,
+    alignSelf: "center",
+    marginTop: 20,
+    elevation: 10,
   },
   loginText: {
     fontSize: 25,
     color: "#FFF",
-    textAlign: "center", // Center the text inside the button horizontally
+    textAlign: "center",
   },
 });
