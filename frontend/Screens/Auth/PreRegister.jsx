@@ -24,18 +24,18 @@ export default function PreRegister() {
   //   };
 
   return (
-    <View style={{ backgroundColor: "#FFF" }}>
+    <View style={{ backgroundColor: "#F6F1F1" }}>
       <Background />
       <CenteredLogo />
-      <TouchableOpacity style={styles.donor}>
-        <Text style={{ fontSize: 24, color: "#FFF", top: 12, left: 90 }}>
-          Donor
-        </Text>
-      </TouchableOpacity>
+      <View style={{ backgroundColor: "#F6F1F1", top: 30 }}>
+        <TouchableOpacity style={styles.donor}>
+          <Text style={{ fontSize: 24, color: "#F6F1F1", top: 12, left: 90 }}>
+            Donor
+          </Text>
+        </TouchableOpacity>
 
-      <View style={{ top: 100 }}>
         <TouchableOpacity style={styles.driver}>
-          <Text style={{ fontSize: 24, color: "#FFF", top: 13, left: 80 }}>
+          <Text style={{ fontSize: 24, color: "#F6F1F1", top: 13, left: 80 }}>
             Delivery
           </Text>
         </TouchableOpacity>
@@ -50,7 +50,7 @@ const styles = StyleSheet.create({
     width: 250,
     height: 60,
     left: 60,
-    marginBottom: 2,
+    marginBottom: 40,
     borderRadius: 15,
     elevation: 5,
   },
@@ -59,7 +59,8 @@ const styles = StyleSheet.create({
     width: 250,
     height: 60,
     left: 60,
-    marginTop: 150,
+    top: 20,
+    marginBottom: 190,
     borderRadius: 15,
     elevation: 5,
   },

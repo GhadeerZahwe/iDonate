@@ -9,6 +9,7 @@ function Background() {
         width: "100%",
         height: "50%",
         zIndex: -1,
+        marginTop: 0,
       }}
     />
   );
