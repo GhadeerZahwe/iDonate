@@ -9,12 +9,14 @@ import DonorMain from "./Screens/Donor/DonorMain";
 import PreRegister from "./Screens/Auth/PreRegister";
 import Login from "./Screens/Auth/Login";
 import RegisterDonor from "./Screens/Auth/RegisterDonor";
+import RegisterDriver from "./Screens/Auth/RegisterDriver";
 
 export default function App() {
   return (
     <View>
+      <RegisterDriver />
       {/* <RegisterDonor /> */}
-      <Login />
+      {/* <Login /> */}
       {/* <PreRegister /> */}
       {/* <RegisterLoago /> */}
       {/* <DonorMain /> */}
