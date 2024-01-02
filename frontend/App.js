@@ -7,10 +7,11 @@ import RegisterLogo from "./components/RegisterLogo/RegisterLogo";
 import CenteredLogo from "./components/CenteredLogo/CenteredLogo";
 import DonorMain from "./Screens/Donor/DonorMain";
 import PreRegister from "./Screens/Auth/PreRegister";
-
+import Login from "./Screens/Auth/Login";
 export default function App() {
   return (
     <View>
+      {/* <Login /> */}
       <PreRegister />
       {/* <RegisterLoago /> */}
       {/* <DonorMain /> */}

@@ -7,7 +7,7 @@ function Background() {
       source={require("../../assets/rectangle.png")}
       style={{
         width: "100%",
-        height: "73%",
+        height: "50%",
         zIndex: -1,
       }}
     />

@@ -5,8 +5,10 @@ const CenteredLogo = () => {
     <Image
       source={require("../../assets/CenteredLogo.png")}
       style={{
-        marginLeft: 50,
-        top: 100,
+        marginLeft: 100,
+        top: 70,
+        width: 170,
+        height: 145,
         position: "absolute",
         zIndex: 2,
       }}
