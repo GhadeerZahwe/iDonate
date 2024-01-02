@@ -8,11 +8,14 @@ import CenteredLogo from "./components/CenteredLogo/CenteredLogo";
 import DonorMain from "./Screens/Donor/DonorMain";
 import PreRegister from "./Screens/Auth/PreRegister";
 import Login from "./Screens/Auth/Login";
+import RegisterDonor from "./Screens/Auth/RegisterDonor";
+
 export default function App() {
   return (
     <View>
+      <RegisterDonor />
       {/* <Login /> */}
-      <PreRegister />
+      {/* <PreRegister /> */}
       {/* <RegisterLoago /> */}
       {/* <DonorMain /> */}
       {/* <CenteredLogo /> */}

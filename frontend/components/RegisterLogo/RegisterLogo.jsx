@@ -6,10 +6,10 @@ function RegisterLogo() {
     <Image
       source={require("../../assets/RegisterLogo.png")}
       style={{
-        marginLeft: "20%",
-        top: 100,
-        width: "60%",
-        height: 210,
+        marginLeft: "15%",
+        top: 70,
+        width: "70%",
+        height: 200,
         position: "absolute",
         zIndex: 2,
       }}
