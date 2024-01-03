@@ -19,7 +19,7 @@ export default function RegisterDonor() {
   //   const [value, setValue] = useState("first");
 
   //   const login = () => {
-  //     navigation.navigate("PassengerOnboardingStack");
+  //     navigation.navigate("DonorOnboardingStack");
   //   };
   return (
     <View style={{ backgroundColor: "#F6F1F1", flex: 1 }}>
