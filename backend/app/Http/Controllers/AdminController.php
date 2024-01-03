@@ -18,12 +18,11 @@ class AdminController extends Controller
                 $user = Auth::user();
     
                 if ($user->user_type === 'admin') {
-                    $donors = User::where('user_type', 'donor')
-        ->where('is_deleted', '0') // Exclude soft-deleted records
-        ->join('donors_info', 'users.id', '=', 'donors_info.donor_id')
-        ->get();
-    
-                    return response()->json(['donors' => $donors]);
+                 $donors = User::where('user_type', 'donor')
+                ->where('is_deleted', '0') // Exclude soft-deleted records
+                ->join('donors_info', 'users.id', '=', 'donors_info.donor_id')
+                ->get();
+                return response()->json(['donors' => $donors]);
                 } else {
                     return response()->json(['error' => 'Permission Denied'], 403);
                 }

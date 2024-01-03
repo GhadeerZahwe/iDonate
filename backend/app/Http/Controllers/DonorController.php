@@ -25,9 +25,8 @@ class DonorController extends Controller
         'first_name'=>$first_name,
         'last_name'=>$last_name,
     ]);
-}
+  }
       
-
     public function getDonorDonations()
     {
         $donor = Auth::user();
@@ -67,7 +66,7 @@ class DonorController extends Controller
     
         return DB::transaction(function () use ($donor, $request) {
             $location = new Location([
-                'user_id' => $donor->id, // Set the donor ID directly
+                'user_id' => $donor->id, 
                 'latitude' => $request->input('latitude'),
                 'longitude' => $request->input('longitude'),
                 'description' => $request->input('location_description'),
