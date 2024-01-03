@@ -18,7 +18,7 @@ class AuthorizeDelivery
     {
         $user=Auth::user();
         $delivery=DeliveryInfo::where('delivery_id',$user->id)->first();
-        if($user->user_type === 'delivery' and $delivery->is_approved===1){
+        if($user->user_type === 'delivery' && $delivery->is_approved===1){
             return $next($request);
         }
         return response()->json(['error'=>'Not authorized as a delivery.']);
