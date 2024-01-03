@@ -14,9 +14,9 @@ import RegisterDriver from "./Screens/Auth/RegisterDriver";
 export default function App() {
   return (
     <View>
-      <RegisterDriver />
+      {/* <RegisterDriver /> */}
       {/* <RegisterDonor /> */}
-      {/* <Login /> */}
+      <Login />
       {/* <PreRegister /> */}
       {/* <RegisterLoago /> */}
       {/* <DonorMain /> */}
