@@ -16,9 +16,9 @@ export default function App() {
     <View>
       {/* <RegisterDriver /> */}
       {/* <RegisterDonor /> */}
-      <Login />
+      {/* <Login /> */}
       {/* <PreRegister /> */}
-      {/* <RegisterLoago /> */}
+      <RegisterLogo />
       {/* <DonorMain /> */}
       {/* <CenteredLogo /> */}
       {/* <Order /> */}
