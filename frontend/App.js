@@ -14,11 +14,11 @@ import RegisterDriver from "./Screens/Auth/RegisterDriver";
 export default function App() {
   return (
     <View>
-      {/* <RegisterDriver /> */}
+      <RegisterDriver />
       {/* <RegisterDonor /> */}
       {/* <Login /> */}
       {/* <PreRegister /> */}
-      <RegisterLogo />
+      {/* <RegisterLogo /> */}
       {/* <DonorMain /> */}
       {/* <CenteredLogo /> */}
       {/* <Order /> */}

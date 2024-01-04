@@ -23,10 +23,10 @@ export default function RegisterDonor() {
   //   };
   return (
     <View style={{ backgroundColor: "#F6F1F1", flex: 1 }}>
-      <View style={{ height: 100 }}></View>
+      <View style={{ height: 80 }}></View>
       <RegisterLogo />
 
-      <View style={{ gap: 30 }}>
+      <View style={{ gap: 25 }}>
         <TextInput
           style={styles.first_name}
           placeholder="  First Name"
@@ -49,9 +49,7 @@ export default function RegisterDonor() {
         />
       </View>
       <TouchableOpacity style={styles.register_btn}>
-        <Text style={{ fontSize: 24, color: "#FFF", top: 8, left: 30 }}>
-          Register
-        </Text>
+        <Text style={{ fontSize: 24, color: "#FFF", left: 100 }}>Register</Text>
       </TouchableOpacity>
     </View>
   );
@@ -73,7 +71,7 @@ const styles = StyleSheet.create({
     padding: 10,
     width: 150,
     borderRadius: 15,
-    top: 140,
+    top: 145,
     left: 190,
     height: 50,
     elevation: 10,
@@ -90,11 +88,13 @@ const styles = StyleSheet.create({
   },
   register_btn: {
     backgroundColor: "#146C94",
-    width: 150,
-    height: 50,
-    top: 500,
-    left: 110,
+    width: 317,
+    padding: 10,
+    top: 530,
     borderRadius: 15,
-    elevation: 5,
+    alignSelf: "center",
+    marginTop: 15,
+    position: "absolute",
+    elevation: 10,
   },
 });
