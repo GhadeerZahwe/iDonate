@@ -1,6 +1,5 @@
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
-
 import { useSelector } from "react-redux";
 import { startTransition } from "react";
 import AuthStack from "./AuthStack";
