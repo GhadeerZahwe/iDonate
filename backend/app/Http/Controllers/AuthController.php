@@ -92,10 +92,10 @@ class AuthController extends Controller
             'last_name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:6',
-            'phone' => 'required|string', 
+            'phone' => 'string', 
             'license_number' => $request->user_type == 'delivery' ? 'required|string' : '',
-            'is_approved' => $request->user_type == 'delivery' ? 'required|boolean' : '',
-            'mobility_type' => $request->user_type == 'delivery' ? 'required|string' : '',
+            'is_approved' => $request->user_type == 'delivery' ? 'boolean' : '',
+            'mobility_type' => $request->user_type == 'delivery' ? 'string' : '',
             'profile_image' => $request->user_type == 'delivery' ? 'image|mimes:jpeg,png,jpg,gif|max:2048' : '',
         ]);
 
@@ -103,8 +103,8 @@ class AuthController extends Controller
             'first_name' => $request->first_name,
             'last_name' => $request->last_name,
             'email' => $request->email,
-            'phone'=>$request->phone,
-            'user_type'=>$request->user_type?? 'donor',
+            'phone'=>$request->phone ?? '81791454',
+            'user_type'=>$request->user_type ?? 'donor',
             'password' => Hash::make($request->password),
         ]);
 
@@ -121,7 +121,7 @@ class AuthController extends Controller
             'license_number' => $request->license_number,
             'is_approved' => $request->is_approved ?? 0,
             'profile_image' => $user->profile_image,
-            'mobility_type' => $request->mobility_type,
+            'mobility_type' => $request->mobility_type ?? 'car',
         ]);
 
         if ($request->hasFile('profile_image')) {
