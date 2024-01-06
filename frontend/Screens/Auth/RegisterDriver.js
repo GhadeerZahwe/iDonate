@@ -7,7 +7,6 @@ import {
   Image,
   ScrollView,
 } from "react-native";
-import { Picker } from "@react-native-picker/picker";
 import RegisterLogo from "../../components/RegisterLogo/RegisterLogo";
 import { useState } from "react";
 import * as ImagePicker from "expo-image-picker";
@@ -15,74 +14,80 @@ import { Feather } from "@expo/vector-icons";
 import * as FileSystem from "expo-file-system";
 import UseHttp from "../../hooks/request";
 import axios from "axios";
+import { useDispatch } from "react-redux";
+import { login, setUserData } from "../../redux/slices/authSlice";
 
 export default function RegisterDriver() {
-  //   const [selectedImage, setSelectedImage] = useState(null);
-  //   const [first_name, setfirstName] = useState("Taha");
-  //   const [last_name, setLastName] = useState("Taha");
-  //   const [email, setEmail] = useState("taha@gmail.com");
-  //   const [phone, setPhone] = useState("76102030");
-  //   const [password, setPassword] = useState("code123");
-  //   const [license_number, setLicenseNumber] = useState("F515F");
-  // const [selectedMobility, setSelectedMobility] = useState("");
-  //   const [profile, setProfile] = useState("");
+  const [selectedImage, setSelectedImage] = useState(null);
+  const [first_name, setfirstName] = useState("Tony");
+  const [last_name, setLastName] = useState("Mony");
+  const [email, setEmail] = useState("Tony@gmail.com");
+  const [phone, setPhone] = useState("03909632");
+  const [password, setPassword] = useState("code123");
+  const [license_number, setLicenseNumber] = useState("F515F");
+  const [profile, setProfile] = useState("");
 
-  //   const handleChoosePhoto = async () => {
-  //     const { status } = await ImagePicker.requestMediaLibraryPermissionsAsync();
-  //     if (status !== "granted") {
-  //       alert("Sorry, Camera roll permissions needed to make this work!");
-  //       return;
-  //     }
+  const handleChoosePhoto = async () => {
+    const { status } = await ImagePicker.requestMediaLibraryPermissionsAsync();
+    if (status !== "granted") {
+      alert("Sorry, Camera roll permissions needed to make this work!");
+      return;
+    }
 
-  //     let result = await ImagePicker.launchImageLibraryAsync({
-  //       mediaTypes: ImagePicker.MediaTypeOptions.Images,
-  //       allowsEditing: true,
-  //       quality: 1,
-  //     });
+    let result = await ImagePicker.launchImageLibraryAsync({
+      mediaTypes: ImagePicker.MediaTypeOptions.Images,
+      allowsEditing: true,
+      quality: 1,
+    });
 
-  //     if (!result.canceled) {
-  //       setSelectedImage(result.assets[0].uri);
-  //       const cacheDirectory = FileSystem.cacheDirectory;
-  //       const fileName = result.assets[0].uri.split("/").pop();
-  //       const filePath = `${cacheDirectory}${fileName}`;
-  //       try {
-  //         await FileSystem.copyAsync({
-  //           from: result.assets[0].uri,
-  //           to: filePath,
-  //         });
+    if (!result.canceled) {
+      setSelectedImage(result.assets[0].uri);
+      const cacheDirectory = FileSystem.cacheDirectory;
+      const fileName = result.assets[0].uri.split("/").pop();
+      const filePath = `${cacheDirectory}${fileName}`;
+      try {
+        await FileSystem.copyAsync({
+          from: result.assets[0].uri,
+          to: filePath,
+        });
 
-  //         setProfile(filePath);
-  //       } catch (error) {
-  //         console.error(error);
-  //       }
-  //     }
-  //   };
+        setProfile(filePath);
+      } catch (error) {
+        console.error(error);
+      }
+    }
+  };
+  const dispatch = useDispatch();
 
-  //   const handleRegister = async () => {
-  //     const formData = new FormData();
-  //     formData.append("first_name", first_name);
-  //     formData.append("last_name", last_name);
-  //     formData.append("email", email);
-  //     formData.append("phone", phone);
-  //     formData.append("password", password);
-  //     formData.append("license_number", license_number);
-  //     formData.append("user_type", "driver");
-  //     formData.append("profile_image", {
-  //       name: "img/jpeg",
-  //       type: "image/jpeg",
-  //       uri: profile,
-  //     });
+  const handleRegister = async () => {
+    const formData = new FormData();
+    formData.append("first_name", first_name);
+    formData.append("last_name", last_name);
+    formData.append("email", email);
+    // formData.append("phone", phone);
+    formData.append("password", password);
+    formData.append("license_number", license_number);
+    formData.append("user_type", "delivery");
+    formData.append("profile_image", {
+      name: "img/jpeg",
+      type: "image/jpeg",
+      uri: profile,
+    });
 
-  //     formData.append("rating", 5);
+    const result = await UseHttp("register", "POST", formData, {
+      "Content-Type": "multipart/form-data",
+    });
 
-  //     const result = await UseHttp("register", "POST", formData, {
-  //       "Content-Type": "multipart/form-data",
-  //     });
-  //   };
+    if (result.status === "success") {
+      dispatch(login());
+    } else {
+      alert("wrong credentials");
+    }
+  };
 
   return (
-    <ScrollView style={{ backgroundColor: "#F6F1F1" }}>
-      <View style={{ top: 10 }}>
+    <ScrollView style={{ backgroundColor: "#F6F1F1", flex: 1 }}>
+      <View style={{ top: -60 }}>
         <RegisterLogo />
       </View>
 
@@ -90,7 +95,6 @@ export default function RegisterDriver() {
         <TextInput
           style={styles.first_name}
           placeholder="  First Name"
-          placeholderTextColor="black"
           onChangeText={(e) => {
             setfirstName(e);
           }}
@@ -98,7 +102,6 @@ export default function RegisterDriver() {
         <TextInput
           style={styles.last_name}
           placeholder="  Last Name"
-          placeholderTextColor="black"
           onChangeText={(e) => {
             setLastName(e);
           }}
@@ -106,7 +109,6 @@ export default function RegisterDriver() {
         <TextInput
           style={styles.Email}
           placeholder="  Email"
-          placeholderTextColor="black"
           onChangeText={(e) => {
             setEmail(e);
           }}
@@ -114,7 +116,6 @@ export default function RegisterDriver() {
         <TextInput
           style={styles.Password}
           placeholder="  Password"
-          placeholderTextColor="black"
           onChangeText={(e) => {
             setPassword(e);
           }}
@@ -122,13 +123,12 @@ export default function RegisterDriver() {
         <TextInput
           style={styles.licence}
           placeholder="  Licence Number"
-          placeholderTextColor="black"
           onChangeText={(e) => {
             setLicenseNumber(e);
           }}
         />
         <Image
-          //   source={{ uri: selectedImage }}
+          source={{ uri: selectedImage }}
           style={{
             width: 100,
             height: 100,
@@ -137,23 +137,10 @@ export default function RegisterDriver() {
             borderRadius: 15,
           }}
         />
-
-        {/* <View style={styles.dropdownContainer}>
-          <Picker
-            selectedValue={selectedMobility}
-            // onValueChange={(itemValue) => setSelectedMobility(itemValue)}
-            style={styles.dropdown}
-          >
-            <Picker.Item label="Select Mobility" value="motorcycle" />
-            <Picker.Item label="motorcycle" value="motorcycle" />
-            <Picker.Item label="car" value="car" />
-            <Picker.Item label="van" value="van" />
-          </Picker>
-        </View> */}
-        <TouchableOpacity>
+        <TouchableOpacity onPress={handleChoosePhoto}>
           <View style={styles.imageUpload}>
             <View>
-              <Feather name="image" size={30} color={"#146C94"} />
+              <Feather name="image" size={30} color={"blue"} />
             </View>
             <View>
               <Text>Choose Photo</Text>
@@ -161,7 +148,7 @@ export default function RegisterDriver() {
           </View>
         </TouchableOpacity>
 
-        <TouchableOpacity style={styles.register_btn}>
+        <TouchableOpacity style={styles.register_btn} onPress={handleRegister}>
           <Text style={{ fontSize: 24, color: "#FFF", top: 8, left: 30 }}>
             Register
           </Text>
@@ -177,39 +164,36 @@ const styles = StyleSheet.create({
     padding: 10,
     width: 150,
     borderRadius: 15,
-    top: 300,
-    left: 30,
-    elevation: 30,
-    marginBottom: 25,
+    top: 230,
+    left: 50,
+    elevation: 10,
   },
   last_name: {
     backgroundColor: "#FFF",
     padding: 10,
     width: 150,
     borderRadius: 15,
-    top: 207,
-    left: 190,
-    elevation: 30,
-    marginBottom: 25,
+    top: 163,
+    left: 220,
+    elevation: 10,
   },
   Email: {
     backgroundColor: "#FFF",
     padding: 10,
-    width: 310,
+    width: 320,
     borderRadius: 15,
     top: 160,
-    marginTop: 20,
-    left: 30,
-    elevation: 30,
+    left: 50,
+    elevation: 10,
   },
   Password: {
     backgroundColor: "#FFF",
     padding: 10,
-    width: 310,
+    width: 320,
     borderRadius: 15,
     top: 160,
-    left: 30,
-    elevation: 30,
+    left: 50,
+    elevation: 10,
   },
   birth: {
     backgroundColor: "#FFF",
@@ -217,42 +201,29 @@ const styles = StyleSheet.create({
     width: 320,
     borderRadius: 15,
     top: 160,
-    left: 30,
-    elevation: 20,
+    left: 50,
+    elevation: 10,
   },
   licence: {
     backgroundColor: "#FFF",
     padding: 10,
-    width: 310,
+    width: 320,
     borderRadius: 15,
     top: 160,
-    left: 30,
-    elevation: 30,
+    left: 50,
+    elevation: 10,
   },
   register_btn: {
     backgroundColor: "#146C94",
     width: 150,
     height: 50,
-    top: 40,
-    left: 117,
+    top: 100,
+    left: 135,
     borderRadius: 15,
-    elevation: 30,
+    elevation: 5,
   },
   imageUpload: {
-    top: 40,
-    left: 40,
-  },
-  dropdownContainer: {
-    backgroundColor: "#FFF",
-    padding: 10,
-    width: 150,
-    borderRadius: 15,
-    top: 160,
-    left: 250,
-    elevation: 30,
-    marginBottom: 25,
-  },
-  dropdown: {
-    height: 40,
+    top: 60,
+    left: 80,
   },
 });

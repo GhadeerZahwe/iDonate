@@ -9,34 +9,42 @@ import Background from "../../components/Background/Background";
 import CenteredLogo from "../../components/CenteredLogo/CenteredLogo";
 import { useNavigation } from "@react-navigation/native";
 
-// function click() {
-//   alert("register");
-// }
+function click() {
+  alert("register");
+}
 export default function PreRegister() {
-  //   const navigation = useNavigation();
+  const navigation = useNavigation();
 
-  //   const donor = () => {
-  //     navigation.navigate("RegisterDonor Screen");
-  //   };
+  const passenger = () => {
+    navigation.navigate("RegisterPassenger Screen");
+  };
 
-  //   const driver = () => {
-  //     navigation.navigate("RegisterDriver Screen");
-  //   };
+  const driver = () => {
+    navigation.navigate("RegisterDriver Screen");
+  };
 
   return (
-    <View style={{ backgroundColor: "#F6F1F1" }}>
+    <View style={{ backgroundColor: "#F6F1F1", flex: 1 }}>
       <Background />
       <CenteredLogo />
-      <View style={{ backgroundColor: "#F6F1F1", top: 30 }}>
-        <TouchableOpacity style={styles.donor}>
-          <Text style={{ fontSize: 24, color: "#F6F1F1", top: 12, left: 90 }}>
-            Donor
-          </Text>
-        </TouchableOpacity>
-
-        <TouchableOpacity style={styles.driver}>
-          <Text style={{ fontSize: 24, color: "#F6F1F1", top: 13, left: 80 }}>
-            Delivery
+      <Text style={styles.welcome_title}>What are You?</Text>
+      <TouchableOpacity style={styles.Passenger} onPress={passenger}>
+        <Text style={{ fontSize: 24, color: "#FFF", top: 12, left: 55 }}>
+          Passenger ?
+        </Text>
+      </TouchableOpacity>
+      <View
+        style={{
+          width: 500,
+          height: 1,
+          backgroundColor: "black",
+          top: 180,
+        }}
+      ></View>
+      <View style={{ top: 100 }}>
+        <TouchableOpacity style={styles.driver} onPress={driver}>
+          <Text style={{ fontSize: 24, color: "#FFF", top: 13, left: 80 }}>
+            Driver ?
           </Text>
         </TouchableOpacity>
       </View>
@@ -45,27 +53,29 @@ export default function PreRegister() {
 }
 
 const styles = StyleSheet.create({
-  donor: {
+  welcome_title: {
+    fontSize: 32,
+    fontWeight: "bold",
+    justifyContent: "center",
+    alignContent: "center",
+    left: 110,
+  },
+  Passenger: {
     backgroundColor: "#19A7CE",
     width: 250,
-    height: 65,
-    left: 60,
-    marginBottom: 40,
+    height: 60,
+    top: 130,
+    left: 80,
     borderRadius: 15,
-    textAlign: "center",
-    fontWeight: "bold",
     elevation: 5,
   },
   driver: {
     backgroundColor: "#146C94",
     width: 250,
-    height: 65,
-    left: 60,
-    top: 20,
-    marginBottom: 190,
+    height: 60,
+    top: 130,
+    left: 80,
     borderRadius: 15,
     elevation: 5,
-    textAlign: "center",
-    fontWeight: "bold",
   },
 });

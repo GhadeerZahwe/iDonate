@@ -14,42 +14,28 @@ function register() {
   alert("register");
 }
 export default function RegisterDonor() {
-  //   const navigation = useNavigation();
+  const navigation = useNavigation();
 
-  //   const [value, setValue] = useState("first");
+  const [value, setValue] = useState("first");
 
-  //   const login = () => {
-  //     navigation.navigate("DonorOnboardingStack");
-  //   };
+  const login = () => {
+    navigation.navigate("DonorOnboardingStack");
+  };
   return (
     <View style={{ backgroundColor: "#F6F1F1", flex: 1 }}>
-      <View style={{ height: 80 }}></View>
+      <View style={{ height: 100 }}></View>
       <RegisterLogo />
 
-      <View style={{ gap: 25 }}>
-        <TextInput
-          style={styles.first_name}
-          placeholder="  First Name"
-          placeholderTextColor="black"
-        />
-        <TextInput
-          style={styles.last_name}
-          placeholder="  Last Name"
-          placeholderTextColor="black"
-        />
-        <TextInput
-          style={styles.TextInput}
-          placeholder="  Email"
-          placeholderTextColor="black"
-        />
-        <TextInput
-          style={styles.TextInput}
-          placeholder="  Password"
-          placeholderTextColor="black"
-        />
+      <View style={{ gap: 20 }}>
+        <TextInput style={styles.first_name} placeholder="  First Name" />
+        <TextInput style={styles.last_name} placeholder="  Last Name" />
+        <TextInput style={styles.TextInput} placeholder="  Email" />
+        <TextInput style={styles.TextInput} placeholder="  Password" />
       </View>
-      <TouchableOpacity style={styles.register_btn}>
-        <Text style={{ fontSize: 24, color: "#FFF", left: 100 }}>Register</Text>
+      <TouchableOpacity style={styles.register_btn} onPress={login}>
+        <Text style={{ fontSize: 24, color: "#FFF", top: 8, left: 30 }}>
+          Register
+        </Text>
       </TouchableOpacity>
     </View>
   );
@@ -62,8 +48,7 @@ const styles = StyleSheet.create({
     width: 150,
     borderRadius: 15,
     top: 220,
-    left: 20,
-    height: 50,
+    left: 50,
     elevation: 10,
   },
   last_name: {
@@ -71,30 +56,26 @@ const styles = StyleSheet.create({
     padding: 10,
     width: 150,
     borderRadius: 15,
-    top: 145,
-    left: 190,
-    height: 50,
+    top: 152,
+    left: 220,
     elevation: 10,
   },
   TextInput: {
     backgroundColor: "#FFF",
     padding: 10,
     width: 320,
-    height: 50,
     borderRadius: 15,
     top: 155,
-    left: 20,
+    left: 50,
     elevation: 10,
   },
   register_btn: {
     backgroundColor: "#146C94",
-    width: 317,
-    padding: 10,
-    top: 530,
+    width: 150,
+    height: 50,
+    top: 200,
+    left: 135,
     borderRadius: 15,
-    alignSelf: "center",
-    marginTop: 15,
-    position: "absolute",
-    elevation: 10,
+    elevation: 5,
   },
 });
