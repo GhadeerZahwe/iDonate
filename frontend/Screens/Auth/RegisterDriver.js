@@ -7,6 +7,7 @@ import {
   Image,
   ScrollView,
 } from "react-native";
+import { Picker } from "@react-native-picker/picker";
 import RegisterLogo from "../../components/RegisterLogo/RegisterLogo";
 import { useState } from "react";
 import * as ImagePicker from "expo-image-picker";
@@ -23,6 +24,7 @@ export default function RegisterDriver() {
   //   const [phone, setPhone] = useState("76102030");
   //   const [password, setPassword] = useState("code123");
   //   const [license_number, setLicenseNumber] = useState("F515F");
+  // const [selectedMobility, setSelectedMobility] = useState("");
   //   const [profile, setProfile] = useState("");
 
   //   const handleChoosePhoto = async () => {
@@ -135,6 +137,19 @@ export default function RegisterDriver() {
             borderRadius: 15,
           }}
         />
+
+        {/* <View style={styles.dropdownContainer}>
+          <Picker
+            selectedValue={selectedMobility}
+            // onValueChange={(itemValue) => setSelectedMobility(itemValue)}
+            style={styles.dropdown}
+          >
+            <Picker.Item label="Select Mobility" value="motorcycle" />
+            <Picker.Item label="motorcycle" value="motorcycle" />
+            <Picker.Item label="car" value="car" />
+            <Picker.Item label="van" value="van" />
+          </Picker>
+        </View> */}
         <TouchableOpacity>
           <View style={styles.imageUpload}>
             <View>
@@ -226,5 +241,18 @@ const styles = StyleSheet.create({
   imageUpload: {
     top: 40,
     left: 40,
+  },
+  dropdownContainer: {
+    backgroundColor: "#FFF",
+    padding: 10,
+    width: 150,
+    borderRadius: 15,
+    top: 160,
+    left: 250,
+    elevation: 30,
+    marginBottom: 25,
+  },
+  dropdown: {
+    height: 40,
   },
 });
