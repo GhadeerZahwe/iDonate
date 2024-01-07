@@ -111,7 +111,7 @@ class AuthController extends Controller
          if($request->user_type== 'donor'){
             DonorInfo::create([
                 'donor_id'=>$user->id,
-                'description'=>$request->description,
+                'description' => $request->description ?? 'Food Waste Donor', 
             ]);
          }
 
