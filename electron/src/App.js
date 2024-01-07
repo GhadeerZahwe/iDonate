@@ -8,7 +8,7 @@ import Donations from "./pages/Donations/Donations";
 function App() {
   return (
     <>
-      <AxiosNavigation />
+      <FetchNavigation />
       <Routes>
         <Route path="/" element={<Login />} />
         <Route path="/admin_panel" element={<HomePage />} />
@@ -21,7 +21,7 @@ function App() {
 
 export default App;
 
-function AxiosNavigation() {
+function FetchNavigation() {
   // Use useRef to prevent a re-render in the useEffect.
   // A ref, cannot be used as a useEffect dependency, hence,
   // your linters shouldn't complain about missing dependencies.
