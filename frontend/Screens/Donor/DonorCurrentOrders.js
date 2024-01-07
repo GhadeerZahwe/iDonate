@@ -1,9 +1,25 @@
-import React from 'react'
+import React from "react";
+import { View, Text, StyleSheet } from "react-native";
 
 const DonorCurrentOrders = () => {
   return (
-    <div>DonorCurrentOrders</div>
-  )
-}
+    <View style={styles.container}>
+      <Text style={styles.text}>Donor Current Orders</Text>
+    </View>
+  );
+};
 
-export default DonorCurrentOrders
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  text: {
+    fontSize: 24,
+    fontWeight: "bold",
+    color: "#146C94",
+  },
+});
+
+export default DonorCurrentOrders;

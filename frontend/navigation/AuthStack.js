@@ -16,7 +16,7 @@ const AuthStack = () => {
         component={RegisterDriver}
         options={{
           headerShown: true,
-          title: "Register Driver",
+          title: "Register Delivery",
           headerStyle: { backgroundColor: "#146C94" },
           headerTintColor: "#fff",
         }}

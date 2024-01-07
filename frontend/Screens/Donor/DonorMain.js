@@ -1,21 +1,25 @@
-import { StyleSheet, View, Image, Text } from "react-native";
-import Background from "../../components/Background/Background";
-import Greeting from "../../components/Greeting/Greeting";
-import Logo from "../../components/Logo/logo";
-import Search from "../../components/Search/Search";
-import Donorcard from "../../components/DonorCard/DonorCard";
+import React from "react";
+import { View, Text, StyleSheet } from "react-native";
 
 const DonorMain = () => {
   return (
-    <View>
-      <Background />
-      <Logo />
-      {/* <Greeting />
-      <Search /> */}
-      <Donorcard />
+    <View style={styles.container}>
+      <Text style={styles.text}>Donor Main</Text>
     </View>
   );
 };
-export default DonorMain;
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  text: {
+    fontSize: 24,
+    fontWeight: "bold",
+    color: "#146C94",
+  },
+});
+
+export default DonorMain;

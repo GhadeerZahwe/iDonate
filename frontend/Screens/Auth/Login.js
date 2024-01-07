@@ -51,7 +51,6 @@ export default function Login() {
     <ScrollView style={{ backgroundColor: "#F6F1F1" }}>
       <Background />
       <CenteredLogo />
-      <Text style={styles.welcome_title}>Welcome Back.</Text>
       <View style={{ gap: 20 }}>
         <TextInput
           style={styles.TextInput}
@@ -79,8 +78,8 @@ export default function Login() {
           fontSize: 17,
           color: "#000",
           top: 150,
-          left: 75,
-          marginBottom: 600,
+          left: 33,
+          marginBottom: 490,
         }}
       >
         Don't have an account?{" "}
@@ -106,7 +105,7 @@ const styles = StyleSheet.create({
     width: 300,
     borderRadius: 15,
     top: 70,
-    left: 50,
+    left: 30,
     elevation: 10,
   },
   Login_btn: {
@@ -114,7 +113,7 @@ const styles = StyleSheet.create({
     width: 300,
     height: 50,
     top: 130,
-    left: 50,
+    left: 30,
     borderRadius: 15,
     elevation: 5,
   },

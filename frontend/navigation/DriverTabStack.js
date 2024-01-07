@@ -1,4 +1,4 @@
-import DriverAllTrips from "../Screens/Driver/AllTrips";
+import DriverAllOrders from "../Screens/Driver/AllOrders";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { Entypo } from "@expo/vector-icons";
@@ -27,8 +27,8 @@ const DriverTabStack = () => {
             />
           ),
         }}
-        name="DriverAllTrips"
-        component={DriverAllTrips}
+        name="DriverAllOrders"
+        component={DriverAllOrders}
       />
       <Tabs.Screen
         name="OnboardingStack"

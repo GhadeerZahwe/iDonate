@@ -1,9 +1,8 @@
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
+import UserTypeSwitcher from "./UserTypeSwitcher";
+import AuthStack from "./Authstack";
 import { useSelector } from "react-redux";
-import { startTransition } from "react";
-import AuthStack from "./AuthStack";
-import UserTypeSwitcher from "./UsertypeSwitcher";
 
 const StackSwitcher = () => {
   const stack = createStackNavigator();

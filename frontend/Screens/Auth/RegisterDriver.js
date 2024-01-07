@@ -19,10 +19,10 @@ import { login, setUserData } from "../../redux/slices/authSlice";
 
 export default function RegisterDriver() {
   const [selectedImage, setSelectedImage] = useState(null);
-  const [first_name, setfirstName] = useState("Tony");
-  const [last_name, setLastName] = useState("Mony");
-  const [email, setEmail] = useState("Tony@gmail.com");
-  const [phone, setPhone] = useState("03909632");
+  const [first_name, setfirstName] = useState("Ali2");
+  const [last_name, setLastName] = useState("Ayoub");
+  const [email, setEmail] = useState("Ali2@gmail.com");
+  const [phone, setPhone] = useState("76102030");
   const [password, setPassword] = useState("code123");
   const [license_number, setLicenseNumber] = useState("F515F");
   const [profile, setProfile] = useState("");
@@ -91,7 +91,7 @@ export default function RegisterDriver() {
         <RegisterLogo />
       </View>
 
-      <View style={{ gap: 20, marginBottom: 200 }}>
+      <View style={{ gap: 20, marginBottom: 70 }}>
         <TextInput
           style={styles.first_name}
           placeholder="  First Name"
@@ -165,7 +165,7 @@ const styles = StyleSheet.create({
     width: 150,
     borderRadius: 15,
     top: 230,
-    left: 50,
+    left: 26,
     elevation: 10,
   },
   last_name: {
@@ -174,56 +174,47 @@ const styles = StyleSheet.create({
     width: 150,
     borderRadius: 15,
     top: 163,
-    left: 220,
+    left: 185,
     elevation: 10,
   },
   Email: {
     backgroundColor: "#FFF",
     padding: 10,
-    width: 320,
+    width: 313,
     borderRadius: 15,
     top: 160,
-    left: 50,
+    left: 26,
     elevation: 10,
   },
   Password: {
     backgroundColor: "#FFF",
     padding: 10,
-    width: 320,
+    width: 315,
     borderRadius: 15,
     top: 160,
-    left: 50,
-    elevation: 10,
-  },
-  birth: {
-    backgroundColor: "#FFF",
-    padding: 10,
-    width: 320,
-    borderRadius: 15,
-    top: 160,
-    left: 50,
+    left: 26,
     elevation: 10,
   },
   licence: {
     backgroundColor: "#FFF",
     padding: 10,
-    width: 320,
+    width: 315,
     borderRadius: 15,
     top: 160,
-    left: 50,
+    left: 26,
     elevation: 10,
   },
   register_btn: {
     backgroundColor: "#146C94",
     width: 150,
     height: 50,
-    top: 100,
-    left: 135,
+    top: 50,
+    left: 110,
     borderRadius: 15,
     elevation: 5,
   },
   imageUpload: {
     top: 60,
-    left: 80,
+    left: 30,
   },
 });

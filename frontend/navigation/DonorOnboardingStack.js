@@ -1,15 +1,15 @@
 import { createStackNavigator } from "@react-navigation/stack";
-import BussSchedule from "../Screens/Passenger/BussSchedule";
+import BussSchedule from "../Screens/Donor/AddOrder";
 import map from "../Screens/Donor/map";
-import DonorTabStack from "./DonorTabstack";
+import DonorTabStack from "./DonorTabStack";
 
 const Stack = createStackNavigator();
 
 const DonorOnboardingStack = ({ navigation }) => {
   return (
     <Stack.Navigator screenOptions={{ headerShown: false }}>
-      <Stack.Screen name="donor" component={DonorTabStack} />
-      {/* <Stack.Screen name="BussSchedule" component={BussSchedule} />
+      <Stack.Screen name="Donor" component={DonorTabStack} />
+      <Stack.Screen name="BussSchedule" component={BussSchedule} />
       <Stack.Screen
         options={{
           headerShown: true,
@@ -19,7 +19,7 @@ const DonorOnboardingStack = ({ navigation }) => {
         }}
         name="map"
         component={map}
-      /> */}
+      />
     </Stack.Navigator>
   );
 };

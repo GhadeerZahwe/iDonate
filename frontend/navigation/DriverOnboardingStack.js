@@ -1,6 +1,7 @@
 import { createStackNavigator } from "@react-navigation/stack";
-import AddTrip from "../Screens/Driver/AddTrip";
+import AcceptOrder from "../Screens/Driver/AcceptOrder";
 import DriverTabStack from "./DriverTabStack";
+import map from "../Screens/Donor/map";
 
 const Stack = createStackNavigator();
 
@@ -9,9 +10,9 @@ const DriverOnboardingStack = ({ navigation }) => {
     <Stack.Navigator screenOptions={{ headerShown: false }}>
       <Stack.Screen name="driver" component={DriverTabStack} />
       <Stack.Screen
-        name="AddTrip"
-        component={AddTrip}
-        options={{ headerShown: true, title: "Add Trip" }}
+        name="AcceptOrder"
+        component={AcceptOrder}
+        options={{ headerShown: true, title: "Add Order" }}
       />
     </Stack.Navigator>
   );

@@ -1,8 +1,7 @@
+import DonorMain from "../Screens/Donor/DonorMain";
 import DonorCurrentOrders from "../Screens/Donor/DonorCurrentOrders";
 import DonorAllOrders from "../Screens/Donor/DonorAllOrders";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import { Text } from "react-native";
-import { NavigationContainer } from "@react-navigation/native";
 import { FontAwesome5 } from "@expo/vector-icons";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { Entypo } from "@expo/vector-icons";
@@ -22,7 +21,11 @@ const DonorTabStack = () => {
       <Tabs.Screen
         options={{
           tabBarIcon: () => (
-            <FontAwesome5 name="map-marked-alt" size={24} color="black" />
+            <MaterialCommunityIcons
+              name="clipboard-clock-outline"
+              size={24}
+              color="black"
+            />
           ),
         }}
         name="DonorCurrentOrders"
@@ -31,14 +34,10 @@ const DonorTabStack = () => {
       <Tabs.Screen
         options={{
           tabBarIcon: () => (
-            <MaterialCommunityIcons
-              name="clipboard-clock-outline"
-              size={24}
-              color="black"
-            />
+            <FontAwesome5 name="check-circle" size={24} color="black" />
           ),
         }}
-        name="DonorAllOrders"
+        name="DonorCompletedOrders"
         component={DonorAllOrders}
       />
       <Tabs.Screen

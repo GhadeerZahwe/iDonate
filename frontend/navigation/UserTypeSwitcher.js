@@ -1,4 +1,3 @@
-import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import DonorOnboardingStack from "./DonorOnboardingStack";
 import AsyncStorage from "@react-native-async-storage/async-storage";
@@ -12,6 +11,7 @@ const UserTypeSwitcher = () => {
     const retrieveUserType = async () => {
       try {
         const value = await AsyncStorage.getItem("user_type");
+        console.log(value)
         if (value !== null) {
           setUserType(value);
         }
