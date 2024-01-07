@@ -5,9 +5,11 @@ import { store } from "./redux/store";
 
 export default function App() {
   return (
-    <Provider store={store}>
-      <StackSwitcher />
-    </Provider>
+    <>
+      <Provider store={store}>
+        <StackSwitcher />
+      </Provider>
+    </>
   );
 }
 

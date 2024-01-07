@@ -11,13 +11,14 @@ const UserTypeSwitcher = () => {
     const retrieveUserType = async () => {
       try {
         const value = await AsyncStorage.getItem("user_type");
-        console.log(value)
+        console.log(value);
         if (value !== null) {
           setUserType(value);
         }
       } catch (error) {
         console.log(error);
       }
+      console.log(userType);
     };
     retrieveUserType();
   }, []);
