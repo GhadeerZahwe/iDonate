@@ -38,13 +38,10 @@ class AdminController extends Controller
   public function getAllDeliveries()
     {
         try {
-            // Check if the user is authenticated
             if (auth()->check()) {
                 $user = Auth::user();
 
-                // Check if the user is an admin
                 if ($user->user_type === 'admin') {
-                    // Get all delivery users with their delivery info
                     $deliveries = User::where('user_type', 'delivery')
                         ->with('deliveryInfo') 
                         ->get();
@@ -141,14 +138,12 @@ class AdminController extends Controller
             'message' => 'Delivery user and associated info deleted successfully.',
         ]);
     } catch (QueryException $e) {
-        // Handle database query exceptions
         return response()->json([
             'status' => 'error',
             'message' => 'Error deleting delivery user.',
             'error' => $e->getMessage(),
         ], 500);
     } catch (\Exception $e) {
-        // Handle other exceptions
         return response()->json([
             'status' => 'error',
             'message' => 'An error occurred during delivery user deletion.',
@@ -167,7 +162,6 @@ class AdminController extends Controller
                 ], 401);
             }
     
-            // Check if the donor user exists
             $donorUser = User::where('id', $donorId)
                 ->where('user_type', 'donor')
                 ->first();
@@ -186,14 +180,12 @@ class AdminController extends Controller
                 'message' => 'Donor user and associated info deleted successfully.',
             ]);
         } catch (QueryException $e) {
-            // Handle database query exceptions
             return response()->json([
                 'status' => 'error',
                 'message' => 'Error deleting donor user.',
                 'error' => $e->getMessage(),
             ], 500);
         } catch (\Exception $e) {
-            // Handle other exceptions
             return response()->json([
                 'status' => 'error',
                 'message' => 'An error occurred during donor user deletion.',
