@@ -103,10 +103,10 @@ const styles = StyleSheet.create({
     backgroundColor: "#FFF",
     padding: 10,
     width: 300,
-    borderRadius: 15,
+    borderRadius: 10,
     top: 70,
     left: 30,
-    elevation: 10,
+    elevation: 3,
   },
   Login_btn: {
     backgroundColor: "#146C94",
@@ -114,7 +114,7 @@ const styles = StyleSheet.create({
     height: 50,
     top: 130,
     left: 30,
-    borderRadius: 15,
-    elevation: 5,
+    borderRadius: 10,
+    elevation: 3,
   },
 });

@@ -41,7 +41,7 @@ export default function RegisterDonor() {
     const result = await UseHttp("register", "POST", formData, {
       "Content-Type": "multipart/form-data",
     });
-    
+
     try {
       await AsyncStorage.setItem("token", result.authorisation.token);
       await AsyncStorage.setItem("user_type", result.user.user_type);
@@ -63,22 +63,33 @@ export default function RegisterDonor() {
       </View>
 
       <View style={{ gap: 20, marginBottom: 180, top: 40 }}>
-        <TextInput style={styles.first_name} 
-        placeholder="  First Name"
-         onChangeText={(e) => {
+        <TextInput
+          style={styles.first_name}
+          placeholder="  First Name"
+          onChangeText={(e) => {
             setfirstName(e);
-          }} />
-        <TextInput style={styles.last_name} placeholder="  Last Name" onChangeText={(e) => {
+          }}
+        />
+        <TextInput
+          style={styles.last_name}
+          placeholder="  Last Name"
+          onChangeText={(e) => {
             setLastName(e);
-          }} />
-        <TextInput style={styles.TextInput} placeholder="  Email"   onChangeText={(e) => {
+          }}
+        />
+        <TextInput
+          style={styles.TextInput}
+          placeholder="  Email"
+          onChangeText={(e) => {
             setEmail(e);
-          }} />
+          }}
+        />
         <View style={styles.passwordContainer}>
           <TextInput
             style={styles.passwordInput}
             placeholder="  Password"
-            secureTextEntry={!showPassword}  onChangeText={(e) => {
+            secureTextEntry={!showPassword}
+            onChangeText={(e) => {
               setPassword(e);
             }}
           />
@@ -122,7 +133,7 @@ const styles = StyleSheet.create({
     borderRadius: 15,
     top: 152,
     left: 185,
-    elevation: 10,
+    elevation: 3,
   },
   TextInput: {
     backgroundColor: "#FFF",
@@ -135,13 +146,15 @@ const styles = StyleSheet.create({
   },
   register_btn: {
     backgroundColor: "#146C94",
-    width: 150,
+    width: 300,
     height: 50,
     alignSelf: "center", // Center the button horizontally
     marginTop: 40, // Add some space between the text inputs and the button
     borderRadius: 15,
     marginBottom: 50,
     elevation: 5,
+    // alignItems: center,
+    // justifyContent: center,
   },
 
   passwordContainer: {
