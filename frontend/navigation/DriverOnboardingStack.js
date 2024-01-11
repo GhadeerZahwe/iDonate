@@ -1,7 +1,5 @@
 import { createStackNavigator } from "@react-navigation/stack";
-import AcceptOrder from "../Screens/Driver/AcceptOrder";
 import DriverTabStack from "./DriverTabStack";
-import map from "../Screens/Donor/map";
 
 const Stack = createStackNavigator();
 
