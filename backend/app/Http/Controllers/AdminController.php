@@ -10,30 +10,7 @@ use App\Models\DonorInfo;
 use Illuminate\Http\Request;
 
 class AdminController extends Controller
-{
-    public function getAllDonors()
-    {
-        try {
-            if (auth()->check()) {
-                $user = Auth::user();
-    
-                if ($user->user_type === 'admin') {
-                 $donors = User::where('user_type', 'donor')
-                ->where('is_deleted', '0') // Exclude soft-deleted records
-                ->join('donors_info', 'users.id', '=', 'donors_info.donor_id')
-                ->get();
-                return response()->json(['donors' => $donors]);
-                } else {
-                    return response()->json(['error' => 'Permission Denied'], 403);
-                }
-            } else {
-                return response()->json(['error' => 'User not authenticated'], 401);
-            }
-        } catch (\Exception $e) {
-            return response()->json(['error' => $e->getMessage()], 500);
-        }
-    }
-    
+{   
 
   public function getAllDeliveries()
     {
@@ -57,6 +34,28 @@ class AdminController extends Controller
             return response()->json(['error' => $e->getMessage()], 500);
         }
     }
+//   public function getAllDonors()
+//     {
+//         try {
+//             if (auth()->check()) {
+//                 $user = Auth::user();
+
+//                 if ($user->user_type === 'admin') {
+//                     $deliveries = User::where('user_type', 'donor')
+//                         ->with('donorInfo') 
+//                         ->get();
+
+//                     return response()->json(['Donors' => $deliveries]);
+//                 } else {
+//                     return response()->json(['error' => 'Permission Denied'], 403);
+//                 }
+//             } else {
+//                 return response()->json(['error' => 'User not authenticated'], 401);
+//             }
+//         } catch (\Exception $e) {
+//             return response()->json(['error' => $e->getMessage()], 500);
+//         }
+//     }
 
     public function acceptDelivery(Request $request, $deliveryId){
         try{
@@ -194,5 +193,26 @@ class AdminController extends Controller
         }
     }
     
-
+    public function getAllDonors()
+    {
+        try {
+            if (auth()->check()) {
+                $user = Auth::user();
+    
+                if ($user->user_type === 'admin') {
+                 $donors = User::where('user_type', 'donor')
+                ->where('is_deleted', '0') 
+                ->join('donors_info', 'users.id', '=', 'donors_info.donor_id')
+                ->get();
+                return response()->json(['donors' => $donors]);
+                } else {
+                    return response()->json(['error' => 'Permission Denied'], 403);
+                }
+            } else {
+                return response()->json(['error' => 'User not authenticated'], 401);
+            }
+        } catch (\Exception $e) {
+            return response()->json(['error' => $e->getMessage()], 500);
+        }
+    }
 }
