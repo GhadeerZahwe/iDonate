@@ -9,11 +9,6 @@ const DriverOnboardingStack = ({ navigation }) => {
   return (
     <Stack.Navigator screenOptions={{ headerShown: false }}>
       <Stack.Screen name="driver" component={DriverTabStack} />
-      <Stack.Screen
-        name="AcceptOrder"
-        component={AcceptOrder}
-        options={{ headerShown: true, title: "Add Order" }}
-      />
     </Stack.Navigator>
   );
 };

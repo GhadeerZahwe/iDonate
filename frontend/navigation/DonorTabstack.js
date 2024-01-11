@@ -20,6 +20,10 @@ const DonorTabStack = () => {
       />
       <Tabs.Screen
         options={{
+          headerShown: true,
+          title: "Current Orders",
+          headerStyle: { backgroundColor: "#146C94" },
+          headerTintColor: "#fff",
           tabBarIcon: () => (
             <MaterialCommunityIcons
               name="clipboard-clock-outline"
@@ -33,6 +37,10 @@ const DonorTabStack = () => {
       />
       <Tabs.Screen
         options={{
+          headerShown: true,
+          title: "Completed Orders",
+          headerStyle: { backgroundColor: "#146C94" },
+          headerTintColor: "#fff",
           tabBarIcon: () => (
             <FontAwesome5 name="check-circle" size={24} color="black" />
           ),

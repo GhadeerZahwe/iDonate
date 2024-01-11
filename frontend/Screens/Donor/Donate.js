@@ -1,11 +1,11 @@
+// Donate.js
 import React from "react";
 import { View, Text, StyleSheet } from "react-native";
-import Search from "../../components/Search/Search";
 
-const DonorCurrentOrders = () => {
+const Donate = () => {
   return (
     <View style={styles.container}>
-      <Search />
+      <Text style={styles.text}>Donation Details Page</Text>
     </View>
   );
 };
@@ -23,4 +23,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default DonorCurrentOrders;
+export default Donate;

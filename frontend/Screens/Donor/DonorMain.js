@@ -8,8 +8,7 @@ import {
   Image,
 } from "react-native";
 import Background from "../../components/Background/Background";
-import Logo from "../../components/Logo/logo";
-import DriverTripsBar from "../../components/DriverTripBar/DriverTripBar";
+import DonationBar from "../../components/DonationBar/DonationBar";
 import Greeting from "../../components/Greeting/Greeting";
 import Donationcard from "../../components/DonationCard/DonationCard";
 
@@ -30,7 +29,7 @@ const DonorMain = () => {
           }}
         />
         <Greeting />
-        <DriverTripsBar />
+        <DonationBar />
         <Text style={styles.title}>Donate today. Change a life!</Text>
 
         <Donationcard />

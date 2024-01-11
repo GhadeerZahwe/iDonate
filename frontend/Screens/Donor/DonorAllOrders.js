@@ -1,10 +1,11 @@
 import React from "react";
 import { View, Text, StyleSheet } from "react-native";
+import Search from "../../components/Search/Search";
 
 const DonorAllOrders = () => {
   return (
     <View style={styles.container}>
-      <Text style={styles.text}>Donor Completed Orders "History"</Text>
+      <Search />
     </View>
   );
 };

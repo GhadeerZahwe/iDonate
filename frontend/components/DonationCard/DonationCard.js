@@ -1,68 +1,32 @@
 import { StyleSheet, View, Text, TouchableOpacity, Image } from "react-native";
+import { useNavigation } from "@react-navigation/native";
 
-import UseHttp from "../../hooks/request";
-import AsyncStorage from "@react-native-async-storage/async-storage";
-import { useEffect, useState } from "react";
-function Donationcard() {
-  const retrieveData = async () => {
-    try {
-      const value = await AsyncStorage.getItem("token");
-      if (value !== null) {
-        return value;
-      }
-    } catch (error) {
-      console.log(error);
-    }
+function DonationCard() {
+  const navigation = useNavigation();
+  const handleDonatePress = () => {
+    // Navigate to the new page when the "Donate" button is pressed
+    navigation.navigate("Donate"); // Replace 'DonationDetails' with the actual screen name
   };
-
-  const getToken = async () => {
-    const token = await retrieveData();
-    return token;
-  };
-  const [total_earned, setTotalEarned] = useState("");
-  const [total_trips, setTotalTrips] = useState("");
-
-  useEffect(() => {
-    const fetchData = async () => {
-      const token = await getToken();
-      const result = await UseHttp("get_driver_total_earned", "GET", "", {
-        Authorization: "bearer " + token,
-      });
-      setTotalEarned(result.total_driver_earned);
-    };
-    fetchData();
-  }, []);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      const token = await getToken();
-      const result = await UseHttp("get_driver_total_trips", "GET", "", {
-        Authorization: "bearer " + token,
-      });
-      setTotalTrips(result.total_driver_trips);
-    };
-    fetchData();
-  }, []);
   return (
-    <View style={styles.trips_bar}>
+    <View style={styles.donation_bar}>
       <Image
         source={require("../../assets/foodwaste.jpg")}
         style={{ width: 140, height: 123, left: 47, top: 13, marginBottom: 0 }}
       />
-      <Text style={styles.trips_title}>TOTAL TRIPS</Text>
-      <TouchableOpacity style={styles.add_trip_btn}>
-        <Text style={styles.add_trip_txt}>Donate</Text>
+      <Text style={styles.donation_title}></Text>
+      <TouchableOpacity
+        style={styles.add_donation_btn}
+        onPress={handleDonatePress}
+      >
+        <Text style={styles.add_donation_txt}>Donate</Text>
       </TouchableOpacity>
-      {/* <Text style={styles.trips_count}>{total_trips}</Text>
-      <Text style={styles.paid_title}>TOTAL Earned</Text>
-      <Text style={styles.paid_number}>{total_earned}$</Text> */}
     </View>
   );
 }
-export default Donationcard;
+export default DonationCard;
 
 const styles = StyleSheet.create({
-  trips_bar: {
+  donation_bar: {
     backgroundColor: "white",
     top: 400,
     left: 70,
@@ -72,47 +36,24 @@ const styles = StyleSheet.create({
     zIndex: 2,
     borderRadius: 18,
   },
-  add_trip_btn: {
+  add_donation_btn: {
     backgroundColor: "#146C94",
     borderRadius: 15,
     padding: 10,
     left: 43,
-
     width: 150,
     borderRadius: 18,
   },
-  add_trip_txt: {
+  add_donation_txt: {
     color: "#FFF",
     fontSize: 18,
     left: 34,
   },
-  trips_title: {
+  donation_title: {
     fontSize: 16,
     fontWeight: "bold",
     color: "rgba(255, 255, 255, 0.5)",
     top: 20,
     left: 30,
-  },
-  trips_count: {
-    fontSize: 42,
-    fontWeight: "bold",
-    color: "white",
-    top: 20,
-    left: 65,
-  },
-  paid_title: {
-    fontSize: 16,
-    fontWeight: "bold",
-    color: "white",
-    color: "rgba(255, 255, 255, 0.5)",
-    top: -65,
-    left: 210,
-  },
-  paid_number: {
-    fontSize: 42,
-    fontWeight: "bold",
-    color: "white",
-    top: -65,
-    left: 245,
   },
 });
