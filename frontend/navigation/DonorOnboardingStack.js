@@ -1,7 +1,6 @@
 import { createStackNavigator } from "@react-navigation/stack";
 import DonorTabStack from "./DonorTabStack";
 import Donate from "../Screens/Donor/Donate";
-import Map from "../Screens/Donor/Map";
 
 const Stack = createStackNavigator();
 

@@ -6,6 +6,7 @@ import { FontAwesome5 } from "@expo/vector-icons";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { Entypo } from "@expo/vector-icons";
 import OnboardingStack from "./DonorOnboardingStack";
+import Logout from "../Screens/Donor/Logout";
 
 const DonorTabStack = () => {
   const Tabs = createBottomTabNavigator();
@@ -47,6 +48,23 @@ const DonorTabStack = () => {
         }}
         name="DonorCompletedOrders"
         component={DonorAllOrders}
+      />
+      <Tabs.Screen
+        options={{
+          headerShown: true,
+          title: "Logout",
+          headerStyle: { backgroundColor: "#146C94" },
+          headerTintColor: "#fff",
+          tabBarIcon: () => (
+            <MaterialCommunityIcons
+              name="exit-to-app"
+              size={24}
+              color="black"
+            />
+          ),
+        }}
+        name="Logout"
+        component={Logout}
       />
       <Tabs.Screen
         name="OnboardingStack"

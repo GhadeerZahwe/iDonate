@@ -1,11 +1,13 @@
 import React from "react";
 import { View, Text, StyleSheet } from "react-native";
 import Search from "../../components/Search/Search";
+import CurrentOrders from "../../components/CurrentOrder/CurrentOrder";
 
 const DonorCurrentOrders = () => {
   return (
     <View style={styles.container}>
       <Search />
+      <CurrentOrders />
     </View>
   );
 };

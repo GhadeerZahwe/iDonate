@@ -4,7 +4,6 @@ import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { Entypo } from "@expo/vector-icons";
 import OnboardingStack from "./DonorOnboardingStack";
 import DriverMain from "../Screens/Driver/DriverMain";
-import MapPage from "../Screens/Donor/Map";
 
 const DriverTabStack = () => {
   const Tabs = createBottomTabNavigator();

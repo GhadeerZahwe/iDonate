@@ -6,6 +6,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { useEffect } from "react";
 import { logout } from "../redux/slices/authSlice";
 import React from "react";
+import AsyncStorage from "@react-native-async-storage/async-storage"; // Add this import
 
 const StackSwitcher = () => {
   const stack = createStackNavigator();
@@ -33,9 +34,6 @@ const StackSwitcher = () => {
 };
 
 function FetchNavigation(callback) {
-  // Use useRef to prevent a re-render in the useEffect.
-  // A ref, cannot be used as a useEffect dependency, hence,
-  // your linters shouldn't complain about missing dependencies.
   const { fetch: originalFetch } = window;
 
   useEffect(() => {
