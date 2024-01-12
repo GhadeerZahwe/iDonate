@@ -6,7 +6,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { useEffect } from "react";
 import { logout } from "../redux/slices/authSlice";
 import React from "react";
-import AsyncStorage from "@react-native-async-storage/async-storage"; // Add this import
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const StackSwitcher = () => {
   const stack = createStackNavigator();

@@ -21,7 +21,6 @@ const Logout = () => {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Logout</Text>
       <TouchableOpacity style={styles.logoutButton} onPress={handleLogout}>
         <Text style={styles.logoutButtonText}>Logout</Text>
       </TouchableOpacity>
@@ -32,8 +31,9 @@ const Logout = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: "center",
+    justifyContent: "start",
     alignItems: "center",
+    top: 30,
   },
   title: {
     fontSize: 24,
@@ -44,7 +44,7 @@ const styles = StyleSheet.create({
   logoutButton: {
     backgroundColor: "#146C94",
     paddingVertical: 15,
-    paddingHorizontal: 30,
+    paddingHorizontal: 140,
     borderRadius: 8,
   },
   logoutButtonText: {
