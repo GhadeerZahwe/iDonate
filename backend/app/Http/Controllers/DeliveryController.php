@@ -12,6 +12,17 @@ use Illuminate\Http\Request;
 
 class DeliveryController extends Controller
 {
+    public function getFullName(){
+        $user=Auth::user();
+    
+        $first_name=$user->first_name;
+        $last_name=$user->last_name;
+    
+        return response()->json([
+            'first_name'=>$first_name,
+            'last_name'=>$last_name,
+        ]);
+      }
     public function acceptOrder(Request $request, $orderId)
     {
         try {

@@ -47,6 +47,7 @@ Route::group(['middleware'=>'idonate_authenticate'],function(){
    });
     
    Route::group(['middleware'=>'delivery_authorize'],function(){
+      Route::get('/getFullName', [DeliveryController::class, "getFullName"]);
       Route::post('/acceptOrder/{orderId}',[DeliveryController::class,"acceptOrder"]);
       Route::post('/cancelOrder/{orderId}',[DeliveryController::class,"cancelOrder"]);
       Route::post('/updateOrderStatus/{orderId}', [DeliveryController::class, "updateOrderStatus"]);
