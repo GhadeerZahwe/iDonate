@@ -13,15 +13,17 @@ const OrderTabs = () => {
       <Stack.Screen name="Tabs" options={{ headerShown: false }}>
         {() => (
           <Tab.Navigator
-            tabBarOptions={{
-              labelStyle: { fontSize: 16, fontWeight: "bold" },
-              indicatorStyle: { backgroundColor: "#fff" },
-              style: { backgroundColor: "#146C94", marginTop: 70 }, // Add marginTop here
-              //   tabBarStyle: { marginTop: 50 }, // Alternative way to add top space
+            screenOptions={({ route }) => ({
+              tabBarLabelStyle: {
+                fontSize: 16,
+                fontWeight: "bold",
+                color: "#FFF",
+              },
+              tabBarIndicatorStyle: { backgroundColor: "#fff" },
+              tabBarStyle: { backgroundColor: "#146C94", marginTop: 70 },
               activeTintColor: "#FFF",
               inactiveTintColor: "#FFF",
-            }}
-            unmountOnBlur={false}
+            })}
           >
             <Tab.Screen name="Pending" component={PendingOrders} />
             <Tab.Screen name="OnTheWay" component={OnTheWayOrders} />
