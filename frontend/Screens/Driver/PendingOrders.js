@@ -1,7 +1,8 @@
 import { Text } from "react-native";
+import DeliveryPending from "../../components/DeliveryPending/DeliveryPending";
 
 const PendingOrders = () => {
-  return <Text>PendingOrders</Text>;
+  return <DeliveryPending />;
 };
 
 export default PendingOrders;

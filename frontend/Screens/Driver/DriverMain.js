@@ -38,13 +38,13 @@ const DriverMain = () => {
         <Greeting />
         <DeliveryOrderBar />
         <OrdersScreen />
-        <View
+        {/* <View
           style={{
             flexDirection: "column",
             gap: 10,
             top: 60,
           }}
-        ></View>
+        ></View> */}
       </View>
     );
   };
@@ -63,7 +63,7 @@ const DriverMain = () => {
 const styles = StyleSheet.create({
   main: {
     backgroundColor: "#F6F1F1",
-    marginBottom: 500,
+    marginBottom: 200,
     height: 560,
   },
   logo: {

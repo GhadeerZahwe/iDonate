@@ -1,16 +1,15 @@
 import React from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import { createStackNavigator } from "@react-navigation/stack";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import OnboardingStack from "./DonorOnboardingStack";
 import DriverMain from "../Screens/Driver/DriverMain";
+import OnTheWayOrders from "../Screens/Driver/OnTheWayOrders";
 import CompletedOrders from "../Screens/Driver/CompletedOrders";
+import PendingOrders from "../Screens/Driver/PendingOrders";
 import Logout from "../Screens/Auth/Logout";
 
-const Tabs = createBottomTabNavigator();
-const Stack = createStackNavigator();
-
 const DriverTabStack = () => {
+  const Tabs = createBottomTabNavigator();
   return (
     <Tabs.Navigator
       screenOptions={({ route }) => ({
@@ -19,6 +18,10 @@ const DriverTabStack = () => {
 
           if (route.name === "DriverMain") {
             iconName = "home";
+          } else if (route.name === "PendingOrders") {
+            iconName = "clipboard-clock-outline";
+          } else if (route.name === "OnTheWayOrders") {
+            iconName = "truck-delivery";
           } else if (route.name === "CompletedOrders") {
             iconName = "checkbox-marked-circle-outline";
           } else if (route.name === "Logout") {
@@ -30,8 +33,8 @@ const DriverTabStack = () => {
         },
       })}
       tabBarOptions={{
-        activeTintColor: "#146C94", // Color for selected tab icon
-        inactiveTintColor: "black", // Color for unselected tab icons
+        activeTintColor: "#146C94",
+        inactiveTintColor: "grey",
       }}
     >
       <Tabs.Screen
@@ -39,10 +42,31 @@ const DriverTabStack = () => {
         component={DriverMain}
         options={{ headerShown: false }}
       />
+      {/* <Tabs.Screen
+        name="PendingOrders"
+        component={PendingOrders}
+        options={{
+          headerShown: true,
+          title: "Pending Orders",
+          headerStyle: { backgroundColor: "#146C94" },
+          headerTintColor: "#fff",
+        }}
+      />
+      <Tabs.Screen
+        name="OnTheWayOrders"
+        component={OnTheWayOrders}
+        options={{
+          headerShown: true,
+          title: "On The Way Orders",
+          headerStyle: { backgroundColor: "#146C94" },
+          headerTintColor: "#fff",
+        }}
+      /> */}
       <Tabs.Screen
         name="CompletedOrders"
         component={CompletedOrders}
         options={{
+          headerShown: true,
           title: "Completed Orders",
           headerStyle: { backgroundColor: "#146C94" },
           headerTintColor: "#fff",
@@ -52,6 +76,7 @@ const DriverTabStack = () => {
         name="Logout"
         component={Logout}
         options={{
+          headerShown: true,
           title: "Logout",
           headerStyle: { backgroundColor: "#146C94" },
           headerTintColor: "#fff",
