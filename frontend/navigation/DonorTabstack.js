@@ -6,7 +6,7 @@ import { FontAwesome5 } from "@expo/vector-icons";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { Entypo } from "@expo/vector-icons";
 import OnboardingStack from "./DonorOnboardingStack";
-import Logout from "../Screens/Donor/Logout";
+import Logout from "../Screens/Auth/Logout";
 
 const DonorTabStack = () => {
   const Tabs = createBottomTabNavigator();
