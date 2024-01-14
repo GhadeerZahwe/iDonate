@@ -98,7 +98,6 @@ const Donate = () => {
   };
 
   const handleConfirm = () => {
-    // Display an alert to confirm tshe donation
     Alert.alert(
       "Confirm Donation",
       "Are you sure you want to confirm this donation?",
@@ -111,7 +110,6 @@ const Donate = () => {
           text: "Yes",
           onPress: () => {
             handleOrder();
-            // User pressed "Yes," navigate to DonorCurrentOrders
             navigation.navigate("DonorCurrentOrders");
           },
         },
