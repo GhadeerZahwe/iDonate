@@ -198,11 +198,10 @@ class AdminController extends Controller
         try {
             if (auth()->check()) {
                 $user = Auth::user();
-    
                 if ($user->user_type === 'admin') {
                  $donors = User::where('user_type', 'donor')
                  ->whereNull('users.deleted_at') 
-                 ->join('donors_info', 'users.id', '=', 'donors_info.donor_id')
+                 ->with('donorInfo')
                 ->get();
                 return response()->json(['donors' => $donors]);
                 } else {

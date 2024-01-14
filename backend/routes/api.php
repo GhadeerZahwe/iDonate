@@ -24,6 +24,7 @@ Route::post('/login', [AuthController::class, "login"]);
 Route::post('/adminLogin', [AuthController::class, "adminLogin"]);
 Route::post('/logout', [AuthController::class, "logout"]);
 Route::post('/refresh', [AuthController::class, "refresh"]);
+Route::get('/getFullName', [AuthController::class, "getFullName"]);
 
 
 Route::group(['middleware'=>'idonate_authenticate'],function(){
@@ -38,7 +39,6 @@ Route::group(['middleware'=>'idonate_authenticate'],function(){
    });
     
    Route::group(['middleware'=>'donor_authorize'],function(){
-    Route::get('/getFullName', [DonorController::class, "getFullName"]);
     Route::get('/getDonorDonations', [DonorController::class, "getDonorDonations"]);
     Route::get('/getDonorLocation/{donor_id}', [DonorController::class, "getDonorLocation"]);
     Route::post('/addDonation', [DonorController::class, "addDonation"]);
@@ -47,8 +47,8 @@ Route::group(['middleware'=>'idonate_authenticate'],function(){
     Route::get('/generateQrCode/{orderId}',[DonorController::class, "generateQrCode"]);
    });
     
-   Route::group(['midlleware'=>'delivery_authorize'],function(){
-      Route::get('/getFullName', [DeliveryController::class, "getFullName"]);
+   Route::group(['middleware'=>'delivery_authorize'],function(){
+      // Route::get('/getFullName', [DeliveryController::class, "getFullName"]);
       Route::post('/acceptOrder/{orderId}',[DeliveryController::class,"acceptOrder"]);
       Route::post('/cancelOrder/{orderId}',[DeliveryController::class,"cancelOrder"]);
       Route::post('/updateOrderStatus/{orderId}', [DeliveryController::class, "updateOrderStatus"]);

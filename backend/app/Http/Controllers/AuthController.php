@@ -170,4 +170,16 @@ class AuthController extends Controller
         ]);
     }
 
+    public function getFullName(){
+        $user=Auth::user();
+    
+        $first_name=$user->first_name;
+        $last_name=$user->last_name;
+    
+        return response()->json([
+            'first_name'=>$first_name,
+            'last_name'=>$last_name,
+        ]);
+      }
+
 }

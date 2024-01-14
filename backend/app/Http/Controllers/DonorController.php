@@ -7,24 +7,23 @@ use App\Models\User;
 use App\Models\Order;
 use App\Models\Location;
 use Illuminate\Support\Facades\DB;
-
-
+use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Auth;
 
 
 class DonorController extends Controller
 {
-    public function getFullName(){
-    $user=Auth::user();
+//     public function getFullName(){
+//     $user=Auth::user();
 
-    $first_name=$user->first_name;
-    $last_name=$user->last_name;
+//     $first_name=$user->first_name;
+//     $last_name=$user->last_name;
 
-    return response()->json([
-        'first_name'=>$first_name,
-        'last_name'=>$last_name,
-    ]);
-  }
+//     return response()->json([
+//         'first_name'=>$first_name,
+//         'last_name'=>$last_name,
+//     ]);
+//   }
       
   public function getDonorDonations()
   {
@@ -51,16 +50,21 @@ class DonorController extends Controller
             return response()->json(['error' => 'Permission Denied'], 403);
         }
     
-        $request->validate([
+        $validator = Validator::make($request->all(), [
             'description' => 'required|string',
-            'total_weight' => 'required|numeric',
+            'total_weight' => 'required|string',
             'pickup_within' => 'required|string',
             'date' =>'required|date',
             'location_pickup' => 'required|string',
-            'latitude' => 'required|numeric',
-            'longitude' => 'required|numeric',
-            'phone_number'=>'required|numeric',
+            'latitude' => 'required|string',
+            'longitude' => 'required|string',
+            'phone_number'=>'required|string',
         ]);
+ 
+        if ($validator->fails()) {
+            return response()->json(['error' => $validator->errors()], 400);
+        }
+
     
         return DB::transaction(function () use ($donor, $request) {
             $location = new Location([
