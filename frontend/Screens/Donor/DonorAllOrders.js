@@ -8,7 +8,6 @@ const DonorAllOrders = () => {
     <View style={styles.container}>
       <Search />
       <View style={styles.space} />
-      <CompletedOrder />
     </View>
   );
 };

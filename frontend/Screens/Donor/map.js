@@ -7,10 +7,8 @@ const Map = () => {
   const [region, setRegion] = useState(null);
 
   useEffect(() => {
-    // Request location permission
     Geolocation.requestAuthorization("whenInUse").then((granted) => {
       if (granted) {
-        // Get current location
         Geolocation.getCurrentPosition(
           (position) => {
             const { latitude, longitude } = position.coords;
@@ -24,8 +22,6 @@ const Map = () => {
           (error) => console.error(error),
           { enableHighAccuracy: true, timeout: 15000, maximumAge: 10000 }
         );
-
-        // Watch for location updates
         const watchId = Geolocation.watchPosition(
           (position) => {
             const { latitude, longitude } = position.coords;
@@ -44,8 +40,6 @@ const Map = () => {
             distanceFilter: 10,
           }
         );
-
-        // Clean up the watcher on component unmount
         return () => Geolocation.clearWatch(watchId);
       }
     });
