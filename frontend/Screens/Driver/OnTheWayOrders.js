@@ -1,7 +1,8 @@
 import { Text } from "react-native";
+import DeliveryOnTheWay from "../../components/DeliveryOnTheWay/DeliveryOnTheWay";
 
 const OnTheWayOrders = () => {
-  return <Text>OnTheWayOrders</Text>;
+  return <DeliveryOnTheWay />;
 };
 
 export default OnTheWayOrders;
