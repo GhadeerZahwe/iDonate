@@ -27,23 +27,23 @@ class DonorController extends Controller
     ]);
   }
       
-    public function getDonorDonations()
-    {
-        $donor = Auth::user();
-
-        if ($donor->user_type === 'donor') {
-            $donorInfo = DonorInfo::where('donor_id', $donor->id)->first();
-
-            $donations = $donor->donations()
-                ->with(['orderItems', 'locations'])
-                ->get();
-
-            return response()->json(['donor_info' => $donorInfo, 'donations' => $donations]);
-        } else {
-            return response()->json(['error' => 'Permission Denied'], 403);
-        }
-    }
-
+  public function getDonorDonations()
+  {
+      $donor = Auth::user();
+  
+      if ($donor->user_type === 'donor') {
+          $donorInfo = DonorInfo::where('donor_id', $donor->id)->first();
+  
+          $donations = $donor->donations()
+              ->with('locations') 
+              ->get();
+    
+          return response()->json(['donor_info' => $donorInfo, 'donations' => $donations]);
+      } else {
+          return response()->json(['error' => 'Permission Denied'], 403);
+      }
+  }
+  
     public function addDonation(Request $request)
     {
         $donor = Auth::user();
@@ -179,6 +179,19 @@ class DonorController extends Controller
     }catch(\Exception $e){
         return response()->json(['error'=> $e->getMessage()],500);
     }
+   }
+
+   public function generateQrCode($orderId)
+   {
+       $donor = Auth::user();
+
+       $order = Order::where('id', $orderId)
+           ->where('donor_id', $donor->id)
+           ->firstOrFail();
+
+       // Generate a unique code 
+       $codeString = 'ORDER_' . $order->id . '_' . uniqid();
+       return response()->json(['qr_code_string' => $codeString]);
    }
 
 }

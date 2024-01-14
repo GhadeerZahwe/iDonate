@@ -44,6 +44,7 @@ Route::group(['middleware'=>'idonate_authenticate'],function(){
     Route::post('/addDonation', [DonorController::class, "addDonation"]);
     Route::post('/editDonation/{orderId}',[DonorController::class, "editDonation"]);
     Route::delete('/cancelDonation/{orderId}',[DonorController::class, "cancelDonation"]);
+    Route::get('/generateQrCode/{orderId}',[DonorController::class, "generateQrCode"]);
    });
     
    Route::group(['midlleware'=>'delivery_authorize'],function(){
