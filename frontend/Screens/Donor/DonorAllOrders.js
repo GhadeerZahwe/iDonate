@@ -17,8 +17,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: "flex-start",
-    paddingHorizontal: 20,
-    paddingTop: 20,
   },
   space: {
     height: 60,
