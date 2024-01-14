@@ -61,8 +61,6 @@ class DonorController extends Controller
             'latitude' => 'required|numeric',
             'longitude' => 'required|numeric',
             'phone_number'=>'required|numeric',
-            // 'items.*.description' => 'string',
-            // 'items.*.total_weight' => 'numeric',
         ]);
     
         return DB::transaction(function () use ($donor, $request) {
@@ -103,16 +101,15 @@ class DonorController extends Controller
      }
 
      $request->validate([
-        'description'=> 'required|string',
-        'total_weight'=> 'required|numeric',
-        'pickup_within'=>'required|string',
-        'date'=>'required|date',
-        'location_pickup'=>'required|string',
-        'latitude'=>'required|numeric',
-        'longitude'=>'required|numeric',
-        'items.*.description'=>'string',
-        'items.*.total_wight'=>'numeric',
-     ]);
+        'description' => 'required|string',
+        'total_weight' => 'required|numeric',
+        'pickup_within' => 'required|string',
+        'date' =>'required|date',
+        'location_pickup' => 'required|string',
+        'latitude' => 'required|numeric',
+        'longitude' => 'required|numeric',
+        'phone_number'=>'required|numeric',
+    ]);
 
       return DB::transaction (function () use ($donor, $order, $request){
        $location = Location::find($order->location_id);
@@ -127,22 +124,11 @@ class DonorController extends Controller
         'description'=> $request->input('description'),
         'total_weight'=>$request->input('total_weight'),
         'pickup_within'=>$request->input('pickup_within'),
+        'phone_number' => $request->input('phone_number'),
         'date'=>$request->input('date'),
         'location_pickup'=>$request->input('location_pickup'),
       ]);
 
-      $order->orderItems()->delete();
-
-      if($request->has('items')){
-        foreach($request->input('items') as $item){
-            $orderItem=new OrderItem([
-                'description'=>$item['description'],
-                'total_weight'=>$item['total_weight'],
-            ]);
-
-            $order->orderItems()->save($orderItem);
-        }
-      }
        return response()->json(['message'=> 'Donation updated successfully.'],200);
       });
 
@@ -159,13 +145,8 @@ class DonorController extends Controller
 
         $location = $order->location;
 
-        // Delete order items
-        // $order->orderItems()->delete();
-
-        // Delete the order
         $order->delete();
 
-        // Delete the location
         if ($location) {
             $location->delete();
         }
