@@ -21,6 +21,7 @@ class Order extends Model
         'location_pickup',
         'location_id',
         'is_approved',
+        'phone_number'
     ];
 
     public function donor(){
@@ -35,8 +36,5 @@ class Order extends Model
         return $this->belongsTo(Location::class, 'location_id');
     }
 
-    public function orderItems()
-{
-    return $this->hasMany(OrderItem::class, 'order_id');
-}
+  
 }

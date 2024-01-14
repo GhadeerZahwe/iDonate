@@ -60,8 +60,9 @@ class DonorController extends Controller
             'location_pickup' => 'required|string',
             'latitude' => 'required|numeric',
             'longitude' => 'required|numeric',
-            'items.*.description' => 'string',
-            'items.*.total_weight' => 'numeric',
+            'phone_number'=>'required|numeric',
+            // 'items.*.description' => 'string',
+            // 'items.*.total_weight' => 'numeric',
         ]);
     
         return DB::transaction(function () use ($donor, $request) {
@@ -79,24 +80,13 @@ class DonorController extends Controller
                 'description' => $request->input('description'),
                 'total_weight' => $request->input('total_weight'),
                 'pickup_within' => $request->input('pickup_within'),
+                'phone_number' => $request->input('phone_number'),
                 'date' => $request->input('date'),
                 'location_pickup' => $request->input('location_pickup'),
                 'location_id' => $location->id,
             ]);
     
             $order->save();
-    
-            if ($request->has('items')) {
-                foreach ($request->input('items') as $item) {
-                    $orderItem = new OrderItem([
-                        'order_id' => $order->id, 
-                        'description' => $item['description'],
-                        'total_weight' => $item['total_weight'],
-                    ]);
-    
-                    $orderItem->save();
-                }
-            }
     
             return response()->json(['message' => 'Donation added successfully'], 201);
         });
@@ -170,7 +160,7 @@ class DonorController extends Controller
         $location = $order->location;
 
         // Delete order items
-        $order->orderItems()->delete();
+        // $order->orderItems()->delete();
 
         // Delete the order
         $order->delete();
