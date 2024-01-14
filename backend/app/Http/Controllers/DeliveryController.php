@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Auth;
 use App\Models\DeliveryInfo;
 use App\Models\DonorInfo;
-use App\Models\OrderItem;
 use App\Models\Location;
 use App\Models\User;
 use App\Models\Order;
@@ -34,20 +33,19 @@ class DeliveryController extends Controller
             $order = Order::where('id', $orderId)
                 ->where('status', 'pending')
                 ->whereNull('delivery_id') 
-                ->with('orderItems') 
                 ->first();
     
             if (!$order) {
                 return response()->json(['error' => 'Order not found or already assigned'], 404);
             }
     
-            $totalWeight = $order->total_weight;
+            // $totalWeight = $order->total_weight;
     
-            if (($totalWeight > 30 && $delivery->mobility_type === 'motorcycle') ||
-                ($totalWeight > 40 && !in_array($delivery->mobility_type, ['car', 'van'])) ||
-                ($totalWeight > 50 && $delivery->mobility_type !== 'van')) {
-                return response()->json(['error' => 'Cannot take this order with your current vehicle type.'], 400);
-            }
+            // if (($totalWeight > 30 && $delivery->mobility_type === 'motorcycle') ||
+            //     ($totalWeight > 40 && !in_array($delivery->mobility_type, ['car', 'van'])) ||
+            //     ($totalWeight > 50 && $delivery->mobility_type !== 'van')) {
+            //     return response()->json(['error' => 'Cannot take this order with your current vehicle type.'], 400);
+            // }
     
             $order->is_approved = true;
             $order->delivery_id = $delivery->id; 
@@ -109,7 +107,7 @@ public function updateOrderStatus(Request $request, $orderId)
             return response()->json(['error' => 'Order not found or cannot be updated'], 404);
         }
 
-        $order->status = 'delivered';
+        $order->status = 'completed';
         $order->save();
 
         return response()->json(['message' => 'The donation process has been completed and delivered.'], 200);
@@ -129,7 +127,7 @@ public function returnToOnTheWay(Request $request, $orderId)
         }
 
         $order = Order::where('id', $orderId)
-            ->where('status', 'delivered')
+            ->where('status', 'completed')
             ->where('delivery_id', $delivery->id) 
             ->first();
 
@@ -156,8 +154,8 @@ public function getCompletedOrders(Request $request)
         }
 
         $completedOrders = Order::where('delivery_id', $delivery->id)
-            ->where('status', 'delivered')
-            ->with(['donor', 'orderItems', 'locations'])
+            ->where('status', 'completed')
+            ->with(['donor', 'locations'])
             ->get();
 
         return response()->json(['completed_orders' => $completedOrders], 200);
@@ -177,7 +175,7 @@ public function getOnTheWayOrders(Request $request)
 
         $onTheWayOrders = Order::where('delivery_id', $delivery->id)
             ->where('status', 'on_the_way')
-            ->with(['donor', 'orderItems', 'locations'])
+            ->with(['donor', 'locations'])
             ->get();
 
         return response()->json(['on_the_way_orders' => $onTheWayOrders], 200);
@@ -197,7 +195,7 @@ public function getPendingOrders(Request $request)
 
         $pendingOrders = Order::whereNull('delivery_id')
             ->where('status', 'pending')
-            ->with(['donor', 'orderItems', 'locations'])
+            ->with(['donor', 'locations'])
             ->get();
 
         return response()->json(['pending_orders' => $pendingOrders], 200);

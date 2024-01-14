@@ -10,10 +10,10 @@ return new class extends Migration
      * Run the migrations.
      */
     public function up(): void
-    {    
-        Schema::table('orders', function (Blueprint $table) {
-        $table->boolean('is_approved')->default(false);
+    { Schema::table('orders', function (Blueprint $table) {
+        $table->enum('status', ['pending', 'on_the_way', 'completed'])->default('pending')->charset('utf8')->change();
     });
+
     }
 
     /**
