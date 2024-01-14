@@ -18,7 +18,7 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: "flex-start",
     paddingHorizontal: 20,
-    paddingTop: 20, // Add top padding to provide space between the components
+    paddingTop: 20,
   },
   space: {
     height: 60,

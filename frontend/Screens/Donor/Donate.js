@@ -8,7 +8,6 @@ import {
   TextInput,
 } from "react-native";
 import { Alert } from "react-native";
-
 import Slider from "@react-native-community/slider";
 import Icon from "react-native-vector-icons/FontAwesome";
 import MapView, { Marker } from "react-native-maps";
@@ -21,7 +20,7 @@ const Donate = () => {
   const [latitude, setLatitude] = useState("");
   const [longitude, setLongitude] = useState("");
   const [date, setDate] = useState("");
-  const [selectedWeight, setSelectedWeight] = useState(1); // Default weight: <1kg
+  const [selectedWeight, setSelectedWeight] = useState(1);
   const [selectedDuration, setSelectedDuration] = useState(5); // Default duration: 5 hrs
   const [description, setDescription] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("+961 | ");
@@ -44,7 +43,6 @@ const Donate = () => {
   };
 
   const handlePhoneNumberChange = (text) => {
-    // Ensure that the phone number always starts with "+961 " and add a space
     setPhoneNumber(text.startsWith("+961") ? text : "+961 " + text);
   };
   const handleMapIconClick = () => {
@@ -84,8 +82,8 @@ const Donate = () => {
           step={1}
           value={selectedWeight}
           onValueChange={handleWeightChange}
-          minimumTrackTintColor="#146C94" // Set the color of the slider track before the thumb
-          thumbTintColor="#146C94" // Set the color of the thumb (circle)
+          minimumTrackTintColor="#146C94"
+          thumbTintColor="#146C94"
         />
 
         <Text style={styles.subText}>Pickup within:</Text>

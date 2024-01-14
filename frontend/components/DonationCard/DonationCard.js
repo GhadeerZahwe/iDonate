@@ -4,8 +4,7 @@ import { useNavigation } from "@react-navigation/native";
 function DonationCard() {
   const navigation = useNavigation();
   const handleDonatePress = () => {
-    // Navigate to the new page when the "Donate" button is pressed
-    navigation.navigate("Donate"); // Replace 'DonationDetails' with the actual screen name
+    navigation.navigate("Donate");
   };
   return (
     <View style={styles.donation_bar}>

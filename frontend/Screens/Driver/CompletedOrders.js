@@ -1,7 +1,28 @@
-import { Text } from "react-native";
+import React from "react";
+import { View, StyleSheet } from "react-native";
+import Search from "../../components/Search/Search";
+import CompletedOrder from "../../components/CompletedOrder/CompletedOrder";
 
-const CompletedOrders = () => {
-  return <Text>CompletedOrders</Text>;
+const DonorCompletedOrders = () => {
+  return (
+    <View style={styles.container}>
+      <Search />
+      <View style={styles.space} />
+      <CompletedOrder />
+    </View>
+  );
 };
 
-export default CompletedOrders;
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    alignItems: "flex-start",
+    paddingHorizontal: 20,
+    paddingTop: 20,
+  },
+  space: {
+    height: 60,
+  },
+});
+
+export default DonorCompletedOrders;

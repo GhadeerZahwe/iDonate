@@ -11,7 +11,6 @@ const DeliveryOnTheWay = ({ order, onCancel, onComplete }) => {
     location: "456 Oak Avenue, Town",
   };
 
-  // Combine mock data with actual order data
   const orderData = { ...mockData, ...order };
 
   return (

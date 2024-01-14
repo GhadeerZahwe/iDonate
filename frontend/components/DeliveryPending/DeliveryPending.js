@@ -92,7 +92,7 @@ const styles = StyleSheet.create({
     padding: 10,
     borderRadius: 10,
     marginTop: 10,
-    alignItems: "flex-start", // Align items to the start horizontally
+    alignItems: "flex-start",
   },
   boldText: {
     fontWeight: "bold",

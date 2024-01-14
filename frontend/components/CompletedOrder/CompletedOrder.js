@@ -6,9 +6,9 @@ const CompletedOrder = ({
     id: 1,
     deliveredBy: "George Karim",
     phoneNumber: "+961 81791454",
-    receivedAt: new Date("2022-01-15T12:30:00Z"),
+    // receivedAt: new Date("2022-01-15T12:30:00Z"),
     deliveredAt: new Date("2022-01-15T15:45:00Z"),
-    typeOfItems: "Food Waste",
+    // typeOfItems: "Food Waste",
     weight: 2.5,
   },
 }) => {
@@ -30,12 +30,12 @@ const CompletedOrder = ({
           Phone Number: <Text style={styles.value}>{order.phoneNumber}</Text>
         </Text>
 
-        <Text style={styles.label}>
+        {/* <Text style={styles.label}>
           Received in:{" "}
           <Text style={styles.value}>
             {new Date(order.receivedAt).toLocaleString()}
           </Text>
-        </Text>
+        </Text> */}
 
         <Text style={styles.label}>
           Delivered in:{" "}
@@ -43,10 +43,10 @@ const CompletedOrder = ({
             {new Date(order.deliveredAt).toLocaleString()}
           </Text>
         </Text>
-
+        {/* 
         <Text style={styles.label}>
           Type of Items: <Text style={styles.value}>{order.typeOfItems}</Text>
-        </Text>
+        </Text> */}
 
         <Text style={styles.label}>
           Weight: <Text style={styles.value}>{order.weight} kg</Text>
@@ -58,18 +58,18 @@ const CompletedOrder = ({
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: "#146C94", // Light blue color
+    backgroundColor: "#146C94",
     padding: 10,
     borderRadius: 10,
-    top: 0,
     width: 320,
+    height: 180,
   },
   header: {
-    flexDirection: "row", // Align items in a row
+    flexDirection: "row",
     backgroundColor: "#32cd32",
     padding: 10,
     borderRadius: 10,
-    justifyContent: "space-between", // Space items evenly
+    justifyContent: "space-between",
   },
   title: {
     color: "#ffffff",

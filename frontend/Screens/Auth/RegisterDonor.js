@@ -10,7 +10,7 @@ import {
 import RegisterLogo from "../../components/RegisterLogo/RegisterLogo";
 import { useNavigation } from "@react-navigation/native";
 import { login, setUserData } from "../../redux/slices/authSlice";
-import { Ionicons } from "@expo/vector-icons"; // Import Ionicons from the expo/vector-icons package
+import { Ionicons } from "@expo/vector-icons";
 import DonorOnboardingStack from "../../navigation/DonorOnboardingStack";
 import UseHttp from "../../hooks/request";
 import { useDispatch } from "react-redux";
@@ -148,8 +148,8 @@ const styles = StyleSheet.create({
     backgroundColor: "#146C94",
     width: 300,
     height: 50,
-    alignSelf: "center", // Center the button horizontally
-    marginTop: 40, // Add some space between the text inputs and the button
+    alignSelf: "center",
+    marginTop: 40,
     borderRadius: 15,
     marginBottom: 50,
     elevation: 5,
