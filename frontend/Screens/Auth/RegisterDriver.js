@@ -140,7 +140,7 @@ export default function RegisterDriver() {
         <TouchableOpacity onPress={handleChoosePhoto}>
           <View style={styles.imageUpload}>
             <View>
-              <Feather name="image" size={30} color={"blue"} />
+              <Feather name="image" size={30} color={"#146C94"} />
             </View>
             <View>
               <Text>Choose Photo</Text>
@@ -149,7 +149,15 @@ export default function RegisterDriver() {
         </TouchableOpacity>
 
         <TouchableOpacity style={styles.register_btn} onPress={handleRegister}>
-          <Text style={{ fontSize: 24, color: "#FFF", top: 8, left: 30 }}>
+          <Text
+            style={{
+              fontSize: 24,
+              color: "#FFF",
+              top: 8,
+              left: 110,
+              fontWeight: 500,
+            }}
+          >
             Register
           </Text>
         </TouchableOpacity>
@@ -166,7 +174,7 @@ const styles = StyleSheet.create({
     borderRadius: 15,
     top: 230,
     left: 26,
-    elevation: 10,
+    elevation: 3,
   },
   last_name: {
     backgroundColor: "#FFF",
@@ -175,7 +183,7 @@ const styles = StyleSheet.create({
     borderRadius: 15,
     top: 163,
     left: 185,
-    elevation: 10,
+    elevation: 3,
   },
   Email: {
     backgroundColor: "#FFF",
@@ -184,7 +192,7 @@ const styles = StyleSheet.create({
     borderRadius: 15,
     top: 160,
     left: 26,
-    elevation: 10,
+    elevation: 3,
   },
   Password: {
     backgroundColor: "#FFF",
@@ -193,7 +201,7 @@ const styles = StyleSheet.create({
     borderRadius: 15,
     top: 160,
     left: 26,
-    elevation: 10,
+    elevation: 3,
   },
   licence: {
     backgroundColor: "#FFF",
@@ -202,16 +210,16 @@ const styles = StyleSheet.create({
     borderRadius: 15,
     top: 160,
     left: 26,
-    elevation: 10,
+    elevation: 3,
   },
   register_btn: {
     backgroundColor: "#146C94",
-    width: 150,
+    width: 313,
     height: 50,
     top: 50,
-    left: 110,
+    left: 27,
     borderRadius: 15,
-    elevation: 5,
+    elevation: 3,
   },
   imageUpload: {
     top: 60,

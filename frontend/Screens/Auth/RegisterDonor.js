@@ -106,7 +106,15 @@ export default function RegisterDonor() {
         </View>
       </View>
       <TouchableOpacity style={styles.register_btn} onPress={handleRegister}>
-        <Text style={{ fontSize: 24, color: "#FFF", top: 5, left: 30 }}>
+        <Text
+          style={{
+            fontSize: 24,
+            color: "#FFF",
+            top: 7,
+            left: 113,
+            fontWeight: 500,
+          }}
+        >
           Register
         </Text>
       </TouchableOpacity>
@@ -123,7 +131,7 @@ const styles = StyleSheet.create({
     top: 220,
     left: 22,
     height: 49,
-    elevation: 10,
+    elevation: 3,
   },
   last_name: {
     backgroundColor: "#FFF",
@@ -142,12 +150,12 @@ const styles = StyleSheet.create({
     borderRadius: 15,
     top: 155,
     left: 22,
-    elevation: 10,
+    elevation: 3,
   },
   register_btn: {
     backgroundColor: "#146C94",
-    width: 300,
-    height: 50,
+    width: 319,
+    height: 53,
     alignSelf: "center",
     marginTop: 40,
     borderRadius: 15,
@@ -166,7 +174,7 @@ const styles = StyleSheet.create({
     borderRadius: 15,
     top: 155,
     left: 22,
-    elevation: 10,
+    elevation: 3,
   },
   passwordInput: {
     flex: 1,
