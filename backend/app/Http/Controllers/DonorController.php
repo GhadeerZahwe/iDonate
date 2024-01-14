@@ -129,31 +129,33 @@ class DonorController extends Controller
         'location_pickup'=>$request->input('location_pickup'),
       ]);
 
+
        return response()->json(['message'=> 'Donation updated successfully.'],200);
       });
 
     }
 
-    public function cancelDonation($orderId){
+    public function cancelDonation($orderId)
+    {
         $donor = Auth::user();
-
-    return DB::transaction(function () use ($donor, $orderId) {
-        $order = Order::where('id', $orderId)
-            ->where('donor_id', $donor->id)
-            ->with('location')
-            ->firstOrFail();
-
-        $location = $order->location;
-
-        $order->delete();
-
-        if ($location) {
-            $location->delete();
-        }
-
-        return response()->json(['message' => 'Donation order canceled successfully'], 200);
-    });
+    
+        return DB::transaction(function () use ($donor, $orderId) {
+            $order = Order::where('id', $orderId)
+                ->where('donor_id', $donor->id)
+                ->firstOrFail();
+    
+            $location = Location::find($order->location_id);
+    
+            $order->delete();
+    
+            if ($location) {
+                $location->delete();
+            }
+    
+            return response()->json(['message' => 'Donation order canceled successfully'], 200);
+        });
     }
+    
 
    public function getDonorLocation($donor_id){
     try{
