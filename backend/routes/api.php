@@ -56,6 +56,7 @@ Route::group(['middleware'=>'idonate_authenticate'],function(){
       Route::get('/getPendingOrders', [DeliveryController::class, "getPendingOrders"]);
       Route::get('/getOnTheWayOrders', [DeliveryController::class, "getOnTheWayOrders"]);
       Route::get('/getCompletedOrders', [DeliveryController::class, "getCompletedOrders"]);
+      Route::get('/getOrdersByStatus/{status}', [DeliveryController::class, "getOrdersByStatus"]);
    });
     
 
