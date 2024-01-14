@@ -5,7 +5,7 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { FontAwesome5 } from "@expo/vector-icons";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { Entypo } from "@expo/vector-icons";
-import OnboardingStack from "./DonorOnboardingStack";
+import DonorOnboardingStack from "./DonorOnboardingStack";
 import Logout from "../Screens/Auth/Logout";
 
 const DonorTabStack = () => {
@@ -67,8 +67,8 @@ const DonorTabStack = () => {
         component={Logout}
       />
       <Tabs.Screen
-        name="OnboardingStack"
-        component={OnboardingStack}
+        name="DonorOnboardingStack"
+        component={DonorOnboardingStack}
         options={{
           tabBarButton: () => null,
           tabBarVisible: false, //hide tab bar on this screen

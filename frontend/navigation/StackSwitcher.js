@@ -33,7 +33,7 @@ const StackSwitcher = () => {
   );
 };
 
-function FetchNavigation(callback) {
+function FetchNavigation({ callback }) {
   const { fetch: originalFetch } = window;
 
   useEffect(() => {

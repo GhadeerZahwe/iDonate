@@ -14,24 +14,38 @@ import MapView, { Marker } from "react-native-maps";
 import { useNavigation } from "@react-navigation/native";
 import UseHttp from "../../hooks/request";
 import { DatePicker } from "react-native";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const Donate = () => {
   const navigation = useNavigation();
-  const [latitude, setLatitude] = useState("");
-  const [longitude, setLongitude] = useState("");
-  const [date, setDate] = useState("");
+  const [latitude, setLatitude] = useState("40.7128");
+  const [longitude, setLongitude] = useState("20.23");
+  const [date, setDate] = useState("2023-12-31");
   const [selectedWeight, setSelectedWeight] = useState(1);
-  const [selectedDuration, setSelectedDuration] = useState(5); // Default duration: 5 hrs
-  const [description, setDescription] = useState("");
-  const [phoneNumber, setPhoneNumber] = useState("+961 | ");
+  const [selectedDuration, setSelectedDuration] = useState(5);
+  const [description, setDescription] = useState("sdsd");
+  const [location_description, setLocationDescription] = useState("Before BDD");
+  const [location_pickup, setLocationPickup] = useState("123 Street");
+  const [phoneNumber, setPhoneNumber] = useState("+961 | 81791454");
   const [isMapPageVisible, setMapPageVisibility] = useState(false);
   const handleDateChange = (newDate) => {
-    // Convert the date to the desired format if needed
     const formattedDate = newDate.toISOString().split("T")[0];
     setDate(formattedDate);
   };
   const handleWeightChange = (value) => {
     setSelectedWeight(value);
+  };
+  const handleLocationDescription = (text) => {
+    setLocationDescription(text);
+  };
+  const handleLatitude = (value) => {
+    setLatitude(value);
+  };
+  const handleLongitude = (value) => {
+    setLongitude(value);
+  };
+  const handleLocationPickup = (text) => {
+    setLocationPickup(text);
   };
 
   const handleDurationChange = (duration) => {
@@ -45,12 +59,46 @@ const Donate = () => {
   const handlePhoneNumberChange = (text) => {
     setPhoneNumber(text.startsWith("+961") ? text : "+961 " + text);
   };
+
   const handleMapIconClick = () => {
     // Toggle the visibility of the map page
     setMapPageVisibility(!isMapPageVisible);
   };
+  const formData = new FormData();
+  const retrieveData = async () => {
+    try {
+      const value = await AsyncStorage.getItem("token");
+      if (value !== null) {
+        return value;
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  const getToken = async () => {
+    const token = await retrieveData();
+    return token;
+  };
+
+  const handleOrder = async () => {
+    formData.append("total_weight", selectedWeight);
+    formData.append("pickup_within", selectedDuration);
+    formData.append("description", description);
+    formData.append("phone_number", phoneNumber);
+    formData.append("latitude", latitude);
+    formData.append("longitude", longitude);
+    formData.append("location_description", location_description);
+    formData.append("date", date);
+    formData.append("location_pickup", location_pickup);
+    const token = await getToken();
+    const result = await UseHttp("addDonation", "POST", formData, {
+      Authorization: "bearer " + token,
+    });
+    console.log(result);
+  };
+
   const handleConfirm = () => {
-    // Display an alert to confirm the donation
+    // Display an alert to confirm tshe donation
     Alert.alert(
       "Confirm Donation",
       "Are you sure you want to confirm this donation?",
@@ -62,6 +110,7 @@ const Donate = () => {
         {
           text: "Yes",
           onPress: () => {
+            handleOrder();
             // User pressed "Yes," navigate to DonorCurrentOrders
             navigation.navigate("DonorCurrentOrders");
           },

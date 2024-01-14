@@ -30,12 +30,12 @@ export default function PassengerMain() {
       const result = await UseHttp("getFullName", "GET", "", {
         Authorization: "bearer " + token,
       });
+      console.log(result);
       setFirstName(result.first_name);
       setLastName(result.last_name);
     };
     fetchData();
   }, []);
-  // ...
   const profile = () => {
     alert("my profile");
   };
