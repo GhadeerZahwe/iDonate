@@ -8,7 +8,7 @@ const DeliveryPending = ({ order, onTakeOrder }) => {
     donorName: "John Doe",
     weight: 3.5,
     location: "123 Main Street, City",
-    // phoneNumber: "+961 12345678",
+    phoneNumber: "+961 12345678",
     // pickupWithin: 5,
     // date: "2024-01-11",
   };
@@ -18,7 +18,7 @@ const DeliveryPending = ({ order, onTakeOrder }) => {
     donorName: "Jane Smith",
     weight: 2.8,
     location: "456 Oak Avenue, Town",
-    // phoneNumber: "+961 98765432",
+    phoneNumber: "+961 98765432",
     // pickupWithin: 3,
     // date: "2024-01-12",
   };
@@ -65,10 +65,10 @@ const DeliveryPending = ({ order, onTakeOrder }) => {
           <Text style={styles.boldText}>
             Phone Number: {orderData2.phoneNumber}
           </Text>
-          <Text style={styles.boldText}>
+          {/* <Text style={styles.boldText}>
             Pickup Within: {orderData2.pickupWithin} hrs
           </Text>
-          <Text style={styles.boldText}>Date: {orderData2.date}</Text>
+          <Text style={styles.boldText}>Date: {orderData2.date}</Text> */}
           <TouchableOpacity
             style={styles.takeOrderButton}
             onPress={() => onTakeOrder(order.id)}

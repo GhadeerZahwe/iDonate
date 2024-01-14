@@ -19,12 +19,15 @@ const DriverMain = () => {
   const header = () => {
     return (
       <View style={styles.main}>
-        <Background
+        {/* <Search
           style={{
-            height: 50,
+            color: "#146C94",
+            backgroundColor: "#146C94",
+            marginBottom: 10,
           }}
-        />
-        <Image
+        /> */}
+        {/* <Background /> */}
+        {/* <Image
           source={require("../../assets/CenteredLogo.png")}
           style={{
             marginLeft: 15,
@@ -35,9 +38,9 @@ const DriverMain = () => {
             zIndex: 2,
           }}
         />
-        <Greeting />
-        <DeliveryOrderBar />
-        <OrdersScreen />
+        <Greeting /> */}
+        {/* <DeliveryOrderBar /> */}
+        <OrdersScreen style={{ top: 10 }} />
         {/* <View
           style={{
             flexDirection: "column",

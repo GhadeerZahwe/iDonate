@@ -20,7 +20,11 @@ const OrderTabs = () => {
                 color: "#FFF",
               },
               tabBarIndicatorStyle: { backgroundColor: "#fff" },
-              tabBarStyle: { backgroundColor: "#146C94", marginTop: 50 },
+              tabBarStyle: {
+                backgroundColor: "#146C94",
+                marginTop: 40,
+                height: 50,
+              },
               activeTintColor: "#FFF",
               inactiveTintColor: "#FFF",
             })}
