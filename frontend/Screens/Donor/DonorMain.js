@@ -30,7 +30,6 @@ const DonorMain = () => {
         />
         <Greeting />
         <DonationBar />
-        <Text style={styles.title}>Donate today. Change a life!</Text>
 
         <Donationcard />
         <View
