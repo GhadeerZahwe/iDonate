@@ -89,6 +89,7 @@ body {
   padding: 2vh;
   font-size: 1.5rem;
   color: #fff;
+  cursor: pointer;
 }
 
 .driver-btn {
@@ -97,6 +98,7 @@ body {
   padding: 2vh;
   font-size: 1.5rem;
   color: #fff;
+  cursor: pointer;
 }
 
 .users-btn:active {

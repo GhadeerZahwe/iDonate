@@ -24,7 +24,7 @@ const UsersTable = () => {
             <th>LastName</th>
             <th>Email</th>
             <th>Phone</th>
-            <th>Description</th>
+            {/* <th>Description</th> */}
             <th>Action</th>
           </tr>
         </thead>
