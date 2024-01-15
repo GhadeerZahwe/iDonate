@@ -18,15 +18,16 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const Donate = () => {
   const navigation = useNavigation();
-  const [latitude, setLatitude] = useState("40.7128");
-  const [longitude, setLongitude] = useState("20.23");
-  const [date, setDate] = useState("2023-12-31");
   const [selectedWeight, setSelectedWeight] = useState(1);
   const [selectedDuration, setSelectedDuration] = useState(5);
-  const [description, setDescription] = useState("sdsd");
+  const [description, setDescription] = useState("Food Waste Donation");
+  const [phoneNumber, setPhoneNumber] = useState("+961 | ");
+
+  const [latitude, setLatitude] = useState("40.7128");
+  const [longitude, setLongitude] = useState("20.23");
+  const [date, setDate] = useState("2024-01-15");
   const [location_description, setLocationDescription] = useState("Before BDD");
   const [location_pickup, setLocationPickup] = useState("123 Street");
-  const [phoneNumber, setPhoneNumber] = useState("+961 | 81791454");
   const [isMapPageVisible, setMapPageVisibility] = useState(false);
   const handleDateChange = (newDate) => {
     const formattedDate = newDate.toISOString().split("T")[0];
@@ -61,7 +62,6 @@ const Donate = () => {
   };
 
   const handleMapIconClick = () => {
-    // Toggle the visibility of the map page
     setMapPageVisibility(!isMapPageVisible);
   };
   const formData = new FormData();
@@ -79,7 +79,6 @@ const Donate = () => {
     const token = await retrieveData();
     return token;
   };
-
   const handleOrder = async () => {
     formData.append("total_weight", selectedWeight);
     formData.append("pickup_within", selectedDuration);
@@ -204,7 +203,21 @@ const Donate = () => {
           onChangeText={handlePhoneNumberChange}
           keyboardType="phone-pad"
         />
+        <Text style={styles.subText}>Location Pickup:</Text>
+        <TextInput
+          style={styles.LocationInput}
+          placeholder="Enter location pickup"
+          value={location_pickup}
+          onChangeText={handleLocationPickup}
+        />
 
+        <Text style={styles.subText}>Location Description:</Text>
+        <TextInput
+          style={styles.LocationInput}
+          placeholder="Enter location description"
+          value={location_description}
+          onChangeText={handleLocationDescription}
+        />
         <TouchableOpacity onPress={() => navigation.navigate("Map")}>
           <View style={styles.pickupContainer}>
             <Text style={styles.pickupText}>Pick Up Order:</Text>
@@ -226,7 +239,12 @@ const Donate = () => {
         <Text
           style={styles.selectedWeightText}
         >{`Phone Number: ${phoneNumber}`}</Text>
-
+        <Text
+          style={styles.selectedWeightText}
+        >{`Location Pickup: ${location_pickup}`}</Text>
+        <Text
+          style={styles.selectedWeightText}
+        >{`Location Description: ${location_description}`}</Text>
         <TouchableOpacity onPress={handleConfirm}>
           <View style={styles.confirmButton}>
             <Text style={styles.confirmButtonText}>Confirm</Text>
@@ -307,10 +325,9 @@ const styles = StyleSheet.create({
     borderColor: "#146C94",
     borderRadius: 5,
     padding: 10,
-    marginBottom: 20,
+    marginBottom: 17,
     color: "#146C94",
     backgroundColor: "#fff",
-    marginBottom: 0,
   },
   selectedWeightText: {
     fontSize: 16,
@@ -346,6 +363,16 @@ const styles = StyleSheet.create({
     color: "#fff",
     fontWeight: "bold",
     fontSize: 18,
+  },
+  LocationInput: {
+    borderWidth: 1,
+    borderColor: "#146C94",
+    borderRadius: 5,
+    padding: 10,
+    height: 60,
+    marginBottom: 20,
+    color: "#146C94",
+    backgroundColor: "#fff",
   },
 });
 

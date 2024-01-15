@@ -19,11 +19,9 @@ const CurrentOrders = () => {
   };
 
   const navigateToTracking = (order) => {
-    // Placeholder for navigation logic
     console.log(`Navigate to tracking for order ${order.id}`);
   };
   const handleMapIconClick = () => {
-    // Toggle the visibility of the map page
     setMapPageVisibility(!isMapPageVisible);
   };
   const cancelOrder = (orderType) => {
@@ -42,15 +40,13 @@ const CurrentOrders = () => {
   };
 
   const handleCancel = (orderType) => {
-    // Placeholder for cancel logic
     console.log(`Cancel order ${orderType}`);
-    // Add logic to remove the card or perform cancellation action
   };
 
   const pendingOrder = {
     id: 1,
     weight: 3.5,
-    pickupWithin: 5, // in hours
+    pickupWithin: 5,
     description: "Hamburger food donation",
     phoneNumber: "+961 12345678",
     location: "123 Main Street, City",
@@ -60,8 +56,8 @@ const CurrentOrders = () => {
     id: 2,
     deliveredBy: "John Karam",
     weight: 2.0,
-    pickupWithin: 3, // in hours
-    description: "Pizza delivery",
+    pickupWithin: 3,
+    description: "Pizza Donation",
     phoneNumber: "+961 98765432",
     location: "456 Oak Avenue, Town",
   };
