@@ -1,7 +1,9 @@
-import React, { useState } from "react";
 import { View, Text, StyleSheet, TouchableOpacity, Alert } from "react-native";
 import Icon from "react-native-vector-icons/FontAwesome";
 import { useNavigation } from "@react-navigation/native";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import { useState, useEffect } from "react";
+import UseHttp from "../../hooks/request";
 
 const CurrentOrders = () => {
   const navigation = useNavigation();
