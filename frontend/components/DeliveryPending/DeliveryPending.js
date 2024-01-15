@@ -1,84 +1,85 @@
-// DeliveryPending.js
-import React from "react";
-import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
+import React, { useState, useEffect } from "react";
+import {
+  View,
+  Text,
+  StyleSheet,
+  TouchableOpacity,
+  Alert,
+  ScrollView,
+} from "react-native";
+import Icon from "react-native-vector-icons/FontAwesome";
+import { useNavigation } from "@react-navigation/native";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import UseHttp from "../../hooks/request";
 
-const DeliveryPending = ({ order, onTakeOrder }) => {
-  // Example mock data for the first card
-  const mockData1 = {
-    donorName: "John Doe",
-    weight: 3.5,
-    location: "123 Main Street, City",
-    phoneNumber: "+961 12345678",
-    // pickupWithin: 5,
-    // date: "2024-01-11",
+const DeliveryPending = () => {
+  const navigation = useNavigation();
+  const [donations, setDonations] = useState([]);
+  const [error, setError] = useState("");
+
+  const retrieveData = async () => {
+    try {
+      const value = await AsyncStorage.getItem("token");
+      return value !== null ? value : null;
+    } catch (error) {
+      console.log(error);
+      return null;
+    }
   };
 
-  // Example mock data for the second card
-  const mockData2 = {
-    donorName: "Jane Smith",
-    weight: 2.8,
-    location: "456 Oak Avenue, Town",
-    phoneNumber: "+961 98765432",
-    // pickupWithin: 3,
-    // date: "2024-01-12",
+  const getToken = async () => {
+    return await retrieveData();
   };
 
-  // Combine mock data with actual order data
-  const orderData1 = { ...mockData1, ...order };
-  const orderData2 = { ...mockData2, ...order };
+  const fetchData = async () => {
+    try {
+      const token = await getToken();
+      const result = await UseHttp("getOrdersByStatus/pending", "GET", "", {
+        Authorization: "bearer " + token,
+      });
+      setDonations(result.orders);
+      console.log(result);
+    } catch (error) {
+      console.log(error);
+      setError(error);
+    }
+  };
 
-  return (
-    <View>
-      {/* First Card */}
-      <View style={styles.cardContainer}>
+  useEffect(() => {
+    fetchData();
+  }, []);
+
+  const onTakeOrder = () => {
+    console.log("Take order with id:");
+  };
+
+  const renderPendingOrders = () => {
+    return donations.map((item) => (
+      <View style={styles.cardContainer} key={item.id}>
         <View style={styles.card}>
           <Text style={styles.boldText}>
-            Donor Name: {orderData1.donorName}
+            Donor Name: {item.donor.first_name} {item.donor.last_name}
           </Text>
-          <Text style={styles.boldText}>Weight: {orderData1.weight} kg</Text>
-          <Text style={styles.boldText}>Location: {orderData1.location}</Text>
+          <Text style={styles.boldText}>Weight: {item.total_weight} kg</Text>
           <Text style={styles.boldText}>
-            Phone Number: {orderData1.phoneNumber}
+            PickUp Within: {item.pickup_within} hrs
           </Text>
-          {/*
           <Text style={styles.boldText}>
-            Pickup Within: {orderData1.pickupWithin} hrs
+            Location: {item.locations.description}
           </Text>
-          <Text style={styles.boldText}>Date: {orderData1.date}</Text> */}
+          <Text style={styles.boldText}>Phone Number: {item.phone_number}</Text>
           <TouchableOpacity
             style={styles.takeOrderButton}
-            onPress={() => onTakeOrder(order.id)}
+            onPress={() => onTakeOrder(item.id)}
           >
             <Text style={styles.takeOrderButtonText}>Take the Order</Text>
           </TouchableOpacity>
         </View>
       </View>
+    ));
+  };
 
-      {/* Second Card */}
-      <View style={styles.cardContainer}>
-        <View style={styles.card}>
-          <Text style={styles.boldText}>
-            Donor Name: {orderData2.donorName}
-          </Text>
-          <Text style={styles.boldText}>Weight: {orderData2.weight} kg</Text>
-          <Text style={styles.boldText}>Location: {orderData2.location}</Text>
-          <Text style={styles.boldText}>
-            Phone Number: {orderData2.phoneNumber}
-          </Text>
-          {/* <Text style={styles.boldText}>
-            Pickup Within: {orderData2.pickupWithin} hrs
-          </Text>
-          <Text style={styles.boldText}>Date: {orderData2.date}</Text> */}
-          <TouchableOpacity
-            style={styles.takeOrderButton}
-            onPress={() => onTakeOrder(order.id)}
-          >
-            <Text style={styles.takeOrderButtonText}>Take the Order</Text>
-          </TouchableOpacity>
-        </View>
-      </View>
-    </View>
-  );
+  return <ScrollView>{renderPendingOrders()}</ScrollView>;
 };
 
 const styles = StyleSheet.create({
@@ -86,6 +87,8 @@ const styles = StyleSheet.create({
     marginBottom: 20,
     width: 335,
     left: 13,
+    top: 10,
+    height: 184,
   },
   card: {
     backgroundColor: "#ED9ED6", // Pink color for pending order

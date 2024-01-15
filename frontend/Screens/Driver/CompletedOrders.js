@@ -1,28 +1,29 @@
 import React from "react";
-import { View, StyleSheet } from "react-native";
+import { View, StyleSheet, ScrollView } from "react-native";
 import Search from "../../components/Search/Search";
-import CompletedOrder from "../../components/CompletedOrder/CompletedOrder";
+import DeliveryCompletedOrders from "../../components/DeliveryCompletedOrders/DeliveryCompletedOrders";
 
 const DonorCompletedOrders = () => {
   return (
-    <View style={styles.container}>
-      <Search />
-      <View style={styles.space} />
-      <CompletedOrder />
-    </View>
+    <>
+      <ScrollView style={styles.container}>
+        <DeliveryCompletedOrders />
+      </ScrollView>
+    </>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: "flex-start",
     paddingHorizontal: 20,
-    paddingTop: 20,
+    paddingTop: 14,
   },
-  space: {
-    height: 60,
-  },
+  // space: {
+  //   marginBottom: 50,
+  //   alignItems: "flex-start",
+  //   height: 1,
+  // },
 });
 
 export default DonorCompletedOrders;

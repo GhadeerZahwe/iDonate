@@ -1,49 +1,93 @@
-import React from "react";
-import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
+import React, { useState, useEffect } from "react";
+import {
+  View,
+  Text,
+  StyleSheet,
+  TouchableOpacity,
+  ScrollView,
+} from "react-native";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import UseHttp from "../../hooks/request";
 
-const DeliveryOnTheWay = ({ order, onCancel, onComplete }) => {
-  // Mock data for testing
-  const mockData = {
-    weight: 2.0,
-    pickupWithin: 3, // in hours
-    donorName: "John Karam",
-    phoneNumber: "+961 98765432",
-    location: "456 Oak Avenue, Town",
+const DeliveryOnTheWay = () => {
+  const [donations, setDonations] = useState([]);
+  const [error, setError] = useState("");
+
+  const retrieveData = async () => {
+    try {
+      const value = await AsyncStorage.getItem("token");
+      return value !== null ? value : null;
+    } catch (error) {
+      console.log(error);
+      return null;
+    }
   };
 
-  const orderData = { ...mockData, ...order };
+  const getToken = async () => {
+    return await retrieveData();
+  };
 
-  return (
-    <View style={styles.cardContainer}>
-      <View style={[styles.card, { backgroundColor: "#146C94" }]}>
-        <Text style={styles.boldText}>Donor Name: {orderData.donorName}</Text>
+  const fetchData = async () => {
+    try {
+      const token = await getToken();
+      const result = await UseHttp("getOrdersByStatus/on_the_way", "GET", "", {
+        Authorization: "bearer " + token,
+      });
+      setDonations(result.orders);
+      console.log(result);
+    } catch (error) {
+      console.log(error);
+      setError(error);
+    }
+  };
 
-        <Text style={styles.boldText}>Weight: {orderData.weight} kg</Text>
-        <Text style={styles.boldText}>
-          Pickup Within: {orderData.pickupWithin} hrs
-        </Text>
+  useEffect(() => {
+    fetchData();
+  }, []);
 
-        <Text style={styles.boldText}>
-          Phone Number: {orderData.phoneNumber}
-        </Text>
-        <Text style={styles.boldText}>Location: {orderData.location}</Text>
-        <View style={styles.buttonContainer}>
-          <TouchableOpacity
-            style={styles.completeButton}
-            onPress={() => onComplete(orderData.id)}
-          >
-            <Text style={styles.buttonText}>Completed</Text>
-          </TouchableOpacity>
-          <TouchableOpacity
-            style={styles.cancelButton}
-            onPress={() => onCancel(orderData.id)}
-          >
-            <Text style={styles.buttonText}>Cancel</Text>
-          </TouchableOpacity>
+  const onComplete = (orderId) => {
+    console.log("Order Completed:", orderId);
+  };
+
+  const onCancel = (orderId) => {
+    console.log("Order Canceled:", orderId);
+  };
+
+  const renderOnTheWayOrders = () => {
+    return donations.map((item) => (
+      <View style={styles.cardContainer} key={item.id}>
+        <View style={[styles.card, { backgroundColor: "#146C94" }]}>
+          <Text style={styles.boldText}>
+            Donor Name: {item.donor.first_name} {item.donor.last_name}
+          </Text>
+          <Text style={styles.boldText}>Weight: {item.total_weight} kg</Text>
+          <Text style={styles.boldText}>
+            Picked Up Within: {item.pickup_within} hrs
+          </Text>
+          <Text style={styles.boldText}>
+            Location: {item.locations.description}
+          </Text>
+          <Text style={styles.boldText}>Phone Number: {item.phone_number}</Text>
+          <View style={styles.buttonContainer}>
+            <TouchableOpacity
+              style={styles.completeButton}
+              onPress={() => onComplete(item.id)}
+            >
+              <Text style={styles.buttonText}>Completed</Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              style={styles.cancelButton}
+              onPress={() => onCancel(item.id)}
+            >
+              <Text style={styles.buttonText}>Cancel</Text>
+            </TouchableOpacity>
+          </View>
         </View>
       </View>
-    </View>
-  );
+    ));
+  };
+
+  return <ScrollView>{renderOnTheWayOrders()}</ScrollView>;
 };
 
 const styles = StyleSheet.create({
