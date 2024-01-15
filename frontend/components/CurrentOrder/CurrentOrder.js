@@ -6,27 +6,77 @@ import { useState, useEffect } from "react";
 import UseHttp from "../../hooks/request";
 
 const CurrentOrders = () => {
-  const navigation = useNavigation();
+  const retrieveData = async () => {
+    try {
+      const value = await AsyncStorage.getItem("token");
+      if (value !== null) {
+        return value;
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
+  const getToken = async () => {
+    const token = await retrieveData();
+    return token;
+  };
+  const navigation = useNavigation();
+  const [donations, setDonations] = useState([]);
+  const [filteredDonationData, setFilteredDonationData] = useState([]);
+
+  const [error, setError] = useState("");
   const [showPending, setShowPending] = useState(true);
   const [showOnWay, setShowOnWay] = useState(true);
   const [isMapPageVisible, setMapPageVisibility] = useState(false);
+  const FilterDonations = () => {
+    const filteredData = donations.filter((donation) => {
+      return donation.status === "pending" || donation.status === "on_the_way";
+    });
+    setFilteredDonationData(filteredData);
+    console.log(filteredDonationData);
+  };
 
-  const toggleCard = (orderType) => {
-    if (orderType === "pending") {
+  useEffect(() => {
+    if (donations.length > 0) {
+      FilterDonations();
+    }
+  }, [donations]);
+
+  const fetchData = async () => {
+    try {
+      const token = await getToken();
+      const result = await UseHttp("getDonorDonations", "GET", "", {
+        Authorization: "bearer " + token,
+      });
+      setDonations(result.donations);
+    } catch (error) {
+      console.log(error);
+      setError(error);
+    }
+  };
+
+  useEffect(() => {
+    fetchData();
+  }, []);
+
+  const toggleCard = (status) => {
+    if (status === "pending") {
       setShowPending(!showPending);
-    } else if (orderType === "onWay") {
+    } else if (status === "on_the_way") {
       setShowOnWay(!showOnWay);
     }
   };
 
   const navigateToTracking = (order) => {
-    console.log(`Navigate to tracking for order ${order.id}`);
+    console.log(`Navigate to tracking for order ${item.id}`);
   };
+
   const handleMapIconClick = () => {
     setMapPageVisibility(!isMapPageVisible);
   };
-  const cancelOrder = (orderType) => {
+
+  const cancelOrder = (status) => {
     Alert.alert(
       "Cancel Order",
       "Are you sure you want to cancel this order?",
@@ -35,118 +85,120 @@ const CurrentOrders = () => {
           text: "No",
           style: "cancel",
         },
-        { text: "Yes", onPress: () => handleCancel(orderType) },
+        { text: "Yes", onPress: () => handleCancel(status) },
       ],
       { cancelable: false }
     );
   };
-
-  const handleCancel = (orderType) => {
-    console.log(`Cancel order ${orderType}`);
-  };
-
-  const pendingOrder = {
-    id: 1,
-    weight: 3.5,
-    pickupWithin: 5,
-    description: "Hamburger food donation",
-    phoneNumber: "+961 12345678",
-    location: "123 Main Street, City",
-  };
-
-  const onWayOrder = {
-    id: 2,
-    deliveredBy: "John Karam",
-    weight: 2.0,
-    pickupWithin: 3,
-    description: "Pizza Donation",
-    phoneNumber: "+961 98765432",
-    location: "456 Oak Avenue, Town",
+  const handleCancel = async (orderId) => {
+    try {
+      const token = await getToken();
+      const result = await UseHttp(
+        "cancelDonation",
+        "DELETE",
+        "",
+        {
+          Authorization: "bearer " + token,
+        },
+        orderId
+      );
+      setDonations(result.donations);
+    } catch (error) {
+      console.log(error);
+      setError(error);
+    }
   };
 
   return (
     <View style={styles.container}>
-      {renderOrderCard(pendingOrder, "pending")}
-      {renderOrderCard(onWayOrder, "onWay")}
+      {filteredDonationData.length > 0 &&
+        filteredDonationData.map((item) => {
+          return (
+            <View style={styles.cardContainer} key={item.id}>
+              <View style={styles.cardHeader}>
+                <TouchableOpacity
+                  style={styles.expandButton}
+                  onPress={() => toggleCard(item.status)}
+                >
+                  <Icon
+                    name={
+                      item.status === "pending"
+                        ? showPending
+                          ? "angle-up"
+                          : "angle-down"
+                        : showOnWay
+                        ? "angle-up"
+                        : "angle-down"
+                    }
+                    size={30}
+                    color="#ffffff"
+                  />
+                </TouchableOpacity>
+                <Text style={styles.cardTitle}>
+                  Order #{item.id} -{" "}
+                  {item.status === "pending" ? "Pending" : "On the Way"}
+                </Text>
+              </View>
+              {item.status === "pending" && showPending && (
+                <View style={styles.card}>
+                  <Text style={styles.boldText}>
+                    Weight: {item.total_weight} kg
+                  </Text>
+                  <Text style={styles.boldText}>
+                    Pickup Within: {item.pickup_within} hrs
+                  </Text>
+                  <Text style={styles.boldText}>
+                    Description: {item.description}
+                  </Text>
+                  <Text style={styles.boldText}>
+                    Phone Number: {item.phone_number}
+                  </Text>
+                  <Text style={styles.boldText}>
+                    Location: {item.location_pickup}
+                  </Text>
+
+                  <TouchableOpacity
+                    style={styles.cancelButton}
+                    onPress={() => cancelOrder(item.id)}
+                  >
+                    <Text style={styles.cancelButtonText}>Cancel</Text>
+                  </TouchableOpacity>
+                </View>
+              )}
+              {item.status === "on_the_way" && showOnWay && (
+                <View style={[styles.card, { backgroundColor: "#87CEEB" }]}>
+                  <Text style={styles.boldText}>
+                    Weight: {item.total_weight} kg
+                  </Text>
+                  <Text style={styles.boldText}>
+                    Pickup Within: {item.pickup_within} hrs
+                  </Text>
+                  <Text style={styles.boldText}>
+                    Description: {item.description}
+                  </Text>
+                  {/* <Text style={styles.boldText}>
+                  Delivered By: {item.deliveredBy}
+                </Text> */}
+                  <Text style={styles.boldText}>
+                    Phone Number: {item.phone_number}
+                  </Text>
+                  <Text style={styles.boldText}>
+                    Location: {item.location_pickup}
+                  </Text>
+                  <TouchableOpacity
+                    style={styles.trackButton}
+                    onPress={() => navigation.navigate("Map")}
+                  >
+                    <Text style={styles.trackButtonText}>Track</Text>
+                  </TouchableOpacity>
+                  {isMapPageVisible && <Map />}
+                </View>
+              )}
+            </View>
+          );
+        })}
     </View>
   );
-
-  function renderOrderCard(order, orderType) {
-    return (
-      <View style={styles.cardContainer} key={order.id}>
-        <View style={styles.cardHeader}>
-          <TouchableOpacity
-            style={styles.expandButton}
-            onPress={() => toggleCard(orderType)}
-          >
-            <Icon
-              name={
-                orderType === "pending"
-                  ? showPending
-                    ? "angle-up"
-                    : "angle-down"
-                  : showOnWay
-                  ? "angle-up"
-                  : "angle-down"
-              }
-              size={30}
-              color="#ffffff"
-            />
-          </TouchableOpacity>
-          <Text style={styles.cardTitle}>
-            Order #{order.id} -{" "}
-            {orderType === "pending" ? "Pending" : "On the Way"}
-          </Text>
-        </View>
-        {orderType === "pending" && showPending && (
-          <View style={styles.card}>
-            <Text style={styles.boldText}>Weight: {order.weight} kg</Text>
-            <Text style={styles.boldText}>
-              Pickup Within: {order.pickupWithin} hrs
-            </Text>
-            <Text style={styles.boldText}>
-              Description: {order.description}
-            </Text>
-            <Text style={styles.boldText}>
-              Phone Number: {order.phoneNumber}
-            </Text>
-            <Text style={styles.boldText}>Location: {order.location}</Text>
-            <TouchableOpacity
-              style={styles.cancelButton}
-              onPress={() => cancelOrder(orderType)}
-            >
-              <Text style={styles.cancelButtonText}>Cancel</Text>
-            </TouchableOpacity>
-          </View>
-        )}
-        {orderType === "onWay" && showOnWay && (
-          <View style={[styles.card, { backgroundColor: "#87CEEB" }]}>
-            <Text style={styles.boldText}>Weight: {order.weight} kg</Text>
-            <Text style={styles.boldText}>
-              Pickup Within: {order.pickupWithin} hrs
-            </Text>
-            <Text style={styles.boldText}>
-              Description: {order.description}
-            </Text>
-            <Text style={styles.boldText}>
-              Delivered By: {order.deliveredBy}
-            </Text>
-            <Text style={styles.boldText}>
-              Phone Number: {order.phoneNumber}
-            </Text>
-            <Text style={styles.boldText}>Location: {order.location}</Text>
-            <TouchableOpacity
-              style={styles.trackButton}
-              onPress={() => navigation.navigate("Map")}
-            >
-              <Text style={styles.trackButtonText}>Track</Text>
-            </TouchableOpacity>
-            {isMapPageVisible && <Map />}
-          </View>
-        )}
-      </View>
-    );
-  }
 };
 
 const styles = StyleSheet.create({
