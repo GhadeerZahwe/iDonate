@@ -6,7 +6,6 @@ import CurrentOrders from "../../components/CurrentOrder/CurrentOrder";
 const DonorCurrentOrders = () => {
   return (
     <View style={styles.container}>
-      <Search />
       <CurrentOrders />
     </View>
   );

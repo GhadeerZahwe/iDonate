@@ -1,11 +1,21 @@
-import { View, Text, StyleSheet, TouchableOpacity, Alert } from "react-native";
+import React, { useState, useEffect } from "react";
+import {
+  View,
+  Text,
+  StyleSheet,
+  TouchableOpacity,
+  Alert,
+  ScrollView,
+} from "react-native";
 import Icon from "react-native-vector-icons/FontAwesome";
 import { useNavigation } from "@react-navigation/native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import { useState, useEffect } from "react";
 import UseHttp from "../../hooks/request";
+import Search from "../Search/Search";
 
 const CurrentOrders = () => {
+  const formData = new FormData();
+
   const retrieveData = async () => {
     try {
       const value = await AsyncStorage.getItem("token");
@@ -21,27 +31,36 @@ const CurrentOrders = () => {
     const token = await retrieveData();
     return token;
   };
+
   const navigation = useNavigation();
   const [donations, setDonations] = useState([]);
   const [filteredDonationData, setFilteredDonationData] = useState([]);
+  const [expandedOrders, setExpandedOrders] = useState({});
+  const [isMapPageVisible, setMapPageVisibility] = useState(false);
 
   const [error, setError] = useState("");
-  const [showPending, setShowPending] = useState(true);
-  const [showOnWay, setShowOnWay] = useState(true);
-  const [isMapPageVisible, setMapPageVisibility] = useState(false);
+  const [searchText, setSearchText] = useState("");
+
   const FilterDonations = () => {
     const filteredData = donations.filter((donation) => {
-      return donation.status === "pending" || donation.status === "on_the_way";
+      return (
+        donation.status === "pending" ||
+        donation.status === "on_the_way" ||
+        donation.description.toLowerCase().includes(searchText.toLowerCase()) ||
+        donation.phone_number.includes(searchText) ||
+        donation.location_pickup
+          .toLowerCase()
+          .includes(searchText.toLowerCase())
+      );
     });
     setFilteredDonationData(filteredData);
-    console.log(filteredDonationData);
   };
 
   useEffect(() => {
     if (donations.length > 0) {
       FilterDonations();
     }
-  }, [donations]);
+  }, [donations, searchText]);
 
   const fetchData = async () => {
     try {
@@ -60,23 +79,18 @@ const CurrentOrders = () => {
     fetchData();
   }, []);
 
-  const toggleCard = (status) => {
-    if (status === "pending") {
-      setShowPending(!showPending);
-    } else if (status === "on_the_way") {
-      setShowOnWay(!showOnWay);
-    }
-  };
-
-  const navigateToTracking = (order) => {
-    console.log(`Navigate to tracking for order ${item.id}`);
+  const toggleCard = (orderId) => {
+    setExpandedOrders((prev) => ({
+      ...prev,
+      [orderId]: !prev[orderId],
+    }));
   };
 
   const handleMapIconClick = () => {
     setMapPageVisibility(!isMapPageVisible);
   };
 
-  const cancelOrder = (status) => {
+  const cancelOrder = (orderId) => {
     Alert.alert(
       "Cancel Order",
       "Are you sure you want to cancel this order?",
@@ -85,11 +99,12 @@ const CurrentOrders = () => {
           text: "No",
           style: "cancel",
         },
-        { text: "Yes", onPress: () => handleCancel(status) },
+        { text: "Yes", onPress: () => handleCancel(orderId) },
       ],
       { cancelable: false }
     );
   };
+
   const handleCancel = async (orderId) => {
     try {
       const token = await getToken();
@@ -110,102 +125,100 @@ const CurrentOrders = () => {
   };
 
   return (
-    <View style={styles.container}>
-      {filteredDonationData.length > 0 &&
-        filteredDonationData.map((item) => {
-          return (
-            <View style={styles.cardContainer} key={item.id}>
-              <View style={styles.cardHeader}>
-                <TouchableOpacity
-                  style={styles.expandButton}
-                  onPress={() => toggleCard(item.status)}
-                >
-                  <Icon
-                    name={
-                      item.status === "pending"
-                        ? showPending
-                          ? "angle-up"
-                          : "angle-down"
-                        : showOnWay
-                        ? "angle-up"
-                        : "angle-down"
-                    }
-                    size={30}
-                    color="#ffffff"
-                  />
-                </TouchableOpacity>
-                <Text style={styles.cardTitle}>
-                  Order #{item.id} -{" "}
-                  {item.status === "pending" ? "Pending" : "On the Way"}
-                </Text>
-              </View>
-              {item.status === "pending" && showPending && (
-                <View style={styles.card}>
-                  <Text style={styles.boldText}>
-                    Weight: {item.total_weight} kg
-                  </Text>
-                  <Text style={styles.boldText}>
-                    Pickup Within: {item.pickup_within} hrs
-                  </Text>
-                  <Text style={styles.boldText}>
-                    Description: {item.description}
-                  </Text>
-                  <Text style={styles.boldText}>
-                    Phone Number: {item.phone_number}
-                  </Text>
-                  <Text style={styles.boldText}>
-                    Location: {item.location_pickup}
-                  </Text>
+    <>
+      <Search onSearch={setSearchText} />
+      <ScrollView style={styles.container}>
+        {filteredDonationData.length > 0 &&
+          filteredDonationData.map((item) => {
+            const isExpanded = expandedOrders[item.id] || false;
 
+            return (
+              <View style={styles.cardContainer} key={item.id}>
+                <View style={styles.cardHeader}>
                   <TouchableOpacity
-                    style={styles.cancelButton}
-                    onPress={() => cancelOrder(item.id)}
+                    style={styles.expandButton}
+                    onPress={() => toggleCard(item.id)}
                   >
-                    <Text style={styles.cancelButtonText}>Cancel</Text>
+                    <Icon
+                      name={isExpanded ? "angle-up" : "angle-down"}
+                      size={30}
+                      color="#ffffff"
+                    />
                   </TouchableOpacity>
+                  <Text style={styles.cardTitle}>
+                    Order #{item.id} -{" "}
+                    {item.status === "pending" ? "Pending" : "On the Way"}
+                  </Text>
                 </View>
-              )}
-              {item.status === "on_the_way" && showOnWay && (
-                <View style={[styles.card, { backgroundColor: "#87CEEB" }]}>
-                  <Text style={styles.boldText}>
-                    Weight: {item.total_weight} kg
-                  </Text>
-                  <Text style={styles.boldText}>
-                    Pickup Within: {item.pickup_within} hrs
-                  </Text>
-                  <Text style={styles.boldText}>
-                    Description: {item.description}
-                  </Text>
-                  {/* <Text style={styles.boldText}>
-                  Delivered By: {item.deliveredBy}
-                </Text> */}
-                  <Text style={styles.boldText}>
-                    Phone Number: {item.phone_number}
-                  </Text>
-                  <Text style={styles.boldText}>
-                    Location: {item.location_pickup}
-                  </Text>
-                  <TouchableOpacity
-                    style={styles.trackButton}
-                    onPress={() => navigation.navigate("Map")}
-                  >
-                    <Text style={styles.trackButtonText}>Track</Text>
-                  </TouchableOpacity>
-                  {isMapPageVisible && <Map />}
-                </View>
-              )}
-            </View>
-          );
-        })}
-    </View>
+                {item.status === "pending" && isExpanded && (
+                  <View style={styles.card}>
+                    <Text style={styles.boldText}>
+                      Weight: {item.total_weight} kg
+                    </Text>
+                    <Text style={styles.boldText}>
+                      Pickup Within: {item.pickup_within} hrs
+                    </Text>
+                    <Text style={styles.boldText}>
+                      Description: {item.description}
+                    </Text>
+                    <Text style={styles.boldText}>
+                      Phone Number: {item.phone_number}
+                    </Text>
+                    <Text style={styles.boldText}>
+                      Location: {item.locations.description}
+                    </Text>
+
+                    <TouchableOpacity
+                      style={styles.cancelButton}
+                      onPress={() => cancelOrder(item.id)}
+                    >
+                      <Text style={styles.cancelButtonText}>Cancel</Text>
+                    </TouchableOpacity>
+                  </View>
+                )}
+                {item.status === "on_the_way" && isExpanded && (
+                  <View style={[styles.card, { backgroundColor: "#87CEEB" }]}>
+                    <Text style={styles.boldText}>
+                      Weight: {item.total_weight} kg
+                    </Text>
+                    <Text style={styles.boldText}>
+                      Pickup Within: {item.pickup_within} hrs
+                    </Text>
+                    <Text style={styles.boldText}>
+                      Description: {item.description}
+                    </Text>
+                    {/* <Text style={styles.boldText}>
+            Delivered By: {item.deliveredBy}
+          </Text> */}
+                    <Text style={styles.boldText}>
+                      Phone Number: {item.phone_number}
+                    </Text>
+                    <Text style={styles.boldText}>
+                      Location: {item.locations.description}
+                    </Text>
+                    <TouchableOpacity
+                      style={styles.trackButton}
+                      onPress={() => {
+                        navigation.navigate("Map");
+                        handleMapIconClick();
+                      }}
+                    >
+                      <Text style={styles.trackButtonText}>Track</Text>
+                    </TouchableOpacity>
+                    {isMapPageVisible && <Map />}
+                  </View>
+                )}
+              </View>
+            );
+          })}
+      </ScrollView>
+    </>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: "flex-start",
-    alignItems: "stretch",
     marginTop: 70,
     marginLeft: 3,
   },
@@ -234,11 +247,6 @@ const styles = StyleSheet.create({
     padding: 10,
     borderRadius: 10,
     top: 2,
-  },
-  cardText: {
-    color: "#ffffff",
-    fontSize: 16,
-    marginVertical: 1,
   },
   boldText: {
     fontWeight: "bold",
