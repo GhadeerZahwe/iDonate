@@ -104,20 +104,15 @@ const CurrentOrders = () => {
       { cancelable: false }
     );
   };
-
   const handleCancel = async (orderId) => {
     try {
       const token = await getToken();
-      const result = await UseHttp(
-        "cancelDonation",
-        "DELETE",
-        "",
-        {
-          Authorization: "bearer " + token,
-        },
-        orderId
-      );
-      setDonations(result.donations);
+      await UseHttp(`cancelDonation/${orderId}`, "DELETE", "", {
+        Authorization: "bearer " + token,
+      });
+
+      fetchData();
+      console.log("deleted");
     } catch (error) {
       console.log(error);
       setError(error);
