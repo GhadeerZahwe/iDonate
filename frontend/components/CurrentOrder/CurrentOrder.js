@@ -122,84 +122,118 @@ const CurrentOrders = () => {
           filteredDonationData.map((item) => {
             const isExpanded = expandedOrders[item.id] || false;
 
-            return (
-              <View style={styles.cardContainer} key={item.id}>
-                <View style={styles.cardHeader}>
-                  <TouchableOpacity
-                    style={styles.expandButton}
-                    onPress={() => toggleCard(item.id)}
-                  >
-                    <Icon
-                      name={isExpanded ? "angle-up" : "angle-down"}
-                      size={30}
-                      color="#ffffff"
-                    />
-                  </TouchableOpacity>
-                  <Text style={styles.cardTitle}>
-                    Order #{item.id} -{" "}
-                    {item.status === "pending" ? "Pending" : "On the Way"}
-                  </Text>
-                </View>
-                {item.status === "pending" && isExpanded && (
-                  <View style={styles.card}>
-                    <Text style={styles.boldText}>
-                      Weight: {item.total_weight} kg
-                    </Text>
-                    <Text style={styles.boldText}>
-                      Pickup Within: {item.pickup_within} hrs
-                    </Text>
-                    <Text style={styles.boldText}>
-                      Description: {item.description}
-                    </Text>
-                    <Text style={styles.boldText}>
-                      Phone Number: {item.phone_number}
-                    </Text>
-                    <Text style={styles.boldText}>
-                      Location: {item.locations.description}
-                    </Text>
-
+            if (item.status === "pending" || item.status === "on_the_way") {
+              return (
+                <View style={styles.cardContainer} key={item.id}>
+                  <View style={styles.cardHeader}>
                     <TouchableOpacity
-                      style={styles.cancelButton}
-                      onPress={() => cancelOrder(item.id)}
+                      style={styles.expandButton}
+                      onPress={() => toggleCard(item.id)}
                     >
-                      <Text style={styles.cancelButtonText}>Cancel</Text>
+                      <Icon
+                        name={isExpanded ? "angle-up" : "angle-down"}
+                        size={30}
+                        color="#ffffff"
+                      />
                     </TouchableOpacity>
+                    <Text style={styles.cardTitle}>
+                      Order #{item.id} -{" "}
+                      {item.status === "pending" ? "Pending" : "On the Way"}
+                    </Text>
                   </View>
-                )}
-                {item.status === "on_the_way" && isExpanded && (
-                  <View style={[styles.card, { backgroundColor: "#87CEEB" }]}>
-                    <Text style={styles.boldText}>
-                      Weight: {item.total_weight} kg
-                    </Text>
-                    <Text style={styles.boldText}>
-                      Pickup Within: {item.pickup_within} hrs
-                    </Text>
-                    <Text style={styles.boldText}>
-                      Description: {item.description}
-                    </Text>
-                    {/* <Text style={styles.boldText}>
+                  {item.status === "pending" && isExpanded && (
+                    <View style={styles.card}>
+                      <Text style={styles.boldText}>
+                        Weight:{" "}
+                        <Text style={styles.value}>{item.total_weight} kg</Text>
+                      </Text>
+                      <Text style={styles.boldText}>
+                        Pickup Within:
+                        <Text style={styles.value}>
+                          {" "}
+                          {item.pickup_within} hrs
+                        </Text>
+                      </Text>
+                      <Text style={styles.boldText}>
+                        Description:
+                        <Text style={styles.value}> {item.description}</Text>
+                      </Text>
+                      <Text style={styles.boldText}>
+                        Phone Number:
+                        <Text style={styles.value}> {item.phone_number}</Text>
+                      </Text>
+                      <Text style={styles.boldText}>
+                        Location:
+                        <Text style={styles.value}>
+                          {" "}
+                          {item.locations.description}
+                        </Text>
+                      </Text>
+
+                      <TouchableOpacity
+                        style={styles.cancelButton}
+                        onPress={() => cancelOrder(item.id)}
+                      >
+                        <Text style={styles.cancelButtonText}>Cancel</Text>
+                      </TouchableOpacity>
+                    </View>
+                  )}
+                  {item.status === "on_the_way" && isExpanded && (
+                    <View style={[styles.card, { backgroundColor: "#87CEEB" }]}>
+                      <Text style={styles.boldText}>
+                        Weight:{" "}
+                        <Text style={styles.value_way}>
+                          {" "}
+                          {item.total_weight} kg{" "}
+                        </Text>
+                      </Text>
+                      <Text style={styles.boldText}>
+                        Pickup Within:{" "}
+                        <Text style={styles.value_way}>
+                          {" "}
+                          {item.pickup_within} hrs{" "}
+                        </Text>
+                      </Text>
+                      <Text style={styles.boldText}>
+                        Description:{" "}
+                        <Text style={styles.value_way}>
+                          {" "}
+                          {item.description}{" "}
+                        </Text>
+                      </Text>
+                      {/* <Text style={styles.boldText}>
             Delivered By: {item.deliveredBy}
           </Text> */}
-                    <Text style={styles.boldText}>
-                      Phone Number: {item.phone_number}
-                    </Text>
-                    <Text style={styles.boldText}>
-                      Location: {item.locations.description}
-                    </Text>
-                    <TouchableOpacity
-                      style={styles.trackButton}
-                      onPress={() => {
-                        navigation.navigate("Map");
-                        handleMapIconClick();
-                      }}
-                    >
-                      <Text style={styles.trackButtonText}>Track</Text>
-                    </TouchableOpacity>
-                    {isMapPageVisible && <Map />}
-                  </View>
-                )}
-              </View>
-            );
+                      <Text style={styles.boldText}>
+                        Phone Number:{" "}
+                        <Text style={styles.value_way}>
+                          {" "}
+                          {item.phone_number}
+                        </Text>
+                      </Text>
+                      <Text style={styles.boldText}>
+                        Location:{" "}
+                        <Text style={styles.value_way}>
+                          {" "}
+                          {item.locations.description}
+                        </Text>
+                      </Text>
+                      <TouchableOpacity
+                        style={styles.trackButton}
+                        onPress={() => {
+                          navigation.navigate("Map");
+                          handleMapIconClick();
+                        }}
+                      >
+                        <Text style={styles.trackButtonText}>Track</Text>
+                      </TouchableOpacity>
+                      {isMapPageVisible && <Map />}
+                    </View>
+                  )}
+                </View>
+              );
+            }
+            return null; // If status is neither "pending" nor "on_the_way", don't render
           })}
         <CustomAlert
           visible={showCancelAlert}
@@ -212,6 +246,7 @@ const CurrentOrders = () => {
     </>
   );
 };
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -239,7 +274,7 @@ const styles = StyleSheet.create({
     color: "#ffffff",
   },
   card: {
-    backgroundColor: "#ED9ED6", // Pink color for pending order
+    backgroundColor: "#F2BE22",
     padding: 10,
     borderRadius: 10,
     top: 2,
@@ -247,9 +282,10 @@ const styles = StyleSheet.create({
   boldText: {
     fontWeight: "bold",
     color: "#ffffff",
+    fontSize: 15.5,
   },
   trackButton: {
-    backgroundColor: "#146C94", // Light blue color for on the way order
+    backgroundColor: "#146C94",
     padding: 10,
     borderRadius: 10,
     marginTop: 10,
@@ -271,6 +307,16 @@ const styles = StyleSheet.create({
     fontSize: 16,
     fontWeight: "bold",
     textAlign: "center",
+  },
+  value: {
+    left: 10,
+    fontSize: 15,
+    color: "rgba(255, 255, 255, 0.85)",
+  },
+  value_way: {
+    left: 10,
+    fontSize: 15,
+    color: "rgba(255, 255, 255, 0.75)",
   },
 });
 
