@@ -7,6 +7,7 @@ import {
   ScrollView,
   Alert,
 } from "react-native";
+import { useFocusEffect } from "@react-navigation/native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import UseHttp from "../../hooks/request";
 import CustomAlert from "../../components/CustomAlert/CustomAlert";
@@ -19,6 +20,7 @@ const PendingOrders = () => {
   const [alertVisible, setAlertVisible] = useState(false);
   const [selectedOrderId, setSelectedOrderId] = useState(null);
   const isFocused = useIsFocused();
+  const navigation = useNavigation();
 
   const retrieveData = async () => {
     try {
@@ -56,7 +58,6 @@ const PendingOrders = () => {
     setSelectedOrderId(orderId);
     setAlertVisible(true);
   };
-
   const handleTakeOrder = async () => {
     try {
       const token = await getToken();
@@ -67,6 +68,7 @@ const PendingOrders = () => {
 
       fetchData();
       console.log("Order accepted successfully");
+      navigation.navigate("Tabs", { screen: "OnTheWay" });
     } catch (error) {
       console.log(error);
       setError(error);
@@ -74,6 +76,13 @@ const PendingOrders = () => {
       setAlertVisible(false);
     }
   };
+
+  useFocusEffect(
+    useCallback(() => {
+      fetchData();
+    }, [fetchData])
+  );
+
   const renderPendingOrders = () => {
     return donations.map((item) => (
       <View style={styles.cardContainer} key={item.id}>

@@ -98,6 +98,14 @@ const OnTheWayOrders = () => {
     }
   };
 
+  useEffect(() => {
+    const unsubscribe = navigation.addListener("focus", () => {
+      fetchData();
+    });
+
+    return unsubscribe;
+  }, [navigation]);
+
   const renderOnTheWayOrders = () => {
     return donations.map((item) => (
       <View style={styles.cardContainer} key={item.id}>
