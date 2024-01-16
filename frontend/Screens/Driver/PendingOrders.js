@@ -88,16 +88,25 @@ const PendingOrders = () => {
       <View style={styles.cardContainer} key={item.id}>
         <View style={styles.card}>
           <Text style={styles.boldText}>
-            Donor Name: {item.donor.first_name} {item.donor.last_name}
+            Donor Name:{" "}
+            <Text style={styles.value}>
+              {item.donor.first_name} {item.donor.last_name}
+            </Text>
           </Text>
-          <Text style={styles.boldText}>Weight: {item.total_weight} kg</Text>
           <Text style={styles.boldText}>
-            PickUp Within: {item.pickup_within} hrs
+            Weight: <Text style={styles.value}> {item.total_weight} kg </Text>
           </Text>
           <Text style={styles.boldText}>
-            Location: {item.locations.description}
+            PickUp Within:
+            <Text style={styles.value}> {item.pickup_within} hrs</Text>
           </Text>
-          <Text style={styles.boldText}>Phone Number: {item.phone_number}</Text>
+          <Text style={styles.boldText}>
+            Location:{" "}
+            <Text style={styles.value}> {item.locations.description}</Text>
+          </Text>
+          <Text style={styles.boldText}>
+            Phone Number: <Text style={styles.value}>{item.phone_number}</Text>
+          </Text>
           <TouchableOpacity
             style={styles.takeOrderButton}
             onPress={() => onTakeOrder(item.id)}
@@ -132,7 +141,7 @@ const styles = StyleSheet.create({
     bottom: 100,
   },
   card: {
-    backgroundColor: "#ED9ED6", // Pink color for pending order
+    backgroundColor: "#F2BE22", // Pink color for pending order
     padding: 10,
     borderRadius: 10,
     marginTop: 10,
@@ -142,7 +151,7 @@ const styles = StyleSheet.create({
   boldText: {
     fontWeight: "bold",
     color: "#ffffff",
-    fontSize: 16,
+    fontSize: 16.3,
     marginVertical: 1,
   },
   takeOrderButton: {
@@ -157,6 +166,11 @@ const styles = StyleSheet.create({
     fontSize: 16,
     fontWeight: "bold",
     textAlign: "center",
+  },
+  value: {
+    left: 10,
+    fontSize: 15.3,
+    color: "rgba(255, 255, 255, 0.85)",
   },
 });
 

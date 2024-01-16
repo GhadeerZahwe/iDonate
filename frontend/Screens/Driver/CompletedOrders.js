@@ -1,11 +1,23 @@
-import React, { useState, useEffect } from "react";
-import { View, Text, StyleSheet, ScrollView } from "react-native";
+import { useState, useEffect } from "react";
+import {
+  View,
+  Text,
+  StyleSheet,
+  ScrollView,
+  TouchableOpacity,
+  TouchableWithoutFeedback,
+} from "react-native";
+import { MaterialIcons } from "@expo/vector-icons";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import UseHttp from "../../hooks/request";
-
+import CustomAlert from "../../components/CustomAlert/CustomAlert";
 const DonorCompletedOrders = ({ navigation }) => {
   const [donations, setDonations] = useState([]);
   const [error, setError] = useState("");
+  const [alertVisible, setAlertVisible] = useState(false);
+  const [selectedOrderId, setSelectedOrderId] = useState(null);
+  const [showTooltip, setShowTooltip] = useState(null); // Use state to store the selected icon's index
+  const [tooltipVisible, setTooltipVisible] = useState(false);
 
   const retrieveData = async () => {
     try {
@@ -38,19 +50,39 @@ const DonorCompletedOrders = ({ navigation }) => {
   useEffect(() => {
     fetchData();
   }, []); // Fetch data when the component mounts
-
   useEffect(() => {
     const unsubscribe = navigation.addListener("focus", () => {
-      // Fetch data again when the component gains focus (navigated to)
       fetchData();
     });
 
     return unsubscribe;
   }, [navigation]);
 
+  const onReturnToOnTheWay = (orderId) => {
+    setSelectedOrderId(orderId);
+    setAlertVisible(true);
+  };
+
+  const handleReturnToOnTheWay = async () => {
+    try {
+      const token = await getToken();
+      await UseHttp(`returnToOnTheWay/${selectedOrderId}`, "POST", "", {
+        Authorization: "bearer " + token,
+        "Content-Type": "application/json",
+      });
+
+      fetchData();
+      console.log("Order returned to on-the-way successfully");
+    } catch (error) {
+      console.log(error);
+      setError(error);
+    } finally {
+      setAlertVisible(false);
+    }
+  };
   const renderCompletedOrders = () => {
     return Array.isArray(donations) ? (
-      donations.map((item) => (
+      donations.map((item, index) => (
         <View style={styles.container} key={item.id}>
           <View style={styles.card}>
             <View style={styles.header}>
@@ -80,9 +112,21 @@ const DonorCompletedOrders = ({ navigation }) => {
                 Total Weight:{" "}
                 <Text style={styles.value}>{item.total_weight} kg</Text>
               </Text>
+
+              <TouchableWithoutFeedback
+                onPress={() => onReturnToOnTheWay(item.id)}
+                onLongPress={() => setShowTooltip(false)}
+                onPressOut={() => setShowTooltip(null)}
+              >
+                <MaterialIcons
+                  name="local-shipping"
+                  size={24}
+                  color="#fff"
+                  style={styles.onTheWayIcon}
+                />
+              </TouchableWithoutFeedback>
             </View>
           </View>
-          <View></View>
         </View>
       ))
     ) : (
@@ -90,9 +134,19 @@ const DonorCompletedOrders = ({ navigation }) => {
     );
   };
 
-  return <ScrollView>{renderCompletedOrders()}</ScrollView>;
+  return (
+    <ScrollView>
+      {renderCompletedOrders()}
+      <CustomAlert
+        visible={alertVisible}
+        title="Return to On The Way"
+        message="Are you sure you want to return this order to On The Way status?"
+        onYes={() => handleReturnToOnTheWay()}
+        onNo={() => setAlertVisible(false)}
+      />
+    </ScrollView>
+  );
 };
-
 const styles = StyleSheet.create({
   container: {
     backgroundColor: "#146C94",
@@ -114,6 +168,7 @@ const styles = StyleSheet.create({
     color: "#ffffff",
     fontSize: 18,
     fontWeight: "bold",
+    flex: 1,
   },
   body: {
     padding: 10,
@@ -129,6 +184,10 @@ const styles = StyleSheet.create({
     fontSize: 16,
     marginVertical: 1,
   },
+  onTheWayIcon: {
+    position: "absolute",
+    bottom: 9,
+    left: 285,
+  },
 });
-
 export default DonorCompletedOrders;
