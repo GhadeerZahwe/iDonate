@@ -140,7 +140,7 @@ const DonorCompletedOrders = ({ navigation }) => {
       <CustomAlert
         visible={alertVisible}
         title="Return to On The Way"
-        message="Are you sure you want to return this order to On The Way status?"
+        message="Are you sure you want to return this order to on the way status?"
         onYes={() => handleReturnToOnTheWay()}
         onNo={() => setAlertVisible(false)}
       />

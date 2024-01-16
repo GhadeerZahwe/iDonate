@@ -12,10 +12,12 @@ import { useNavigation } from "@react-navigation/native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import UseHttp from "../../hooks/request";
 import Search from "../Search/Search";
+import CustomAlert from "../CustomAlert/CustomAlert";
 
 const CurrentOrders = () => {
   const formData = new FormData();
-
+  const [showCancelAlert, setShowCancelAlert] = useState(false);
+  const [cancelOrderId, setCancelOrderId] = useState(null);
   const retrieveData = async () => {
     try {
       const value = await AsyncStorage.getItem("token");
@@ -91,23 +93,14 @@ const CurrentOrders = () => {
   };
 
   const cancelOrder = (orderId) => {
-    Alert.alert(
-      "Cancel Order",
-      "Are you sure you want to cancel this order?",
-      [
-        {
-          text: "No",
-          style: "cancel",
-        },
-        { text: "Yes", onPress: () => handleCancel(orderId) },
-      ],
-      { cancelable: false }
-    );
+    setCancelOrderId(orderId); // Store the orderId to be canceled
+    setShowCancelAlert(true);
   };
-  const handleCancel = async (orderId) => {
+
+  const handleCancel = async () => {
     try {
       const token = await getToken();
-      await UseHttp(`cancelDonation/${orderId}`, "DELETE", "", {
+      await UseHttp(`cancelDonation/${cancelOrderId}`, "DELETE", "", {
         Authorization: "bearer " + token,
       });
 
@@ -116,6 +109,8 @@ const CurrentOrders = () => {
     } catch (error) {
       console.log(error);
       setError(error);
+    } finally {
+      setShowCancelAlert(false);
     }
   };
 
@@ -206,11 +201,17 @@ const CurrentOrders = () => {
               </View>
             );
           })}
+        <CustomAlert
+          visible={showCancelAlert}
+          title="Cancel Order"
+          message="Are you sure you want to cancel this order?"
+          onYes={handleCancel}
+          onNo={() => setShowCancelAlert(false)}
+        />
       </ScrollView>
     </>
   );
 };
-
 const styles = StyleSheet.create({
   container: {
     flex: 1,
