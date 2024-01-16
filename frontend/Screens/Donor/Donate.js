@@ -203,13 +203,13 @@ const Donate = () => {
           onChangeText={handlePhoneNumberChange}
           keyboardType="phone-pad"
         />
-        <Text style={styles.subText}>Location Pickup:</Text>
+        {/* <Text style={styles.subText}>Location Pickup:</Text>
         <TextInput
           style={styles.LocationInput}
           placeholder="Enter location pickup"
           value={location_pickup}
           onChangeText={handleLocationPickup}
-        />
+        /> */}
 
         <Text style={styles.subText}>Location Description:</Text>
         <TextInput
@@ -239,9 +239,9 @@ const Donate = () => {
         <Text
           style={styles.selectedWeightText}
         >{`Phone Number: ${phoneNumber}`}</Text>
-        <Text
+        {/* <Text
           style={styles.selectedWeightText}
-        >{`Location Pickup: ${location_pickup}`}</Text>
+        >{`Location Pickup: ${location_pickup}`}</Text> */}
         <Text
           style={styles.selectedWeightText}
         >{`Location Description: ${location_description}`}</Text>
@@ -270,14 +270,14 @@ const styles = StyleSheet.create({
     fontSize: 24,
     fontWeight: "bold",
     color: "#146C94",
-    marginTop: 20,
+    marginTop: 13,
     marginBottom: 20,
   },
   subText: {
     fontSize: 23,
     fontWeight: "bold",
     color: "#146C94",
-    marginBottom: 10,
+    marginBottom: 7,
     marginLeft: 4,
   },
   slider: {
@@ -315,7 +315,7 @@ const styles = StyleSheet.create({
     borderColor: "#146C94",
     borderRadius: 5,
     padding: 10,
-    height: 100,
+    height: 80,
     marginBottom: 20,
     color: "#146C94",
     backgroundColor: "#fff",
@@ -337,7 +337,7 @@ const styles = StyleSheet.create({
   pickupContainer: {
     flexDirection: "row",
     alignItems: "center",
-    marginTop: 20,
+    marginTop: 3,
   },
   pickupText: {
     fontSize: 22,

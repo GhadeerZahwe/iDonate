@@ -18,7 +18,7 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: "flex-start",
     paddingHorizontal: 20,
-    paddingTop: 20,
+    paddingTop: 26,
   },
   space: {
     height: 60,
