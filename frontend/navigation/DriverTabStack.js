@@ -8,6 +8,7 @@ import CompletedOrders from "../Screens/Driver/CompletedOrders";
 import PendingOrders from "../Screens/Driver/PendingOrders";
 import Logout from "../Screens/Auth/Logout";
 import DonorCompletedOrders from "../Screens/Driver/CompletedOrders";
+import ScanQRCode from "../Screens/Driver/ScanQRCode"; // Import the new component
 
 const DriverTabStack = () => {
   const Tabs = createBottomTabNavigator();
@@ -17,7 +18,7 @@ const DriverTabStack = () => {
         tabBarIcon: ({ color, size }) => {
           let iconName;
 
-          if (route.name === "DriverMain") {
+          if (route.name === "Home") {
             iconName = "home";
           } else if (route.name === "PendingOrders") {
             iconName = "clipboard-clock-outline";
@@ -27,6 +28,8 @@ const DriverTabStack = () => {
             iconName = "checkbox-marked-circle-outline";
           } else if (route.name === "Logout") {
             iconName = "exit-to-app";
+          } else if (route.name === "ScanQRCode") {
+            iconName = "qrcode-scan";
           }
           return (
             <MaterialCommunityIcons name={iconName} size={size} color={color} />
@@ -39,7 +42,7 @@ const DriverTabStack = () => {
       }}
     >
       <Tabs.Screen
-        name="DriverMain"
+        name="Home"
         component={DriverMain}
         options={{ headerShown: false }}
       />
@@ -53,7 +56,16 @@ const DriverTabStack = () => {
           headerTintColor: "#fff",
         }}
       />
-
+      <Tabs.Screen
+        name="ScanQRCode"
+        component={ScanQRCode}
+        options={{
+          headerShown: true,
+          title: "Scan",
+          headerStyle: { backgroundColor: "#146C94" },
+          headerTintColor: "#fff",
+        }}
+      />
       {/* <Tabs.Screen
         name="PendingOrders"
         component={PendingOrders}
