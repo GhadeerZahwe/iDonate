@@ -15,19 +15,22 @@ import { useNavigation } from "@react-navigation/native";
 import UseHttp from "../../hooks/request";
 import { DatePicker } from "react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import CustomAlert from "../../components/CustomAlert/CustomAlert";
 
 const Donate = () => {
   const navigation = useNavigation();
   const [selectedWeight, setSelectedWeight] = useState(1);
   const [selectedDuration, setSelectedDuration] = useState(5);
-  const [description, setDescription] = useState("Food Waste Donation");
+  const [description, setDescription] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("+961 | ");
 
   const [latitude, setLatitude] = useState("40.7128");
   const [longitude, setLongitude] = useState("20.23");
   const [date, setDate] = useState("2024-01-15");
-  const [location_description, setLocationDescription] = useState("Before BDD");
+  const [location_description, setLocationDescription] = useState("");
   const [location_pickup, setLocationPickup] = useState("123 Street");
+  const [showCustomAlert, setShowCustomAlert] = useState(false); // State to control custom alert visibility
+
   const [isMapPageVisible, setMapPageVisibility] = useState(false);
   const handleDateChange = (newDate) => {
     const formattedDate = newDate.toISOString().split("T")[0];
@@ -95,25 +98,9 @@ const Donate = () => {
     });
     console.log(result);
   };
-
   const handleConfirm = () => {
-    Alert.alert(
-      "Confirm Donation",
-      "Are you sure you want to confirm this donation?",
-      [
-        {
-          text: "No",
-          style: "cancel",
-        },
-        {
-          text: "Yes",
-          onPress: () => {
-            handleOrder();
-            navigation.navigate("DonorCurrentOrders");
-          },
-        },
-      ]
-    );
+    // Show the custom alert instead of the default Alert
+    setShowCustomAlert(true);
   };
 
   return (
@@ -131,7 +118,9 @@ const Donate = () => {
           minimumTrackTintColor="#146C94"
           thumbTintColor="#146C94"
         />
-
+        <Text style={styles.selectedWeightText}>
+          {`Selected Weight: <${selectedWeight}kg`}
+        </Text>
         <Text style={styles.subText}>Pickup within:</Text>
         <View style={styles.buttonContainer}>
           <TouchableOpacity
@@ -185,8 +174,10 @@ const Donate = () => {
             </Text>
           </TouchableOpacity>
         </View>
-
-        <Text style={styles.subText}>Description:</Text>
+        <Text
+          style={styles.selectedDurationText}
+        >{`Duration: ${selectedDuration} hrs`}</Text>
+        <Text style={styles.subText}>Donation Description:</Text>
         <TextInput
           style={styles.descriptionInput}
           multiline
@@ -203,6 +194,9 @@ const Donate = () => {
           onChangeText={handlePhoneNumberChange}
           keyboardType="phone-pad"
         />
+        <Text
+          style={styles.selectedWeightText}
+        >{`Phone Number: ${phoneNumber}`}</Text>
         {/* <Text style={styles.subText}>Location Pickup:</Text>
         <TextInput
           style={styles.LocationInput}
@@ -218,6 +212,9 @@ const Donate = () => {
           value={location_description}
           onChangeText={handleLocationDescription}
         />
+        <Text
+          style={styles.selectedWeightText}
+        >{`Location Description: ${location_description}`}</Text>
         <TouchableOpacity onPress={() => navigation.navigate("Map")}>
           <View style={styles.pickupContainer}>
             <Text style={styles.pickupText}>Pick Up Order:</Text>
@@ -230,26 +227,27 @@ const Donate = () => {
           </View>
         </TouchableOpacity>
 
-        <Text style={styles.selectedWeightText}>
-          {`Selected Weight: <${selectedWeight}kg`}
-        </Text>
-        <Text
-          style={styles.selectedWeightText}
-        >{`Duration: ${selectedDuration} hrs`}</Text>
-        <Text
-          style={styles.selectedWeightText}
-        >{`Phone Number: ${phoneNumber}`}</Text>
         {/* <Text
           style={styles.selectedWeightText}
         >{`Location Pickup: ${location_pickup}`}</Text> */}
-        <Text
-          style={styles.selectedWeightText}
-        >{`Location Description: ${location_description}`}</Text>
+
         <TouchableOpacity onPress={handleConfirm}>
           <View style={styles.confirmButton}>
             <Text style={styles.confirmButtonText}>Confirm</Text>
           </View>
         </TouchableOpacity>
+
+        <CustomAlert
+          visible={showCustomAlert}
+          title="Confirm Donation"
+          message="Are you sure you want to confirm this donation?"
+          onYes={() => {
+            setShowCustomAlert(false);
+            handleOrder();
+            navigation.navigate("DonorCurrentOrders");
+          }}
+          onNo={() => setShowCustomAlert(false)}
+        />
         {isMapPageVisible && <Map />}
       </View>
     </ScrollView>
@@ -270,25 +268,31 @@ const styles = StyleSheet.create({
     fontSize: 24,
     fontWeight: "bold",
     color: "#146C94",
-    marginTop: 13,
-    marginBottom: 20,
+    marginTop: 11,
+    marginBottom: 10,
+  },
+  text_weight: {
+    fontSize: 20,
+    fontWeight: "bold",
+    color: "#146C94",
   },
   subText: {
     fontSize: 23,
     fontWeight: "bold",
     color: "#146C94",
-    marginBottom: 7,
+    marginBottom: 10,
     marginLeft: 4,
+    top: 5,
   },
   slider: {
     width: 330,
     height: 5,
-    marginBottom: 13,
+    marginBottom: 6,
   },
   buttonContainer: {
     flexDirection: "row",
     justifyContent: "space-between",
-    marginBottom: 20,
+    marginBottom: 11,
   },
   button: {
     backgroundColor: "#fff",
@@ -315,8 +319,8 @@ const styles = StyleSheet.create({
     borderColor: "#146C94",
     borderRadius: 5,
     padding: 10,
-    height: 80,
-    marginBottom: 20,
+    height: 55,
+    marginBottom: 10,
     color: "#146C94",
     backgroundColor: "#fff",
   },
@@ -325,19 +329,21 @@ const styles = StyleSheet.create({
     borderColor: "#146C94",
     borderRadius: 5,
     padding: 10,
-    marginBottom: 17,
+    marginBottom: 10,
     color: "#146C94",
     backgroundColor: "#fff",
   },
   selectedWeightText: {
     fontSize: 16,
     color: "#146C94",
-    marginTop: 8,
+    top: 0,
+    bottom: 25,
+    left: 8,
   },
   pickupContainer: {
     flexDirection: "row",
     alignItems: "center",
-    marginTop: 3,
+    marginTop: 1,
   },
   pickupText: {
     fontSize: 22,
@@ -356,7 +362,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     borderRadius: 5,
-    marginTop: 13,
+    marginTop: 7,
     width: 332,
   },
   confirmButtonText: {
@@ -370,9 +376,14 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     padding: 10,
     height: 60,
-    marginBottom: 20,
+    marginBottom: 10,
     color: "#146C94",
     backgroundColor: "#fff",
+  },
+  selectedDurationText: {
+    fontSize: 16,
+    color: "#146C94",
+    left: 8,
   },
 });
 

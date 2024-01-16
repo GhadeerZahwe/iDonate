@@ -141,7 +141,7 @@ const styles = StyleSheet.create({
     bottom: 100,
   },
   card: {
-    backgroundColor: "#F2BE22", // Pink color for pending order
+    backgroundColor: "#F2BE22",
     padding: 10,
     borderRadius: 10,
     marginTop: 10,
