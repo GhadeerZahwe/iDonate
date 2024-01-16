@@ -1,17 +1,30 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import {
   View,
   Text,
   StyleSheet,
   TouchableOpacity,
   ScrollView,
+  Alert,
 } from "react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import UseHttp from "../../hooks/request";
+import CustomAlert from "../../components/CustomAlert/CustomAlert";
+import { useNavigation, useIsFocused } from "@react-navigation/native";
+
+import PendingOrders from "./PendingOrders";
+import DonorCompletedOrders from "./CompletedOrders";
+import DriverMain from "./DriverMain";
 
 const OnTheWayOrders = () => {
   const [donations, setDonations] = useState([]);
   const [error, setError] = useState("");
+  const [alertVisible, setAlertVisible] = useState(false);
+  const [alertType, setAlertType] = useState(""); // Add this line
+
+  const [selectedOrderId, setSelectedOrderId] = useState(null);
+  const navigation = useNavigation();
+  const isFocused = useIsFocused();
 
   const retrieveData = async () => {
     try {
@@ -27,7 +40,7 @@ const OnTheWayOrders = () => {
     return await retrieveData();
   };
 
-  const fetchData = async () => {
+  const fetchData = useCallback(async () => {
     try {
       const token = await getToken();
       const result = await UseHttp("getOrdersByStatus/on_the_way", "GET", "", {
@@ -39,18 +52,50 @@ const OnTheWayOrders = () => {
       console.log(error);
       setError(error);
     }
-  };
+  }, [isFocused]);
 
   useEffect(() => {
     fetchData();
   }, []);
 
-  const onComplete = (orderId) => {
-    console.log("Order Completed:", orderId);
+  const handleComplete = async (orderId) => {
+    setAlertType("completed");
+    setSelectedOrderId(orderId);
+    setAlertVisible(true);
   };
 
-  const onCancel = (orderId) => {
-    console.log("Order Canceled:", orderId);
+  const handleCancel = async (orderId) => {
+    setAlertType("cancel");
+    setSelectedOrderId(orderId);
+    setAlertVisible(true);
+  };
+  const handleAlertAction = async () => {
+    try {
+      const token = await getToken();
+
+      if (alertType === "completed") {
+        await UseHttp(`updateOrderStatus/${selectedOrderId}`, "POST", "", {
+          Authorization: "bearer " + token,
+          "Content-Type": "application/json",
+        });
+        console.log("Order completed successfully");
+        fetchData();
+        navigation.navigate("DonorCompletedOrders");
+      } else if (alertType === "cancel") {
+        await UseHttp(`cancelOrder/${selectedOrderId}`, "POST", "", {
+          Authorization: "bearer " + token,
+          "Content-Type": "application/json",
+        });
+        console.log("Order canceled successfully");
+        fetchData();
+        navigation.navigate("Tabs", { screen: "Pending" });
+      }
+    } catch (error) {
+      console.log(error);
+      setError(error);
+    } finally {
+      setAlertVisible(false);
+    }
   };
 
   const renderOnTheWayOrders = () => {
@@ -86,13 +131,13 @@ const OnTheWayOrders = () => {
           <View style={styles.buttonContainer}>
             <TouchableOpacity
               style={styles.completeButton}
-              onPress={() => onComplete(item.id)}
+              onPress={() => handleComplete(item.id)}
             >
               <Text style={styles.buttonText}>Completed</Text>
             </TouchableOpacity>
             <TouchableOpacity
               style={styles.cancelButton}
-              onPress={() => onCancel(item.id)}
+              onPress={() => handleCancel(item.id)}
             >
               <Text style={styles.buttonText}>Cancel</Text>
             </TouchableOpacity>
@@ -102,7 +147,20 @@ const OnTheWayOrders = () => {
     ));
   };
 
-  return <ScrollView>{renderOnTheWayOrders()}</ScrollView>;
+  return (
+    <ScrollView>
+      {renderOnTheWayOrders()}
+      <CustomAlert
+        visible={alertVisible}
+        title={alertType === "completed" ? "Complete Order" : "Cancel Order"}
+        message={`Are you sure you want to ${
+          alertType === "completed" ? "complete" : "cancel"
+        } this order?`}
+        onYes={() => handleAlertAction()}
+        onNo={() => setAlertVisible(false)}
+      />
+    </ScrollView>
+  );
 };
 
 const styles = StyleSheet.create({

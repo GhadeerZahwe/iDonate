@@ -1,29 +1,134 @@
-import React from "react";
-import { View, StyleSheet, ScrollView } from "react-native";
-import Search from "../../components/Search/Search";
-import DeliveryCompletedOrders from "../../components/DeliveryCompletedOrders/DeliveryCompletedOrders";
+import React, { useState, useEffect } from "react";
+import { View, Text, StyleSheet, ScrollView } from "react-native";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import UseHttp from "../../hooks/request";
 
-const DonorCompletedOrders = () => {
-  return (
-    <>
-      <ScrollView style={styles.container}>
-        <DeliveryCompletedOrders />
-      </ScrollView>
-    </>
-  );
+const DonorCompletedOrders = ({ navigation }) => {
+  const [donations, setDonations] = useState([]);
+  const [error, setError] = useState("");
+
+  const retrieveData = async () => {
+    try {
+      const value = await AsyncStorage.getItem("token");
+      return value !== null ? value : null;
+    } catch (error) {
+      console.log(error);
+      return null;
+    }
+  };
+
+  const getToken = async () => {
+    return await retrieveData();
+  };
+
+  const fetchData = async () => {
+    try {
+      const token = await getToken();
+      const result = await UseHttp("getOrdersByStatus/completed", "GET", "", {
+        Authorization: "bearer " + token,
+      });
+      setDonations(result.orders);
+      console.log(result);
+    } catch (error) {
+      console.log(error);
+      setError(error);
+    }
+  };
+
+  useEffect(() => {
+    fetchData();
+  }, []); // Fetch data when the component mounts
+
+  useEffect(() => {
+    const unsubscribe = navigation.addListener("focus", () => {
+      // Fetch data again when the component gains focus (navigated to)
+      fetchData();
+    });
+
+    return unsubscribe;
+  }, [navigation]);
+
+  const renderCompletedOrders = () => {
+    return Array.isArray(donations) ? (
+      donations.map((item) => (
+        <View style={styles.container} key={item.id}>
+          <View style={styles.card}>
+            <View style={styles.header}>
+              <Text style={styles.title}>✔ Order number {item.id}</Text>
+            </View>
+            <View style={styles.body}>
+              <Text style={styles.label}>
+                Donor Name:{" "}
+                <Text style={styles.value}>
+                  {item.donor.first_name} {item.donor.last_name}
+                </Text>
+              </Text>
+              <Text style={styles.label}>
+                Phone Number:{" "}
+                <Text style={styles.value}>{item.phone_number}</Text>
+              </Text>
+
+              <Text style={styles.label}>
+                Picked up Within:{" "}
+                <Text style={styles.value}>{item.pickup_within} hrs</Text>
+              </Text>
+              <Text style={styles.label}>
+                Description:{" "}
+                <Text style={styles.value}>{item.description}</Text>
+              </Text>
+              <Text style={styles.label}>
+                Total Weight:{" "}
+                <Text style={styles.value}>{item.total_weight} kg</Text>
+              </Text>
+            </View>
+          </View>
+          <View></View>
+        </View>
+      ))
+    ) : (
+      <Text>No completed orders available.</Text>
+    );
+  };
+
+  return <ScrollView>{renderCompletedOrders()}</ScrollView>;
 };
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    paddingHorizontal: 20,
-    paddingTop: 14,
+    backgroundColor: "#146C94",
+    borderRadius: 10,
+    width: 320,
+    marginBottom: 17,
+    top: 13,
+    left: 20,
+    height: 195,
   },
-  // space: {
-  //   marginBottom: 50,
-  //   alignItems: "flex-start",
-  //   height: 1,
-  // },
+  header: {
+    flexDirection: "row",
+    backgroundColor: "#32cd32",
+    padding: 10,
+    borderTopLeftRadius: 10,
+    borderTopRightRadius: 10,
+  },
+  title: {
+    color: "#ffffff",
+    fontSize: 18,
+    fontWeight: "bold",
+  },
+  body: {
+    padding: 10,
+  },
+  label: {
+    color: "#fff",
+    fontSize: 16,
+    fontWeight: "bold",
+    marginBottom: 5,
+  },
+  value: {
+    color: "rgba(255, 255, 255, 0.7)",
+    fontSize: 16,
+    marginVertical: 1,
+  },
 });
 
 export default DonorCompletedOrders;

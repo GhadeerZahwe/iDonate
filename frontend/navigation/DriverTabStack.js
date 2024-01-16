@@ -7,6 +7,7 @@ import OnTheWayOrders from "../Screens/Driver/OnTheWayOrders";
 import CompletedOrders from "../Screens/Driver/CompletedOrders";
 import PendingOrders from "../Screens/Driver/PendingOrders";
 import Logout from "../Screens/Auth/Logout";
+import DonorCompletedOrders from "../Screens/Driver/CompletedOrders";
 
 const DriverTabStack = () => {
   const Tabs = createBottomTabNavigator();
@@ -22,7 +23,7 @@ const DriverTabStack = () => {
             iconName = "clipboard-clock-outline";
           } else if (route.name === "OnTheWayOrders") {
             iconName = "truck-delivery";
-          } else if (route.name === "CompletedOrders") {
+          } else if (route.name === "DonorCompletedOrders") {
             iconName = "checkbox-marked-circle-outline";
           } else if (route.name === "Logout") {
             iconName = "exit-to-app";
@@ -42,6 +43,17 @@ const DriverTabStack = () => {
         component={DriverMain}
         options={{ headerShown: false }}
       />
+      <Tabs.Screen
+        name="DonorCompletedOrders"
+        component={DonorCompletedOrders}
+        options={{
+          headerShown: true,
+          title: "Completed Orders",
+          headerStyle: { backgroundColor: "#146C94" },
+          headerTintColor: "#fff",
+        }}
+      />
+
       {/* <Tabs.Screen
         name="PendingOrders"
         component={PendingOrders}
@@ -62,16 +74,16 @@ const DriverTabStack = () => {
           headerTintColor: "#fff",
         }}
       /> */}
-      <Tabs.Screen
+      {/* <Tabs.Screen
         name="CompletedOrders"
-        component={CompletedOrders}
+        component={DonorCompletedOrders}
         options={{
           headerShown: true,
           title: "Completed Orders",
           headerStyle: { backgroundColor: "#146C94" },
           headerTintColor: "#fff",
         }}
-      />
+      /> */}
       <Tabs.Screen
         name="Logout"
         component={Logout}
