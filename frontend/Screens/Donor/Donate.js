@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import {
   ScrollView,
   View,
@@ -8,6 +8,7 @@ import {
   TextInput,
 } from "react-native";
 import { Alert } from "react-native";
+import QRCode from "react-native-qrcode-svg";
 import Slider from "@react-native-community/slider";
 import Icon from "react-native-vector-icons/FontAwesome";
 import MapView, { Marker } from "react-native-maps";
@@ -34,6 +35,8 @@ const Donate = () => {
   const [showCustomAlert, setShowCustomAlert] = useState(false);
 
   const [isMapPageVisible, setMapPageVisibility] = useState(false);
+  const [showQRCode, setShowQRCode] = useState(false);
+  const qrCodeRef = useRef(null);
 
   const handleDateChange = (newDate) => {
     const formattedDate = newDate.toISOString().split("T")[0];
@@ -100,10 +103,26 @@ const Donate = () => {
       Authorization: "bearer " + token,
     });
     console.log(result);
+
+    // Generate QR code dataURL
+    getDataURL();
+
+    // Navigate to the current orders screen
+    navigation.navigate("DonorCurrentOrders");
   };
+
   const handleConfirm = () => {
-    // Show the custom alert instead of the default Alert
+    // Show the QR code
+    setShowQRCode(true);
+
+    // Show the custom alert
     setShowCustomAlert(true);
+  };
+  const getDataURL = () => {
+    qrCodeRef.current.toDataURL((dataURL) => {
+      console.log(dataURL);
+      // You can save or use the dataURL as needed
+    });
   };
 
   return (
@@ -243,14 +262,36 @@ const Donate = () => {
         <CustomAlert
           visible={showCustomAlert}
           title="Confirm Donation"
-          message="Are you sure you want to confirm this donation?"
+          message={
+            showQRCode ? (
+              <View>
+                <Text style={styles.alertMessage}>
+                  Are you sure you want to confirm this
+                </Text>
+                <Text style={styles.alertMessage}>donation? </Text>
+
+                <Text></Text>
+                <View style={{ left: 50 }}>
+                  <QRCode
+                    value="Your_QR_Code_Value_Here"
+                    size={160}
+                    getRef={(c) => (qrCodeRef.current = c)}
+                  />
+                </View>
+              </View>
+            ) : (
+              "Are you sure you want to confirm this donation?"
+            )
+          }
           onYes={() => {
+            setShowQRCode(false);
             setShowCustomAlert(false);
             handleOrder();
             navigation.navigate("DonorCurrentOrders");
           }}
           onNo={() => setShowCustomAlert(false)}
         />
+
         {isMapPageVisible && <Map />}
       </View>
     </ScrollView>
@@ -266,6 +307,10 @@ const styles = StyleSheet.create({
     justifyContent: "left",
     alignItems: "left",
     paddingHorizontal: 15,
+  },
+  alertMessage: {
+    fontSize: 16,
+    color: "#555",
   },
   text: {
     fontSize: 24,
