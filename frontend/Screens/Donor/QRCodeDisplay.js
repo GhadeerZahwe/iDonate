@@ -1,11 +1,10 @@
 import React from "react";
 import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
-import QRCode from "react-native-qrcode-svg";
 
 const QRCodeDisplay = ({ data, onSave }) => {
   return (
     <View style={styles.container}>
-      <QRCode value={data} size={200} />
+      <Text style={styles.qrCodeText}>{data}</Text>
       <TouchableOpacity style={styles.saveButton} onPress={onSave}>
         <Text style={styles.saveButtonText}>Save</Text>
       </TouchableOpacity>
@@ -16,6 +15,10 @@ const QRCodeDisplay = ({ data, onSave }) => {
 const styles = StyleSheet.create({
   container: {
     alignItems: "center",
+  },
+  qrCodeText: {
+    fontSize: 18,
+    marginTop: 20,
   },
   saveButton: {
     backgroundColor: "#146C94",

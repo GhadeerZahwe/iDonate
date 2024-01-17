@@ -16,22 +16,25 @@ import UseHttp from "../../hooks/request";
 import { DatePicker } from "react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import CustomAlert from "../../components/CustomAlert/CustomAlert";
+import QRCodeDisplay from "./QRCodeDisplay";
 
 const Donate = () => {
   const navigation = useNavigation();
   const [selectedWeight, setSelectedWeight] = useState(1);
   const [selectedDuration, setSelectedDuration] = useState(5);
-  const [description, setDescription] = useState("");
+  const [description, setDescription] = useState("Food Waste Donation");
   const [phoneNumber, setPhoneNumber] = useState("+961 | ");
 
   const [latitude, setLatitude] = useState("40.7128");
   const [longitude, setLongitude] = useState("20.23");
-  const [date, setDate] = useState("2024-01-15");
-  const [location_description, setLocationDescription] = useState("");
+  const [date, setDate] = useState("2024-01-16");
+  const [location_description, setLocationDescription] =
+    useState("City Center");
   const [location_pickup, setLocationPickup] = useState("123 Street");
-  const [showCustomAlert, setShowCustomAlert] = useState(false); // State to control custom alert visibility
+  const [showCustomAlert, setShowCustomAlert] = useState(false);
 
   const [isMapPageVisible, setMapPageVisibility] = useState(false);
+
   const handleDateChange = (newDate) => {
     const formattedDate = newDate.toISOString().split("T")[0];
     setDate(formattedDate);
