@@ -90,8 +90,7 @@ class DonorController extends Controller
      if($donor->id !== $order->donor_id){
         return response()->json(['error'=>'Permission Denied!',403]);
      }
-
-     $request->validate([
+     $validator = Validator::make($request->all(), [
         'description' => 'required|string',
         'total_weight' => 'required|numeric',
         'pickup_within' => 'required|string',
@@ -102,6 +101,9 @@ class DonorController extends Controller
         'phone_number'=>'required|numeric',
     ]);
 
+    if ($validator->fails()) {
+        return response()->json(['error' => $validator->errors()], 400);
+    }
       return DB::transaction (function () use ($donor, $order, $request){
        $location = Location::find($order->location_id);
        $location->update([
