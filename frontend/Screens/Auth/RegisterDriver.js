@@ -91,7 +91,7 @@ export default function RegisterDriver() {
         <RegisterLogo />
       </View>
 
-      <View style={{ gap: 20, marginBottom: 70 }}>
+      <View style={{ gap: 20, marginBottom: 220 }}>
         <TextInput
           style={styles.first_name}
           placeholder="  First Name"
@@ -127,16 +127,19 @@ export default function RegisterDriver() {
             setLicenseNumber(e);
           }}
         />
-        <Image
-          source={{ uri: selectedImage }}
-          style={{
-            width: 100,
-            height: 100,
-            left: 250,
-            top: 160,
-            borderRadius: 15,
-          }}
-        />
+        {selectedImage !== null && (
+          <Image
+            source={{ uri: selectedImage }}
+            style={{
+              width: 100,
+              height: 100,
+              left: 250,
+
+              borderRadius: 15,
+            }}
+          />
+        )}
+
         <TouchableOpacity onPress={handleChoosePhoto}>
           <View style={styles.imageUpload}>
             <View>
@@ -216,13 +219,14 @@ const styles = StyleSheet.create({
     backgroundColor: "#146C94",
     width: 313,
     height: 50,
-    top: 50,
+    top: 130,
     left: 27,
     borderRadius: 10,
     elevation: 3,
   },
   imageUpload: {
-    top: 60,
+    top: 160,
     left: 30,
+    marginBottom: 20,
   },
 });

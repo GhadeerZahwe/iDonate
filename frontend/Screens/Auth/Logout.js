@@ -2,21 +2,30 @@ import React from "react";
 import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useNavigation } from "@react-navigation/native";
+import UseHttp from "../../hooks/request";
+import { useDispatch } from "react-redux";
+import { logout } from "../../redux/slices/authSlice";
 
 const Logout = () => {
   const navigation = useNavigation();
+  const dispatch = useDispatch();
 
   const handleLogout = async () => {
-    // Clear the token from AsyncStorage
     try {
+      const token = await AsyncStorage.getItem("token");
+      await UseHttp(
+        "/logout",
+        "POST",
+        {},
+        { Authorization: "Bearer " + token }
+      );
+
       await AsyncStorage.removeItem("token");
       await AsyncStorage.removeItem("user_type");
+      dispatch(logout());
     } catch (error) {
-      console.log("Error clearing token:", error);
+      console.error("Error logging out:", error);
     }
-
-    // Navigate to the login screen
-    navigation.navigate("Login");
   };
 
   return (

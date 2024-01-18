@@ -1,10 +1,88 @@
 import React, { useState, useEffect } from "react";
-import { Text, View, StyleSheet, Button } from "react-native";
+import { Text, View, StyleSheet, Button, Alert } from "react-native";
 import { BarCodeScanner } from "expo-barcode-scanner";
+import UseHttp from "../../hooks/request"; // Import your useHttp function
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const ScanQRCode = () => {
   const [hasPermission, setHasPermission] = useState(null);
   const [scanned, setScanned] = useState(false);
+
+  const retrieveData = async () => {
+    try {
+      const value = await AsyncStorage.getItem("token");
+      return value !== null ? value : null;
+    } catch (error) {
+      console.log(error);
+      return null;
+    }
+  };
+
+  const getToken = async () => {
+    return await retrieveData();
+  };
+
+  const handleStatusOnScan = async (orderId) => {
+    try {
+      const token = await AsyncStorage.getItem("token");
+      console.log(orderId);
+
+      const response = await UseHttp(
+        `updateOrderStatusOnScan/${orderId}`,
+        "POST",
+        "",
+        { Authorization: "Bearer " + token }
+      );
+      console.log(response);
+      if (!response.ok) {
+        throw new Error(
+          `Failed to fetch API: ${response.status} ${response.statusText}`
+        );
+      }
+      console.log(response);
+      const responseData = await response.json();
+      return responseData;
+    } catch (error) {
+      throw new Error(`Error during API fetch: ${error.message}`);
+    }
+  };
+
+  const handleBarCodeScanned = async ({ type, data }) => {
+    setScanned(true);
+
+    console.log(data);
+    const parts = data.split("_");
+    const orderId = parts[1];
+
+    console.log("Order ID:", orderId); // Log the order ID to the console
+
+    Alert.alert(
+      `BarCode ${data} has been scanned!`,
+      "Do you want to update the order status?",
+      [
+        {
+          text: "Cancel",
+          onPress: () => setScanned(false),
+          style: "cancel",
+        },
+        {
+          text: "OK",
+          onPress: async () => {
+            try {
+              const token = await getToken();
+              const response = await handleStatusOnScan(orderId);
+
+              Alert.alert("API Response", response.message);
+            } catch (error) {
+              console.error("Error updating order status:", error.message);
+            } finally {
+              setScanned(false);
+            }
+          },
+        },
+      ]
+    );
+  };
 
   useEffect(() => {
     const getBarCodeScannerPermissions = async () => {
@@ -14,12 +92,6 @@ const ScanQRCode = () => {
 
     getBarCodeScannerPermissions();
   }, []);
-
-  const handleBarCodeScanned = ({ type, data }) => {
-    setScanned(true);
-    alert(`Bar code with type ${type} and data ${data} has been scanned!`);
-    // You can perform any action you want with the scanned data here
-  };
 
   if (hasPermission === null) {
     return <Text>Requesting for camera permission</Text>;

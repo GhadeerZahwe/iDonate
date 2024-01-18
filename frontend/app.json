@@ -11,9 +11,7 @@
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
-    "assetBundlePatterns": [
-      "**/*"
-    ],
+    "assetBundlePatterns": ["**/*"],
     "ios": {
       "supportsTablet": true
     },
@@ -23,6 +21,19 @@
         "backgroundColor": "#ffffff"
       }
     },
+    "plugins": [
+      [
+        "expo-barcode-scanner",
+        {
+          "cameraPermission": {
+            "message": "Allow $(PRODUCT_NAME) to access your camera",
+            "title": "Permission to use camera",
+            "okButton": "OK",
+            "cancelButton": "Cancel"
+          }
+        }
+      ]
+    ],
     "web": {
       "favicon": "./assets/favicon.png"
     }

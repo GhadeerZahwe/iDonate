@@ -110,28 +110,29 @@ const DonorCurrentOrders = () => {
 
     fetchData();
   }, []);
-  // useFocusEffect(
-  //   React.useCallback(() => {
-  //     fetchData();
-  //   }, [])
-  // );
+  useFocusEffect(
+    React.useCallback(() => {
+      fetchData();
+    }, [])
+  );
 
-  // const fetchData = async () => {
-  //   try {
-  //     const token = await getToken();
-  //     const result = await UseHttp("getDonorDonations", "GET", "", {
-  //       Authorization: "bearer " + token,
-  //     });
-  //     setDonations(result.donations);
-  //   } catch (error) {
-  //     console.log(error);
-  //     setError(error);
-  //   }
-  // };
+  const fetchData = async () => {
+    try {
+      const token = await getToken();
+      const result = await UseHttp("getDonorDonations", "GET", "", {
+        Authorization: "bearer " + token,
+      });
+      setDonations(result.donations);
+      fetchData();
+    } catch (error) {
+      console.log(error);
+      setError(error);
+    }
+  };
 
-  // useEffect(() => {
-  //   fetchData();
-  // }, []);
+  useEffect(() => {
+    fetchData();
+  }, []);
 
   const toggleCard = (orderId) => {
     setExpandedOrders((prev) => ({
@@ -155,7 +156,6 @@ const DonorCurrentOrders = () => {
       const response = await UseHttp(`generateQrCode/${orderId}`, "GET", "", {
         Authorization: "bearer " + token,
       });
-      console.log(response.qr_code_string);
       return response.qr_code_string;
     } catch (error) {
       console.error("Error fetching QR code value:", error);
@@ -167,10 +167,10 @@ const DonorCurrentOrders = () => {
       const token = await getToken();
       await UseHttp(`cancelDonation/${cancelOrderId}`, "DELETE", "", {
         Authorization: "bearer " + token,
+        "Content-Type": "application/json",
       });
 
       fetchData();
-      console.log("deleted");
     } catch (error) {
       console.log(error);
       setError(error);
@@ -304,7 +304,7 @@ const DonorCurrentOrders = () => {
                 </View>
               );
             }
-            return null; // If status is neither "pending" nor "on_the_way", don't render
+            return null;
           })}
         <CustomAlert
           visible={showCancelAlert}

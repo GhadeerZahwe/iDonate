@@ -102,7 +102,6 @@ const Donate = () => {
     console.log(result);
   };
   const handleConfirm = () => {
-    // Show the custom alert instead of the default Alert
     setShowCustomAlert(true);
   };
 
