@@ -214,13 +214,12 @@ public function getOrdersByStatus(Request $request, $status)
         return response()->json(['error' => $e->getMessage()], 500);
     }
 }
-
 public function updateOrderStatusOnScan(Request $request, $orderId)
 {
     try {
         $delivery = Auth::user();
         if ($delivery->user_type !== 'delivery') {
-            return response()->json(['error' => 'Permission Denied'], 403);
+            return response()->json(['ok' => false, 'error' => 'Permission Denied'], 403);
         }
 
         $order = Order::where('id', $orderId)
@@ -228,26 +227,35 @@ public function updateOrderStatusOnScan(Request $request, $orderId)
             ->first();
 
         if (!$order) {
-            return response()->json(['error' => 'Order not found or you are not assigned to it'], 404);
-        }
+            $order = Order::where('id', $orderId)
+                ->whereNull('delivery_id')
+                ->where('status', 'pending')
+                ->first();
 
-        if ($order->status === 'pending') {
-            // If the order is pending, update it to 'on_the_way'
+            if (!$order) {
+                return response()->json(['ok' => false, 'error' => 'Order not found or you are not assigned to it'], 404);
+            }
+
+            $order->delivery_id = $delivery->id;
             $order->status = 'on_the_way';
+            $order->is_approved = true;
             $order->save();
-            return response()->json(['message' => 'Order status updated to on the way'], 200);
+
+            return response()->json(['ok' => true, 'message' => 'Order status updated to on the way'], 200);
         } elseif ($order->status === 'on_the_way') {
-            // If the order is on the way, update it to 'completed'
             $order->status = 'completed';
             $order->save();
-            return response()->json(['message' => 'The donation process has been completed and delivered.'], 200);
+            return response()->json(['ok' => true, 'message' => 'The donation process has been completed and delivered.'], 200);
         } else {
-            return response()->json(['error' => 'Invalid status transition'], 400);
+            return response()->json(['ok' => false, 'error' => 'Invalid status transition'], 400);
         }
 
     } catch (\Exception $e) {
-        return response()->json(['error' => $e->getMessage()], 500);
+        return response()->json(['ok' => false, 'error' => $e->getMessage()], 500);
     }
 }
 
+
 }
+
+
