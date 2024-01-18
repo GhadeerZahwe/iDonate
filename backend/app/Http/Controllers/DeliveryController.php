@@ -215,5 +215,39 @@ public function getOrdersByStatus(Request $request, $status)
     }
 }
 
+public function updateOrderStatusOnScan(Request $request, $orderId)
+{
+    try {
+        $delivery = Auth::user();
+        if ($delivery->user_type !== 'delivery') {
+            return response()->json(['error' => 'Permission Denied'], 403);
+        }
+
+        $order = Order::where('id', $orderId)
+            ->where('delivery_id', $delivery->id)
+            ->first();
+
+        if (!$order) {
+            return response()->json(['error' => 'Order not found or you are not assigned to it'], 404);
+        }
+
+        if ($order->status === 'pending') {
+            // If the order is pending, update it to 'on_the_way'
+            $order->status = 'on_the_way';
+            $order->save();
+            return response()->json(['message' => 'Order status updated to on the way'], 200);
+        } elseif ($order->status === 'on_the_way') {
+            // If the order is on the way, update it to 'completed'
+            $order->status = 'completed';
+            $order->save();
+            return response()->json(['message' => 'The donation process has been completed and delivered.'], 200);
+        } else {
+            return response()->json(['error' => 'Invalid status transition'], 400);
+        }
+
+    } catch (\Exception $e) {
+        return response()->json(['error' => $e->getMessage()], 500);
+    }
+}
 
 }
