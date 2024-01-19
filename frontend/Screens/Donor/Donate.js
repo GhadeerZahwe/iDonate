@@ -24,8 +24,9 @@ const Donate = () => {
   const [description, setDescription] = useState("Food Waste Donation");
   const [phoneNumber, setPhoneNumber] = useState("+961 | ");
 
-  const [latitude, setLatitude] = useState("40.7128");
-  const [longitude, setLongitude] = useState("20.23");
+  const [latitude, setLatitude] = useState("");
+  const [longitude, setLongitude] = useState("");
+
   const [date, setDate] = useState("2024-01-16");
   const [location_description, setLocationDescription] =
     useState("City Center");
@@ -67,8 +68,22 @@ const Donate = () => {
   };
 
   const handleMapIconClick = () => {
-    setMapPageVisibility(!isMapPageVisible);
+    navigation.navigate("MapLocation", {
+      onLocationSelected: handleLocationSelected,
+    });
   };
+
+  const handleLocationSelected = (latitude, longitude) => {
+    console.log(
+      "Latitude and Longitude received in Donate:",
+      latitude,
+      longitude
+    );
+    setLatitude(latitude);
+    setLongitude(longitude);
+    setMapPageVisibility(false);
+  };
+
   const formData = new FormData();
   const retrieveData = async () => {
     try {
@@ -84,6 +99,7 @@ const Donate = () => {
     const token = await retrieveData();
     return token;
   };
+
   const handleOrder = async () => {
     formData.append("total_weight", selectedWeight);
     formData.append("pickup_within", selectedDuration);
@@ -100,7 +116,9 @@ const Donate = () => {
     });
     console.log(result);
   };
+
   const handleConfirm = () => {
+    console.log(latitude);
     setShowCustomAlert(true);
   };
 
@@ -216,7 +234,7 @@ const Donate = () => {
         <Text
           style={styles.selectedWeightText}
         >{`Location Description: ${location_description}`}</Text>
-        <TouchableOpacity onPress={() => navigation.navigate("MapLocation")}>
+        <TouchableOpacity onPress={handleMapIconClick}>
           <View style={styles.pickupContainer}>
             <Text style={styles.pickupText}>Pick Up Order:</Text>
             <Icon
@@ -249,7 +267,7 @@ const Donate = () => {
           }}
           onNo={() => setShowCustomAlert(false)}
         />
-        {isMapPageVisible && <MapLocation />}
+        {/* {<MapLocation />} */}
       </View>
     </ScrollView>
   );

@@ -87,11 +87,11 @@ export default function RegisterDriver() {
 
   return (
     <ScrollView style={{ backgroundColor: "#F6F1F1", flex: 1 }}>
-      <View style={{ top: -60 }}>
+      <View style={{ top: -65 }}>
         <RegisterLogo />
       </View>
 
-      <View style={{ gap: 20, marginBottom: 220 }}>
+      <View style={{ gap: 15, marginBottom: 170 }}>
         <TextInput
           style={styles.first_name}
           placeholder="  First Name"
@@ -133,8 +133,8 @@ export default function RegisterDriver() {
             style={{
               width: 100,
               height: 100,
-              left: 250,
-
+              left: 240,
+              top: 160,
               borderRadius: 15,
             }}
           />
@@ -142,7 +142,7 @@ export default function RegisterDriver() {
 
         <TouchableOpacity onPress={handleChoosePhoto}>
           <View style={styles.imageUpload}>
-            <View>
+            <View style={{ top: 20, marginBottom: 20 }}>
               <Feather name="image" size={30} color={"#146C94"} />
             </View>
             <View>
@@ -178,6 +178,7 @@ const styles = StyleSheet.create({
     top: 230,
     left: 26,
     elevation: 3,
+    marginBottom: 4,
   },
   last_name: {
     backgroundColor: "#FFF",
@@ -187,6 +188,7 @@ const styles = StyleSheet.create({
     top: 163,
     left: 185,
     elevation: 3,
+    marginBottom: 4,
   },
   Email: {
     backgroundColor: "#FFF",
@@ -214,18 +216,19 @@ const styles = StyleSheet.create({
     top: 160,
     left: 26,
     elevation: 3,
+    marginBottom: 40,
   },
   register_btn: {
     backgroundColor: "#146C94",
     width: 313,
     height: 50,
-    top: 130,
+    top: 70,
     left: 27,
     borderRadius: 10,
     elevation: 3,
   },
   imageUpload: {
-    top: 160,
+    top: 100,
     left: 30,
     marginBottom: 20,
   },

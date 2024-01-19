@@ -1,11 +1,14 @@
 import React, { useState, useEffect } from "react";
-import { Text, View, StyleSheet } from "react-native";
+import { Text, View, StyleSheet, TouchableOpacity } from "react-native";
 import MapView, { Marker } from "react-native-maps";
 import * as Location from "expo-location";
+import { useNavigation, useRoute } from "@react-navigation/native";
 
-const MapLocation = () => {
+const MapLocation = (props) => {
   const [location, setLocation] = useState(null);
   const [errorMsg, setErrorMsg] = useState(null);
+  const navigation = useNavigation(); // Get navigation prop
+  const route = useRoute();
 
   useEffect(() => {
     (async () => {
@@ -16,20 +19,27 @@ const MapLocation = () => {
       }
 
       let location = await Location.getCurrentPositionAsync({});
+
       setLocation(location);
     })();
   }, []);
 
-  let text = "Waiting..";
-  if (errorMsg) {
-    text = errorMsg;
-  } else if (location) {
-    text = `Latitude: ${location.coords.latitude}, Longitude: ${location.coords.longitude}`;
-  }
+  const handleAddLocation = () => {
+    console.log(
+      "Location",
+      location.coords.latitude,
+      location.coords.longitude
+    );
+    route.params.onLocationSelected(
+      location.coords.latitude,
+      location.coords.longitude
+    );
+    navigation.goBack();
+  };
 
   return (
     <View style={styles.container}>
-      <Text style={styles.text}>{text}</Text>
+      <Text style={styles.text}>Select your location:</Text>
       {location && (
         <MapView
           style={styles.map}
@@ -50,6 +60,11 @@ const MapLocation = () => {
           />
         </MapView>
       )}
+      <TouchableOpacity onPress={handleAddLocation}>
+        <View style={styles.addButton}>
+          <Text style={styles.addButtonText}>Add My Location</Text>
+        </View>
+      </TouchableOpacity>
     </View>
   );
 };
@@ -61,13 +76,28 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   text: {
-    textAlign: "center",
-    textAlignVertical: "center",
+    fontSize: 20,
+    fontWeight: "bold",
+    marginBottom: 4,
   },
   map: {
     width: "100%",
-    height: 600,
-    marginTop: 20,
+    height: 510,
+    marginTop: 5,
+  },
+  addButton: {
+    backgroundColor: "#146C94",
+    paddingVertical: 15,
+    alignItems: "center",
+    justifyContent: "center",
+    position: "relative",
+    borderRadius: 5,
+    width: 300,
+  },
+  addButtonText: {
+    color: "#fff",
+    fontWeight: "bold",
+    fontSize: 18,
   },
 });
 
