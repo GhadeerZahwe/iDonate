@@ -28,6 +28,7 @@ const CompletedOrder = () => {
         Authorization: "bearer " + token,
       });
       setDonations(result.donations);
+      console.log(result);
     } catch (error) {
       console.log(error);
       setError(error);

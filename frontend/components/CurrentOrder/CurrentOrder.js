@@ -13,6 +13,7 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import UseHttp from "../../hooks/request";
 import Search from "../Search/Search";
 import CustomAlert from "../CustomAlert/CustomAlert";
+import MapLocation from "../../Screens/Donor/MapLocation";
 
 const CurrentOrders = () => {
   const formData = new FormData();
@@ -38,7 +39,6 @@ const CurrentOrders = () => {
   const [donations, setDonations] = useState([]);
   const [filteredDonationData, setFilteredDonationData] = useState([]);
   const [expandedOrders, setExpandedOrders] = useState({});
-  const [isMapPageVisible, setMapPageVisibility] = useState(false);
 
   const [error, setError] = useState("");
   const [searchText, setSearchText] = useState("");
@@ -86,10 +86,6 @@ const CurrentOrders = () => {
       ...prev,
       [orderId]: !prev[orderId],
     }));
-  };
-
-  const handleMapIconClick = () => {
-    setMapPageVisibility(!isMapPageVisible);
   };
 
   const cancelOrder = (orderId) => {
@@ -221,13 +217,12 @@ const CurrentOrders = () => {
                       <TouchableOpacity
                         style={styles.trackButton}
                         onPress={() => {
-                          navigation.navigate("Map");
-                          handleMapIconClick();
+                          navigation.navigate("MapLocation");
                         }}
                       >
                         <Text style={styles.trackButtonText}>Track</Text>
                       </TouchableOpacity>
-                      {isMapPageVisible && <Map />}
+                      {<MapLocation />}
                     </View>
                   )}
                 </View>

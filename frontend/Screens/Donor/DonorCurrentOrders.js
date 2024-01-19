@@ -16,6 +16,7 @@ import Search from "../../components/Search/Search";
 import CustomAlert from "../../components/CustomAlert/CustomAlert";
 import { useFocusEffect } from "@react-navigation/native";
 import QRCodeAlert from "./QRCodeAlert";
+import MapLocation from "./MapLocation";
 
 const DonorCurrentOrders = () => {
   const [showCancelAlert, setShowCancelAlert] = useState(false);
@@ -142,7 +143,7 @@ const DonorCurrentOrders = () => {
   };
 
   const handleMapIconClick = () => {
-    setMapPageVisibility(!isMapPageVisible);
+    navigation.navigate("MapLocation");
   };
 
   const cancelOrder = (orderId) => {
@@ -291,14 +292,11 @@ const DonorCurrentOrders = () => {
                       </Text>
                       <TouchableOpacity
                         style={styles.trackButton}
-                        onPress={() => {
-                          navigation.navigate("Map");
-                          handleMapIconClick();
-                        }}
+                        onPress={handleMapIconClick}
                       >
                         <Text style={styles.trackButtonText}>Track</Text>
                       </TouchableOpacity>
-                      {isMapPageVisible && <Map />}
+                      {isMapPageVisible && <MapLocation />}
                     </View>
                   )}
                 </View>

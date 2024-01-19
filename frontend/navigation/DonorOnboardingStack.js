@@ -1,6 +1,10 @@
+// DonorOnboardingStack.js
+
+import React from "react";
 import { createStackNavigator } from "@react-navigation/stack";
 import DonorTabStack from "./DonorTabStack";
 import Donate from "../Screens/Donor/Donate";
+import MapLocation from "../Screens/Donor/MapLocation";
 
 const Stack = createStackNavigator();
 
@@ -19,13 +23,13 @@ const DonorOnboardingStack = ({ navigation }) => {
         }}
       />
       <Stack.Screen
-        name="Map"
-        component={Map}
+        name="MapLocation"
+        component={MapLocation}
         options={{
           headerShown: true,
           headerStyle: { backgroundColor: "#146C94" },
           headerTintColor: "#fff",
-          title: "Map",
+          title: "Map Location",
         }}
       />
     </Stack.Navigator>

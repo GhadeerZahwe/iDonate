@@ -7,6 +7,7 @@ import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { Entypo } from "@expo/vector-icons";
 import DonorOnboardingStack from "./DonorOnboardingStack";
 import Logout from "../Screens/Auth/Logout";
+import MapLocation from "../Screens/Donor/MapLocation";
 
 const DonorTabStack = () => {
   const Tabs = createBottomTabNavigator();

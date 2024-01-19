@@ -7,16 +7,15 @@ import {
   TouchableOpacity,
   TextInput,
 } from "react-native";
-import { Alert } from "react-native";
 import Slider from "@react-native-community/slider";
 import Icon from "react-native-vector-icons/FontAwesome";
-import MapView, { Marker } from "react-native-maps";
 import { useNavigation } from "@react-navigation/native";
 import UseHttp from "../../hooks/request";
 import { DatePicker } from "react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import CustomAlert from "../../components/CustomAlert/CustomAlert";
 import QRCodeDisplay from "./QRCodeDisplay";
+import MapLocation from "./MapLocation";
 
 const Donate = () => {
   const navigation = useNavigation();
@@ -217,7 +216,7 @@ const Donate = () => {
         <Text
           style={styles.selectedWeightText}
         >{`Location Description: ${location_description}`}</Text>
-        <TouchableOpacity onPress={() => navigation.navigate("Map")}>
+        <TouchableOpacity onPress={() => navigation.navigate("MapLocation")}>
           <View style={styles.pickupContainer}>
             <Text style={styles.pickupText}>Pick Up Order:</Text>
             <Icon
@@ -250,7 +249,7 @@ const Donate = () => {
           }}
           onNo={() => setShowCustomAlert(false)}
         />
-        {isMapPageVisible && <Map />}
+        {isMapPageVisible && <MapLocation />}
       </View>
     </ScrollView>
   );
