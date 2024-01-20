@@ -3,6 +3,7 @@ import DriverTabStack from "./DriverTabStack";
 import DriverMain from "../Screens/Driver/DriverMain";
 import PendingOrders from "../Screens/Driver/PendingOrders";
 import OrderLocation from "../Screens/Driver/OrderLocation";
+import OnWayLocation from "../Screens/Driver/OnWayLocation";
 
 const Stack = createStackNavigator();
 
@@ -18,6 +19,16 @@ const DriverOnboardingStack = ({ navigation }) => {
           headerStyle: { backgroundColor: "#146C94" },
           headerTintColor: "#fff",
           title: "Order Location",
+        }}
+      />
+      <Stack.Screen
+        name="OnWayLocation"
+        component={OnWayLocation}
+        options={{
+          headerShown: true,
+          headerStyle: { backgroundColor: "#146C94" },
+          headerTintColor: "#fff",
+          title: "On Way Location",
         }}
       />
       {/* <Stack.Screen
