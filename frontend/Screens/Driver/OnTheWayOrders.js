@@ -16,6 +16,7 @@ import { useNavigation, useIsFocused } from "@react-navigation/native";
 import PendingOrders from "./PendingOrders";
 import DonorCompletedOrders from "./CompletedOrders";
 import DriverMain from "./DriverMain";
+import OnWayLocation from "./OnWayLocation";
 
 const OnTheWayOrders = () => {
   const [donations, setDonations] = useState([]);
