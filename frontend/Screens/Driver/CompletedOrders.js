@@ -20,6 +20,11 @@ const DonorCompletedOrders = ({ navigation }) => {
   const [selectedOrderId, setSelectedOrderId] = useState(null);
   const [refreshing, setRefreshing] = useState(false);
 
+  const onRefresh = React.useCallback(() => {
+    setRefreshing(true);
+    fetchData().then(() => setRefreshing(false));
+  }, []);
+
   const retrieveData = async () => {
     try {
       const value = await AsyncStorage.getItem("token");
@@ -50,7 +55,8 @@ const DonorCompletedOrders = ({ navigation }) => {
 
   useEffect(() => {
     fetchData();
-  }, []); // Fetch data when the component mounts
+  }, []);
+
   useEffect(() => {
     const unsubscribe = navigation.addListener("focus", () => {
       fetchData();
