@@ -26,6 +26,7 @@ const DonorCurrentOrders = () => {
   const [qrCodeContent, setQRCodeContent] = useState("");
   const [showQRCodeAlert, setShowQRCodeAlert] = useState(false);
   const [qrCodeValue, setQRCodeValue] = useState(null);
+  const [refreshing, setRefreshing] = useState(false);
 
   const handleQRCodeIconClick = async (orderId) => {
     try {
@@ -113,11 +114,17 @@ const DonorCurrentOrders = () => {
 
     fetchData();
   }, []);
+
   useFocusEffect(
     React.useCallback(() => {
       fetchData();
     }, [])
   );
+
+  const onRefresh = React.useCallback(() => {
+    setRefreshing(true);
+    fetchData().then(() => setRefreshing(false));
+  }, []);
 
   const fetchData = async () => {
     try {
@@ -190,7 +197,12 @@ const DonorCurrentOrders = () => {
   return (
     <>
       <Search onSearch={setSearchText} />
-      <ScrollView style={styles.container}>
+      <ScrollView
+        style={styles.container}
+        refreshControl={
+          <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
+        }
+      >
         {filteredDonationData.length > 0 &&
           filteredDonationData.map((item) => {
             const isExpanded = expandedOrders[item.id] || false;
