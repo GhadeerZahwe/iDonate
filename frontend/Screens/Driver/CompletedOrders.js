@@ -12,13 +12,12 @@ import { MaterialIcons } from "@expo/vector-icons";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import UseHttp from "../../hooks/request";
 import CustomAlert from "../../components/CustomAlert/CustomAlert";
+
 const DonorCompletedOrders = ({ navigation }) => {
   const [donations, setDonations] = useState([]);
   const [error, setError] = useState("");
   const [alertVisible, setAlertVisible] = useState(false);
   const [selectedOrderId, setSelectedOrderId] = useState(null);
-  const [showTooltip, setShowTooltip] = useState(null); // Use state to store the selected icon's index
-  const [tooltipVisible, setTooltipVisible] = useState(false);
 
   const retrieveData = async () => {
     try {
@@ -116,8 +115,6 @@ const DonorCompletedOrders = ({ navigation }) => {
 
               <TouchableWithoutFeedback
                 onPress={() => onReturnToOnTheWay(item.id)}
-                onLongPress={() => setShowTooltip(false)}
-                onPressOut={() => setShowTooltip(null)}
               >
                 <MaterialIcons
                   name="local-shipping"
