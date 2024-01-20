@@ -18,6 +18,7 @@ const DonorCompletedOrders = ({ navigation }) => {
   const [error, setError] = useState("");
   const [alertVisible, setAlertVisible] = useState(false);
   const [selectedOrderId, setSelectedOrderId] = useState(null);
+  const [refreshing, setRefreshing] = useState(false);
 
   const retrieveData = async () => {
     try {
