@@ -22,6 +22,7 @@
     "@reduxjs/toolkit": "^1.9.5",
     "axios": "^1.4.0",
     "expo": "~49.0.15",
+    "expo-barcode-scanner": "~12.5.3",
     "expo-file-system": "^15.2.2",
     "expo-image-picker": "~14.3.2",
     "expo-location": "~16.1.0",
@@ -51,8 +52,7 @@
     "react-native-web": "~0.19.6",
     "react-navigation": "^4.4.4",
     "react-redux": "^8.0.5",
-    "redux": "^4.2.1",
-    "expo-barcode-scanner": "~12.5.3"
+    "redux": "^4.2.1"
   },
   "devDependencies": {
     "@babel/core": "^7.20.0"

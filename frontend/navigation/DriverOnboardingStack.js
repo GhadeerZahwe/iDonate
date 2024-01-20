@@ -2,6 +2,7 @@ import { createStackNavigator } from "@react-navigation/stack";
 import DriverTabStack from "./DriverTabStack";
 import DriverMain from "../Screens/Driver/DriverMain";
 import PendingOrders from "../Screens/Driver/PendingOrders";
+import OrderLocation from "../Screens/Driver/OrderLocation";
 
 const Stack = createStackNavigator();
 
@@ -9,6 +10,16 @@ const DriverOnboardingStack = ({ navigation }) => {
   return (
     <Stack.Navigator screenOptions={{ headerShown: false }}>
       <Stack.Screen name="delivery" component={DriverTabStack} />
+      <Stack.Screen
+        name="OrderLocation"
+        component={OrderLocation}
+        options={{
+          headerShown: true,
+          headerStyle: { backgroundColor: "#146C94" },
+          headerTintColor: "#fff",
+          title: "Order Location",
+        }}
+      />
       {/* <Stack.Screen
         name="DriverMain"
         component={DriverMain}

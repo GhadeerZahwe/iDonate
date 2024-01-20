@@ -14,6 +14,8 @@ import UseHttp from "../../hooks/request";
 import CustomAlert from "../../components/CustomAlert/CustomAlert";
 import { useIsFocused } from "@react-navigation/native";
 import { useNavigation } from "@react-navigation/native";
+import { FontAwesome } from "@expo/vector-icons";
+import OrderLocation from "./OrderLocation";
 
 const PendingOrders = () => {
   const [donations, setDonations] = useState([]);
@@ -110,7 +112,19 @@ const PendingOrders = () => {
           </Text>
           <Text style={styles.boldText}>
             Location:{" "}
-            <Text style={styles.value}> {item.locations.description}</Text>
+            <Text style={styles.value}>{item.locations.description}</Text>
+            <TouchableOpacity
+              onPress={() => {
+                navigation.navigate("OrderLocation", { orderId: item.id });
+              }}
+            >
+              <FontAwesome
+                name="map-marker"
+                size={20}
+                color="#fff"
+                style={{ marginLeft: 10 }}
+              />
+            </TouchableOpacity>
           </Text>
           <Text style={styles.boldText}>
             Phone Number: <Text style={styles.value}>{item.phone_number}</Text>

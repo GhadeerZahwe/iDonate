@@ -7,7 +7,7 @@ import { useNavigation, useRoute } from "@react-navigation/native";
 const MapLocation = (props) => {
   const [location, setLocation] = useState(null);
   const [errorMsg, setErrorMsg] = useState(null);
-  const navigation = useNavigation(); // Get navigation prop
+  const navigation = useNavigation();
   const route = useRoute();
 
   useEffect(() => {
@@ -39,7 +39,6 @@ const MapLocation = (props) => {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.text}>Select your location:</Text>
       {location && (
         <MapView
           style={styles.map}
@@ -72,7 +71,7 @@ const MapLocation = (props) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: "center",
+    justifyContent: "start",
     alignItems: "center",
   },
   text: {
@@ -82,8 +81,8 @@ const styles = StyleSheet.create({
   },
   map: {
     width: "100%",
-    height: 510,
-    marginTop: 5,
+    height: 590,
+    overflow: "visible",
   },
   addButton: {
     backgroundColor: "#146C94",

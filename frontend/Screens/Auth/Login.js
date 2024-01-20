@@ -1,3 +1,4 @@
+import React, { useState } from "react";
 import {
   StyleSheet,
   View,
@@ -12,12 +13,14 @@ import { useNavigation } from "@react-navigation/native";
 import UseHttp from "../../hooks/request";
 import { useDispatch } from "react-redux";
 import { login, setUserData } from "../../redux/slices/authSlice";
-import { useState } from "react";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import AlertMessage from "../../components/AlertMessage/AlertMessage";
 
 export default function Login() {
   const [email, setEmail] = useState("driver2@gmail.com");
   const [password, setPassword] = useState("code123");
+  const [alertVisible, setAlertVisible] = useState(false);
+
   const formData = new FormData();
   const navigation = useNavigation();
   const register = () => {
@@ -41,10 +44,16 @@ export default function Login() {
     if (result.status === "success") {
       dispatch(login());
     } else {
-      alert("wrong credentials");
+      showAlert();
     }
+  };
 
-    // dispatch(setUserdata(register));
+  const showAlert = () => {
+    setAlertVisible(true);
+  };
+
+  const closeAlert = () => {
+    setAlertVisible(false);
   };
 
   return (
@@ -87,10 +96,15 @@ export default function Login() {
           Sign up
         </Text>
       </Text>
+      <AlertMessage
+        visible={alertVisible}
+        title="Wrong Credentials"
+        message="Please check your email and password and try again."
+        onClose={closeAlert} // Close the alert when "OK" is pressed
+      />
     </ScrollView>
   );
 }
-
 const styles = StyleSheet.create({
   welcome_title: {
     fontSize: 32,
@@ -116,5 +130,24 @@ const styles = StyleSheet.create({
     left: 30,
     borderRadius: 10,
     elevation: 3,
+  },
+  alertTitle: {
+    fontSize: 18,
+    fontWeight: "bold",
+    marginBottom: 10,
+    color: "#146C94",
+  },
+  alertMessage: {
+    fontSize: 16,
+    color: "#555",
+  },
+  alertContainer: {
+    backgroundColor: "white",
+    padding: 20,
+    borderRadius: 10,
+    width: 300,
+  },
+  alertButton: {
+    backgroundColor: "#146C94",
   },
 });

@@ -30,7 +30,7 @@ const DonorOnboardingStack = ({ navigation }) => {
           headerShown: true,
           headerStyle: { backgroundColor: "#146C94" },
           headerTintColor: "#fff",
-          title: "Map Location",
+          title: "Current Location",
         }}
       />
       <Stack.Screen
