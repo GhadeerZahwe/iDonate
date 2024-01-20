@@ -42,6 +42,11 @@ const OnTheWayOrders = () => {
     return await retrieveData();
   };
 
+  const onRefresh = useCallback(() => {
+    setRefreshing(true);
+    fetchData().then(() => setRefreshing(false));
+  }, []);
+
   const fetchData = useCallback(async () => {
     try {
       const token = await getToken();
@@ -158,7 +163,11 @@ const OnTheWayOrders = () => {
   };
 
   return (
-    <ScrollView>
+    <ScrollView
+      refreshControl={
+        <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
+      }
+    >
       {renderOnTheWayOrders()}
       <CustomAlert
         visible={alertVisible}

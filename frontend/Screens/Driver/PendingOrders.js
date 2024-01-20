@@ -65,6 +65,7 @@ const PendingOrders = () => {
     setSelectedOrderId(orderId);
     setAlertVisible(true);
   };
+
   const handleTakeOrder = async () => {
     try {
       const token = await getToken();
