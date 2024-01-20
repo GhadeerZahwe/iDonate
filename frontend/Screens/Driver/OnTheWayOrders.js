@@ -12,6 +12,7 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import UseHttp from "../../hooks/request";
 import CustomAlert from "../../components/CustomAlert/CustomAlert";
 import { useNavigation, useIsFocused } from "@react-navigation/native";
+import Icon from "react-native-vector-icons/FontAwesome";
 
 import PendingOrders from "./PendingOrders";
 import DonorCompletedOrders from "./CompletedOrders";
