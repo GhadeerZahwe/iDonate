@@ -204,7 +204,13 @@ class DonorController extends Controller
         return response()->json(['error'=>'No delivery associated with the order'],404);
       }
 
-      
+      $deliveryInfo=$delivery->deliveryInfo;
+
+      if(!$deliveryInfo){
+        return response()->json(['error'=>'No Location Information available for the delivery driver.'],404);
+      }
+
+      return response()->json(['delivery_location'=>$deliveryInfo->only(['latitude','longitude'])]);
 
    }
 
