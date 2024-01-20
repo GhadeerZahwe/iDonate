@@ -179,12 +179,33 @@ class DonorController extends Controller
        $donor = Auth::user();
 
        $order = Order::where('id', $orderId)
-           ->where('donor_id', $donor->id)
+           ->where('donor_id', $donor->id)  
            ->firstOrFail();
 
-       // Generate a unique code 
        $codeString = 'ORDER_' . $order->id . '_' . uniqid();
        return response()->json(['qr_code_string' => $codeString]);
+   }
+
+   public function getDeliveryLocation($orderId)
+   {
+      $donor=Auth::user();
+
+      $order= Order::where('id',$orderId)
+         ->where('donor_id', $donor->id)
+         ->with(['delivery','delivery.deliveryInfo'])
+         ->first();
+
+      if(!$order){
+        return response()->json(['error'=>'Order not found or not associated with the donor'], 404);
+      }
+
+      $delivery= $order->delivery;
+      if(!$delivery){
+        return response()->json(['error'=>'No delivery associated with the order'],404);
+      }
+
+      
+
    }
 
 }
