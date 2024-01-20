@@ -6,6 +6,7 @@ import {
   TouchableOpacity,
   Alert,
   ScrollView,
+  RefreshControl,
 } from "react-native";
 import Icon from "react-native-vector-icons/FontAwesome";
 import { useNavigation } from "@react-navigation/native";
@@ -17,6 +18,7 @@ import CustomAlert from "../../components/CustomAlert/CustomAlert";
 import { useFocusEffect } from "@react-navigation/native";
 import QRCodeAlert from "./QRCodeAlert";
 import MapLocation from "./MapLocation";
+import TrackLocation from "./TrackLocation";
 
 const DonorCurrentOrders = () => {
   const [showCancelAlert, setShowCancelAlert] = useState(false);
@@ -149,6 +151,11 @@ const DonorCurrentOrders = () => {
   const cancelOrder = (orderId) => {
     setCancelOrderId(orderId); // Store the orderId to be canceled
     setShowCancelAlert(true);
+  };
+
+  const handleTrackButtonClick = () => {
+    // Navigate to the TrackLocation component when the "Track" button is clicked
+    navigation.navigate("TrackLocation");
   };
 
   const fetchQRCode = async (orderId) => {
@@ -292,7 +299,7 @@ const DonorCurrentOrders = () => {
                       </Text>
                       <TouchableOpacity
                         style={styles.trackButton}
-                        onPress={handleMapIconClick}
+                        onPress={handleTrackButtonClick}
                       >
                         <Text style={styles.trackButtonText}>Track</Text>
                       </TouchableOpacity>

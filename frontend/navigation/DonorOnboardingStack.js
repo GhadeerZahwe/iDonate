@@ -5,6 +5,7 @@ import { createStackNavigator } from "@react-navigation/stack";
 import DonorTabStack from "./DonorTabStack";
 import Donate from "../Screens/Donor/Donate";
 import MapLocation from "../Screens/Donor/MapLocation";
+import TrackLocation from "../Screens/Donor/TrackLocation";
 
 const Stack = createStackNavigator();
 
@@ -30,6 +31,16 @@ const DonorOnboardingStack = ({ navigation }) => {
           headerStyle: { backgroundColor: "#146C94" },
           headerTintColor: "#fff",
           title: "Map Location",
+        }}
+      />
+      <Stack.Screen
+        name="TrackLocation"
+        component={TrackLocation}
+        options={{
+          headerShown: true,
+          headerStyle: { backgroundColor: "#146C94" },
+          headerTintColor: "#fff",
+          title: "Track Location",
         }}
       />
     </Stack.Navigator>

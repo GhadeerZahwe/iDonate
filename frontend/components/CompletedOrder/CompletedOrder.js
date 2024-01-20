@@ -1,11 +1,19 @@
 import React, { useState, useEffect } from "react";
-import { View, Text, StyleSheet, ScrollView } from "react-native";
+import {
+  View,
+  Text,
+  StyleSheet,
+  ScrollView,
+  RefreshControl,
+} from "react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import UseHttp from "../../hooks/request";
+import { useFocusEffect } from "@react-navigation/native";
 
 const CompletedOrder = () => {
   const [donations, setDonations] = useState([]);
   const [error, setError] = useState("");
+  const [refreshing, setRefreshing] = useState(false);
 
   const retrieveData = async () => {
     try {
@@ -35,8 +43,16 @@ const CompletedOrder = () => {
     }
   };
 
-  useEffect(() => {
-    fetchData();
+  // Use the useFocusEffect hook to refetch data when the screen gains focus
+  useFocusEffect(
+    React.useCallback(() => {
+      fetchData();
+    }, [])
+  );
+
+  const onRefresh = React.useCallback(() => {
+    setRefreshing(true);
+    fetchData().then(() => setRefreshing(false));
   }, []);
 
   const renderCompletedOrders = () => {
@@ -73,7 +89,15 @@ const CompletedOrder = () => {
     });
   };
 
-  return <ScrollView>{renderCompletedOrders()}</ScrollView>;
+  return (
+    <ScrollView
+      refreshControl={
+        <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
+      }
+    >
+      {renderCompletedOrders()}
+    </ScrollView>
+  );
 };
 
 const styles = StyleSheet.create({
