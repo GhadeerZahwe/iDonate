@@ -1,7 +1,6 @@
-import React from "react";
-
+import { Text } from "react-native";
 const OnWayLocation = () => {
-  return <div>OnWayLocation</div>;
+  return <Text>OnWayLocation</Text>;
 };
 
 export default OnWayLocation;

@@ -8,11 +8,14 @@ import {
   Alert,
   RefreshControl,
 } from "react-native";
+import { FontAwesome } from "@expo/vector-icons";
+
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import UseHttp from "../../hooks/request";
 import CustomAlert from "../../components/CustomAlert/CustomAlert";
 import { useNavigation, useIsFocused } from "@react-navigation/native";
 import Icon from "react-native-vector-icons/FontAwesome";
+import MaterialIcon from "react-native-vector-icons/MaterialIcons";
 
 import PendingOrders from "./PendingOrders";
 import DonorCompletedOrders from "./CompletedOrders";
@@ -136,10 +139,20 @@ const OnTheWayOrders = () => {
             <Text style={styles.value}>{item.pickup_within} hrs</Text>
           </Text>
 
-          <Text style={styles.boldText}>
-            Location:{" "}
-            <Text style={styles.value}>{item.locations.description}</Text>
-          </Text>
+          <View style={styles.locationContainer}>
+            <Text style={styles.boldText}>
+              Location:{" "}
+              <Text style={styles.value}>{item.locations.description}</Text>
+            </Text>
+            <TouchableOpacity onPress={() => handleLocationPress(item)}>
+              <FontAwesome
+                name="map-marker"
+                size={20}
+                color="#fff"
+                style={styles.locationIcon}
+              />
+            </TouchableOpacity>
+          </View>
 
           <Text style={styles.boldText}>
             Phone Number: <Text style={styles.value}>{item.phone_number}</Text>
@@ -162,6 +175,11 @@ const OnTheWayOrders = () => {
         </View>
       </View>
     ));
+  };
+
+  const handleLocationPress = (order) => {
+    // Navigate to the "OnWayLocation" page with the order details
+    navigation.navigate("OnWayLocation", { order });
   };
 
   return (
@@ -229,6 +247,14 @@ const styles = StyleSheet.create({
     fontSize: 16,
     fontWeight: "bold",
     textAlign: "center",
+  },
+  locationContainer: {
+    flexDirection: "row",
+    alignItems: "center",
+    marginTop: 2,
+  },
+  locationIcon: {
+    marginLeft: 10,
   },
 });
 
