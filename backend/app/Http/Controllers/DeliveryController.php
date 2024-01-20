@@ -214,6 +214,7 @@ public function getOrdersByStatus(Request $request, $status)
         return response()->json(['error' => $e->getMessage()], 500);
     }
 }
+
 public function updateOrderStatusOnScan(Request $request, $orderId)
 {
     try {
@@ -253,8 +254,37 @@ public function updateOrderStatusOnScan(Request $request, $orderId)
     } catch (\Exception $e) {
         return response()->json(['ok' => false, 'error' => $e->getMessage()], 500);
     }
-}
+ } 
 
+ public function getLocationByOrderId(Request $request, $orderId)
+{
+    try {
+        $delivery = Auth::user();
+
+        // Check if the user is a delivery user
+        if ($delivery->user_type !== 'delivery') {
+            return response()->json(['error' => 'Permission Denied'], 403);
+        }
+
+        // Query the order with the specified conditions
+        $order = Order::where('id', $orderId)
+            ->whereNull('delivery_id')
+            ->where('status', 'pending')
+            ->with('locations')
+            ->first();
+
+        // Check if the order exists
+        if (!$order) {
+            return response()->json(['error' => 'Order not found or not pending with null delivery ID'], 404);
+        }
+
+        // Return the associated locations
+        return response()->json(['locations' => $order->locations], 200);
+
+    } catch (\Exception $e) {
+        return response()->json(['error' => $e->getMessage()], 500);
+    }
+}
 
 }
 

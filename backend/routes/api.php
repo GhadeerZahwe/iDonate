@@ -53,6 +53,7 @@ Route::group(['middleware'=>'idonate_authenticate'],function(){
       Route::post('/cancelOrder/{orderId}',[DeliveryController::class,"cancelOrder"]);
       Route::post('/updateOrderStatus/{orderId}', [DeliveryController::class, "updateOrderStatus"]);
       Route::post('/returnToOnTheWay/{orderId}', [DeliveryController::class, "returnToOnTheWay"]);
+      Route::get('/getLocationByOrderId/{orderId}', [DeliveryController::class, "getLocationByOrderId"]);
       Route::post('/updateOrderStatusOnScan/{orderId}', [DeliveryController::class, "updateOrderStatusOnScan"]);
       Route::get('/getPendingOrders', [DeliveryController::class, "getPendingOrders"]);
       Route::get('/getOnTheWayOrders', [DeliveryController::class, "getOnTheWayOrders"]);
