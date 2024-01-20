@@ -21,7 +21,8 @@ const OnTheWayOrders = () => {
   const [donations, setDonations] = useState([]);
   const [error, setError] = useState("");
   const [alertVisible, setAlertVisible] = useState(false);
-  const [alertType, setAlertType] = useState(""); // Add this line
+  const [alertType, setAlertType] = useState("");
+  const [refreshing, setRefreshing] = useState(false);
 
   const [selectedOrderId, setSelectedOrderId] = useState(null);
   const navigation = useNavigation();
