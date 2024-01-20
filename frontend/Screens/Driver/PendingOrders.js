@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from "react";
+import { React, useState, useEffect, useCallback } from "react";
 import {
   View,
   Text,
@@ -6,6 +6,7 @@ import {
   TouchableOpacity,
   ScrollView,
   Alert,
+  RefreshControl,
 } from "react-native";
 import { useFocusEffect } from "@react-navigation/native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
@@ -19,8 +20,14 @@ const PendingOrders = () => {
   const [error, setError] = useState("");
   const [alertVisible, setAlertVisible] = useState(false);
   const [selectedOrderId, setSelectedOrderId] = useState(null);
+  const [refreshing, setRefreshing] = useState(false);
   const isFocused = useIsFocused();
   const navigation = useNavigation();
+
+  const onRefresh = useCallback(() => {
+    setRefreshing(true);
+    fetchData().then(() => setRefreshing(false));
+  }, []);
 
   const retrieveData = async () => {
     try {
@@ -119,7 +126,11 @@ const PendingOrders = () => {
   };
 
   return (
-    <ScrollView>
+    <ScrollView
+      refreshControl={
+        <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
+      }
+    >
       {renderPendingOrders()}
       <CustomAlert
         visible={alertVisible}

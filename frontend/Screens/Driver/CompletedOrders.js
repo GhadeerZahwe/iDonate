@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { React, useState, useEffect, useCallback } from "react";
 import {
   View,
   Text,
@@ -20,7 +20,7 @@ const DonorCompletedOrders = ({ navigation }) => {
   const [selectedOrderId, setSelectedOrderId] = useState(null);
   const [refreshing, setRefreshing] = useState(false);
 
-  const onRefresh = React.useCallback(() => {
+  const onRefresh = useCallback(() => {
     setRefreshing(true);
     fetchData().then(() => setRefreshing(false));
   }, []);
@@ -140,7 +140,11 @@ const DonorCompletedOrders = ({ navigation }) => {
   };
 
   return (
-    <ScrollView>
+    <ScrollView
+      refreshControl={
+        <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
+      }
+    >
       {renderCompletedOrders()}
       <CustomAlert
         visible={alertVisible}
