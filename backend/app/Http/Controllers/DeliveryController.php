@@ -310,6 +310,32 @@ public function updateOrderWeight(Request $request, $orderId)
     });
 }
 
+public function getTotalWeight(Request $request, $orderId)
+{
+    try {
+        $delivery = Auth::user();
+
+        if ($delivery->user_type !== 'delivery') {
+            return response()->json(['error' => 'Permission Denied'], 403);
+        }
+
+        $order = Order::where('id', $orderId)
+            ->where('delivery_id', $delivery->id)
+            ->first();
+
+        if (!$order) {
+            return response()->json(['error' => 'Order not found or not assigned to the delivery person'], 404);
+        }
+
+        $totalWeight = $order->total_weight;
+
+        return response()->json(['total_weight' => $totalWeight], 200);
+
+    } catch (\Exception $e) {
+        return response()->json(['error' => $e->getMessage()], 500);
+    }
+}
+
 
 }
 
