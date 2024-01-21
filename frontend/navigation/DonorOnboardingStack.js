@@ -43,6 +43,15 @@ const DonorOnboardingStack = ({ navigation }) => {
           title: "Track Location",
         }}
       />
+      {/* <Stack.Screen
+        name="Login"
+        component={Login}
+        options={{
+          headerShown: false,
+          headerStyle: { backgroundColor: "#146C94" },
+          headerTintColor: "#fff",
+        }}
+      /> */}
     </Stack.Navigator>
   );
 };

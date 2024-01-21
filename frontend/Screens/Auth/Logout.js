@@ -9,7 +9,6 @@ import { logout } from "../../redux/slices/authSlice";
 const Logout = () => {
   const navigation = useNavigation();
   const dispatch = useDispatch();
-
   const handleLogout = async () => {
     try {
       const token = await AsyncStorage.getItem("token");
@@ -23,6 +22,8 @@ const Logout = () => {
       await AsyncStorage.removeItem("token");
       await AsyncStorage.removeItem("user_type");
       dispatch(logout());
+
+      // navigation.navigate("Login");
     } catch (error) {
       console.error("Error logging out:", error);
     }

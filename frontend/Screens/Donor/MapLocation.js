@@ -83,6 +83,7 @@ const styles = StyleSheet.create({
     width: "100%",
     height: 590,
     overflow: "visible",
+    marginBottom: 2,
   },
   addButton: {
     backgroundColor: "#146C94",
