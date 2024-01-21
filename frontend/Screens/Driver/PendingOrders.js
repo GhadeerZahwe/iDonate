@@ -14,6 +14,7 @@ import UseHttp from "../../hooks/request";
 import CustomAlert from "../../components/CustomAlert/CustomAlert";
 import { useIsFocused } from "@react-navigation/native";
 import { useNavigation } from "@react-navigation/native";
+import { Linking } from "react-native";
 import { FontAwesome } from "@expo/vector-icons";
 import OrderLocation from "./OrderLocation";
 
@@ -128,7 +129,21 @@ const PendingOrders = () => {
           </Text>
           <Text style={styles.boldText}>
             Phone Number: <Text style={styles.value}>{item.phone_number}</Text>
+            <TouchableOpacity
+              onPress={() => {
+                // Open phone dialer
+                Linking.openURL(`tel:${item.phone_number}`);
+              }}
+            >
+              <FontAwesome
+                name="phone"
+                size={20}
+                color="#fff"
+                style={{ marginLeft: 10 }}
+              />
+            </TouchableOpacity>
           </Text>
+
           <TouchableOpacity
             style={styles.takeOrderButton}
             onPress={() => onTakeOrder(item.id)}
@@ -167,7 +182,8 @@ const styles = StyleSheet.create({
     bottom: 100,
   },
   card: {
-    backgroundColor: "#F2BE22",
+    backgroundColor: "#FFBB33",
+    // opacity: 0.,
     padding: 10,
     borderRadius: 10,
     marginTop: 10,
