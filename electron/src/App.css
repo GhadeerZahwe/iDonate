@@ -77,12 +77,70 @@ a {
   text-decoration: none;
   color: black;
 }
+.delete_btn,
+.approve_btn,
+.cancel_btn {
+  padding: 8px 15px;
+  border-radius: 15px;
+  color: #fff;
+  cursor: pointer;
+  flex: 1;
+  text-align: center;
+  font-weight: bold;
+  width: 80px;
+  justify-content: center;
+  align-items: center;
+}
 
-.delete {
-  padding: 10px;
-  background-color: #3e54ac;
-  margin-right: 10px;
-  border-radius: 10px;
+.approve_btn {
+  margin-bottom: 3px;
+  background-color: rgba(4, 83, 4, 0.911);
+}
+.loader {
+  display: flex;
+  align-items: end;
+  justify-content: end;
+  height: 200px; /* Adjust height as needed */
+  font-size: 1.5rem;
+  margin-left: 150;
+}
+
+.delete_btn_donor {
+  padding: 8px;
+  border-radius: 15px;
+  color: #fff;
+  cursor: pointer;
+  flex: 1;
+  text-align: center;
+  font-weight: bold;
+  width: 90px;
+  justify-content: center;
+  align-items: center;
+}
+.cancel_btn {
+  margin-bottom: 3px;
+  background-color: rgb(185, 16, 16);
+}
+
+.width {
+  width: 100px;
+}
+.delete_btn {
+  background-color: rgb(185, 16, 16);
+}
+.delete_btn_donor {
+  background-color: rgb(185, 16, 16);
+}
+.delete_btn_donor:hover {
+  background-color: rgb(202, 4, 4);
+}
+
+.approve_btn:hover {
+  background-color: rgba(5, 77, 5, 0.973);
+}
+.cancel_btn:hover,
+.delete_btn:hover {
+  background-color: rgb(202, 4, 4);
 }
 
 .btn {
@@ -101,14 +159,13 @@ a {
   transition: 0.5s;
   animation: gradient_301 5s ease infinite;
   border: double 4px transparent;
-  background-image: linear-gradient(#212121, #212121),
-    linear-gradient(
-      137.48deg,
-      #ff0000 4%,
-      #af0000 45%,
-      #ff0000 57%,
-      #ff0000 87%
-    );
+  background-image: linear-gradient(
+    137.48deg,
+    #af0000 4%,
+    #af0000 45%,
+    #ff0000 57%,
+    #ff0000 87%
+  );
   background-origin: border-box;
   background-clip: content-box, border-box;
 }

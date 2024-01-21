@@ -63,12 +63,12 @@ const Tr = (props) => {
       <td>{props.data.delivery_info.mobility_type}</td>
       <td>{props.data.delivery_info.license_number}</td>
 
-      <td className="btn-container">
+      <td>
         {isProcessing ? (
           <div>Processing...</div>
         ) : (
           <>
-            <div
+            {/* <div
               className={isApproved ? "btn-cancel" : "btn-approve"}
               onClick={() =>
                 handleButtonClick(
@@ -78,34 +78,36 @@ const Tr = (props) => {
               }
             >
               <strong>{isApproved ? "CANCEL" : "APPROVE"}</strong>
-              <div id={`container-stars-${isApproved ? "delete" : "approve"}`}>
-                <div id={`stars-${isApproved ? "delete" : "approve"}`}></div>
-              </div>
-              <div id={`glow-${isApproved ? "delete" : "approve"}`}>
-                <div
-                  className={`circle-${isApproved ? "delete" : "approve"}`}
-                ></div>
-                <div
-                  className={`circle-${isApproved ? "delete" : "approve"}`}
-                ></div>
-              </div>
-            </div>
-            <button
-              className="btn"
+            </div> */}
+            {/* <button
+              className="delete_btn"
               type="button"
               onClick={() =>
                 handleDeleteClick(props.data.delivery_info.delivery_id)
               }
             >
               <strong>DELETE</strong>
-              <div id={`container-stars`}>
-                <div id={`stars`}></div>
-              </div>
-              <div id={`glow`}>
-                <div className={`circle`}></div>
-                <div className={`circle`}></div>
-              </div>
-            </button>
+            </button> */}
+            <div
+              className={isApproved ? "cancel_btn" : "approve_btn"}
+              onClick={() =>
+                handleButtonClick(
+                  props.data.delivery_info.delivery_id,
+                  isApproved
+                )
+              }
+            >
+              {isApproved ? "Cancel" : "Approve"}
+            </div>
+
+            <div
+              className="delete_btn"
+              onClick={() =>
+                handleDeleteClick(props.data.delivery_info.delivery_id)
+              }
+            >
+              Delete
+            </div>
           </>
         )}
       </td>

@@ -106,12 +106,6 @@ body {
   color: #6cc1ff;
 }
 
-.donor-btn:hover,
-.products-btn:hover,
-.driver-btn:hover {
-  background-color: #06283d;
-  color: #47b5ff;
-}
 .products-btn {
   padding: 5%;
   margin-top: 3vh;
@@ -120,7 +114,7 @@ body {
 }
 table {
   width: 70vw;
-  margin-left: 25vw;
+  margin-left: 23vw;
   margin-top: 8vh;
 }
 th,
@@ -138,18 +132,15 @@ td {
   vertical-align: middle;
 }
 tr:hover {
-  background-color: #6cc1ff;
-}
-tr:hover .approve_btn {
-  background-color: #146c94;
+  background-color: rgba(20, 108, 148, 0.8);
 }
 .content {
   display: inline-block;
 }
 
 .content-title {
-  font-size: 46px;
-  margin-left: 25vw;
+  font-size: 40px;
+  margin-left: 20vw;
   margin-top: 20vh;
 }
 
