@@ -9,6 +9,7 @@ import {
   RefreshControl,
 } from "react-native";
 import { MaterialIcons } from "@expo/vector-icons";
+import { Linking } from "react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import UseHttp from "../../hooks/request";
 import CustomAlert from "../../components/CustomAlert/CustomAlert";
@@ -105,6 +106,19 @@ const DonorCompletedOrders = ({ navigation }) => {
               <Text style={styles.label}>
                 Phone Number:{" "}
                 <Text style={styles.value}>{item.phone_number}</Text>
+                <TouchableOpacity
+                  onPress={() => {
+                    // Open phone dialer
+                    Linking.openURL(`tel:${item.phone_number}`);
+                  }}
+                >
+                  <MaterialIcons
+                    name="local-phone"
+                    size={18}
+                    color="#fff"
+                    style={styles.callIcon}
+                  />
+                </TouchableOpacity>
               </Text>
 
               <Text style={styles.label}>
@@ -197,6 +211,9 @@ const styles = StyleSheet.create({
     position: "absolute",
     bottom: 9,
     left: 285,
+  },
+  callIcon: {
+    marginLeft: 3,
   },
 });
 export default DonorCompletedOrders;

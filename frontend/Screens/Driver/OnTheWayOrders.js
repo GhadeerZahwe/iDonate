@@ -8,6 +8,8 @@ import {
   Alert,
   RefreshControl,
 } from "react-native";
+import { Linking } from "react-native";
+
 import { FontAwesome } from "@expo/vector-icons";
 
 import AsyncStorage from "@react-native-async-storage/async-storage";
@@ -156,6 +158,19 @@ const OnTheWayOrders = () => {
 
           <Text style={styles.boldText}>
             Phone Number: <Text style={styles.value}>{item.phone_number}</Text>
+            <TouchableOpacity
+              onPress={() => {
+                // Open phone dialer
+                Linking.openURL(`tel:${item.phone_number}`);
+              }}
+            >
+              <FontAwesome
+                name="phone"
+                size={17}
+                color="#fff"
+                style={{ marginLeft: 10 }}
+              />
+            </TouchableOpacity>
           </Text>
 
           <View style={styles.buttonContainer}>

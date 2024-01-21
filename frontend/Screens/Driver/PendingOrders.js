@@ -137,9 +137,9 @@ const PendingOrders = () => {
             >
               <FontAwesome
                 name="phone"
-                size={20}
+                size={18}
                 color="#fff"
-                style={{ marginLeft: 10 }}
+                style={{ marginLeft: 8 }}
               />
             </TouchableOpacity>
           </Text>
