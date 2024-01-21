@@ -1,7 +1,9 @@
 <?php
 
 namespace App\Http\Controllers;
+use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use App\Models\DeliveryInfo;
 use App\Models\DonorInfo;
 use App\Models\Location;
@@ -281,6 +283,33 @@ public function updateOrderStatusOnScan(Request $request, $orderId)
         return response()->json(['error' => $e->getMessage()], 500);
     }
 }
+
+public function updateOrderWeight(Request $request, $orderId)
+{
+    $delivery = Auth::user();
+
+    $order = Order::where('id', $orderId)
+        ->where('delivery_id', $delivery->id)
+        ->where('status', 'on_the_way') // Add this check for 'on_the_way' status
+        ->firstOrFail();
+
+    $validator = Validator::make($request->all(), [
+        'total_weight' => 'required|numeric',
+    ]);
+
+    if ($validator->fails()) {
+        return response()->json(['error' => $validator->errors()], 400);
+    }
+
+    return DB::transaction(function () use ($order, $request) {
+        $order->update([
+            'total_weight' => $request->input('total_weight'),
+        ]);
+
+        return response()->json(['message' => 'Order weight updated successfully.'], 200);
+    });
+}
+
 
 }
 
