@@ -142,7 +142,7 @@ const OnTheWayOrders = () => {
                   name="weight-kilogram"
                   size={20}
                   color="#fff"
-                  style={{ marginLeft: 7, top: 3 }}
+                  style={{ marginLeft: 7, top: 4 }}
                 />
               </TouchableOpacity>
             </Text>
