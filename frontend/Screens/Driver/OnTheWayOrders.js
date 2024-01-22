@@ -9,7 +9,6 @@ import {
   RefreshControl,
 } from "react-native";
 import { Linking } from "react-native";
-
 import { FontAwesome } from "@expo/vector-icons";
 
 import AsyncStorage from "@react-native-async-storage/async-storage";
@@ -18,6 +17,7 @@ import CustomAlert from "../../components/CustomAlert/CustomAlert";
 import { useNavigation, useIsFocused } from "@react-navigation/native";
 import Icon from "react-native-vector-icons/FontAwesome";
 import MaterialIcon from "react-native-vector-icons/MaterialIcons";
+import { MaterialCommunityIcons } from "@expo/vector-icons";
 
 import PendingOrders from "./PendingOrders";
 import DonorCompletedOrders from "./CompletedOrders";
@@ -133,7 +133,19 @@ const OnTheWayOrders = () => {
 
           <Text style={styles.boldText}>
             Total Weight:{" "}
-            <Text style={styles.value}>{item.total_weight} kg</Text>
+            <Text style={styles.value}>
+              {item.total_weight} kg
+              <TouchableOpacity
+                onPress={() => navigation.navigate("DoubleChecking")}
+              >
+                <MaterialCommunityIcons
+                  name="weight-kilogram"
+                  size={20}
+                  color="#fff"
+                  style={{ marginLeft: 7, top: 3 }}
+                />
+              </TouchableOpacity>
+            </Text>
           </Text>
 
           <Text style={styles.boldText}>
@@ -193,8 +205,7 @@ const OnTheWayOrders = () => {
   };
 
   const handleLocationPress = (order) => {
-    // Navigate to the "OnWayLocation" page with the order details
-    navigation.navigate("OnWayLocation", { order });
+    navigation.navigate("OnWayLocation", { orderLocation: order.locations });
   };
 
   return (

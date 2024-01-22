@@ -5,10 +5,13 @@ import {
   StyleSheet,
   ScrollView,
   RefreshControl,
+  TouchableOpacity,
 } from "react-native";
+import { MaterialIcons } from "@expo/vector-icons";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import UseHttp from "../../hooks/request";
 import { useFocusEffect } from "@react-navigation/native";
+import { Linking } from "react-native";
 
 const CompletedOrder = () => {
   const [donations, setDonations] = useState([]);
@@ -67,6 +70,19 @@ const CompletedOrder = () => {
               <Text style={styles.label}>
                 Phone Number:{" "}
                 <Text style={styles.value}>{item.phone_number}</Text>
+                <TouchableOpacity
+                  onPress={() => {
+                    // Open phone dialer
+                    Linking.openURL(`tel:${item.phone_number}`);
+                  }}
+                >
+                  <MaterialIcons
+                    name="local-phone"
+                    size={18}
+                    color="#fff"
+                    style={styles.callIcon}
+                  />
+                </TouchableOpacity>
               </Text>
 
               <Text style={styles.label}>
@@ -131,7 +147,11 @@ const styles = StyleSheet.create({
   value: {
     color: "rgba(255, 255, 255, 0.7)",
     fontSize: 16,
-    marginVertical: 1,
+    marginRight: 2,
+  },
+  callIcon: {
+    marginLeft: 5,
+    top: 3,
   },
 });
 

@@ -4,6 +4,7 @@ import DriverMain from "../Screens/Driver/DriverMain";
 import PendingOrders from "../Screens/Driver/PendingOrders";
 import OrderLocation from "../Screens/Driver/OrderLocation";
 import OnWayLocation from "../Screens/Driver/OnWayLocation";
+import DoubleChecking from "../Screens/Driver/DoubleChecking ";
 
 const Stack = createStackNavigator();
 
@@ -22,13 +23,13 @@ const DriverOnboardingStack = ({ navigation }) => {
         }}
       />
       <Stack.Screen
-        name="OnWayLocation"
-        component={OnWayLocation}
+        name="DoubleChecking"
+        component={DoubleChecking}
         options={{
           headerShown: true,
           headerStyle: { backgroundColor: "#146C94" },
           headerTintColor: "#fff",
-          title: "On Way Location",
+          title: "Double Checking Weight",
         }}
       />
       {/* <Stack.Screen
