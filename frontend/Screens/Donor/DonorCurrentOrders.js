@@ -272,7 +272,13 @@ const DonorCurrentOrders = () => {
                     </View>
                   )}
                   {item.status === "on_the_way" && isExpanded && (
-                    <View style={[styles.card, { backgroundColor: "#87CEEB" }]}>
+                    <View
+                      style={[
+                        styles.card,
+                        { backgroundColor: "#19A7CE", opacity: 0.86 },
+                        //old color 87CEEB
+                      ]}
+                    >
                       <Text style={styles.boldText}>
                         Weight:{" "}
                         <Text style={styles.value_way}>
@@ -312,7 +318,7 @@ const DonorCurrentOrders = () => {
                             name="local-phone"
                             size={18}
                             color="#fff"
-                            style={{ left: 14, top: 20 }}
+                            style={{ left: 14, top: 2 }}
                           />
                         </TouchableOpacity>
                       </Text>
@@ -375,7 +381,7 @@ const styles = StyleSheet.create({
     marginRight: 10,
   },
   qrCodeButton: {
-    marginLeft: "auto", // Align the QR code icon to the right
+    marginLeft: "auto",
   },
   cardHeader: {
     flexDirection: "row",
@@ -391,7 +397,7 @@ const styles = StyleSheet.create({
     color: "#ffffff",
   },
   card: {
-    backgroundColor: "#F2BE22",
+    backgroundColor: "#FFBB33",
     padding: 10,
     borderRadius: 10,
     top: 2,
