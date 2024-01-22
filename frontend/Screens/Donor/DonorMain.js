@@ -17,18 +17,19 @@ const DonorMain = () => {
     return (
       <View style={styles.main}>
         <Background />
+
+        <Greeting />
         <Image
           source={require("../../assets/CenteredLogo.png")}
           style={{
-            marginLeft: 15,
-            top: 55,
+            marginLeft: 256,
+            top: 65,
             width: 90,
             height: 100,
             position: "absolute",
             zIndex: 2,
           }}
         />
-        <Greeting />
         <DonationBar />
         <Text style={styles.title}>Donate today. Change a life!</Text>
 

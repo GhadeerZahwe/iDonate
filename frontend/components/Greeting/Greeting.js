@@ -20,7 +20,7 @@ const getToken = async () => {
   return token;
 };
 
-export default function PassengerMain() {
+export default function DonorMain() {
   const [first_name, setFirstName] = useState("");
   const [last_name, setLastName] = useState("");
 
@@ -49,8 +49,8 @@ export default function PassengerMain() {
 
 const styles = StyleSheet.create({
   name: {
-    left: 255,
-    top: 80,
+    left: 20,
+    top: 100,
     position: "absolute",
     zIndex: 2,
     fontSize: 20,

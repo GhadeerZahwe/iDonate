@@ -78,7 +78,15 @@ export default function Login() {
         />
       </View>
       <TouchableOpacity style={styles.Login_btn} onPress={handleLogin}>
-        <Text style={{ fontSize: 24, color: "#FFF", top: 8, left: 125 }}>
+        <Text
+          style={{
+            fontSize: 22,
+            color: "#FFF",
+            top: 8,
+            left: 125,
+            fontWeight: 500,
+          }}
+        >
           Login
         </Text>
       </TouchableOpacity>
@@ -130,6 +138,7 @@ const styles = StyleSheet.create({
     left: 30,
     borderRadius: 10,
     elevation: 3,
+    fontWeight: 500,
   },
   alertTitle: {
     fontSize: 18,
