@@ -23,6 +23,7 @@ import PendingOrders from "./PendingOrders";
 import DonorCompletedOrders from "./CompletedOrders";
 import DriverMain from "./DriverMain";
 import OnWayLocation from "./OnWayLocation";
+import DoubleChecking from "./DoubleChecking ";
 
 const OnTheWayOrders = () => {
   const [donations, setDonations] = useState([]);
@@ -30,6 +31,7 @@ const OnTheWayOrders = () => {
   const [alertVisible, setAlertVisible] = useState(false);
   const [alertType, setAlertType] = useState("");
   const [refreshing, setRefreshing] = useState(false);
+  const [checkedWeight, setCheckedWeight] = useState(null);
 
   const [selectedOrderId, setSelectedOrderId] = useState(null);
   const navigation = useNavigation();
@@ -120,101 +122,124 @@ const OnTheWayOrders = () => {
     return unsubscribe;
   }, [navigation]);
 
-  const renderOnTheWayOrders = () => {
-    return donations.map((item) => (
-      <View style={styles.cardContainer} key={item.id}>
-        <View style={[styles.card, { backgroundColor: "#146C94" }]}>
-          <Text style={styles.boldText}>
-            Donor Name:{" "}
-            <Text style={styles.value}>
-              {item.donor.first_name} {item.donor.last_name}
-            </Text>
-          </Text>
+  const handleWeightCheck = async (orderId) => {
+    try {
+      const token = await getToken();
+      const result = await UseHttp(`getTotalWeight/${orderId}`, "GET", "", {
+        Authorization: "bearer " + token,
+      });
+      console.log("Total Weight:", result.total_weight);
+      return result; // Return the result, including total_weight
+    } catch (error) {
+      console.log(error);
+      setError(error);
+      return { total_weight: null }; // Return an object with total_weight as null in case of error
+    }
+  };
 
-          <Text style={styles.boldText}>
-            Total Weight:{" "}
-            <Text style={styles.value}>
-              {item.total_weight} kg
-              <TouchableOpacity
-                onPress={() => navigation.navigate("DoubleChecking")}
-              >
-                <MaterialCommunityIcons
-                  name="weight-kilogram"
+  const renderOnTheWayOrders = (handleWeightCheck) => {
+    return (
+      donations &&
+      donations.map((item) => (
+        <View style={styles.cardContainer} key={item.id}>
+          <View style={[styles.card, { backgroundColor: "#146C94" }]}>
+            <Text style={styles.boldText}>
+              Donor Name:{" "}
+              <Text style={styles.value}>
+                {item.donor.first_name} {item.donor.last_name}
+              </Text>
+            </Text>
+
+            <Text style={styles.boldText}>
+              Total Weight:{" "}
+              <Text style={styles.value}>
+                {item.total_weight} kg
+                <TouchableOpacity
+                  onPress={() =>
+                    navigation.navigate("DoubleChecking", {
+                      handleWeightCheck,
+                      orderId: item.id,
+                    })
+                  }
+                >
+                  <MaterialCommunityIcons
+                    name="weight-kilogram"
+                    size={20}
+                    color="#fff"
+                    style={{ marginLeft: 7, top: 4 }}
+                  />
+                </TouchableOpacity>
+              </Text>
+            </Text>
+
+            <Text style={styles.boldText}>
+              Picked Up Within:{" "}
+              <Text style={styles.value}>{item.pickup_within} hrs</Text>
+            </Text>
+
+            <View style={styles.locationContainer}>
+              <Text style={styles.boldText}>
+                Location:{" "}
+                <Text style={styles.value}>{item.locations.description}</Text>
+              </Text>
+              <TouchableOpacity onPress={() => handleLocationPress(item)}>
+                <FontAwesome
+                  name="map-marker"
                   size={20}
                   color="#fff"
-                  style={{ marginLeft: 7, top: 4 }}
+                  style={styles.locationIcon}
+                />
+              </TouchableOpacity>
+            </View>
+
+            <Text style={styles.boldText}>
+              Phone Number:{" "}
+              <Text style={styles.value}>{item.phone_number}</Text>
+              <TouchableOpacity
+                onPress={() => {
+                  // Open phone dialer
+                  Linking.openURL(`tel:${item.phone_number}`);
+                }}
+              >
+                <FontAwesome
+                  name="phone"
+                  size={17}
+                  color="#fff"
+                  style={{ marginLeft: 10 }}
                 />
               </TouchableOpacity>
             </Text>
-          </Text>
 
-          <Text style={styles.boldText}>
-            Picked Up Within:{" "}
-            <Text style={styles.value}>{item.pickup_within} hrs</Text>
-          </Text>
-
-          <View style={styles.locationContainer}>
-            <Text style={styles.boldText}>
-              Location:{" "}
-              <Text style={styles.value}>{item.locations.description}</Text>
-            </Text>
-            <TouchableOpacity onPress={() => handleLocationPress(item)}>
-              <FontAwesome
-                name="map-marker"
-                size={20}
-                color="#fff"
-                style={styles.locationIcon}
-              />
-            </TouchableOpacity>
-          </View>
-
-          <Text style={styles.boldText}>
-            Phone Number: <Text style={styles.value}>{item.phone_number}</Text>
-            <TouchableOpacity
-              onPress={() => {
-                // Open phone dialer
-                Linking.openURL(`tel:${item.phone_number}`);
-              }}
-            >
-              <FontAwesome
-                name="phone"
-                size={17}
-                color="#fff"
-                style={{ marginLeft: 10 }}
-              />
-            </TouchableOpacity>
-          </Text>
-
-          <View style={styles.buttonContainer}>
-            <TouchableOpacity
-              style={styles.completeButton}
-              onPress={() => handleComplete(item.id)}
-            >
-              <Text style={styles.buttonText}>Completed</Text>
-            </TouchableOpacity>
-            <TouchableOpacity
-              style={styles.cancelButton}
-              onPress={() => handleCancel(item.id)}
-            >
-              <Text style={styles.buttonText}>Cancel</Text>
-            </TouchableOpacity>
+            <View style={styles.buttonContainer}>
+              <TouchableOpacity
+                style={styles.completeButton}
+                onPress={() => handleComplete(item.id)}
+              >
+                <Text style={styles.buttonText}>Completed</Text>
+              </TouchableOpacity>
+              <TouchableOpacity
+                style={styles.cancelButton}
+                onPress={() => handleCancel(item.id)}
+              >
+                <Text style={styles.buttonText}>Cancel</Text>
+              </TouchableOpacity>
+            </View>
           </View>
         </View>
-      </View>
-    ));
+      ))
+    );
   };
 
   const handleLocationPress = (order) => {
     navigation.navigate("OnWayLocation", { orderLocation: order.locations });
   };
-
   return (
     <ScrollView
       refreshControl={
         <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
       }
     >
-      {renderOnTheWayOrders()}
+      {renderOnTheWayOrders(handleWeightCheck)}
       <CustomAlert
         visible={alertVisible}
         title={alertType === "completed" ? "Complete Order" : "Cancel Order"}
@@ -224,6 +249,12 @@ const OnTheWayOrders = () => {
         onYes={() => handleAlertAction()}
         onNo={() => setAlertVisible(false)}
       />
+      {selectedOrderId !== null && (
+        <DoubleChecking
+          handleWeightCheck={handleWeightCheck}
+          orderId={selectedOrderId} // Pass the order ID
+        />
+      )}
     </ScrollView>
   );
 };
@@ -283,5 +314,4 @@ const styles = StyleSheet.create({
     marginLeft: 10,
   },
 });
-
 export default OnTheWayOrders;
