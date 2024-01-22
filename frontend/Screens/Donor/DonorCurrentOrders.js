@@ -8,6 +8,7 @@ import {
   ScrollView,
   RefreshControl,
 } from "react-native";
+import { MaterialIcons } from "@expo/vector-icons";
 import Icon from "react-native-vector-icons/FontAwesome";
 import { useNavigation } from "@react-navigation/native";
 import QRCode from "react-native-qrcode-svg";
@@ -18,6 +19,7 @@ import CustomAlert from "../../components/CustomAlert/CustomAlert";
 import { useFocusEffect } from "@react-navigation/native";
 import QRCodeAlert from "./QRCodeAlert";
 import MapLocation from "./MapLocation";
+import { Linking } from "react-native";
 import TrackLocation from "./TrackLocation";
 
 const DonorCurrentOrders = () => {
@@ -298,9 +300,21 @@ const DonorCurrentOrders = () => {
                       <Text style={styles.boldText}>
                         Phone Number:{" "}
                         <Text style={styles.value_way}>
-                          {" "}
                           {item.phone_number}
                         </Text>
+                        <TouchableOpacity
+                          onPress={() => {
+                            // Open phone dialer
+                            Linking.openURL(`tel:${item.phone_number}`);
+                          }}
+                        >
+                          <MaterialIcons
+                            name="local-phone"
+                            size={18}
+                            color="#fff"
+                            style={{ left: 14, top: 20 }}
+                          />
+                        </TouchableOpacity>
                       </Text>
                       <Text style={styles.boldText}>
                         Location:{" "}
@@ -420,6 +434,7 @@ const styles = StyleSheet.create({
     left: 10,
     fontSize: 15,
     color: "rgba(255, 255, 255, 0.75)",
+    marginRight: 3,
   },
 });
 
