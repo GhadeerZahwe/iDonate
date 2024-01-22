@@ -158,7 +158,8 @@ const OnTheWayOrders = () => {
                   onPress={() =>
                     navigation.navigate("DoubleChecking", {
                       handleWeightCheck,
-                      orderId: item.id,
+                      orderId: item.id, // Fix: use item.id as the order ID
+                      initialWeight: item.total_weight,
                     })
                   }
                 >
