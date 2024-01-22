@@ -284,13 +284,13 @@ public function updateOrderStatusOnScan(Request $request, $orderId)
     }
 }
 
-public function updateOrderWeight(Request $request, $orderId)
+public function updateOrderWeight(Request $request, $deliveryId, $orderId)
 {
-    $delivery = Auth::user();
+    echo "Received request for Delivery ID: $deliveryId, Order ID: $orderId, Weight: " . $request->input('total_weight');
 
     $order = Order::where('id', $orderId)
-        ->where('delivery_id', $delivery->id)
-        ->where('status', 'on_the_way') // Add this check for 'on_the_way' status
+        ->where('delivery_id', $deliveryId)
+        ->where('status', 'on_the_way')
         ->firstOrFail();
 
     $validator = Validator::make($request->all(), [
@@ -302,13 +302,25 @@ public function updateOrderWeight(Request $request, $orderId)
     }
 
     return DB::transaction(function () use ($order, $request) {
+        $newWeight = $request->input('total_weight');
+
+        // Check if the updated total weight is negative
+        if ($newWeight < 0) {
+            // Return an error response, indicating that updating to a negative value is not allowed
+            return response()->json(['error' => 'Cannot update to a negative total weight value'], 400);
+        }
+
+        info("Updating order weight: Order ID - $order->id, Delivery ID - $order->delivery_id, New Weight - $newWeight");
+
+        // Update the total weight
         $order->update([
-            'total_weight' => $request->input('total_weight'),
+            'total_weight' => $newWeight,
         ]);
 
         return response()->json(['message' => 'Order weight updated successfully.'], 200);
     });
 }
+
 
 public function getTotalWeight(Request $request, $orderId)
 {
