@@ -32,6 +32,16 @@ const DriverOnboardingStack = ({ navigation }) => {
           title: "Double Checking Weight",
         }}
       />
+      <Stack.Screen
+        name="OnWayLocation"
+        component={OnWayLocation}
+        options={{
+          headerShown: true,
+          headerStyle: { backgroundColor: "#146C94" },
+          headerTintColor: "#fff",
+          title: "On Way Location",
+        }}
+      />
       {/* <Stack.Screen
         name="DriverMain"
         component={DriverMain}

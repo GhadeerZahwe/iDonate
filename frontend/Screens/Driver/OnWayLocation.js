@@ -4,6 +4,7 @@ import MapView, { Marker } from "react-native-maps";
 import MapViewDirections from "react-native-maps-directions";
 import * as Location from "expo-location";
 import { useRoute } from "@react-navigation/native";
+import database from "@react-native-firebase/database"; // Import Firebase database
 
 const OnWayLocation = ({ route }) => {
   const [location, setLocation] = useState(null);
@@ -26,15 +27,20 @@ const OnWayLocation = ({ route }) => {
       setLocation(currentLocation);
     };
 
-    // Fetch initial location
     fetchLocation();
 
-    // Set up interval to update location every 5 seconds
-    const locationInterval = setInterval(() => {
+    const locationInterval = setInterval(async () => {
       fetchLocation();
+
+      const orderRef = database().ref(`/${orderId}`);
+      if (location) {
+        await orderRef.set({
+          Latitude: location.coords.latitude,
+          Longitude: location.coords.longitude,
+        });
+      }
     }, 5000);
 
-    // Clear interval on component unmount
     return () => clearInterval(locationInterval);
   }, []);
 

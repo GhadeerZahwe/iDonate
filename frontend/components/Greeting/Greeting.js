@@ -50,7 +50,7 @@ export default function DonorMain() {
 const styles = StyleSheet.create({
   name: {
     left: 20,
-    top: 100,
+    top: 107,
     position: "absolute",
     zIndex: 2,
     fontSize: 20,

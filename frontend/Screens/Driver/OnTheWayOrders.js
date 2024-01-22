@@ -232,7 +232,10 @@ const OnTheWayOrders = () => {
   };
 
   const handleLocationPress = (order) => {
-    navigation.navigate("OnWayLocation", { orderLocation: order.locations });
+    navigation.navigate("OnWayLocation", {
+      orderLocation: order.locations,
+      orderId: order.id,
+    });
   };
   return (
     <ScrollView
