@@ -15,6 +15,7 @@
     "@react-native-community/datetimepicker": "7.2.0",
     "@react-native-community/slider": "4.4.2",
     "@react-native-firebase/app": "^18.7.3",
+    "@react-native-firebase/database": "^18.7.3",
     "@react-native-picker/picker": "^2.4.10",
     "@react-navigation/bottom-tabs": "^6.5.7",
     "@react-navigation/material-top-tabs": "^6.6.5",

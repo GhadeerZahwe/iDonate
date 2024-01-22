@@ -20,6 +20,7 @@ const DriverMain = () => {
                   fontSize: 16,
                   fontWeight: "bold",
                   color: "#FFF",
+                  textTransform: "none", // <-- Add this property
                 },
                 tabBarIndicatorStyle: { backgroundColor: "#fff" },
                 tabBarStyle: {
@@ -32,7 +33,7 @@ const DriverMain = () => {
               })}
             >
               <Tab.Screen name="Pending" component={PendingOrders} />
-              <Tab.Screen name="OnTheWay" component={OnTheWayOrders} />
+              <Tab.Screen name="On The Way" component={OnTheWayOrders} />
             </Tab.Navigator>
           )}
         </Stack.Screen>

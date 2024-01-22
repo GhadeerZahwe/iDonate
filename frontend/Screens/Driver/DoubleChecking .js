@@ -1,9 +1,21 @@
 import React, { useState, useEffect } from "react";
-import { View, Text, StyleSheet, Image, TouchableOpacity } from "react-native";
+import {
+  View,
+  Text,
+  StyleSheet,
+  Image,
+  TouchableOpacity,
+  Alert,
+} from "react-native";
+import AlertMessage from "../../components/AlertMessage/AlertMessage";
+import WeightAlert from "../../components/WeightAlert/WeightAlert";
 
 const DoubleChecking = ({ route }) => {
   const { handleWeightCheck, orderId, initialWeight } = route.params;
   const [checkedWeight, setCheckedWeight] = useState(initialWeight);
+  const [isAlertVisible, setAlertVisible] = useState(false);
+  const [alertTitle, setAlertTitle] = useState("");
+  const [alertMessage, setAlertMessage] = useState("");
 
   useEffect(() => {
     // Initialize checkedWeight with initialWeight when the component mounts
@@ -16,10 +28,21 @@ const DoubleChecking = ({ route }) => {
       // Update checkedWeight with the newly retrieved value
       console.log(result.total_weight);
       setCheckedWeight(result.total_weight);
+
+      // Set the title and message for the custom alert
+      setAlertTitle("Total Weight Checked");
+      setAlertMessage(`The total weight is ${result.total_weight} kg.`);
+
+      // Show the custom alert
+      setAlertVisible(true);
     } catch (error) {
       console.log(error);
-      // Handle error if necessary
     }
+  };
+
+  const handleCloseAlert = () => {
+    // Hide the custom alert
+    setAlertVisible(false);
   };
 
   return (
@@ -44,6 +67,14 @@ const DoubleChecking = ({ route }) => {
       >
         <Text style={styles.checkWeightButtonText}>Check Weight</Text>
       </TouchableOpacity>
+
+      {/* Render the custom alert */}
+      <WeightAlert
+        visible={isAlertVisible}
+        title={alertTitle}
+        message={alertMessage}
+        onClose={handleCloseAlert}
+      />
     </View>
   );
 };
@@ -104,7 +135,7 @@ const styles = StyleSheet.create({
     top: 10,
     fontWeight: "bold",
     color: "white",
-    left: 26,
+    left: 29,
   },
 });
 
