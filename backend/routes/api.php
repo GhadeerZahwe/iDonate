@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DonorController;
+use App\Http\Controllers\ChatBotController;
 use App\Http\Controllers\DeliveryController;
 
 /*
@@ -46,6 +47,7 @@ Route::group(['middleware'=>'idonate_authenticate'],function(){
     Route::delete('/cancelDonation/{orderId}',[DonorController::class, "cancelDonation"]);
     Route::get('/generateQrCode/{orderId}',[DonorController::class, "generateQrCode"]);
     Route::get('/getDeliveryLocation/{orderId}',[DonorController::class,"getDeliveryLocation"]);
+    Route::post('/sendChat',[ChatBotController::class,"sendChat"]);
    });
     
    Route::group(['middleware'=>'delivery_authorize'],function(){
