@@ -64,6 +64,8 @@ const OnWayLocation = ({ route }) => {
       {location && (
         <MapView
           style={styles.map}
+          showsUserLocation={true}
+          followsUserLocation={true}
           initialRegion={{
             latitude: location.coords.latitude,
             longitude: location.coords.longitude,

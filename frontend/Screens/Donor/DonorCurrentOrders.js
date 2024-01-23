@@ -29,6 +29,7 @@ const DonorCurrentOrders = () => {
   const [showQRCodeAlert, setShowQRCodeAlert] = useState(false);
   const [qrCodeValue, setQRCodeValue] = useState(null);
   const [refreshing, setRefreshing] = useState(false);
+  const [intervalId, setIntervalId] = useState(null); // Add this line
 
   const handleQRCodeIconClick = async (orderId) => {
     try {
@@ -66,6 +67,7 @@ const DonorCurrentOrders = () => {
   const [isMapPageVisible, setMapPageVisibility] = useState(false);
   const [error, setError] = useState("");
   const [searchText, setSearchText] = useState("");
+  const [deliveryLocation, setDeliveryLocation] = useState(null);
 
   const FilterDonations = () => {
     const filteredData = donations.filter((donation) => {
@@ -162,10 +164,78 @@ const DonorCurrentOrders = () => {
     setShowCancelAlert(true);
   };
 
-  const handleTrackButtonClick = () => {
-    // Navigate to the TrackLocation component when the "Track" button is clicked
-    navigation.navigate("TrackLocation");
+  // const handleTrackButtonClick = (delivery) => {
+  //   // Navigate to the TrackLocation component when the "Track" button is clicked
+  //   navigation.navigate("TrackLocation", {
+  //     deliveryLotitude: delivery.latitude,
+  //     deliveryLotitude: delivery.longitudde,
+  //   });
+  //   console.log(order);
+  // };
+
+  const handleTrackButtonClick = async (orderId) => {
+    try {
+      const token = await getToken();
+      const response = await UseHttp(
+        `getDeliveryLocation/${orderId}`,
+        "GET",
+        null,
+        {
+          Authorization: "bearer " + token,
+        }
+      );
+      const deliveryLocation = response.delivery_location;
+      console.log(response.delivery_location);
+
+      // Fetch delivery location initially
+      await updateDeliveryLocation(orderId);
+
+      // Set an interval to fetch delivery location every 5 seconds
+      const intervalId = setInterval(() => {
+        updateDeliveryLocation(orderId);
+      }, 5000);
+
+      // Save the intervalId to clear it later when needed (e.g., component unmount)
+      setIntervalId(intervalId);
+      // Navigate to the TrackLocation component when the "Track" button is clicked
+      navigation.navigate("TrackLocation", {
+        deliveryLatitude: deliveryLocation.latitude,
+        deliveryLongitude: deliveryLocation.longitude,
+      });
+    } catch (error) {
+      console.error("Error fetching delivery location:", error);
+    }
   };
+
+  const updateDeliveryLocation = async (orderId) => {
+    try {
+      const token = await getToken();
+      const response = await UseHttp(
+        `getDeliveryLocation/${orderId}`,
+        "GET",
+        null,
+        {
+          Authorization: "bearer " + token,
+        }
+      );
+      console.log("Delivery Location Response:", response);
+
+      const deliveryLocation = response.delivery_location;
+      console.log("Delivery Location:", deliveryLocation);
+      setDeliveryLocation(deliveryLocation);
+    } catch (error) {
+      console.error("Error fetching delivery location:", error);
+    }
+  };
+
+  useEffect(() => {
+    // Clear the interval when the component unmounts
+    return () => {
+      if (intervalId) {
+        clearInterval(intervalId);
+      }
+    };
+  }, [intervalId]);
 
   const fetchQRCode = async (orderId) => {
     try {
@@ -331,7 +401,9 @@ const DonorCurrentOrders = () => {
                       </Text>
                       <TouchableOpacity
                         style={styles.trackButton}
-                        onPress={handleTrackButtonClick}
+                        onPress={() =>
+                          handleTrackButtonClick(item.id, item.delivery_id)
+                        }
                       >
                         <Text style={styles.trackButtonText}>Track</Text>
                       </TouchableOpacity>
