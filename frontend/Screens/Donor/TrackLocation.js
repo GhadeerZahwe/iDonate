@@ -14,11 +14,8 @@ const TrackLocation = () => {
   const route = useRoute();
   const { deliveryLatitude, deliveryLongitude } = route.params;
   const [locationText, setLocationText] = useState("");
-
   const [location, setLocation] = useState(null);
   const [errorMsg, setErrorMsg] = useState(null);
-
-  // Initialize animated values
   const fadeAnim = new Animated.Value(0);
 
   useEffect(() => {
@@ -29,8 +26,22 @@ const TrackLocation = () => {
         return;
       }
 
-      let currentLocation = await Location.getCurrentPositionAsync({});
-      setLocation(currentLocation);
+      const updateLocation = async () => {
+        let currentLocation = await Location.getCurrentPositionAsync({});
+        setLocation(currentLocation);
+
+        const latitude = currentLocation.coords.latitude || 0;
+        const longitude = currentLocation.coords.longitude || 0;
+        const currentLocationText = `Current Latitude: ${latitude}, Current Longitude: ${longitude}`;
+        setLocationText(currentLocationText);
+      };
+
+      updateLocation();
+
+      const intervalId = setInterval(updateLocation, 2000);
+      return () => {
+        clearInterval(intervalId);
+      };
     };
 
     fetchLocation();
@@ -56,6 +67,7 @@ const TrackLocation = () => {
       const latitude = location.coords.latitude || 0;
       const longitude = location.coords.longitude || 0;
       const currentLocationText = `Current Latitude: ${latitude}, Current Longitude: ${longitude}`;
+      console.log(currentLocationText);
       setLocationText(currentLocationText);
 
       Animated.timing(fadeAnim, {
@@ -67,10 +79,10 @@ const TrackLocation = () => {
       setTimeout(() => {
         Animated.timing(fadeAnim, {
           toValue: 0,
-          duration: 100,
+          duration: 300,
           useNativeDriver: true,
         }).start();
-      }, 3000);
+      }, 10000);
     }
   };
 
@@ -96,7 +108,7 @@ const TrackLocation = () => {
           duration: 100,
           useNativeDriver: true,
         }).start();
-      }, 3000);
+      }, 10000);
     }
   };
 
@@ -181,7 +193,7 @@ const styles = StyleSheet.create({
   },
   textContainer: {
     position: "absolute",
-    top: 10,
+    top: 2,
     left: 10,
     right: 10,
     backgroundColor: "rgba(255, 255, 255, 0.8)",

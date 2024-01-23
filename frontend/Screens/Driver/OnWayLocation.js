@@ -1,19 +1,41 @@
 import React, { useState, useEffect } from "react";
-import { View, StyleSheet } from "react-native";
+import {
+  View,
+  Text,
+  StyleSheet,
+  TouchableOpacity,
+  Animated,
+} from "react-native";
 import MapView, { Marker } from "react-native-maps";
-import MapViewDirections from "react-native-maps-directions";
 import * as Location from "expo-location";
-import { useRoute } from "@react-navigation/native";
-import database from "@react-native-firebase/database"; // Import Firebase database
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import UseHttp from "../../hooks/request";
 
 const OnWayLocation = ({ route }) => {
   const [location, setLocation] = useState(null);
-  const { orderLocation } = route.params;
+  const { orderLocation, orderId } = route.params; // Extract orderId from params
   const [errorMsg, setErrorMsg] = useState(null);
   const [destination, setDestination] = useState({
     latitude: parseFloat(orderLocation.latitude),
     longitude: parseFloat(orderLocation.longitude),
   });
+
+  const [locationText, setLocationText] = useState("");
+  const fadeAnim = new Animated.Value(0);
+
+  const retrieveData = async () => {
+    try {
+      const value = await AsyncStorage.getItem("token");
+      return value !== null ? value : null;
+    } catch (error) {
+      console.log(error);
+      return null;
+    }
+  };
+
+  const getToken = async () => {
+    return await retrieveData();
+  };
 
   useEffect(() => {
     const fetchLocation = async () => {
@@ -23,25 +45,46 @@ const OnWayLocation = ({ route }) => {
         return;
       }
 
-      let currentLocation = await Location.getCurrentPositionAsync({});
-      setLocation(currentLocation);
+      const updateLocation = async () => {
+        try {
+          const token = await getToken();
+
+          let currentLocation = await Location.getCurrentPositionAsync({});
+          setLocation(currentLocation);
+
+          const latitude = currentLocation.coords.latitude || 0;
+          const longitude = currentLocation.coords.longitude || 0;
+          const currentLocationText = `Current Latitude: ${latitude}, Current Longitude: ${longitude}`;
+          setLocationText(currentLocationText);
+
+          const updateLocationResponse = await UseHttp(
+            `updateDeliveryLocation`,
+            "POST",
+            JSON.stringify({
+              latitude: latitude,
+              longitude: longitude,
+            }),
+            {
+              Authorization: "bearer " + token,
+              "Content-Type": "application/json",
+            }
+          );
+
+          console.log(updateLocationResponse);
+        } catch (error) {
+          console.log(error);
+        }
+      };
+
+      updateLocation();
+
+      const intervalId = setInterval(updateLocation, 5000); // Update every 5 seconds
+      return () => {
+        clearInterval(intervalId);
+      };
     };
 
     fetchLocation();
-
-    const locationInterval = setInterval(async () => {
-      fetchLocation();
-
-      const orderRef = database().ref(`/${orderId}`);
-      if (location) {
-        await orderRef.set({
-          Latitude: location.coords.latitude,
-          Longitude: location.coords.longitude,
-        });
-      }
-    }, 5000);
-
-    return () => clearInterval(locationInterval);
   }, []);
 
   const origin = location
@@ -51,13 +94,49 @@ const OnWayLocation = ({ route }) => {
       }
     : null;
 
-  console.log("Order Location Latitude:", orderLocation.latitude);
-  console.log("Order Location Longitude:", orderLocation.longitude);
-  if (origin) {
-    console.log("My Current Location:", origin.latitude, origin.longitude);
-  }
+  const handleMyLocationPress = () => {
+    if (origin) {
+      console.log("My Current Location:", origin.latitude, origin.longitude);
 
-  const GOOGLE_MAPS_APIKEY = "YOUR_GOOGLE_MAPS_API_KEY_HERE";
+      Animated.timing(fadeAnim, {
+        toValue: 1,
+        duration: 1000,
+        useNativeDriver: true,
+      }).start();
+
+      setTimeout(() => {
+        Animated.timing(fadeAnim, {
+          toValue: 0,
+          duration: 100,
+          useNativeDriver: true,
+        }).start();
+      }, 3000);
+    }
+  };
+
+  const handleOrderLocationPress = () => {
+    console.log("Order Location Latitude:", orderLocation.latitude);
+    console.log("Order Location Longitude:", orderLocation.longitude);
+
+    const orderLatitudeValue = parseFloat(orderLocation.latitude) || 0;
+    const orderLongitudeValue = parseFloat(orderLocation.longitude) || 0;
+    const orderLocationText = `Order Latitude: ${orderLatitudeValue}, Order Longitude: ${orderLongitudeValue}`;
+    setLocationText(orderLocationText);
+
+    Animated.timing(fadeAnim, {
+      toValue: 1,
+      duration: 5000,
+      useNativeDriver: true,
+    }).start();
+
+    setTimeout(() => {
+      Animated.timing(fadeAnim, {
+        toValue: 0,
+        duration: 1000,
+        useNativeDriver: true,
+      }).start();
+    }, 5000);
+  };
 
   return (
     <View style={styles.container}>
@@ -78,7 +157,7 @@ const OnWayLocation = ({ route }) => {
               coordinate={origin}
               title="My Location"
               description="This is my current location"
-              pinColor="red" // Set pinColor to red
+              pinColor="red"
             />
           )}
           <Marker
@@ -87,19 +166,26 @@ const OnWayLocation = ({ route }) => {
               longitude: parseFloat(orderLocation.longitude),
             }}
             title="Order Location"
-            pinColor="green" // Set pinColor to green
+            pinColor="green"
           />
-          {origin && (
-            <MapViewDirections
-              origin={origin}
-              destination={destination}
-              apikey={GOOGLE_MAPS_APIKEY}
-              strokeWidth={4}
-              strokeColor="red"
-            />
-          )}
         </MapView>
       )}
+
+      <Animated.View style={{ ...styles.textContainer, opacity: fadeAnim }}>
+        <Text style={styles.text}>{locationText}</Text>
+      </Animated.View>
+
+      <View style={styles.buttonContainer}>
+        <TouchableOpacity style={styles.button} onPress={handleMyLocationPress}>
+          <Text style={styles.buttonText}> My Location</Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={styles.button}
+          onPress={handleOrderLocationPress}
+        >
+          <Text style={styles.buttonText}> Order Location</Text>
+        </TouchableOpacity>
+      </View>
     </View>
   );
 };
@@ -111,6 +197,41 @@ const styles = StyleSheet.create({
   },
   map: {
     ...StyleSheet.absoluteFillObject,
+  },
+  buttonContainer: {
+    flexDirection: "column",
+    marginTop: 530,
+    left: 20,
+  },
+  button: {
+    backgroundColor: "#146C94",
+    width: 320,
+    height: 50,
+    borderRadius: 10,
+    elevation: 3,
+    marginTop: 5,
+  },
+  buttonText: {
+    fontSize: 20,
+    color: "#FFF",
+    top: 9,
+    textAlign: "center",
+    fontWeight: "bold",
+  },
+  textContainer: {
+    position: "absolute",
+    top: 2,
+    left: 10,
+    right: 10,
+    backgroundColor: "rgba(255, 255, 255, 0.7)",
+    borderRadius: 10,
+    padding: 10,
+  },
+  text: {
+    fontSize: 15.5,
+    fontWeight: "bold",
+    textAlign: "center",
+    color: "#146C94",
   },
 });
 

@@ -6,6 +6,7 @@ import DonorTabStack from "./DonorTabStack";
 import Donate from "../Screens/Donor/Donate";
 import MapLocation from "../Screens/Donor/MapLocation";
 import TrackLocation from "../Screens/Donor/TrackLocation";
+import Chat from "../Screens/Donor/chat";
 
 const Stack = createStackNavigator();
 
@@ -41,6 +42,16 @@ const DonorOnboardingStack = ({ navigation }) => {
           headerStyle: { backgroundColor: "#146C94" },
           headerTintColor: "#fff",
           title: "Track Location",
+        }}
+      />
+      <Stack.Screen
+        name="Chat"
+        component={Chat}
+        options={{
+          headerShown: true,
+          headerStyle: { backgroundColor: "#146C94" },
+          headerTintColor: "#fff",
+          title: "Chat",
         }}
       />
       {/* <Stack.Screen

@@ -12,19 +12,21 @@ import DonationBar from "../../components/DonationBar/DonationBar";
 import Greeting from "../../components/Greeting/Greeting";
 import Donationcard from "../../components/DonationCard/DonationCard";
 import { FontAwesome } from "@expo/vector-icons";
+import { useNavigation } from "@react-navigation/native";
 
-const DonorMain = ({ navigation }) => {
+const DonorMain = () => {
   const [isSidebarOpen, setSidebarOpen] = React.useState(false);
+  const navigation = useNavigation();
 
-  const toggleSidebar = () => {
-    setSidebarOpen(!isSidebarOpen);
+  const openChat = () => {
+    navigation.navigate("Chat");
   };
   const header = () => {
     return (
       <View style={styles.main}>
         <Background />
-        <TouchableOpacity style={styles.menuIcon} onPress={toggleSidebar}>
-          <FontAwesome name="bars" size={27} color="white" />
+        <TouchableOpacity style={styles.menuIcon} onPress={openChat}>
+          <FontAwesome name="comments" size={27} color="white" />
         </TouchableOpacity>
         <Greeting />
         <Image

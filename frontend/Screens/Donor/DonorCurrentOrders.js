@@ -182,6 +182,7 @@ const DonorCurrentOrders = () => {
         null,
         {
           Authorization: "bearer " + token,
+          "Content-Type": "application/json",
         }
       );
       const deliveryLocation = response.delivery_location;
@@ -193,14 +194,14 @@ const DonorCurrentOrders = () => {
       // Set an interval to fetch delivery location every 5 seconds
       const intervalId = setInterval(() => {
         updateDeliveryLocation(orderId);
-      }, 5000);
+      }, 2000);
 
       // Save the intervalId to clear it later when needed (e.g., component unmount)
       setIntervalId(intervalId);
+
       // Navigate to the TrackLocation component when the "Track" button is clicked
       navigation.navigate("TrackLocation", {
-        deliveryLatitude: deliveryLocation.latitude,
-        deliveryLongitude: deliveryLocation.longitude,
+        deliveryLocation, // Pass the entire delivery location object
       });
     } catch (error) {
       console.error("Error fetching delivery location:", error);
@@ -216,6 +217,7 @@ const DonorCurrentOrders = () => {
         null,
         {
           Authorization: "bearer " + token,
+          "Content-Type": "application/json",
         }
       );
       console.log("Delivery Location Response:", response);
@@ -229,7 +231,6 @@ const DonorCurrentOrders = () => {
   };
 
   useEffect(() => {
-    // Clear the interval when the component unmounts
     return () => {
       if (intervalId) {
         clearInterval(intervalId);
