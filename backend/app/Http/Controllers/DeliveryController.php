@@ -348,6 +348,40 @@ public function getTotalWeight(Request $request, $orderId)
     }
 }
 
+public function updateDeliveryLocation(Request $request)
+{
+    try {
+        $delivery = Auth::user();
+
+        if ($delivery->user_type !== 'delivery') {
+            return response()->json(['error' => 'Permission Denied'], 403);
+        }
+
+        $validator = Validator::make($request->all(), [
+            'latitude' => 'required|numeric',
+            'longitude' => 'required|numeric',
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json(['error' => $validator->errors()], 400);
+        }
+
+        $deliveryInfo = DeliveryInfo::where('delivery_id', $delivery->id)->first();
+
+        if (!$deliveryInfo) {
+            return response()->json(['error' => 'Delivery information not found'], 404);
+        }
+
+        $deliveryInfo->update([
+            'latitude' => $request->input('latitude'),
+            'longitude' => $request->input('longitude'),
+        ]);
+
+        return response()->json(['message' => 'Delivery location updated successfully.'], 200);
+    } catch (\Exception $e) {
+        return response()->json(['error' => $e->getMessage()], 500);
+    }
+}
 
 }
 
