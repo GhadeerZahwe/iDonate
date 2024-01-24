@@ -1,12 +1,13 @@
-// DonorOnboardingStack.js
-
+// Import necessary components and icons
 import React from "react";
 import { createStackNavigator } from "@react-navigation/stack";
+import { FontAwesome5 } from "@expo/vector-icons"; // Import FontAwesome5 from @expo/vector-icons
 import DonorTabStack from "./DonorTabStack";
 import Donate from "../Screens/Donor/Donate";
 import MapLocation from "../Screens/Donor/MapLocation";
 import TrackLocation from "../Screens/Donor/TrackLocation";
 import Chat from "../Screens/Donor/chat";
+import { Text, View } from "react-native"; // Import Text and View components from react-native
 
 const Stack = createStackNavigator();
 
@@ -47,22 +48,23 @@ const DonorOnboardingStack = ({ navigation }) => {
       <Stack.Screen
         name="Chat"
         component={Chat}
-        options={{
+        options={({ navigation }) => ({
           headerShown: true,
           headerStyle: { backgroundColor: "#146C94" },
           headerTintColor: "#fff",
-          title: "Chat",
-        }}
+          headerTitle: () => (
+            <View style={{ flexDirection: "row", alignItems: "center" }}>
+              <FontAwesome5
+                name="robot"
+                size={24}
+                color="white"
+                style={{ marginRight: 8 }}
+              />
+              <Text style={{ color: "white", fontSize: 18 }}>Chatty</Text>
+            </View>
+          ),
+        })}
       />
-      {/* <Stack.Screen
-        name="Login"
-        component={Login}
-        options={{
-          headerShown: false,
-          headerStyle: { backgroundColor: "#146C94" },
-          headerTintColor: "#fff",
-        }}
-      /> */}
     </Stack.Navigator>
   );
 };
