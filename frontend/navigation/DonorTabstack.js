@@ -2,7 +2,6 @@ import React from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { FontAwesome5 } from "@expo/vector-icons";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
-import { Entypo } from "@expo/vector-icons";
 import DonorMain from "../Screens/Donor/DonorMain";
 import DonorCurrentOrders from "../Screens/Donor/DonorCurrentOrders";
 import DonorAllOrders from "../Screens/Donor/DonorAllOrders";
@@ -17,10 +16,10 @@ const DonorTabStack = () => {
     <Tabs.Navigator
       screenOptions={{ headerShown: false }}
       tabBarOptions={{
-        activeTintColor: "#146C94", // Selected tab text color
-        inactiveTintColor: "grey", // Inactive tabs text color
+        activeTintColor: "#146C94",
+        inactiveTintColor: "grey",
         style: {
-          backgroundColor: "white", // Background color of the tab bar
+          backgroundColor: "white",
         },
       }}
     >
@@ -99,7 +98,7 @@ const DonorTabStack = () => {
         component={DonorOnboardingStack}
         options={{
           tabBarButton: () => null,
-          tabBarVisible: false, // hide tab bar on this screen
+          tabBarVisible: false,
         }}
       />
     </Tabs.Navigator>

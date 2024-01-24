@@ -3,9 +3,6 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import OnboardingStack from "./DonorOnboardingStack";
 import DriverMain from "../Screens/Driver/DriverMain";
-import OnTheWayOrders from "../Screens/Driver/OnTheWayOrders";
-import CompletedOrders from "../Screens/Driver/CompletedOrders";
-import PendingOrders from "../Screens/Driver/PendingOrders";
 import Logout from "../Screens/Auth/Logout";
 import DonorCompletedOrders from "../Screens/Driver/CompletedOrders";
 import ScanQRCode from "../Screens/Driver/ScanQRCode"; // Import the new component
