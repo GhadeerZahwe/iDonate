@@ -15,14 +15,7 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import UseHttp from "../../hooks/request";
 import CustomAlert from "../../components/CustomAlert/CustomAlert";
 import { useNavigation, useIsFocused } from "@react-navigation/native";
-import Icon from "react-native-vector-icons/FontAwesome";
-import MaterialIcon from "react-native-vector-icons/MaterialIcons";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
-
-import PendingOrders from "./PendingOrders";
-import DonorCompletedOrders from "./CompletedOrders";
-import DriverMain from "./DriverMain";
-import OnWayLocation from "./OnWayLocation";
 import DoubleChecking from "./DoubleChecking ";
 
 const OnTheWayOrders = () => {
@@ -129,11 +122,11 @@ const OnTheWayOrders = () => {
         Authorization: "bearer " + token,
       });
       console.log("Total Weight:", result.total_weight);
-      return result; // Return the result, including total_weight
+      return result;
     } catch (error) {
       console.log(error);
       setError(error);
-      return { total_weight: null }; // Return an object with total_weight as null in case of error
+      return { total_weight: null };
     }
   };
 
@@ -158,7 +151,7 @@ const OnTheWayOrders = () => {
                   onPress={() =>
                     navigation.navigate("DoubleChecking", {
                       handleWeightCheck,
-                      orderId: item.id, // Fix: use item.id as the order ID
+                      orderId: item.id,
                       initialWeight: item.total_weight,
                     })
                   }
@@ -198,7 +191,6 @@ const OnTheWayOrders = () => {
               <Text style={styles.value}>{item.phone_number}</Text>
               <TouchableOpacity
                 onPress={() => {
-                  // Open phone dialer
                   Linking.openURL(`tel:${item.phone_number}`);
                 }}
               >
@@ -256,7 +248,7 @@ const OnTheWayOrders = () => {
       {selectedOrderId !== null && (
         <DoubleChecking
           handleWeightCheck={handleWeightCheck}
-          orderId={selectedOrderId} // Pass the order ID
+          orderId={selectedOrderId}
         />
       )}
     </ScrollView>
@@ -273,7 +265,7 @@ const styles = StyleSheet.create({
   card: {
     padding: 10,
     borderRadius: 10,
-    backgroundColor: "blue", // Light blue color for on the way order
+    backgroundColor: "blue",
   },
   boldText: {
     paddingLeft: 10,
@@ -292,13 +284,13 @@ const styles = StyleSheet.create({
     marginTop: 10,
   },
   cancelButton: {
-    backgroundColor: "#BD2031", // Red color for cancel button
+    backgroundColor: "#BD2031",
     padding: 10,
     borderRadius: 10,
     width: "48%",
   },
   completeButton: {
-    backgroundColor: "#4CAF50", // Green color for completed button
+    backgroundColor: "#4CAF50",
     padding: 10,
     borderRadius: 10,
     width: "48%",
