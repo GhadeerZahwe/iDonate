@@ -1,26 +1,11 @@
 import React from "react";
-import {
-  View,
-  Text,
-  StyleSheet,
-  TouchableOpacity,
-  FlatList,
-  Image,
-} from "react-native";
+import { View, Text, StyleSheet, FlatList, Image } from "react-native";
 import Background from "../../components/Background/Background";
 import DonationBar from "../../components/DonationBar/DonationBar";
 import Greeting from "../../components/Greeting/Greeting";
 import Donationcard from "../../components/DonationCard/DonationCard";
-import { useNavigation } from "@react-navigation/native";
 
 const DonorMain = () => {
-  const [isSidebarOpen, setSidebarOpen] = React.useState(false);
-  const navigation = useNavigation();
-
-  const openChat = () => {
-    navigation.navigate("Chat");
-  };
-
   const header = () => {
     return (
       <View style={styles.main}>
