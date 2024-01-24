@@ -11,7 +11,6 @@ import Background from "../../components/Background/Background";
 import DonationBar from "../../components/DonationBar/DonationBar";
 import Greeting from "../../components/Greeting/Greeting";
 import Donationcard from "../../components/DonationCard/DonationCard";
-import { FontAwesome, FontAwesome5 } from "@expo/vector-icons"; // Import FontAwesome5 from @expo/vector-icons
 import { useNavigation } from "@react-navigation/native";
 
 const DonorMain = () => {
@@ -72,7 +71,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#F6F1F1",
     marginBottom: 500,
     height: 560,
-    position: "relative", // Ensure proper positioning
+    position: "relative",
   },
   title: {
     left: 20,

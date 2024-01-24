@@ -16,7 +16,6 @@ import { useIsFocused } from "@react-navigation/native";
 import { useNavigation } from "@react-navigation/native";
 import { Linking } from "react-native";
 import { FontAwesome } from "@expo/vector-icons";
-import OrderLocation from "./OrderLocation";
 
 const PendingOrders = () => {
   const [donations, setDonations] = useState([]);
@@ -58,7 +57,7 @@ const PendingOrders = () => {
       console.log(error);
       setError(error);
     }
-  }, [isFocused]); // Fetch data when the component mounts and when it is focused
+  }, [isFocused]);
 
   useEffect(() => {
     fetchData();
@@ -131,7 +130,6 @@ const PendingOrders = () => {
             Phone Number: <Text style={styles.value}>{item.phone_number}</Text>
             <TouchableOpacity
               onPress={() => {
-                // Open phone dialer
                 Linking.openURL(`tel:${item.phone_number}`);
               }}
             >
@@ -197,7 +195,7 @@ const styles = StyleSheet.create({
     marginVertical: 1,
   },
   takeOrderButton: {
-    backgroundColor: "#146C94", // Light blue color for the button
+    backgroundColor: "#146C94",
     padding: 10,
     borderRadius: 10,
     marginTop: 10,
