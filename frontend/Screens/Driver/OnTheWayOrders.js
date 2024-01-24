@@ -14,9 +14,13 @@ import { FontAwesome } from "@expo/vector-icons";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import UseHttp from "../../hooks/request";
 import CustomAlert from "../../components/CustomAlert/CustomAlert";
-import { useNavigation, useIsFocused } from "@react-navigation/native";
+import {
+  useNavigation,
+  useIsFocused,
+  useRoute,
+} from "@react-navigation/native";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
-import DoubleChecking from "./DoubleChecking ";
+import DoubleChecking from "./DoubleChecking";
 
 const OnTheWayOrders = () => {
   const [donations, setDonations] = useState([]);
@@ -25,6 +29,7 @@ const OnTheWayOrders = () => {
   const [alertType, setAlertType] = useState("");
   const [refreshing, setRefreshing] = useState(false);
   const [checkedWeight, setCheckedWeight] = useState(null);
+  const route = useRoute();
 
   const [selectedOrderId, setSelectedOrderId] = useState(null);
   const navigation = useNavigation();
@@ -56,7 +61,6 @@ const OnTheWayOrders = () => {
         Authorization: "bearer " + token,
       });
       setDonations(result.orders);
-      console.log(result);
     } catch (error) {
       console.log(error);
       setError(error);
@@ -118,13 +122,16 @@ const OnTheWayOrders = () => {
   const handleWeightCheck = async (orderId) => {
     try {
       const token = await getToken();
+      console.log("Calling handleWeightCheck for orderId:", orderId);
+
       const result = await UseHttp(`getTotalWeight/${orderId}`, "GET", "", {
         Authorization: "bearer " + token,
       });
+
       console.log("Total Weight:", result.total_weight);
       return result;
     } catch (error) {
-      console.log(error);
+      console.log("Error in handleWeightCheck:", error);
       setError(error);
       return { total_weight: null };
     }
@@ -148,13 +155,14 @@ const OnTheWayOrders = () => {
               <Text style={styles.value}>
                 {item.total_weight} kg
                 <TouchableOpacity
-                  onPress={() =>
+                  onPress={() => {
+                    console.log("Initial Weight:", item.total_weight);
                     navigation.navigate("DoubleChecking", {
-                      handleWeightCheck,
+                      handleWeightCheck: handleWeightCheck,
                       orderId: item.id,
                       initialWeight: item.total_weight,
-                    })
-                  }
+                    });
+                  }}
                 >
                   <MaterialCommunityIcons
                     name="weight-kilogram"
@@ -245,12 +253,6 @@ const OnTheWayOrders = () => {
         onYes={() => handleAlertAction()}
         onNo={() => setAlertVisible(false)}
       />
-      {selectedOrderId !== null && (
-        <DoubleChecking
-          handleWeightCheck={handleWeightCheck}
-          orderId={selectedOrderId}
-        />
-      )}
     </ScrollView>
   );
 };

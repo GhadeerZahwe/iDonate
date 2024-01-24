@@ -11,24 +11,36 @@ import Slider from "@react-native-community/slider";
 import Icon from "react-native-vector-icons/FontAwesome";
 import { useNavigation } from "@react-navigation/native";
 import UseHttp from "../../hooks/request";
+import { DatePicker } from "react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import CustomAlert from "../../components/CustomAlert/CustomAlert";
+import QRCodeDisplay from "./QRCodeDisplay";
+import MapLocation from "./MapLocation";
 
 const Donate = () => {
   const navigation = useNavigation();
   const [selectedWeight, setSelectedWeight] = useState(1);
   const [selectedDuration, setSelectedDuration] = useState(5);
-  const [description, setDescription] = useState(" ");
+  const [description, setDescription] = useState(
+    "Write your description here..."
+  );
   const [phoneNumber, setPhoneNumber] = useState("+961 | ");
 
   const [latitude, setLatitude] = useState("");
   const [longitude, setLongitude] = useState("");
 
   const [date, setDate] = useState("2024-01-16");
-  const [location_description, setLocationDescription] = useState(" ");
-  const [location_pickup, setLocationPickup] = useState(" ");
+  const [location_description, setLocationDescription] =
+    useState("City Center");
+  const [location_pickup, setLocationPickup] = useState("123 Street");
   const [showCustomAlert, setShowCustomAlert] = useState(false);
 
+  const [isMapPageVisible, setMapPageVisibility] = useState(false);
+
+  const handleDateChange = (newDate) => {
+    const formattedDate = newDate.toISOString().split("T")[0];
+    setDate(formattedDate);
+  };
   const handleWeightChange = (value) => {
     setSelectedWeight(value);
   };
@@ -75,7 +87,6 @@ const Donate = () => {
   };
 
   const formData = new FormData();
-
   const retrieveData = async () => {
     try {
       const value = await AsyncStorage.getItem("token");
@@ -116,7 +127,7 @@ const Donate = () => {
   return (
     <ScrollView contentContainerStyle={styles.scrollContainer}>
       <View style={styles.container}>
-        <Text style={styles.text}> Weight Range:</Text>
+        <Text style={styles.text}> Weight Range</Text>
 
         <Slider
           style={styles.slider}
@@ -131,7 +142,7 @@ const Donate = () => {
         <Text style={styles.selectedWeightText}>
           {`Selected Weight: <${selectedWeight}kg`}
         </Text>
-        <Text style={styles.subText}>Pickup within:</Text>
+        <Text style={styles.subText}>Pickup within</Text>
         <View style={styles.buttonContainer}>
           <TouchableOpacity
             style={[
@@ -187,9 +198,7 @@ const Donate = () => {
         <Text
           style={styles.selectedDurationText}
         >{`Duration: ${selectedDuration} hrs`}</Text>
-
-        <Text style={styles.subText}>Donation Description:</Text>
-
+        <Text style={styles.subText}>Donation Description</Text>
         <TextInput
           style={styles.descriptionInput}
           multiline
@@ -198,7 +207,7 @@ const Donate = () => {
           onChangeText={handleDescriptionChange}
         />
 
-        <Text style={styles.subText}>Phone Number:</Text>
+        <Text style={styles.subText}>Phone Number</Text>
         <TextInput
           style={styles.phoneNumberInput}
           placeholder="Enter your phone number"
@@ -217,7 +226,7 @@ const Donate = () => {
           onChangeText={handleLocationPickup}
         /> */}
 
-        <Text style={styles.subText}>Location Description:</Text>
+        <Text style={styles.subText}>Location Description</Text>
         <TextInput
           style={styles.LocationInput}
           placeholder="Enter location description"
@@ -229,7 +238,7 @@ const Donate = () => {
         >{`Location Description: ${location_description}`}</Text>
         <TouchableOpacity onPress={handleMapIconClick}>
           <View style={styles.pickupContainer}>
-            <Text style={styles.pickupText}>Pick Up Order:</Text>
+            <Text style={styles.pickupText}>Pick Up Order</Text>
             <Icon
               name="map-marker"
               style={styles.pickupicon}
@@ -238,6 +247,10 @@ const Donate = () => {
             />
           </View>
         </TouchableOpacity>
+
+        {/* <Text
+          style={styles.selectedWeightText}
+        >{`Location Pickup: ${location_pickup}`}</Text> */}
 
         <TouchableOpacity onPress={handleConfirm}>
           <View style={styles.confirmButton}>
@@ -256,6 +269,7 @@ const Donate = () => {
           }}
           onNo={() => setShowCustomAlert(false)}
         />
+        {/* {<MapLocation />} */}
       </View>
     </ScrollView>
   );
@@ -272,7 +286,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 15,
   },
   text: {
-    fontSize: 24,
+    fontSize: 23,
     fontWeight: "bold",
     color: "#146C94",
     marginTop: 11,
@@ -284,12 +298,12 @@ const styles = StyleSheet.create({
     color: "#146C94",
   },
   subText: {
-    fontSize: 23,
+    fontSize: 21,
     fontWeight: "bold",
     color: "#146C94",
     marginBottom: 10,
     marginLeft: 4,
-    top: 5,
+    top: 8,
   },
   slider: {
     width: 330,
@@ -326,8 +340,9 @@ const styles = StyleSheet.create({
     borderColor: "#146C94",
     borderRadius: 5,
     padding: 10,
-    height: 55,
-    marginBottom: 10,
+    top: 4,
+    height: 50,
+    marginBottom: 5,
     color: "#146C94",
     backgroundColor: "#fff",
   },
@@ -336,7 +351,8 @@ const styles = StyleSheet.create({
     borderColor: "#146C94",
     borderRadius: 5,
     padding: 10,
-    marginBottom: 10,
+    marginBottom: 8,
+    height: 50,
     color: "#146C94",
     backgroundColor: "#fff",
   },
@@ -357,11 +373,12 @@ const styles = StyleSheet.create({
     color: "#146C94",
     marginRight: 10,
     fontWeight: "bold",
+    top: 14,
     left: 4,
   },
   pickupicon: {
-    size: 35,
     left: 15,
+    top: 11,
   },
   confirmButton: {
     backgroundColor: "#146C94",
@@ -369,7 +386,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     borderRadius: 5,
-    marginTop: 7,
+    marginTop: 30,
     width: 332,
   },
   confirmButtonText: {
@@ -382,7 +399,7 @@ const styles = StyleSheet.create({
     borderColor: "#146C94",
     borderRadius: 5,
     padding: 10,
-    height: 60,
+    height: 50,
     marginBottom: 10,
     color: "#146C94",
     backgroundColor: "#fff",

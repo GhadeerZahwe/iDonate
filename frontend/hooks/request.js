@@ -1,12 +1,13 @@
-const UseHttp = async (url, method = "GET", body = "", header = {}) => {
+const UseHttp = async (url, method = "GET", body, header = {}) => {
   let data;
   const URL = "http://192.168.0.107:8000/api/";
+  console.log(body);
   try {
     const Response =
       (await fetch(URL + url, {
         method: method,
         headers: header,
-        body: !!body ? body : null,
+        body: body ? body : null,
       })) || null;
     data = await Response.json();
     if (!Response.ok) {

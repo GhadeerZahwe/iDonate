@@ -9,27 +9,39 @@ import {
 } from "react-native";
 import AlertMessage from "../../components/AlertMessage/AlertMessage";
 import WeightAlert from "../../components/WeightAlert/WeightAlert";
+import { useNavigation, useRoute } from "@react-navigation/native";
 
-const DoubleChecking = ({ route }) => {
-  const { handleWeightCheck, orderId, initialWeight } = route.params;
-  const [checkedWeight, setCheckedWeight] = useState(initialWeight);
+const DoubleChecking = () => {
+  const route = useRoute();
+  const navigation = useNavigation();
+  const [checkedWeight, setCheckedWeight] = useState(
+    route.params.initialWeight
+  );
+
   const [isAlertVisible, setAlertVisible] = useState(false);
   const [alertTitle, setAlertTitle] = useState("");
   const [alertMessage, setAlertMessage] = useState("");
 
   useEffect(() => {
-    setCheckedWeight(initialWeight);
-  }, [initialWeight]);
+    console.log(
+      "Initial Weight in DoubleChecking:",
+      route.params.initialWeight
+    );
+    setCheckedWeight(route.params.initialWeight);
+  }, [route.params.initialWeight]);
 
   const handleCheckWeight = async () => {
     try {
-      const result = await handleWeightCheck(orderId);
+      const result = await route.params.handleWeightCheck(route.params.orderId);
+      // Update checkedWeight with the newly retrieved value
       console.log(result.total_weight);
       setCheckedWeight(result.total_weight);
 
+      // Set the title and message for the custom alert
       setAlertTitle("Total Weight Checked");
       setAlertMessage(`The total weight is ${result.total_weight} kg.`);
 
+      // Show the custom alert
       setAlertVisible(true);
     } catch (error) {
       console.log(error);
@@ -37,6 +49,7 @@ const DoubleChecking = ({ route }) => {
   };
 
   const handleCloseAlert = () => {
+    // Hide the custom alert
     setAlertVisible(false);
   };
 
@@ -63,6 +76,7 @@ const DoubleChecking = ({ route }) => {
         <Text style={styles.checkWeightButtonText}>Check Weight</Text>
       </TouchableOpacity>
 
+      {/* Render the custom alert */}
       <WeightAlert
         visible={isAlertVisible}
         title={alertTitle}

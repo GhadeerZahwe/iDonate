@@ -1,3 +1,4 @@
+// MapLocation.js
 import React, { useState, useEffect } from "react";
 import { Text, View, StyleSheet, TouchableOpacity } from "react-native";
 import MapView, { Marker } from "react-native-maps";
@@ -18,23 +19,24 @@ const MapLocation = (props) => {
         return;
       }
 
-      let location = await Location.getCurrentPositionAsync({});
-
-      setLocation(location);
+      let currentLocation = await Location.getCurrentPositionAsync({});
+      setLocation(currentLocation);
     })();
   }, []);
 
   const handleAddLocation = () => {
-    console.log(
-      "Location",
-      location.coords.latitude,
-      location.coords.longitude
-    );
-    route.params.onLocationSelected(
-      location.coords.latitude,
-      location.coords.longitude
-    );
-    navigation.goBack();
+    if (location) {
+      console.log(
+        "Location",
+        location.coords.latitude,
+        location.coords.longitude
+      );
+      route.params.onLocationSelected(
+        location.coords.latitude,
+        location.coords.longitude
+      );
+      navigation.goBack();
+    }
   };
 
   return (

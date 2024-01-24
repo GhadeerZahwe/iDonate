@@ -2,7 +2,8 @@ import { createStackNavigator } from "@react-navigation/stack";
 import DriverTabStack from "./DriverTabStack";
 import OrderLocation from "../Screens/Driver/OrderLocation";
 import OnWayLocation from "../Screens/Driver/OnWayLocation";
-import DoubleChecking from "../Screens/Driver/DoubleChecking ";
+import DoubleChecking from "../Screens/Driver/DoubleChecking";
+import OnTheWayOrders from "../Screens/Driver/OnTheWayOrders";
 
 const Stack = createStackNavigator();
 

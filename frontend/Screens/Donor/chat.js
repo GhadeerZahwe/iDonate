@@ -45,7 +45,7 @@ const Chat = () => {
       const response = await UseHttp(
         "sendChat",
         "POST",
-        { prompt: inputMessage },
+        JSON.stringify({ prompt: inputMessage }),
         {
           Authorization: "bearer " + token,
           "Content-Type": "application/json",
@@ -67,7 +67,6 @@ const Chat = () => {
       setLoading(false);
     }
   };
-
   useEffect(() => {
     setMessages((prevMessages) => [
       ...prevMessages,

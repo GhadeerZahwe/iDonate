@@ -3,7 +3,7 @@ import { View, Text, StyleSheet, FlatList, Image } from "react-native";
 import Background from "../../components/Background/Background";
 import DonationBar from "../../components/DonationBar/DonationBar";
 import Greeting from "../../components/Greeting/Greeting";
-import Donationcard from "../../components/DonationCard/DonationCard";
+import DonationCard from "../../components/DonationCard/DonationCard";
 
 const DonorMain = () => {
   const header = () => {
@@ -26,7 +26,7 @@ const DonorMain = () => {
         <DonationBar />
         <Text style={styles.title}>Donate today. Change a life!</Text>
 
-        <Donationcard />
+        <DonationCard />
         <View
           style={{
             flexDirection: "column",

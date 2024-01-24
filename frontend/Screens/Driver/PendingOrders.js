@@ -52,7 +52,6 @@ const PendingOrders = () => {
         Authorization: "bearer " + token,
       });
       setDonations(result.orders);
-      console.log(result);
     } catch (error) {
       console.log(error);
       setError(error);

@@ -7,6 +7,7 @@ import MapLocation from "../Screens/Donor/MapLocation";
 import TrackLocation from "../Screens/Donor/TrackLocation";
 import Chat from "../Screens/Donor/chat";
 import { Text, View } from "react-native";
+import DonorMain from "../Screens/Donor/DonorMain";
 
 const Stack = createStackNavigator();
 
