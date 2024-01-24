@@ -18,22 +18,18 @@ const DoubleChecking = ({ route }) => {
   const [alertMessage, setAlertMessage] = useState("");
 
   useEffect(() => {
-    // Initialize checkedWeight with initialWeight when the component mounts
     setCheckedWeight(initialWeight);
   }, [initialWeight]);
 
   const handleCheckWeight = async () => {
     try {
       const result = await handleWeightCheck(orderId);
-      // Update checkedWeight with the newly retrieved value
       console.log(result.total_weight);
       setCheckedWeight(result.total_weight);
 
-      // Set the title and message for the custom alert
       setAlertTitle("Total Weight Checked");
       setAlertMessage(`The total weight is ${result.total_weight} kg.`);
 
-      // Show the custom alert
       setAlertVisible(true);
     } catch (error) {
       console.log(error);
@@ -41,7 +37,6 @@ const DoubleChecking = ({ route }) => {
   };
 
   const handleCloseAlert = () => {
-    // Hide the custom alert
     setAlertVisible(false);
   };
 
@@ -68,7 +63,6 @@ const DoubleChecking = ({ route }) => {
         <Text style={styles.checkWeightButtonText}>Check Weight</Text>
       </TouchableOpacity>
 
-      {/* Render the custom alert */}
       <WeightAlert
         visible={isAlertVisible}
         title={alertTitle}

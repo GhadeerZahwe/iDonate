@@ -88,6 +88,7 @@ const DonorCompletedOrders = ({ navigation }) => {
       setAlertVisible(false);
     }
   };
+
   const renderCompletedOrders = () => {
     return Array.isArray(donations) ? (
       donations.map((item, index) => (
@@ -108,7 +109,6 @@ const DonorCompletedOrders = ({ navigation }) => {
                 <Text style={styles.value}>{item.phone_number}</Text>
                 <TouchableOpacity
                   onPress={() => {
-                    // Open phone dialer
                     Linking.openURL(`tel:${item.phone_number}`);
                   }}
                 >
@@ -170,6 +170,7 @@ const DonorCompletedOrders = ({ navigation }) => {
     </ScrollView>
   );
 };
+
 const styles = StyleSheet.create({
   container: {
     backgroundColor: "#146C94",
@@ -216,4 +217,5 @@ const styles = StyleSheet.create({
     marginLeft: 3,
   },
 });
+
 export default DonorCompletedOrders;
