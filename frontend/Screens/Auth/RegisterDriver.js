@@ -13,7 +13,6 @@ import * as ImagePicker from "expo-image-picker";
 import { Feather } from "@expo/vector-icons";
 import * as FileSystem from "expo-file-system";
 import UseHttp from "../../hooks/request";
-import axios from "axios";
 import { useDispatch } from "react-redux";
 import { login, setUserData } from "../../redux/slices/authSlice";
 
@@ -64,7 +63,6 @@ export default function RegisterDriver() {
     formData.append("first_name", first_name);
     formData.append("last_name", last_name);
     formData.append("email", email);
-    // formData.append("phone", phone);
     formData.append("password", password);
     formData.append("license_number", license_number);
     formData.append("user_type", "delivery");

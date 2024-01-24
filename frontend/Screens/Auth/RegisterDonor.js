@@ -161,8 +161,6 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     marginBottom: 50,
     elevation: 5,
-    // alignItems: center,
-    // justifyContent: center,
   },
 
   passwordContainer: {
