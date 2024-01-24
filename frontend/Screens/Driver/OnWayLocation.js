@@ -13,7 +13,7 @@ import UseHttp from "../../hooks/request";
 
 const OnWayLocation = ({ route }) => {
   const [location, setLocation] = useState(null);
-  const { orderLocation, orderId } = route.params; // Extract orderId from params
+  const { orderLocation, orderId } = route.params;
   const [errorMsg, setErrorMsg] = useState(null);
   const [destination, setDestination] = useState({
     latitude: parseFloat(orderLocation.latitude),
@@ -78,7 +78,7 @@ const OnWayLocation = ({ route }) => {
 
       updateLocation();
 
-      const intervalId = setInterval(updateLocation, 5000); // Update every 5 seconds
+      const intervalId = setInterval(updateLocation, 5000);
       return () => {
         clearInterval(intervalId);
       };

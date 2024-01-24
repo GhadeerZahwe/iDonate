@@ -3,7 +3,6 @@ import { createMaterialTopTabNavigator } from "@react-navigation/material-top-ta
 import { createStackNavigator } from "@react-navigation/stack";
 import PendingOrders from "../../Screens/Driver/PendingOrders";
 import OnTheWayOrders from "../../Screens/Driver/OnTheWayOrders";
-import Search from "../../components/Search/Search";
 
 const Tab = createMaterialTopTabNavigator();
 const Stack = createStackNavigator();
@@ -20,7 +19,7 @@ const DriverMain = () => {
                   fontSize: 16,
                   fontWeight: "bold",
                   color: "#FFF",
-                  textTransform: "none", // <-- Add this property
+                  textTransform: "none",
                 },
                 tabBarIndicatorStyle: { backgroundColor: "#fff" },
                 tabBarStyle: {
