@@ -3,7 +3,7 @@ import { View, Text, TouchableOpacity, Modal, StyleSheet } from "react-native";
 
 const AlertMessage = ({ visible, title, message, onClose }) => {
   const handleOk = () => {
-    onClose(); // Call the onClose callback to close the alert
+    onClose();
   };
   return (
     <Modal transparent visible={visible} animationType="slide">

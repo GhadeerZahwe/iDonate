@@ -46,7 +46,6 @@ const CompletedOrder = () => {
     }
   };
 
-  // Use the useFocusEffect hook to refetch data when the screen gains focus
   useFocusEffect(
     React.useCallback(() => {
       fetchData();

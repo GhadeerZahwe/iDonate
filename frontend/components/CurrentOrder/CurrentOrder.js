@@ -89,7 +89,7 @@ const CurrentOrders = () => {
   };
 
   const cancelOrder = (orderId) => {
-    setCancelOrderId(orderId); // Store the orderId to be canceled
+    setCancelOrderId(orderId);
     setShowCancelAlert(true);
   };
 
@@ -228,7 +228,7 @@ const CurrentOrders = () => {
                 </View>
               );
             }
-            return null; // If status is neither "pending" nor "on_the_way", don't render
+            return null;
           })}
         <CustomAlert
           visible={showCancelAlert}
@@ -258,7 +258,7 @@ const styles = StyleSheet.create({
   cardHeader: {
     flexDirection: "row",
     alignItems: "center",
-    backgroundColor: "#146C94", // Blue color for the header
+    backgroundColor: "#146C94",
     padding: 10,
     borderRadius: 10,
   },
@@ -292,7 +292,7 @@ const styles = StyleSheet.create({
     textAlign: "center",
   },
   cancelButton: {
-    backgroundColor: "#ba181b", // Red color for cancel button
+    backgroundColor: "#ba181b",
     padding: 10,
     borderRadius: 10,
     marginTop: 10,
