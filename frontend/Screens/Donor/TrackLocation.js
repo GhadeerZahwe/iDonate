@@ -143,6 +143,7 @@ const TrackLocation = () => {
           )}
         </MapView>
       )}
+
       <Animated.View style={{ ...styles.textContainer, opacity: fadeAnim }}>
         <Text style={styles.text}>{locationText}</Text>
       </Animated.View>

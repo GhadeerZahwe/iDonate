@@ -459,7 +459,7 @@ const styles = StyleSheet.create({
   cardHeader: {
     flexDirection: "row",
     alignItems: "center",
-    backgroundColor: "#146C94", // Blue color for the header
+    backgroundColor: "#146C94",
     padding: 10,
     borderRadius: 10,
   },
