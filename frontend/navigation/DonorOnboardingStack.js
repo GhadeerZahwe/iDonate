@@ -1,13 +1,12 @@
-// Import necessary components and icons
 import React from "react";
 import { createStackNavigator } from "@react-navigation/stack";
-import { FontAwesome5 } from "@expo/vector-icons"; // Import FontAwesome5 from @expo/vector-icons
+import { FontAwesome5 } from "@expo/vector-icons";
 import DonorTabStack from "./DonorTabStack";
 import Donate from "../Screens/Donor/Donate";
 import MapLocation from "../Screens/Donor/MapLocation";
 import TrackLocation from "../Screens/Donor/TrackLocation";
 import Chat from "../Screens/Donor/chat";
-import { Text, View } from "react-native"; // Import Text and View components from react-native
+import { Text, View } from "react-native";
 
 const Stack = createStackNavigator();
 

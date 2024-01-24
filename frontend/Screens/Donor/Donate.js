@@ -11,34 +11,24 @@ import Slider from "@react-native-community/slider";
 import Icon from "react-native-vector-icons/FontAwesome";
 import { useNavigation } from "@react-navigation/native";
 import UseHttp from "../../hooks/request";
-import { DatePicker } from "react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import CustomAlert from "../../components/CustomAlert/CustomAlert";
-import QRCodeDisplay from "./QRCodeDisplay";
-import MapLocation from "./MapLocation";
 
 const Donate = () => {
   const navigation = useNavigation();
   const [selectedWeight, setSelectedWeight] = useState(1);
   const [selectedDuration, setSelectedDuration] = useState(5);
-  const [description, setDescription] = useState("Food Waste Donation");
+  const [description, setDescription] = useState(" ");
   const [phoneNumber, setPhoneNumber] = useState("+961 | ");
 
   const [latitude, setLatitude] = useState("");
   const [longitude, setLongitude] = useState("");
 
   const [date, setDate] = useState("2024-01-16");
-  const [location_description, setLocationDescription] =
-    useState("City Center");
-  const [location_pickup, setLocationPickup] = useState("123 Street");
+  const [location_description, setLocationDescription] = useState(" ");
+  const [location_pickup, setLocationPickup] = useState(" ");
   const [showCustomAlert, setShowCustomAlert] = useState(false);
 
-  const [isMapPageVisible, setMapPageVisibility] = useState(false);
-
-  const handleDateChange = (newDate) => {
-    const formattedDate = newDate.toISOString().split("T")[0];
-    setDate(formattedDate);
-  };
   const handleWeightChange = (value) => {
     setSelectedWeight(value);
   };
@@ -85,6 +75,7 @@ const Donate = () => {
   };
 
   const formData = new FormData();
+
   const retrieveData = async () => {
     try {
       const value = await AsyncStorage.getItem("token");
@@ -196,7 +187,9 @@ const Donate = () => {
         <Text
           style={styles.selectedDurationText}
         >{`Duration: ${selectedDuration} hrs`}</Text>
+
         <Text style={styles.subText}>Donation Description:</Text>
+
         <TextInput
           style={styles.descriptionInput}
           multiline
@@ -246,10 +239,6 @@ const Donate = () => {
           </View>
         </TouchableOpacity>
 
-        {/* <Text
-          style={styles.selectedWeightText}
-        >{`Location Pickup: ${location_pickup}`}</Text> */}
-
         <TouchableOpacity onPress={handleConfirm}>
           <View style={styles.confirmButton}>
             <Text style={styles.confirmButtonText}>Confirm</Text>
@@ -267,7 +256,6 @@ const Donate = () => {
           }}
           onNo={() => setShowCustomAlert(false)}
         />
-        {/* {<MapLocation />} */}
       </View>
     </ScrollView>
   );

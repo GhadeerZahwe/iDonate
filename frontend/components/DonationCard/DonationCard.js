@@ -4,6 +4,7 @@ import { useNavigation } from "@react-navigation/native";
 function DonationCard() {
   const navigation = useNavigation();
   const handleDonatePress = () => {
+    console.log("Donate");
     navigation.navigate("Donate");
   };
   return (
