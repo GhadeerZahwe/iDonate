@@ -347,7 +347,6 @@ const DonorCurrentOrders = () => {
                       style={[
                         styles.card,
                         { backgroundColor: "#19A7CE", opacity: 0.86 },
-                        //old color 87CEEB
                       ]}
                     >
                       <Text style={styles.boldText}>

@@ -117,8 +117,6 @@ const styles = StyleSheet.create({
   welcome_title: {
     fontSize: 32,
     fontWeight: "bold",
-    // justifyContent: "center",
-    // alignContent: "center",
     left: 80,
   },
   TextInput: {
