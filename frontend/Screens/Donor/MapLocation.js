@@ -59,6 +59,7 @@ const MapLocation = (props) => {
           />
         </MapView>
       )}
+
       <TouchableOpacity onPress={handleAddLocation}>
         <View style={styles.addButton}>
           <Text style={styles.addButtonText}>Add My Location</Text>

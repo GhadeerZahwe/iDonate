@@ -40,7 +40,6 @@ const OrderLocation = ({ route }) => {
     try {
       const token = await getToken();
 
-      // Fetch order data based on orderId
       const result = await UseHttp(
         `getLocationByOrderId/${orderId}`,
         "GET",
@@ -70,7 +69,6 @@ const OrderLocation = ({ route }) => {
         return;
       }
 
-      // Fetch the current device location (optional)
       let currentLocation = await Location.getCurrentPositionAsync({});
       setLocation(currentLocation.coords);
     })();

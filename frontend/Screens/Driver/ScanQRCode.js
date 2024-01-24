@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Text, View, StyleSheet, Button, Alert } from "react-native";
 import { BarCodeScanner } from "expo-barcode-scanner";
-import UseHttp from "../../hooks/request"; // Import your useHttp function
+import UseHttp from "../../hooks/request";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const ScanQRCode = () => {
@@ -54,7 +54,7 @@ const ScanQRCode = () => {
     const parts = data.split("_");
     const orderId = parts[1];
 
-    console.log("Order ID:", orderId); // Log the order ID to the console
+    console.log("Order ID:", orderId);
 
     Alert.alert(
       `BarCode ${data} has been scanned!`,
