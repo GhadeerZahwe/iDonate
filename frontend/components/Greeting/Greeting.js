@@ -1,7 +1,6 @@
 import { StyleSheet, View, Text } from "react-native";
 import UseHttp from "../../hooks/request";
 import { useState, useEffect } from "react";
-import { useSelector } from "react-redux";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const retrieveData = async () => {
