@@ -3,47 +3,37 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use OpenAI\Laravel\Facades\OpenAI;
+use GuzzleHttp\Client;
 
 class WeatherBotController extends Controller
 {
     public function getWeatherAdvice(Request $request)
     {
-        $userPrompt = "Advise on any weather considerations that may affect food donation deliveries today in Lebanon.";
-        $keywords = ['weather', 'advice', 'food donation', 'Lebanon'];
+        // Replace 'YOUR_TOMORROW_IO_API_KEY' with your actual API key
+        $apiKey = 'JjrnFqkUC6sAzhUv1Bci4ZF0LBhdrOV4';
 
-        $containsKeyword = false;
-        foreach ($keywords as $keyword) {
-            if (str_contains($userPrompt, strtolower($keyword))) {
-                $containsKeyword = true;
-                break;
-            }
-        }
+        // Coordinates for Beirut
+        $latitude = 33.8469148;
+        $longitude = 35.5214354;
 
-        if ($containsKeyword) {
-            $predefinedPrompts = [
-                "What weather considerations should be taken into account for food donation deliveries in Lebanon today?",
-                "Lebanon's current weather may impact food donation deliveries. How can I help you navigate this?",
-                "Understanding the weather is crucial for successful food donation deliveries in Lebanon. What specific information are you looking for?",
-                "Did you know that being aware of the weather conditions is essential for planning food donation deliveries in Lebanon? How can I assist you with this?",
-                "Considering the weather in Lebanon is important for food donation deliveries. What specific advice are you seeking?",
-            ];
+        // Construct the API endpoint URL
+        $apiUrl = "https://api.tomorrow.io/v4/timelines?location={$latitude},{$longitude}&fields=temperature&timesteps=1h&units=metric&apikey={$apiKey}";
 
-            $selectedPrompt = $predefinedPrompts[array_rand($predefinedPrompts)];
+        // Initialize Guzzle client
+        $client = new Client();
 
-            $result = OpenAI::completions()->create([
-                'model' => 'gpt-3.5-turbo-instruct',
-                'prompt' => $selectedPrompt,
-                'max_tokens' => 3700,
-            ]);
+        // Make a GET request to the Tomorrow.io API
+        $response = $client->get($apiUrl);
 
-            $lines = explode("\n", $result->toArray()['choices'][0]['text']);
-            $limitedResponse = implode("\n", array_slice($lines, 0, 11));
+        // Decode the JSON response
+        $weatherData = json_decode($response->getBody(), true);
 
-            return response()->json(['response' => $limitedResponse]);
-        } else {
-            $response = "I'm here to assist you with weather-related questions for food donation deliveries in Lebanon. Please provide a relevant prompt, including keywords like 'weather,' 'advice,' or 'Lebanon.'";
-            return response()->json(['response' => $response]);
-        }
+        // Extract temperature data
+        $temperature = $weatherData['data']['timelines'][0]['intervals'][0]['values']['temperature'];
+
+        // Generate a response
+        $responseText = "The current temperature in Beirut is {$temperature}°C.";
+
+        return response()->json(['response' => $responseText]);
     }
 }
