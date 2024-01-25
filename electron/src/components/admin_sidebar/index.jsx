@@ -22,7 +22,7 @@ const AdminSidebar = () => {
         className="logo"
         src={logo}
         alt="logo"
-        style={{ width: "170px", height: "210", marginLeft: 19, marginTop: 35 }}
+        style={{ width: "188px", height: "210", marginLeft: 46, marginTop: 35 }}
       />
       <div className="donor-btn" id="users-btn" onClick={goDonors}>
         Donors

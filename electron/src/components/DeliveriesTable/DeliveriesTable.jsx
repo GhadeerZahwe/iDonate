@@ -21,6 +21,14 @@ const DeliveriesTable = () => {
     };
     sendRequest();
   }, []);
+
+  // Function to handle delivery deletion
+  const handleDeliveryDeletion = (deletedDeliveryId) => {
+    setData((prevData) =>
+      prevData.filter((item) => item.id !== deletedDeliveryId)
+    );
+  };
+
   return (
     <div className="table-container">
       {loading ? (
@@ -29,8 +37,7 @@ const DeliveriesTable = () => {
         <table>
           <thead id="thead">
             <tr>
-              <th>FirstName</th>
-              <th>LastName</th>
+              <th>Full Name</th>
               <th>Email</th>
               <th>Phone</th>
               <th>Mobility Type</th>
@@ -39,11 +46,17 @@ const DeliveriesTable = () => {
             </tr>
           </thead>
           <tbody id="tbody">
-            {!!data && data.map((item) => <Tr data={item} key={item.id} />)}
+            {!!data &&
+              data.map((item) => (
+                <Tr
+                  key={item.id}
+                  data={item}
+                  onDeletion={handleDeliveryDeletion}
+                />
+              ))}
           </tbody>
         </table>
       )}
-      ;
     </div>
   );
 };

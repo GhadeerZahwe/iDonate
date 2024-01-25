@@ -25,7 +25,7 @@ const Login = () => {
   return (
     <div className="lgn-container">
       <div className="login-container">
-        <h1 className="login-title">login</h1>
+        <h1 className="login-title">Login</h1>
         <div className="login-form">
           <label htmlFor="email" className="username_title">
             Email

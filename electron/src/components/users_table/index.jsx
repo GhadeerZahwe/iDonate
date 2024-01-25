@@ -12,6 +12,7 @@ const UsersTable = () => {
         const myData = await UseHttp("getAllDonors", "GET", "", {
           Authorization: "Bearer " + localStorage.getItem("token"),
         });
+        console.log(myData);
         setData(myData.donors);
       } catch (error) {
         console.error("Error fetching data:", error.message);
