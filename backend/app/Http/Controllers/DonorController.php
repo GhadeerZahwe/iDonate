@@ -13,23 +13,41 @@ use Illuminate\Support\Facades\Auth;
 
 class DonorController extends Controller
 {
-  public function getDonorDonations()
-  {
-      $donor = Auth::user();
-  
-      if ($donor->user_type === 'donor') {
-          $donorInfo = DonorInfo::where('donor_id', $donor->id)->first();
-  
-          $donations = $donor->donations()
-              ->with('locations') 
-              ->get();
+    public function getDonorDonations()
+    {
+        $donor = Auth::user();
     
-          return response()->json(['donor_info' => $donorInfo, 'donations' => $donations]);
-      } else {
-          return response()->json(['error' => 'Permission Denied'], 403);
-      }
-  }
-  
+        if ($donor->user_type === 'donor') {
+            $donorInfo = DonorInfo::where('donor_id', $donor->id)->first();
+    
+            $donations = $donor->donations()
+                ->with(['locations', 'delivery']) // Include the delivery relationship
+                ->get();
+    
+            // Transform the donations to include delivery name
+            $transformedDonations = $donations->map(function ($donation) {
+                $deliveryName = $donation->delivery ? $donation->delivery->first_name . ' ' . $donation->delivery->last_name : null;
+    
+                return [
+                    'id' => $donation->id,
+                    'status' => $donation->status,
+                    'date' => $donation->date,
+                    'description' => $donation->description,
+                    'total_weight' => $donation->total_weight,
+                    'pickup_within' => $donation->pickup_within,
+                    'phone_number' => $donation->phone_number,
+                    'location_pickup' => $donation->location_pickup,
+                    'delivery_name' => $deliveryName,
+                    'locations' => $donation->locations,
+                ];
+            });
+    
+            return response()->json(['donor_info' => $donorInfo, 'donations' => $transformedDonations]);
+        } else {
+            return response()->json(['error' => 'Permission Denied'], 403);
+        }
+    }
+    
     public function addDonation(Request $request)
     {
         $donor = Auth::user();
