@@ -7,6 +7,7 @@ import Logout from "../Screens/Auth/Logout";
 import DonorCompletedOrders from "../Screens/Driver/CompletedOrders";
 import ScanQRCode from "../Screens/Driver/ScanQRCode"; // Import the new component
 import { Ionicons } from "@expo/vector-icons"; // Import the Ionicons library
+import Weather from "../Screens/Driver/Weather";
 
 const DriverTabStack = () => {
   const Tabs = createBottomTabNavigator();
@@ -28,6 +29,8 @@ const DriverTabStack = () => {
             iconName = "settings";
           } else if (route.name === "ScanQRCode") {
             iconName = "qr-code-outline";
+          } else if (route.name === "Weather") {
+            iconName = "partly-sunny-outline";
           }
           return <Ionicons name={iconName} size={size} color={color} />;
         },
@@ -62,6 +65,17 @@ const DriverTabStack = () => {
           headerTintColor: "#fff",
         }}
       />
+      <Tabs.Screen
+        name="Weather"
+        component={Weather}
+        options={{
+          headerShown: true,
+          title: "Check Weather",
+          headerStyle: { backgroundColor: "#146C94" },
+          headerTintColor: "#fff",
+        }}
+      />
+
       {/* <Tabs.Screen
         name="PendingOrders"
         component={PendingOrders}
