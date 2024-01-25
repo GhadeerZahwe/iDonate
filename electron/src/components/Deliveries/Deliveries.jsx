@@ -58,7 +58,6 @@ const Tr = (props) => {
           Authorization: "Bearer " + localStorage.getItem("token"),
         }
       );
-      // Update the state after a successful API call
       setIsApproved(is_approved === 0 ? 1 : 0);
     } catch (error) {
       console.error("Error:", error.message);
@@ -99,8 +98,9 @@ const Tr = (props) => {
 
   return (
     <tr>
-      <td>{props.data.first_name}</td>
-      <td>{props.data.last_name}</td>
+      <td>
+        {props.data.first_name} {props.data.last_name}
+      </td>
       <td>{props.data.email}</td>
       <td>{props.data.phone}</td>
       <td>{props.data.delivery_info.mobility_type}</td>
