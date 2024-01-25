@@ -21,17 +21,14 @@ const Donate = () => {
   const navigation = useNavigation();
   const [selectedWeight, setSelectedWeight] = useState(1);
   const [selectedDuration, setSelectedDuration] = useState(5);
-  const [description, setDescription] = useState(
-    "Write your description here..."
-  );
+  const [description, setDescription] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("+961 | ");
 
   const [latitude, setLatitude] = useState("");
   const [longitude, setLongitude] = useState("");
 
   const [date, setDate] = useState("2024-01-16");
-  const [location_description, setLocationDescription] =
-    useState("City Center");
+  const [location_description, setLocationDescription] = useState(" ");
   const [location_pickup, setLocationPickup] = useState("123 Street");
   const [showCustomAlert, setShowCustomAlert] = useState(false);
 
@@ -358,7 +355,7 @@ const styles = StyleSheet.create({
   },
   selectedWeightText: {
     fontSize: 16,
-    color: "#146C94",
+    color: "grey",
     top: 0,
     bottom: 25,
     left: 8,
@@ -398,9 +395,9 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: "#146C94",
     borderRadius: 5,
-    padding: 10,
+    top: 4,
     height: 50,
-    marginBottom: 10,
+    marginBottom: 5,
     color: "#146C94",
     backgroundColor: "#fff",
   },

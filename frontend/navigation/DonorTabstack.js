@@ -29,7 +29,7 @@ const DonorTabStack = () => {
             <FontAwesome5 name="hand-holding-heart" size={24} color={color} />
           ),
         }}
-        name="Donate"
+        name="DonorMain"
         component={DonorMain}
       />
       <Tabs.Screen

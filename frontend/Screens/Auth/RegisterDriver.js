@@ -5,6 +5,7 @@ import {
   TouchableOpacity,
   TextInput,
   Image,
+  Alert,
   ScrollView,
 } from "react-native";
 import RegisterLogo from "../../components/RegisterLogo/RegisterLogo";
@@ -15,16 +16,19 @@ import * as FileSystem from "expo-file-system";
 import UseHttp from "../../hooks/request";
 import { useDispatch } from "react-redux";
 import { login, setUserData } from "../../redux/slices/authSlice";
+import WeightAlert from "../../components/WeightAlert/WeightAlert";
 
 export default function RegisterDriver() {
   const [selectedImage, setSelectedImage] = useState(null);
-  const [first_name, setfirstName] = useState("Ali2");
-  const [last_name, setLastName] = useState("Ayoub");
-  const [email, setEmail] = useState("Ali2@gmail.com");
-  const [phone, setPhone] = useState("76102030");
+  const [first_name, setfirstName] = useState("Ali");
+  const [last_name, setLastName] = useState("Zahwe");
+  const [email, setEmail] = useState("Ali2024@gmail.com");
+  const [phone, setPhone] = useState("+961| 03909632");
   const [password, setPassword] = useState("code123");
   const [license_number, setLicenseNumber] = useState("F515F");
   const [profile, setProfile] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
+  const [registrationSuccess, setRegistrationSuccess] = useState(false);
 
   const handleChoosePhoto = async () => {
     const { status } = await ImagePicker.requestMediaLibraryPermissionsAsync();
@@ -66,30 +70,28 @@ export default function RegisterDriver() {
     formData.append("password", password);
     formData.append("license_number", license_number);
     formData.append("user_type", "delivery");
-    formData.append("profile_image", {
-      name: "img/jpeg",
-      type: "image/jpeg",
-      uri: profile,
-    });
 
     const result = await UseHttp("register", "POST", formData, {
       "Content-Type": "multipart/form-data",
     });
 
     if (result.status === "success") {
-      dispatch(login());
+      setRegistrationSuccess(true);
     } else {
-      alert("wrong credentials");
+      alert("Wrong credentials");
     }
   };
 
+  const closeRegistrationSuccess = () => {
+    setRegistrationSuccess(false);
+  };
   return (
     <ScrollView style={{ backgroundColor: "#F6F1F1", flex: 1 }}>
-      <View style={{ top: -65 }}>
+      <View style={{ top: -40 }}>
         <RegisterLogo />
       </View>
 
-      <View style={{ gap: 15, marginBottom: 170 }}>
+      <View style={{ gap: 15, marginBottom: 450 }}>
         <TextInput
           style={styles.first_name}
           placeholder="  First Name"
@@ -113,6 +115,7 @@ export default function RegisterDriver() {
         />
         <TextInput
           style={styles.Password}
+          secureTextEntry={!showPassword}
           placeholder="  Password"
           onChangeText={(e) => {
             setPassword(e);
@@ -125,29 +128,29 @@ export default function RegisterDriver() {
             setLicenseNumber(e);
           }}
         />
-        {selectedImage !== null && (
-          <Image
-            source={{ uri: selectedImage }}
-            style={{
-              width: 100,
-              height: 100,
-              left: 240,
-              top: 160,
-              borderRadius: 15,
-            }}
-          />
-        )}
 
-        <TouchableOpacity onPress={handleChoosePhoto}>
+        {/* <TouchableOpacity onPress={handleChoosePhoto}>
           <View style={styles.imageUpload}>
-            <View style={{ top: 20, marginBottom: 20 }}>
+            <View style={{ top: 10, marginBottom: 8 }}>
               <Feather name="image" size={30} color={"#146C94"} />
             </View>
             <View>
               <Text>Choose Photo</Text>
+              {selectedImage !== null && (
+                <Image
+                  source={{ uri: selectedImage }}
+                  style={{
+                    width: 100,
+                    height: 90,
+                    left: 210,
+                    top: 0,
+                    borderRadius: 15,
+                  }}
+                />
+              )}
             </View>
           </View>
-        </TouchableOpacity>
+        </TouchableOpacity> */}
 
         <TouchableOpacity style={styles.register_btn} onPress={handleRegister}>
           <Text
@@ -162,6 +165,15 @@ export default function RegisterDriver() {
             Register
           </Text>
         </TouchableOpacity>
+
+        {registrationSuccess && (
+          <WeightAlert
+            visible={registrationSuccess}
+            title="Registration Successful"
+            message="Your registration is successful. Please wait for admin approval."
+            onClose={closeRegistrationSuccess}
+          />
+        )}
       </View>
     </ScrollView>
   );
@@ -173,20 +185,20 @@ const styles = StyleSheet.create({
     padding: 10,
     width: 150,
     borderRadius: 10,
-    top: 230,
+    top: 245,
     left: 26,
-    elevation: 3,
-    marginBottom: 4,
+    elevation: 1,
+    marginBottom: 13,
   },
   last_name: {
     backgroundColor: "#FFF",
     padding: 10,
     width: 152,
     borderRadius: 10,
-    top: 163,
+    top: 169,
     left: 185,
-    elevation: 3,
-    marginBottom: 4,
+    elevation: 1,
+    marginBottom: 11,
   },
   Email: {
     backgroundColor: "#FFF",
@@ -195,7 +207,7 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     top: 160,
     left: 26,
-    elevation: 3,
+    elevation: 1,
   },
   Password: {
     backgroundColor: "#FFF",
@@ -204,7 +216,7 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     top: 160,
     left: 26,
-    elevation: 3,
+    elevation: 1,
   },
   licence: {
     backgroundColor: "#FFF",
@@ -213,21 +225,21 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     top: 160,
     left: 26,
-    elevation: 3,
-    marginBottom: 40,
+    elevation: 1,
+    marginBottom: 60,
   },
   register_btn: {
     backgroundColor: "#146C94",
     width: 313,
     height: 50,
-    top: 70,
+    top: 110,
     left: 27,
     borderRadius: 10,
-    elevation: 3,
+    elevation: 1,
   },
   imageUpload: {
-    top: 100,
+    top: 90,
     left: 30,
-    marginBottom: 20,
+    marginBottom: 30,
   },
 });

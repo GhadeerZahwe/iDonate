@@ -1,7 +1,6 @@
 const UseHttp = async (url, method = "GET", body, header = {}) => {
   let data;
   const URL = "http://192.168.0.107:8000/api/";
-  console.log(body);
   try {
     const Response =
       (await fetch(URL + url, {
@@ -21,3 +20,5 @@ const UseHttp = async (url, method = "GET", body, header = {}) => {
 };
 
 export default UseHttp;
+
+// const URL = "http://ec2-13-39-108-7.eu-west-3.compute.amazonaws.com:80/api/";
