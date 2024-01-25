@@ -24,7 +24,7 @@ const Logout = () => {
       await AsyncStorage.removeItem("token");
       await AsyncStorage.removeItem("user_type");
       dispatch(logout());
-
+      navigation.popToTop();
       // navigation.navigate("Login");
     } catch (error) {
       console.error("Error logging out:", error);
