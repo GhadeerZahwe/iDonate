@@ -6,6 +6,7 @@ import DriverMain from "../Screens/Driver/DriverMain";
 import Logout from "../Screens/Auth/Logout";
 import DonorCompletedOrders from "../Screens/Driver/CompletedOrders";
 import ScanQRCode from "../Screens/Driver/ScanQRCode"; // Import the new component
+import { Ionicons } from "@expo/vector-icons"; // Import the Ionicons library
 
 const DriverTabStack = () => {
   const Tabs = createBottomTabNavigator();
@@ -22,15 +23,13 @@ const DriverTabStack = () => {
           } else if (route.name === "OnTheWayOrders") {
             iconName = "truck-delivery";
           } else if (route.name === "DonorCompletedOrders") {
-            iconName = "checkbox-marked-circle-outline";
+            iconName = "checkmark-done-outline";
           } else if (route.name === "Logout") {
-            iconName = "exit-to-app";
+            iconName = "settings";
           } else if (route.name === "ScanQRCode") {
-            iconName = "qrcode-scan";
+            iconName = "qr-code-outline";
           }
-          return (
-            <MaterialCommunityIcons name={iconName} size={size} color={color} />
-          );
+          return <Ionicons name={iconName} size={size} color={color} />;
         },
       })}
       tabBarOptions={{

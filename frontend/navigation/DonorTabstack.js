@@ -79,18 +79,14 @@ const DonorTabStack = () => {
       <Tabs.Screen
         options={{
           headerShown: true,
-          title: "Logout",
+          title: "Settings",
           headerStyle: { backgroundColor: "#146C94" },
           headerTintColor: "#fff",
           tabBarIcon: ({ color }) => (
-            <MaterialCommunityIcons
-              name="exit-to-app"
-              size={24}
-              color={color}
-            />
+            <MaterialCommunityIcons name="cog" size={24} color={color} />
           ),
         }}
-        name="Logout"
+        name="Settings"
         component={Logout}
       />
       <Tabs.Screen

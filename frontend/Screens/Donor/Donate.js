@@ -28,7 +28,7 @@ const Donate = () => {
   const [longitude, setLongitude] = useState("");
 
   const [date, setDate] = useState("2024-01-16");
-  const [location_description, setLocationDescription] = useState(" ");
+  const [location_description, setLocationDescription] = useState("  ");
   const [location_pickup, setLocationPickup] = useState("123 Street");
   const [showCustomAlert, setShowCustomAlert] = useState(false);
 
@@ -226,7 +226,7 @@ const Donate = () => {
         <Text style={styles.subText}>Location Description</Text>
         <TextInput
           style={styles.LocationInput}
-          placeholder="Enter location description"
+          placeholder="Enter location description..."
           value={location_description}
           onChangeText={handleLocationDescription}
         />
@@ -400,6 +400,7 @@ const styles = StyleSheet.create({
     marginBottom: 5,
     color: "#146C94",
     backgroundColor: "#fff",
+    paddingLeft: 10,
   },
   selectedDurationText: {
     fontSize: 16,

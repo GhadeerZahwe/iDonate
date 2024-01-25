@@ -91,7 +91,7 @@ const TrackLocation = () => {
       const deliveryLatitudeValue = parseFloat(deliveryLatitude) || 0;
       const deliveryLongitudeValue = parseFloat(deliveryLongitude) || 0;
       console.log("Delivery Latitude value:", deliveryLatitudeValue);
-      const deliveryLocationText = `Delivery Latitude: ${deliveryLatitudeValue}, Delivery Longitude: ${deliveryLongitudeValue}`;
+      const deliveryLocationText = `Delivery Latitude: ${deliveryLatitude}, Delivery Longitude: ${deliveryLongitude}`;
       console.log("Delivery Location Button Pressed");
       console.log("Delivery Location Text:", deliveryLocationText);
       setLocationText(deliveryLocationText);

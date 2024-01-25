@@ -30,6 +30,7 @@ const Chat = () => {
   const getToken = async () => {
     return await retrieveData();
   };
+
   const scrollToBottom = () => {
     scrollViewRef.current.scrollToEnd({ animated: true });
   };
@@ -51,8 +52,11 @@ const Chat = () => {
           "Content-Type": "application/json",
         }
       );
-      console.log(response);
       console.log("Chat API Response:", response);
+
+      if (!response) {
+        throw new Error("No response received from the server.");
+      }
 
       setMessages((prevMessages) => [
         ...prevMessages,
@@ -63,10 +67,15 @@ const Chat = () => {
       scrollToBottom();
     } catch (error) {
       console.error("Error sending message:", error.message);
+      setMessages((prevMessages) => [
+        ...prevMessages,
+        { text: `Error: ${error.message}`, sender: "error" },
+      ]);
     } finally {
       setLoading(false);
     }
   };
+
   useEffect(() => {
     setMessages((prevMessages) => [
       ...prevMessages,
@@ -86,6 +95,7 @@ const Chat = () => {
             key={index}
             style={[
               styles.message,
+              styles[`${message.sender}Message`],
               {
                 alignSelf:
                   message.sender === "user" ? "flex-end" : "flex-start",
@@ -133,15 +143,23 @@ const styles = StyleSheet.create({
     padding: 10,
   },
   message: {
-    backgroundColor: "#146C94",
     borderRadius: 10,
     padding: 8,
     marginVertical: 5,
     maxWidth: "80%",
   },
+  userMessage: {
+    backgroundColor: "#146C94",
+  },
+  botMessage: {
+    backgroundColor: "#19A7CE",
+  },
+  errorMessage: {
+    backgroundColor: "#ff0000",
+  },
   messageText: {
-    color: "#ffffff",
     fontSize: 16,
+    color: "#ffffff",
   },
   inputContainer: {
     flexDirection: "row",

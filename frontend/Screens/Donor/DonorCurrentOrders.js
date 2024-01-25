@@ -64,8 +64,8 @@ const DonorCurrentOrders = () => {
   const [donations, setDonations] = useState([]);
   const [filteredDonationData, setFilteredDonationData] = useState({});
   const [expandedOrders, setExpandedOrders] = useState({});
-  const [isMapPageVisible, setMapPageVisibility] = useState(false);
-  const [error, setError] = useState("");
+  const [isMapPageVisible, setMapPageVisibility] = useState(false); // Adjusted variable name
+  const [error, setError] = useState(""); // Removed unused variable
   const [searchText, setSearchText] = useState("");
   const [deliveryLocation, setDeliveryLocation] = useState(null);
 
@@ -160,7 +160,7 @@ const DonorCurrentOrders = () => {
   };
 
   const cancelOrder = (orderId) => {
-    setCancelOrderId(orderId); // Store the orderId to be canceled
+    setCancelOrderId(orderId);
     setShowCancelAlert(true);
   };
 
@@ -185,23 +185,35 @@ const DonorCurrentOrders = () => {
           "Content-Type": "application/json",
         }
       );
-      const deliveryLocation = response.delivery_location;
-      console.log(response.delivery_location);
+      const initialDeliveryLocation = response.delivery_location;
 
-      // Fetch delivery location initially
-      await updateDeliveryLocation(orderId);
+      // Set the initial delivery location
+      setDeliveryLocation(initialDeliveryLocation);
 
-      // Set an interval to fetch delivery location every 5 seconds
-      const intervalId = setInterval(() => {
-        updateDeliveryLocation(orderId);
-      }, 2000);
+      // Set an interval to update delivery location every 5 seconds
+      const intervalId = setInterval(async () => {
+        const updatedResponse = await UseHttp(
+          `getDeliveryLocation/${orderId}`,
+          "GET",
+          null,
+          {
+            Authorization: "bearer " + token,
+            "Content-Type": "application/json",
+          }
+        );
+        const updatedDeliveryLocation = updatedResponse.delivery_location;
+
+        // Update the delivery location state
+        setDeliveryLocation(updatedDeliveryLocation);
+      }, 1000);
 
       // Save the intervalId to clear it later when needed (e.g., component unmount)
       setIntervalId(intervalId);
 
       // Navigate to the TrackLocation component when the "Track" button is clicked
       navigation.navigate("TrackLocation", {
-        deliveryLocation, // Pass the entire delivery location object
+        deliveryLatitude: initialDeliveryLocation.latitude,
+        deliveryLongitude: initialDeliveryLocation.longitude,
       });
     } catch (error) {
       console.error("Error fetching delivery location:", error);
@@ -350,12 +362,37 @@ const DonorCurrentOrders = () => {
                       ]}
                     >
                       <Text style={styles.boldText}>
+                        Delivery Name:{" "}
+                        <Text style={styles.value_way}>
+                          {" "}
+                          {item.delivery_name}
+                        </Text>
+                      </Text>
+                      <Text style={styles.boldText}>
+                        Phone Number:{" "}
+                        <Text style={styles.value_way}>
+                          {item.phone_number}
+                        </Text>
+                        <TouchableOpacity
+                          onPress={() => {
+                            Linking.openURL(`tel:${item.phone_number}`);
+                          }}
+                        >
+                          <MaterialIcons
+                            name="local-phone"
+                            size={18}
+                            color="#fff"
+                            style={{ left: 14, top: 2 }}
+                          />
+                        </TouchableOpacity>
+                      </Text>
+                      {/* <Text style={styles.boldText}>
                         Weight:{" "}
                         <Text style={styles.value_way}>
                           {" "}
                           {item.total_weight} kg{" "}
                         </Text>
-                      </Text>
+                      </Text> */}
                       <Text style={styles.boldText}>
                         Pickup Within:{" "}
                         <Text style={styles.value_way}>
@@ -373,25 +410,7 @@ const DonorCurrentOrders = () => {
                       {/* <Text style={styles.boldText}>
               Delivered By: {item.deliveredBy}
             </Text> */}
-                      <Text style={styles.boldText}>
-                        Phone Number:{" "}
-                        <Text style={styles.value_way}>
-                          {item.phone_number}
-                        </Text>
-                        <TouchableOpacity
-                          onPress={() => {
-                            // Open phone dialer
-                            Linking.openURL(`tel:${item.phone_number}`);
-                          }}
-                        >
-                          <MaterialIcons
-                            name="local-phone"
-                            size={18}
-                            color="#fff"
-                            style={{ left: 14, top: 2 }}
-                          />
-                        </TouchableOpacity>
-                      </Text>
+
                       <Text style={styles.boldText}>
                         Location:{" "}
                         <Text style={styles.value_way}>
@@ -492,7 +511,7 @@ const styles = StyleSheet.create({
     textAlign: "center",
   },
   cancelButton: {
-    backgroundColor: "#ba181b", // Red color for cancel button
+    backgroundColor: "#ba181b",
     padding: 10,
     borderRadius: 10,
     marginTop: 10,
