@@ -7,6 +7,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DonorController;
 use App\Http\Controllers\ChatBotController;
 use App\Http\Controllers\DeliveryController;
+use App\Http\Controllers\WeatherBotController;
 
 /*
 |--------------------------------------------------------------------------
@@ -64,6 +65,7 @@ Route::group(['middleware'=>'idonate_authenticate'],function(){
       Route::get('/getOnTheWayOrders', [DeliveryController::class, "getOnTheWayOrders"]);
       Route::get('/getCompletedOrders', [DeliveryController::class, "getCompletedOrders"]);
       Route::get('/getOrdersByStatus/{status}', [DeliveryController::class, "getOrdersByStatus"]);
+      Route::get('/getWeatherAdvice', [WeatherBotController::class, "getWeatherAdvice"]);
    });
     
 
