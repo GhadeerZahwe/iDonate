@@ -96,7 +96,7 @@ class AuthController extends Controller
             'license_number' => $request->user_type == 'delivery' ? 'required|string' : '',
             'is_approved' => $request->user_type == 'delivery' ? 'boolean' : '',
             'mobility_type' => $request->user_type == 'delivery' ? 'string' : '',
-            'profile_image' => $request->user_type == 'delivery' ? 'image|mimes:jpeg,png,jpg,gif|max:2048' : '',
+            // 'profile_image' => $request->user_type == 'delivery' ? 'image|mimes:jpeg,png,jpg,gif|max:2048' : '',
         ]);
 
         $user = User::create([

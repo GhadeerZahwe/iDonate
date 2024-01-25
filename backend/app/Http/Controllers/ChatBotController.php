@@ -9,7 +9,6 @@ class ChatBotController extends Controller
     public function sendChat(Request $request)
     {
         $userPrompt = strtolower($request->input('prompt'));
-
         $keywords = ['food', 'donation', 'waste', 'extra food', 'donate', 'weight', 'give', 'need'];
 
         $containsKeyword = false;
@@ -29,7 +28,6 @@ class ChatBotController extends Controller
                 "Interested in giving back? Let me know if you have any questions about donating food or reducing food waste.",
                 "Want to give back to the community? Let's explore how you can contribute through food donation.",
                 "Planning to donate food? I'm here to guide you through the process and answer any questions you may have.",
-                "Planning to donate food? I'm here to guide you through the process and answer any questions you may have.",
                 "Need assistance with questions about food, donation, or reducing food waste? Type 'help,' and I'll be there for you.",
             ];
             $selectedPrompt = $predefinedPrompts[array_rand($predefinedPrompts)];
@@ -41,7 +39,7 @@ class ChatBotController extends Controller
             ]);
 
             $lines = explode("\n", $result->toArray()['choices'][0]['text']);
-            $limitedResponse = implode("\n", array_slice($lines, 0, 8));
+            $limitedResponse = implode("\n", array_slice($lines, 0, 11));
 
             return response()->json(['response' => $limitedResponse]);
         } else {

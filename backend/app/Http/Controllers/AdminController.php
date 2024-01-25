@@ -12,17 +12,18 @@ use Illuminate\Http\Request;
 class AdminController extends Controller
 {   
 
-  public function getAllDeliveries()
+    public function getAllDeliveries()
     {
         try {
             if (auth()->check()) {
                 $user = Auth::user();
-
+    
                 if ($user->user_type === 'admin') {
                     $deliveries = User::where('user_type', 'delivery')
+                        ->whereNull('users.deleted_at') 
                         ->with('deliveryInfo') 
                         ->get();
-
+    
                     return response()->json(['deliveries' => $deliveries]);
                 } else {
                     return response()->json(['error' => 'Permission Denied'], 403);
@@ -34,6 +35,7 @@ class AdminController extends Controller
             return response()->json(['error' => $e->getMessage()], 500);
         }
     }
+    
 //   public function getAllDonors()
 //     {
 //         try {
