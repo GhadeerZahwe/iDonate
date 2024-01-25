@@ -131,7 +131,7 @@ const styles = StyleSheet.create({
     top: 220,
     left: 21,
     height: 49,
-    elevation: 3,
+    elevation: 1,
   },
   last_name: {
     backgroundColor: "#FFF",
@@ -139,9 +139,9 @@ const styles = StyleSheet.create({
     width: 156,
     height: 49,
     borderRadius: 10,
-    top: 150,
+    top: 151,
     left: 185,
-    elevation: 3,
+    elevation: 1,
   },
   TextInput: {
     backgroundColor: "#FFF",
@@ -150,7 +150,7 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     top: 155,
     left: 22,
-    elevation: 3,
+    elevation: 1,
   },
   register_btn: {
     backgroundColor: "#146C94",
@@ -160,7 +160,7 @@ const styles = StyleSheet.create({
     marginTop: 40,
     borderRadius: 10,
     marginBottom: 50,
-    elevation: 5,
+    elevation: 1,
   },
 
   passwordContainer: {
@@ -169,10 +169,10 @@ const styles = StyleSheet.create({
     backgroundColor: "#FFF",
     padding: 5,
     width: 320,
-    borderRadius: 15,
+    borderRadius: 10,
     top: 155,
     left: 22,
-    elevation: 3,
+    elevation: 1,
   },
   passwordInput: {
     flex: 1,
