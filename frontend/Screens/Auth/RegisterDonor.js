@@ -46,7 +46,7 @@ export default function RegisterDonor() {
       await AsyncStorage.setItem("token", result.authorisation.token);
       await AsyncStorage.setItem("user_type", result.user.user_type);
     } catch (error) {
-      console.log("Error storing token:", error);
+      // console.log("Error storing token:", error);
     }
 
     if (result.status === "success") {

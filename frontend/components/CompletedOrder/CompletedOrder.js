@@ -15,7 +15,7 @@ import { Linking } from "react-native";
 
 const CompletedOrder = () => {
   const [donations, setDonations] = useState([]);
-  const [error, setError] = useState("");
+  // const [error, setError] = useState("");
   const [refreshing, setRefreshing] = useState(false);
 
   const retrieveData = async () => {
@@ -23,7 +23,7 @@ const CompletedOrder = () => {
       const value = await AsyncStorage.getItem("token");
       return value !== null ? value : null;
     } catch (error) {
-      console.log(error);
+      // console.log(error);
       return null;
     }
   };
@@ -39,10 +39,10 @@ const CompletedOrder = () => {
         Authorization: "bearer " + token,
       });
       setDonations(result.donations);
-      console.log(result);
+      // console.log(result);
     } catch (error) {
-      console.log(error);
-      setError(error);
+      // console.log(error);
+      // setError(error);
     }
   };
 

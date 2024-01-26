@@ -13,7 +13,7 @@ const ScanQRCode = () => {
       const value = await AsyncStorage.getItem("token");
       return value !== null ? value : null;
     } catch (error) {
-      console.log(error);
+      // console.log(error);
       return null;
     }
   };
@@ -25,7 +25,7 @@ const ScanQRCode = () => {
   const handleStatusOnScan = async (orderId) => {
     try {
       const token = await AsyncStorage.getItem("token");
-      console.log(orderId);
+      // console.log(orderId);
 
       const response = await UseHttp(
         `updateOrderStatusOnScan/${orderId}`,
@@ -33,13 +33,13 @@ const ScanQRCode = () => {
         "",
         { Authorization: "Bearer " + token }
       );
-      console.log(response);
+      // console.log(response);
       if (!response.ok) {
         throw new Error(
           `Failed to fetch API: ${response.status} ${response.statusText}`
         );
       }
-      console.log(response);
+      // console.log(response);
       const responseData = await response.json();
       return responseData;
     } catch (error) {
@@ -50,11 +50,11 @@ const ScanQRCode = () => {
   const handleBarCodeScanned = async ({ type, data }) => {
     setScanned(true);
 
-    console.log(data);
+    // console.log(data);
     const parts = data.split("_");
     const orderId = parts[1];
 
-    console.log("Order ID:", orderId);
+    // console.log("Order ID:", orderId);
 
     Alert.alert(
       `BarCode ${data} has been scanned!`,
@@ -74,7 +74,7 @@ const ScanQRCode = () => {
 
               Alert.alert("API Response", response.message);
             } catch (error) {
-              console.error("Error updating order status:", error.message);
+              // console.error("Error updating order status:", error.message);
             } finally {
               setScanned(false);
             }

@@ -14,7 +14,7 @@ const WeatherComponent = () => {
       const value = await AsyncStorage.getItem("token");
       return value !== null ? value : null;
     } catch (error) {
-      console.log(error);
+      // console.log(error);
       return null;
     }
   };
@@ -37,7 +37,7 @@ const WeatherComponent = () => {
         setWeatherText(advice);
         setTemperature(temp);
       } catch (error) {
-        console.log(error.message);
+        // console.log(error.message);
       }
     };
 

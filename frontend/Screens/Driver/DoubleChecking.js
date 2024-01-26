@@ -23,10 +23,10 @@ const DoubleChecking = () => {
   const [alertMessage, setAlertMessage] = useState("");
 
   useEffect(() => {
-    console.log(
-      "Initial Weight in DoubleChecking:",
-      route.params.initialWeight
-    );
+    // console.log(
+    //   "Initial Weight in DoubleChecking:",
+    //   route.params.initialWeight
+    // );
     setCheckedWeight(route.params.initialWeight);
   }, [route.params.initialWeight]);
 
@@ -34,7 +34,7 @@ const DoubleChecking = () => {
     try {
       const result = await route.params.handleWeightCheck(route.params.orderId);
       // Update checkedWeight with the newly retrieved value
-      console.log(result.total_weight);
+      // console.log(result.total_weight);
       setCheckedWeight(result.total_weight);
 
       // Set the title and message for the custom alert
@@ -44,7 +44,7 @@ const DoubleChecking = () => {
       // Show the custom alert
       setAlertVisible(true);
     } catch (error) {
-      console.log(error);
+      // console.log(error);
     }
   };
 

@@ -27,7 +27,7 @@ const OrderLocation = ({ route }) => {
       const value = await AsyncStorage.getItem("token");
       return value !== null ? value : null;
     } catch (error) {
-      console.log(error);
+      // console.log(error);
     }
   };
 
@@ -57,7 +57,7 @@ const OrderLocation = ({ route }) => {
       }
     } catch (error) {
       setErrorMsg("Error fetching order data");
-      console.error("Error fetching order data:", error);
+      // console.error("Error fetching order data:", error);
     }
   };
 

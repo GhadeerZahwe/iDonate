@@ -31,7 +31,7 @@ const DonorCompletedOrders = ({ navigation }) => {
       const value = await AsyncStorage.getItem("token");
       return value !== null ? value : null;
     } catch (error) {
-      console.log(error);
+      // console.log(error);
       return null;
     }
   };
@@ -48,7 +48,7 @@ const DonorCompletedOrders = ({ navigation }) => {
       });
       setDonations(result.orders);
     } catch (error) {
-      console.log(error);
+      // console.log(error);
       setError(error);
     }
   };
@@ -79,9 +79,9 @@ const DonorCompletedOrders = ({ navigation }) => {
       });
 
       fetchData();
-      console.log("Order returned to on-the-way successfully");
+      // console.log("Order returned to on-the-way successfully");
     } catch (error) {
-      console.log(error);
+      // console.log(error);
       setError(error);
     } finally {
       setAlertVisible(false);

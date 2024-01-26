@@ -28,7 +28,7 @@ const OnWayLocation = ({ route }) => {
       const value = await AsyncStorage.getItem("token");
       return value !== null ? value : null;
     } catch (error) {
-      console.log(error);
+      // console.log(error);
       return null;
     }
   };
@@ -70,9 +70,9 @@ const OnWayLocation = ({ route }) => {
             }
           );
 
-          console.log(updateLocationResponse);
+          // console.log(updateLocationResponse);
         } catch (error) {
-          console.log(error);
+          // console.log(error);
         }
       };
 
@@ -96,7 +96,7 @@ const OnWayLocation = ({ route }) => {
 
   const handleMyLocationPress = () => {
     if (origin) {
-      console.log("My Current Location:", origin.latitude, origin.longitude);
+      // console.log("My Current Location:", origin.latitude, origin.longitude);
 
       Animated.timing(fadeAnim, {
         toValue: 1,
@@ -115,8 +115,8 @@ const OnWayLocation = ({ route }) => {
   };
 
   const handleOrderLocationPress = () => {
-    console.log("Order Location Latitude:", orderLocation.latitude);
-    console.log("Order Location Longitude:", orderLocation.longitude);
+    // console.log("Order Location Latitude:", orderLocation.latitude);
+    // console.log("Order Location Longitude:", orderLocation.longitude);
 
     const orderLatitudeValue = parseFloat(orderLocation.latitude) || 0;
     const orderLongitudeValue = parseFloat(orderLocation.longitude) || 0;

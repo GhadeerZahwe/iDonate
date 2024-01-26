@@ -27,9 +27,9 @@ const Donate = () => {
   const [latitude, setLatitude] = useState("");
   const [longitude, setLongitude] = useState("");
 
-  const [date, setDate] = useState("2024-01-16");
+  const [date, setDate] = useState("2024-01-26");
   const [location_description, setLocationDescription] = useState("  ");
-  const [location_pickup, setLocationPickup] = useState("123 Street");
+  const [location_pickup, setLocationPickup] = useState("Beirut");
   const [showCustomAlert, setShowCustomAlert] = useState(false);
 
   const [isMapPageVisible, setMapPageVisibility] = useState(false);
@@ -73,11 +73,11 @@ const Donate = () => {
   };
 
   const handleLocationSelected = (latitude, longitude) => {
-    console.log(
-      "Latitude and Longitude received in Donate:",
-      latitude,
-      longitude
-    );
+    // console.log(
+    //   "Latitude and Longitude received in Donate:",
+    //   latitude,
+    //   longitude
+    // );
     setLatitude(latitude);
     setLongitude(longitude);
     setMapPageVisibility(false);
@@ -91,7 +91,7 @@ const Donate = () => {
         return value;
       }
     } catch (error) {
-      console.log(error);
+      // console.log(error);
     }
   };
   const getToken = async () => {
@@ -113,11 +113,11 @@ const Donate = () => {
     const result = await UseHttp("addDonation", "POST", formData, {
       Authorization: "bearer " + token,
     });
-    console.log(result);
+    // console.log(result);
   };
 
   const handleConfirm = () => {
-    console.log(latitude);
+    // console.log(latitude);
     setShowCustomAlert(true);
   };
 
@@ -404,7 +404,7 @@ const styles = StyleSheet.create({
   },
   selectedDurationText: {
     fontSize: 16,
-    color: "#146C94",
+    color: "grey",
     left: 8,
   },
 });

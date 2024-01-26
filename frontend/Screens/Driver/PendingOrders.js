@@ -36,7 +36,7 @@ const PendingOrders = () => {
       const value = await AsyncStorage.getItem("token");
       return value !== null ? value : null;
     } catch (error) {
-      console.log(error);
+      // console.log(error);
       return null;
     }
   };
@@ -53,7 +53,7 @@ const PendingOrders = () => {
       });
       setDonations(result.orders);
     } catch (error) {
-      console.log(error);
+      // console.log(error);
       setError(error);
     }
   }, [isFocused]);
@@ -76,10 +76,10 @@ const PendingOrders = () => {
       });
 
       fetchData();
-      console.log("Order accepted successfully");
+      // console.log("Order accepted successfully");
       navigation.navigate("Tabs", { screen: "OnTheWay" });
     } catch (error) {
-      console.log(error);
+      // console.log(error);
       setError(error);
     } finally {
       setAlertVisible(false);

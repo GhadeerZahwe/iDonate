@@ -56,7 +56,7 @@ export default function RegisterDriver() {
 
         setProfile(filePath);
       } catch (error) {
-        console.error(error);
+        // console.error(error);
       }
     }
   };

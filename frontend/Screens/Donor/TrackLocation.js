@@ -55,7 +55,7 @@ const TrackLocation = () => {
     : null;
 
   const deliveryLocationCoords =
-    deliveryLatitude && deliveryLongitude
+    deliveryLatitude !== undefined && deliveryLongitude !== undefined
       ? {
           latitude: parseFloat(deliveryLatitude),
           longitude: parseFloat(deliveryLongitude),
@@ -67,7 +67,7 @@ const TrackLocation = () => {
       const latitude = location.coords.latitude || 0;
       const longitude = location.coords.longitude || 0;
       const currentLocationText = `Current Latitude: ${latitude}, Current Longitude: ${longitude}`;
-      console.log(currentLocationText);
+      // console.log(currentLocationText);
       setLocationText(currentLocationText);
 
       Animated.timing(fadeAnim, {
@@ -82,7 +82,7 @@ const TrackLocation = () => {
           duration: 300,
           useNativeDriver: true,
         }).start();
-      }, 10000);
+      }, 1000);
     }
   };
 
@@ -90,10 +90,10 @@ const TrackLocation = () => {
     if (deliveryLatitude && deliveryLongitude) {
       const deliveryLatitudeValue = parseFloat(deliveryLatitude) || 0;
       const deliveryLongitudeValue = parseFloat(deliveryLongitude) || 0;
-      console.log("Delivery Latitude value:", deliveryLatitudeValue);
+      // console.log("Delivery Latitude value:", deliveryLatitudeValue);
       const deliveryLocationText = `Delivery Latitude: ${deliveryLatitude}, Delivery Longitude: ${deliveryLongitude}`;
-      console.log("Delivery Location Button Pressed");
-      console.log("Delivery Location Text:", deliveryLocationText);
+      // console.log("Delivery Location Button Pressed");
+      // console.log("Delivery Location Text:", deliveryLocationText);
       setLocationText(deliveryLocationText);
 
       Animated.timing(fadeAnim, {

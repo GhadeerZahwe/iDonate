@@ -22,7 +22,7 @@ const Chat = () => {
       const value = await AsyncStorage.getItem("token");
       return value !== null ? value : null;
     } catch (error) {
-      console.log(error);
+      // console.log(error);
       return null;
     }
   };
@@ -40,7 +40,7 @@ const Chat = () => {
       return;
     }
     setLoading(true);
-    console.log(inputMessage);
+    // console.log(inputMessage);
     try {
       const token = await getToken();
       const response = await UseHttp(
@@ -52,7 +52,7 @@ const Chat = () => {
           "Content-Type": "application/json",
         }
       );
-      console.log("Chat API Response:", response);
+      // console.log("Chat API Response:", response);
 
       if (!response) {
         throw new Error("No response received from the server.");
@@ -66,7 +66,7 @@ const Chat = () => {
       setInputMessage("");
       scrollToBottom();
     } catch (error) {
-      console.error("Error sending message:", error.message);
+      // console.error("Error sending message:", error.message);
       setMessages((prevMessages) => [
         ...prevMessages,
         { text: `Error: ${error.message}`, sender: "error" },

@@ -37,7 +37,7 @@ const DonorCurrentOrders = () => {
       setQRCodeContent(qrCodeValue);
       setShowQRCodeAlert(true);
     } catch (error) {
-      console.error("Error generating and fetching QR code:", error);
+      // console.error("Error generating and fetching QR code:", error);
     }
   };
   const handleCloseQRCodeAlert = () => {
@@ -51,7 +51,7 @@ const DonorCurrentOrders = () => {
         return value;
       }
     } catch (error) {
-      console.log(error);
+      // console.log(error);
     }
   };
 
@@ -99,7 +99,7 @@ const DonorCurrentOrders = () => {
         });
         setQRCodeValue(response.qr_code_string);
       } catch (error) {
-        console.error("Error fetching QR code value:", error);
+        // console.error("Error fetching QR code value:", error);
       }
     };
 
@@ -111,8 +111,8 @@ const DonorCurrentOrders = () => {
         });
         setDonations(result.donations);
       } catch (error) {
-        console.log(error);
-        setError(error);
+        // console.log(error);
+        // setError(error);
       }
     };
 
@@ -139,8 +139,8 @@ const DonorCurrentOrders = () => {
       setDonations(result.donations);
       fetchData();
     } catch (error) {
-      console.log(error);
-      setError(error);
+      // console.log(error);
+      // setError(error);
     }
   };
 
@@ -185,12 +185,10 @@ const DonorCurrentOrders = () => {
           "Content-Type": "application/json",
         }
       );
+      // console.log(response);
       const initialDeliveryLocation = response.delivery_location;
-
-      // Set the initial delivery location
+      // console.log(initialDeliveryLocation);
       setDeliveryLocation(initialDeliveryLocation);
-
-      // Set an interval to update delivery location every 5 seconds
       const intervalId = setInterval(async () => {
         const updatedResponse = await UseHttp(
           `getDeliveryLocation/${orderId}`,
@@ -201,22 +199,16 @@ const DonorCurrentOrders = () => {
             "Content-Type": "application/json",
           }
         );
-        const updatedDeliveryLocation = updatedResponse.delivery_location;
-
-        // Update the delivery location state
+        const updatedDeliveryLocation = initialDeliveryLocation;
         setDeliveryLocation(updatedDeliveryLocation);
-      }, 1000);
-
-      // Save the intervalId to clear it later when needed (e.g., component unmount)
+      }, 5000);
       setIntervalId(intervalId);
-
-      // Navigate to the TrackLocation component when the "Track" button is clicked
       navigation.navigate("TrackLocation", {
         deliveryLatitude: initialDeliveryLocation.latitude,
         deliveryLongitude: initialDeliveryLocation.longitude,
       });
     } catch (error) {
-      console.error("Error fetching delivery location:", error);
+      // console.error("Error fetching delivery location:", error);
     }
   };
 
@@ -232,13 +224,13 @@ const DonorCurrentOrders = () => {
           "Content-Type": "application/json",
         }
       );
-      console.log("Delivery Location Response:", response);
+      // console.log("Delivery Location Response:", response);
 
       const deliveryLocation = response.delivery_location;
-      console.log("Delivery Location:", deliveryLocation);
+      // console.log("Delivery Location:", deliveryLocation);
       setDeliveryLocation(deliveryLocation);
     } catch (error) {
-      console.error("Error fetching delivery location:", error);
+      // console.error("Error fetching delivery location:", error);
     }
   };
 
@@ -258,7 +250,7 @@ const DonorCurrentOrders = () => {
       });
       return response.qr_code_string;
     } catch (error) {
-      console.error("Error fetching QR code value:", error);
+      // console.error("Error fetching QR code value:", error);
       return null;
     }
   };
@@ -272,8 +264,8 @@ const DonorCurrentOrders = () => {
 
       fetchData();
     } catch (error) {
-      console.log(error);
-      setError(error);
+      // console.log(error);
+      // setError(error);
     } finally {
       setShowCancelAlert(false);
     }

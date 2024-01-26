@@ -40,7 +40,7 @@ const OnTheWayOrders = () => {
       const value = await AsyncStorage.getItem("token");
       return value !== null ? value : null;
     } catch (error) {
-      console.log(error);
+      // console.log(error);
       return null;
     }
   };
@@ -62,8 +62,8 @@ const OnTheWayOrders = () => {
       });
       setDonations(result.orders);
     } catch (error) {
-      console.log(error);
-      setError(error);
+      // console.log(error);
+      // setError(error);
     }
   }, [isFocused]);
 
@@ -91,7 +91,7 @@ const OnTheWayOrders = () => {
           Authorization: "bearer " + token,
           "Content-Type": "application/json",
         });
-        console.log("Order completed successfully");
+        // console.log("Order completed successfully");
         fetchData();
         navigation.navigate("DonorCompletedOrders");
       } else if (alertType === "cancel") {
@@ -99,12 +99,12 @@ const OnTheWayOrders = () => {
           Authorization: "bearer " + token,
           "Content-Type": "application/json",
         });
-        console.log("Order canceled successfully");
+        // console.log("Order canceled successfully");
         fetchData();
         navigation.navigate("Tabs", { screen: "Pending" });
       }
     } catch (error) {
-      console.log(error);
+      // console.log(error);
       setError(error);
     } finally {
       setAlertVisible(false);
@@ -122,16 +122,16 @@ const OnTheWayOrders = () => {
   const handleWeightCheck = async (orderId) => {
     try {
       const token = await getToken();
-      console.log("Calling handleWeightCheck for orderId:", orderId);
+      // console.log("Calling handleWeightCheck for orderId:", orderId);
 
       const result = await UseHttp(`getTotalWeight/${orderId}`, "GET", "", {
         Authorization: "bearer " + token,
       });
 
-      console.log("Total Weight:", result.total_weight);
+      // console.log("Total Weight:", result.total_weight);
       return result;
     } catch (error) {
-      console.log("Error in handleWeightCheck:", error);
+      // console.log("Error in handleWeightCheck:", error);
       setError(error);
       return { total_weight: null };
     }
@@ -156,7 +156,7 @@ const OnTheWayOrders = () => {
                 {item.total_weight} kg
                 <TouchableOpacity
                   onPress={() => {
-                    console.log("Initial Weight:", item.total_weight);
+                    // console.log("Initial Weight:", item.total_weight);
                     navigation.navigate("DoubleChecking", {
                       handleWeightCheck: handleWeightCheck,
                       orderId: item.id,

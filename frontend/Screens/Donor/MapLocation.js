@@ -26,11 +26,11 @@ const MapLocation = (props) => {
 
   const handleAddLocation = () => {
     if (location) {
-      console.log(
-        "Location",
-        location.coords.latitude,
-        location.coords.longitude
-      );
+      // console.log(
+      //   "Location",
+      //   location.coords.latitude,
+      //   location.coords.longitude
+      // );
       route.params.onLocationSelected(
         location.coords.latitude,
         location.coords.longitude
