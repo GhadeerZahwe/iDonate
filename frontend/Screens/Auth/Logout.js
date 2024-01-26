@@ -24,6 +24,11 @@ const Logout = () => {
       await AsyncStorage.removeItem("token");
       await AsyncStorage.removeItem("user_type");
       dispatch(logout());
+      const resetAction = StackActions.reset({
+        index: 0,
+        actions: [NavigationActions.navigate({ routeName: "Login" })],
+      });
+      navigation.dispatch(resetAction);
       // navigation.navigate("Login");
     } catch (error) {
       // console.error("Error logging out:", error);

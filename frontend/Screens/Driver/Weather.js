@@ -59,7 +59,7 @@ const WeatherComponent = () => {
           style={styles.checkWeatherButton}
           onPress={() => setIsAlertVisible(true)}
         >
-          <Text style={styles.checkWeatherButtonText}>Check Weather</Text>
+          <Text style={styles.checkWeatherButtonText}>Check Temperature</Text>
         </TouchableOpacity>
         <WeatherAlert
           visible={isAlertVisible}
