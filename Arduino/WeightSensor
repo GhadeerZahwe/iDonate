@@ -13,3 +13,19 @@ const char* password = "123456789";
 const char* apiEndpoint = "http://192.168.255.153:8000/api/updateOrderWeight/";
 
 HX711 scale;
+
+char payload[50];  
+
+void setup() {
+  Serial.begin(115200);
+  Serial.println("HX711 ESP8266 Demo");
+
+  WiFi.begin(ssid, password);
+  while (WiFi.status() != WL_CONNECTED) {
+    delay(1000);
+    Serial.println("Connecting to WiFi...");
+  }
+  Serial.println("Connected to WiFi");
+
+  scale.begin(DOUT_PIN, SCK_PIN);
+}
