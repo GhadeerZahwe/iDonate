@@ -136,5 +136,5 @@ _Below is an example of how you can instruct your audience on installing and set
    npm install
    ```
 4. ```js
-   Enter your API in `config.js`
+
    ```
