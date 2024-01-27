@@ -133,4 +133,3 @@ _Below is an example of how you can instruct your audience on installing and set
 
 1. Get a free API Key at [example](https://example.com)
 2. Clone the repo
-   git clone [github](https://github.com/your_username_/Project-Name.git)
