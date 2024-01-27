@@ -38,9 +38,29 @@
 
 ### Wireframes
 
-| Login screen                            | Register screen                       | Landing screen                        |
-| --------------------------------------- | ------------------------------------- | ------------------------------------- |
-| ![Landing](./readme/demo/1440x1024.png) | ![fsdaf](./readme/demo/1440x1024.png) | ![fsdaf](./readme/demo/1440x1024.png) |
+| Login screen                               | Register screen                          | Landing screen                           |
+| ------------------------------------------ | ---------------------------------------- | ---------------------------------------- |
+| ![Landing](./readme/wireframes/title1.png) | ![fsdaf](./readme/wireframes/title2.png) | ![fsdaf](./readme/wireframes/title3.png) |
+
+| Login screen                             | Register screen                          | Landing screen                           |
+| ---------------------------------------- | ---------------------------------------- | ---------------------------------------- |
+| ![fsdaf](./readme/wireframes/title4.png) | ![fsdaf](./readme/wireframes/title5.png) | ![fsdaf](./readme/wireframes/title6.png) |
+
+| Login screen                               | Register screen                          | Landing screen                           |
+| ------------------------------------------ | ---------------------------------------- | ---------------------------------------- |
+| ![Landing](./readme/wireframes/title7.png) | ![fsdaf](./readme/wireframes/title8.png) | ![fsdaf](./readme/wireframes/title9.png) |
+
+| Login screen                                | Register screen                           | Landing screen                            |
+| ------------------------------------------- | ----------------------------------------- | ----------------------------------------- |
+| ![Landing](./readme/wireframes/title10.png) | ![fsdaf](./readme/wireframes/title11.png) | ![fsdaf](./readme/wireframes/title12.png) |
+
+| Login screen                                | Register screen                           | Landing screen                            |
+| ------------------------------------------- | ----------------------------------------- | ----------------------------------------- |
+| ![Landing](./readme/wireframes/title13.png) | ![fsdaf](./readme/wireframes/title14.png) | ![fsdaf](./readme/wireframes/title15.png) |
+
+| Login screen                                | Register screen                           | Landing screen                            | new screen                                |
+| ------------------------------------------- | ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
+| ![Landing](./readme/wireframes/title16.png) | ![fsdaf](./readme/wireframes/title17.png) | ![fsdaf](./readme/wireframes/title18.png) | ![fsdaf](./readme/wireframes/title19.png) |
 
 ### Mockups
 
