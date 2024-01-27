@@ -29,8 +29,6 @@ void setup() {
   scale.begin(DOUT_PIN, SCK_PIN);
 }
 
-
-
 void loop() {
   if (scale.is_ready()) {
     scale.set_scale();
