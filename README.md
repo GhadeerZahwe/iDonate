@@ -27,6 +27,7 @@
 - As an admin, I want to be able to view real-time information about both users, so that I can monitor the system's performance.
 - As an admin, I want to be able to approve registered delivery drivers, so that only authorized drivers can provide their services.
 - As an admin, I want to be able to delete users, so that I can ensure the smooth functioning of the app's services.
+  <br><br>
 
 <!-- Tech stack -->
 <img src="./readme/title3.svg"/>
