@@ -34,6 +34,8 @@
 
 ### iDonate is built using the following technologies:
 
+### iDonate is built using the following technologies:
+
 <br><br>
 
 <!-- UI UX -->
