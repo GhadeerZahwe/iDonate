@@ -35,9 +35,9 @@
 ### iDonate is built using the following technologies:
 
 - This project uses the [React Native app development framework](https://reactnative.dev/). React Native is a cross-platform hybrid app development platform which allows us to use a single codebase for apps on mobile, desktop, and the web.
-- For persistent storage (database), the app uses the [MySQL]
+- For persistent storage (database), the app uses the [MySQL](https://www.mysql.com/) package which allows the app to create a custom storage and save it to a local database.
 
-  <br><br>
+<br><br>
 
 <!-- UI UX -->
 <img src="./readme/title4.svg"/>
