@@ -5,15 +5,18 @@
 <!-- project philosophy -->
 <img src="./readme/title2.svg"/>
 
-> A mobile app for ordering coffee on-the-go, making it easier for coffee lovers to get their favorite beverages without waiting in line.
->
-> Coffee Express aims to streamline the coffee-ordering process by providing a user-friendly platform for customers to place orders and pick up their coffee at their convenience. We believe in enhancing the coffee experience by saving time and ensuring customer satisfaction.
+> A mobile app is designed to facilitate the donation process of excess food wastes, connecting donors with delivery drivers. Complemented by a desktop admin panel, the system enhances food waste distribution, fostering a more sustainable and compassionate community.
 
 ### User Stories
 
-- As a user, I want to browse the menu, so I can find my favorite coffee drinks.
-- As a user, I want to customize my order, so I can add or remove ingredients according to my preferences.
-- As a user, I want to pay for my order through the app, so I can avoid waiting in line at the store.
+### Donor:
+
+- As a donor (individual, restaurant, or store), I want to donate excess food easily, so that I can contribute to reducing food waste in my community.
+- As a donor, I want to be able to chat with a AI bot specialized in answering questions about food waste donation, so I can inquire further about donations and receive answers to my queries.
+- As a donor, I want to be able to track the live location of the delivery, so that I can stay updated about whether my order is received and donation completed or not yet.
+- As a donor, I want to be able to contact the delivery driver through his phone number, so I can inquire about the delivery status or provide additional instructions if needed.
+
+### Delivery:
 
 <br><br>
 
