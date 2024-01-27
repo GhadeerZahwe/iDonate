@@ -12,14 +12,14 @@
 ### Donor:
 
 - As a donor (individual, restaurant, or store), I want to donate excess food easily, so that I can contribute to reducing food waste in my community.
-- As a donor, I want to be able to chat with a AI bot specialized in answering questions about food waste donation, so I can inquire further about donations and receive answers to my queries.
+- As a donor, I want to be able to chat with an AI bot specialized in answering questions about food waste donation, so I can inquire further about donations and receive answers to my queries.
 - As a donor, I want to be able to track the live location of the delivery, so that I can stay updated about whether my order is received and donation completed or not yet.
-- As a donor, I want to be able to contact the delivery driver through his phone number, so I can inquire about the delivery status or provide additional instructions if needed.
 
 ### Delivery:
 
 - As a delivery driver, I want to be able to check the weight of the donated food using an IoT smart weight sensor, so that I can accurately verify the weight of the food waste donation before delivering it.
 - As a delivery driver, I want to scan the QR code of the donor, so that the order status is updated.
+- As a delivery driver, I want to be able to call the donor so I can reach him for more details or inform him about any update.
 - As a delivery driver, I want to check the weather temperature based on my current location, so that I can make informed decisions about the mode of transportation to use (e.g., motorcycle or car) for the delivery.
 
 ### Admin:
