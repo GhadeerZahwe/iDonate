@@ -27,5 +27,7 @@ void setup() {
   }
   Serial.println("Connected to WiFi");
 
+
+
   scale.begin(DOUT_PIN, SCK_PIN);
 }
