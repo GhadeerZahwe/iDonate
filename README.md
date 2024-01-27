@@ -25,8 +25,7 @@
 ### Admin:
 
 - As an admin, I want to be able to view real-time information about both users, so that I can monitor the system's performance.
-
-  <br><br>
+- As an admin, I want to be able to approve registered delivery drivers, so that only authorized drivers can provide their services.
 
 <!-- Tech stack -->
 <img src="./readme/title3.svg"/>
