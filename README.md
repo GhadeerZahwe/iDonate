@@ -44,7 +44,7 @@
 
 > We designed iDonate using wireframes and mockups, iterating on the design until we reached the ideal layout for easy navigation and a seamless user experience.
 
-- Project Figma design [figma](https://www.figma.com/file/LsuOx5Wnh5YTGSEtrgvz4l/Purrfect-Pals?type=design&node-id=257%3A79&mode=design&t=adzbABt5hbb91ucZ-1)
+- Project Figma design [figma](https://www.figma.com/file/jy1EGWm9adA8Ke0EZDEZ08/Final-Project?type=design&node-id=20%3A144&mode=design&t=Mo1Ua8LI1zp9k3Fe-1)
 
 ### Mockups
 
