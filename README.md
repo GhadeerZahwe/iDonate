@@ -128,3 +128,5 @@ This is an example of how to list things you need to use the software and how to
   ```
 
 ### Installation
+
+_Below is an example of how you can instruct your audience on installing and setting up your app. This template doesn't rely on any external dependencies or services._
