@@ -7,7 +7,7 @@
 
 > A mobile app is designed to facilitate the donation process of excess food wastes, connecting donors with delivery drivers. Complemented by a desktop admin panel, the system enhances food waste distribution, fostering a more sustainable and compassionate community.
 
-### User Stories
+## User Stories
 
 ### Donor:
 
