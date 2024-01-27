@@ -79,6 +79,9 @@
 
 ### Admin Screens (Web)
 
+| Login screen | Register screen | Landing screen |
+| ------------ | --------------- | -------------- |
+
 <br><br>
 
 <!-- Prompt Engineering -->
