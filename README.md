@@ -13,15 +13,24 @@
 
 - As a donor, I want to be able to track the live location of the delivery, so that I can stay updated about whether my order is received and donation completed or not yet.
 - As a donor (individual, restaurant, or store), I want to donate excess food easily, so that I can contribute to reducing food waste in my community.
-- As a donor, I want to be able to view all my current donation, so that I can easily keep track of my ongoing contributions and stay informed about the status of each donation.
+- As a donor, I want to be able to view all my current donation, so that I can easily keep track of my ongoing contributions and stay informed about the status of each donation (pending, on the way, or completed).
 - As a donor, I want to be able to view my completed orders so that I can maintain a detailed record in my order history.
+- As a donor, I want to be able to contact the delivery driver through his phone number, so I can inquire about the delivery status or provide additional instructions if needed.
+- As a donor, I want to be able to chat with a AI bot specialized in answering questions about food waste donation, so I can inquire further about donations and receive answers to my queries.
 
 ### Delivery:
 
 - As a delivery driver, I want to be able to accept an order, so that I ensure that the donor is promptly informed and the status of the donation order is promptly updated.
 - As a delivery driver, I want to scan the QR code of the donor, so that the order status is updated.
+- As a delivery driver, I want to be able to check the weight of the donated food using an IoT smart weight sensor, so that I can accurately verify the weight of the food waste donation before delivering it.
+- As a delivery driver, I want to be able to view the current donation orders filtered by status (pending or on the way), so that I can easily keep track of my ongoing contributions.
+- As a delivery driver, I want to be able to track the location of the order, so that I can efficiently navigate to the donor's location and pick up the order.
+- As a delivery driver, I want to be able to call the donor so I can reach him for more details or inform him about any update.
+- As a delivery driver, I want to be able to mark an order as completed, so that the donor is kept updated about the status of the order.
+- As a delivery driver, I want to be able to revert a completed order back to "on the way", so that I can handle any unforeseen circumstances or issues during delivery.
 - As a delivery driver, I want to be able to view my completed orders so that I can maintain a detailed record in my order history.
-- As a delivery driver, I want to be able to view all donation orders, so that I can manage my schedule effectively.
+- As a delivery driver, I want to be able to cancel any order I have accepted, so that another delivery driver can take the order and deliver it.
+- As a delivery driver, I want to check the weather temperature based on my current location, so that I can make informed decisions about the mode of transportation to use (e.g., motorcycle or car) for the delivery.
 
 ### Admin:
 
@@ -31,10 +40,13 @@
 
 <br><br>
 
-<!-- Prototyping -->
+<!-- Tech stacks -->
 <img src="./readme/title3.svg"/>
 
-> We designed Coffee Express using wireframes and mockups, iterating on the design until we reached the ideal layout for easy navigation and a seamless user experience.
+### iDonate is built using the following technologies:
+
+- This project uses the [React Native app development framework](https://reactnative.dev/). React Native is a cross-platform hybrid app development platform which allows us to use a single codebase for apps on mobile, desktop, and the web.
+- For persistent storage (database), the app uses the [MySQL](https://www.mysql.com/) package which allows the app to create a custom storage and save it to a local database.
 
 ### Wireframes
 
@@ -123,33 +135,135 @@
 <!-- How to run -->
 <img src="./readme/title10.svg"/>
 
-> To set up Coffee Express locally, follow these steps:
+> To set up iDonate locally, follow these steps:
 
 ### Prerequisites
 
-This is an example of how to list things you need to use the software and how to install them.
+- Install NPM from: [NPM](https://nodejs.org/en/download)
 
-- npm
-  ```sh
-  npm install npm@latest -g
-  ```
+- Install composer from: [Composer](https://getcomposer.org/download)
 
-### Installation
+- Database server: Any Apache HTTP Server, MariaDB database server, recommended [XAMPP](https://www.apachefriends.org)
+  This is an example of how to list things you need to use the software and how to install them.
 
-_Below is an example of how you can instruct your audience on installing and setting up your app. This template doesn't rely on any external dependencies or services._
+## Installation
 
-1. Get a free API Key at [https://example.com](https://example.com)
-2. Clone the repo
+### First, Cloning and Installing Packages
+
+_Below are the steps to follow to run the project_
+
+1. Clone the repo
    ```sh
-   git clone https://github.com/your_username_/Project-Name.git
+   git clone https://github.com/GhadeerZahwe/iDonate.git
    ```
-3. Install NPM packages
+2. Install NPM packages for admin by opening terminal in `electron` and run
    ```sh
    npm install
    ```
-4. Enter your API in `config.js`
-   ```js
-   const API_KEY = "ENTER YOUR API";
+3. Install NPM packages for user react native by opening terminal in `frontend` and run
+   ```sh
+   npm install
+   ```
+4. Install Composer packages for server by opening terminal in `backend` and run
+   ```sh
+   composer install
+   ```
+   Or if error occurs
+   ```sh
+   composer update
    ```
 
-Now, you should be able to run Coffee Express locally and explore its features.
+### Second, let's start the server
+
+In `iDonate-server`:
+
+1. Copy `.env.example` file and rename it `.env` you can run
+   ```sh
+   cp .env.example .env
+   ```
+2. Open your `.env` file and change the database name (DB_DATABASE) to whatever you need or to `idonate_db`, username (DB_USERNAME) and password (DB_PASSWORD) field correspond to your configuration if you configured them.
+
+3. Run the following command for laravel ,JWT and Database (you must have your XAMPP server running)
+
+   ```sh
+      php artisan key:generate
+   ```
+
+   ```sh
+      php artisan jwt:secret
+   ```
+
+   ```sh
+      php artisan migrate
+   ```
+
+   ```sh
+      php artisan storage:link
+   ```
+
+   ```sh
+      php artisan serve --host <YOUR_LOCAL_IPv4@> --port 8000
+   ```
+
+   you can get your IPV4@ by running
+
+   on windows
+
+   ```sh
+      ipconfig
+   ```
+
+   on linux
+
+   ```sh
+      ifconfig
+   ```
+
+### Now the Admin part
+
+Go to `electron`:
+
+1. IN `\src\hooks\http-hook.js` change IP to you IPV4@ or server IP@
+
+   ```js
+   URL = "SERVER_IP@/api/ony";
+   ```
+
+2. In The Terminal Run
+
+   ```sh
+     npm start
+   ```
+
+   ### Finally for User Application
+
+In `frontend` :
+
+1. Copy "or Create" `.env.example` file and rename it `.env` you can run
+   ```sh
+   cp .env.example .env
+   ```
+2. Add Server IP@ /Link
+   ```js
+      BASE_URL=<SERVER_IP>/api/ony
+   ```
+3. In `\hooks\request.js` change IP to you IPV4@ or server IP@
+
+   ```js
+   const URL = "SERVER_IP@/api/ony";
+   ```
+
+4. In The Terminal Run
+
+   ```sh
+     npx expo start
+   ```
+
+   <br>
+
+Congratulations, The App Must be Working Now.
+
+Some Installation may be different on different OS.
+The app was never tested on an ios devices .
+
+Enjoy your tour and please provide me with feedback. 🎉
