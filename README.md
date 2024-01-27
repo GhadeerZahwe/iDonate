@@ -89,8 +89,6 @@
 
 <!-- Prompt Engineering -->
 
-### Mastering AI Interaction: Unveiling the Power of Prompt Engineering:
-
 - This project uses advanced prompt engineering techniques to optimize the interaction with natural language processing models. By skillfully crafting input instructions, we tailor the behavior of the models to achieve precise and efficient language understanding and generation for various tasks and preferences.
 
 <br><br>
