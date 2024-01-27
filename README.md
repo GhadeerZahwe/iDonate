@@ -134,9 +134,5 @@ _Below is an example of how you can instruct your audience on installing and set
 3. Install NPM packages
 
    ```sh
-   npm install
-   ```
-
-   ```
 
    ```
