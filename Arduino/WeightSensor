@@ -63,6 +63,9 @@ void sendWeightToAPI(long total_weight, int deliveryId, int orderId) {
 
   WiFiClient client;  
 
-  
+  HTTPClient http;
+  http.begin(client, dynamicEndpoint);
+  http.addHeader("Content-Type", "application/json");
+
   http.end();
 }
