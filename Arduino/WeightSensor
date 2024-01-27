@@ -2,3 +2,14 @@
 #include "HX711.h"
 #include <ESP8266WiFi.h>
 #include <ESP8266HTTPClient.h>
+
+const int DOUT_PIN = D2;
+const int SCK_PIN = D1;
+const int orderId = 20;
+const int deliveryId = 28;
+
+const char* ssid = "se";
+const char* password = "123456789";
+const char* apiEndpoint = "http://192.168.255.153:8000/api/updateOrderWeight/";
+
+HX711 scale;
