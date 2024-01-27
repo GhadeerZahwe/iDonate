@@ -88,7 +88,6 @@
 <br><br>
 
 <!-- Prompt Engineering -->
-<img src="./readme/title7.svg"/>
 
 ### Mastering AI Interaction: Unveiling the Power of Prompt Engineering:
 
