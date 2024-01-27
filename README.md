@@ -19,7 +19,7 @@
 
 - As a delivery driver, I want to be able to check the weight of the donated food using an IoT smart weight sensor, so that I can accurately verify the weight of the food waste donation before delivering it.
 - As a delivery driver, I want to scan the QR code of the donor, so that the order status is updated.
-- As a delivery driver, I want to be able to call the donor so I can reach him for more details or inform him about any update.
+- As a delivery driver, I want to be able to call the donor so that I can reach him for more details or inform him about any update.
 - As a delivery driver, I want to check the weather temperature based on my current location, so that I can make informed decisions about the mode of transportation to use (e.g., motorcycle or car) for the delivery.
 
 ### Admin:
