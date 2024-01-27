@@ -52,3 +52,17 @@ void loop() {
 
   delay(1000);
 }
+
+
+void sendWeightToAPI(long total_weight, int deliveryId, int orderId) {
+  snprintf(payload, sizeof(payload), "{\"total_weight\":%ld,\"deliveryId\":%d}", total_weight, deliveryId);
+  Serial.print("Sending payload: ");
+  Serial.println(payload);
+
+  String dynamicEndpoint = apiEndpoint + String(deliveryId) + "/" + String(orderId);
+
+  WiFiClient client;  
+
+  
+  http.end();
+}
