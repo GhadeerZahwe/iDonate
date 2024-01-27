@@ -67,5 +67,20 @@ void sendWeightToAPI(long total_weight, int deliveryId, int orderId) {
   http.begin(client, dynamicEndpoint);
   http.addHeader("Content-Type", "application/json");
 
+  int httpResponseCode = http.POST(payload);
+
+  if (httpResponseCode > 0) {
+    Serial.print("HTTP Response code: ");
+    Serial.println(httpResponseCode);
+    String response = http.getString();
+    Serial.print("Server response: ");
+    Serial.println(response);
+  } else {
+    Serial.print("HTTP POST request failed. Error code: ");
+    Serial.println(httpResponseCode);
+    Serial.print("Error detail: ");
+    Serial.println(http.errorToString(httpResponseCode).c_str());
+  }
+
   http.end();
 }
