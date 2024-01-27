@@ -34,8 +34,9 @@
 
 ### iDonate is built using the following technologies:
 
-- This project uses the [React Native app development framework] (https://reactnative.dev/). React Native is a cross-platform hybrid app development platform which allows us to use a single codebase for apps on mobile, desktop, and the web.
-  <br><br>
+- This project uses the [React Native app development framework](https://reactnative.dev/). React Native is a cross-platform hybrid app development platform which allows us to use a single codebase for apps on mobile, desktop, and the web.
+
+<br><br>
 
 <!-- UI UX -->
 <img src="./readme/title4.svg"/>
