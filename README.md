@@ -106,6 +106,22 @@
 
 <!-- How to run -->
 <img src="./readme/title6.svg"/>
+<br><br>
+
+<!-- How to run -->
+<img src="./readme/title7.svg"/>
+<br><br>
+
+<!-- How to run -->
+<img src="./readme/title8.svg"/>
+<br><br>
+
+<!-- How to run -->
+<img src="./readme/title9.svg"/>
+<br><br>
+
+<!-- How to run -->
+<img src="./readme/title10.svg"/>
 
 > To set up Coffee Express locally, follow these steps:
 
