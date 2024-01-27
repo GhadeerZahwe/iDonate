@@ -34,8 +34,6 @@
 
 ### iDonate is built using the following technologies:
 
-- This project uses the [Flutter app development framework]
-
 <br><br>
 
 <!-- UI UX -->
