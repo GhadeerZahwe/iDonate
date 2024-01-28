@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 
 class GeneralController extends Controller
 {
-    public function CheckServerStatus(){
+    public function checkServerStatus(){
           return response()->json([
     'success'=>true
   ],200);
