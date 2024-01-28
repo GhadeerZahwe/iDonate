@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\Auth;
 
 class DonorController extends Controller
 {
+   // Get donor's donations
     public function getDonorDonations()
     {
         $donor = Auth::user();
@@ -47,6 +48,8 @@ class DonorController extends Controller
         }
     }
     
+    
+    // Add donation
     public function addDonation(Request $request)
     {
         $donor = Auth::user();
@@ -97,6 +100,7 @@ class DonorController extends Controller
     }
 
 
+   // Edit donation
    public function editDonation(Request $request, $orderId)
    {
      $donor= Auth::user();
@@ -143,7 +147,8 @@ class DonorController extends Controller
 
     }
 
-
+    
+    // Cancel donation
     public function cancelDonation($orderId)
     {
         $donor = Auth::user();
@@ -190,6 +195,8 @@ class DonorController extends Controller
     }
    }
 
+   
+   // Generate QR code for each donation
    public function generateQrCode($orderId)
    {
        $donor = Auth::user();
@@ -202,6 +209,8 @@ class DonorController extends Controller
        return response()->json(['qr_code_string' => $codeString]);
    }
 
+
+   // Get delivery location for donation
    public function getDeliveryLocation($orderId)
    {
       $donor=Auth::user();
@@ -229,7 +238,5 @@ class DonorController extends Controller
       return response()->json(['delivery_location'=>$deliveryInfo->only(['latitude','longitude'])]);
 
    }
-
-   
 
 }
