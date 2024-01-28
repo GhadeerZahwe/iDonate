@@ -12,7 +12,7 @@ use GuzzleHttp\Client;
 
 class DeliveryController extends Controller
 {
-   
+    // Accept an order by a delivery 
     public function acceptOrder(Request $request, $orderId)
     {
         try {
@@ -42,9 +42,10 @@ class DeliveryController extends Controller
         }
     }
 
-  
+    
+    // Cancel an order by a delivery 
     public function cancelOrder(Request $request, $orderId)
-{
+  {
     try {
         $delivery = Auth::user();
         if ($delivery->user_type !== 'delivery') {
@@ -70,11 +71,11 @@ class DeliveryController extends Controller
     } catch (\Exception $e) {
         return response()->json(['error' => $e->getMessage()], 500);
     }
-}
+  }
 
 
-public function updateOrderStatus(Request $request, $orderId)
-{
+ public function updateOrderStatus(Request $request, $orderId)
+  {
     try {
         $delivery = Auth::user();
         if ($delivery->user_type !== 'delivery') {
@@ -98,11 +99,11 @@ public function updateOrderStatus(Request $request, $orderId)
     } catch (\Exception $e) {
         return response()->json(['error' => $e->getMessage()], 500);
     }
-}
+ }
 
 
-public function returnToOnTheWay(Request $request, $orderId)
-{
+ public function returnToOnTheWay(Request $request, $orderId)
+ {
     try {
         $delivery = Auth::user();
         if ($delivery->user_type !== 'delivery') {
@@ -126,10 +127,10 @@ public function returnToOnTheWay(Request $request, $orderId)
     } catch (\Exception $e) {
         return response()->json(['error' => $e->getMessage()], 500);
     }
-}
+ }
 
-public function getCompletedOrders(Request $request)
-{
+ public function getCompletedOrders(Request $request)
+ {
     try {
         $delivery = Auth::user();
         if ($delivery->user_type !== 'delivery') {
@@ -146,10 +147,10 @@ public function getCompletedOrders(Request $request)
     } catch (\Exception $e) {
         return response()->json(['error' => $e->getMessage()], 500);
     }
-}
+ }
 
-public function getOnTheWayOrders(Request $request)
-{
+ public function getOnTheWayOrders(Request $request)
+ {
     try {
         $delivery = Auth::user();
         if ($delivery->user_type !== 'delivery') {
@@ -165,11 +166,12 @@ public function getOnTheWayOrders(Request $request)
 
     } catch (\Exception $e) {
         return response()->json(['error' => $e->getMessage()], 500);
-    }
-}
+  }
+ }
 
-public function getPendingOrders(Request $request)
-{
+
+  public function getPendingOrders(Request $request)
+ {
     try {
         $delivery = Auth::user();
         if ($delivery->user_type !== 'delivery') {
@@ -185,11 +187,12 @@ public function getPendingOrders(Request $request)
 
     } catch (\Exception $e) {
         return response()->json(['error' => $e->getMessage()], 500);
-    }
-}
+  }
+ }
 
-public function getOrdersByStatus(Request $request, $status)
-{
+
+  public function getOrdersByStatus(Request $request, $status)
+  {
     try {
         $delivery = Auth::user();
         if ($delivery->user_type !== 'delivery') {
@@ -205,8 +208,8 @@ public function getOrdersByStatus(Request $request, $status)
 
     } catch (\Exception $e) {
         return response()->json(['error' => $e->getMessage()], 500);
-    }
-}
+   }
+ }
 
 
  public function updateOrderStatusOnScan(Request $request, $orderId)
@@ -247,10 +250,11 @@ public function getOrdersByStatus(Request $request, $status)
 
      } catch (\Exception $e) {
         return response()->json(['ok' => false, 'error' => $e->getMessage()], 500);
-    }
+   }
  } 
 
- public function getLocationByOrderId(Request $request, $orderId)
+  
+  public function getLocationByOrderId(Request $request, $orderId)
   {
     try {
         $delivery = Auth::user();
@@ -274,13 +278,12 @@ public function getOrdersByStatus(Request $request, $status)
       } catch (\Exception $e) {
         return response()->json(['error' => $e->getMessage()], 500);
     }
-}
+  }
 
 
- public function updateOrderWeight(Request $request, $deliveryId, $orderId)
- {
+  public function updateOrderWeight(Request $request, $deliveryId, $orderId)
+  {
     echo "Received request for Delivery ID: $deliveryId, Order ID: $orderId, Weight: " . $request->input('total_weight');
-
     $order = Order::where('id', $orderId)
         ->where('delivery_id', $deliveryId)
         ->where('status', 'on_the_way')
@@ -309,11 +312,11 @@ public function getOrdersByStatus(Request $request, $status)
 
         return response()->json(['message' => 'Order weight updated successfully.'], 200);
     });
-}
+ }
 
 
-public function getTotalWeight(Request $request, $orderId)
-{
+ public function getTotalWeight(Request $request, $orderId)
+ {
     try {
         $delivery = Auth::user();
 
@@ -335,12 +338,12 @@ public function getTotalWeight(Request $request, $orderId)
 
     } catch (\Exception $e) {
         return response()->json(['error' => $e->getMessage()], 500);
-    }
-}
+  }
+ }
 
 
- public function updateDeliveryLocation(Request $request)
- {
+  public function updateDeliveryLocation(Request $request)
+  {
     try {
         $delivery = Auth::user();
 
@@ -372,7 +375,8 @@ public function getTotalWeight(Request $request, $orderId)
      } catch (\Exception $e) {
         return response()->json(['error' => $e->getMessage()], 500);
    }
-}
+ }
+
 
  public function getWeatherTemperature(Request $request)
     {
@@ -394,8 +398,7 @@ public function getTotalWeight(Request $request, $orderId)
         $responseText = "The current temperature in Beirut is {$temperature}°C.";
 
         return response()->json(['response' => $responseText]);
-    }
-
-}
+   }
+ }
 
 
