@@ -320,9 +320,9 @@ class DeliveryController extends Controller
     });
  }
 
-
- public function getTotalWeight(Request $request, $orderId)
- {
+   // Get total weight of an order
+   public function getTotalWeight(Request $request, $orderId)
+  {
     try {
         $delivery = Auth::user();
 
