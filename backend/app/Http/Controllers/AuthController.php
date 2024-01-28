@@ -53,7 +53,6 @@ class AuthController extends Controller
                 'password' => 'required|string',
             ]);
     
-            // Attempt to authenticate the user as an admin
             $credentials = $request->only('email', 'password');
             $user = User::where('email', $credentials['email'])->where('user_type', 'admin')->first();
     
@@ -75,7 +74,6 @@ class AuthController extends Controller
                 ]
             ]);
         } catch (\Exception $e) {
-            // Handle exceptions
             return response()->json([
                 'status' => 'error',
                 'message' => 'An error occurred during admin login',
