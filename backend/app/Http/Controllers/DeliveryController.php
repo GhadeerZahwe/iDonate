@@ -381,9 +381,9 @@ class DeliveryController extends Controller
      } catch (\Exception $e) {
         return response()->json(['error' => $e->getMessage()], 500);
    }
- }
+  }
 
- // Get weather temperature at the delivery person's location
+  // Get weather temperature at the delivery person's location
   public function getWeatherTemperature(Request $request)
     {
         $apiKey = 'JjrnFqkUC6sAzhUv1Bci4ZF0LBhdrOV4';
