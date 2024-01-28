@@ -130,8 +130,9 @@ class DeliveryController extends Controller
     }
  }
 
- public function getCompletedOrders(Request $request)
- {
+  // Get completed orders assigned to the delivery person
+  public function getCompletedOrders(Request $request)
+  {
     try {
         $delivery = Auth::user();
         if ($delivery->user_type !== 'delivery') {
