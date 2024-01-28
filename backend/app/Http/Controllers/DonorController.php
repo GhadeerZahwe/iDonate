@@ -21,10 +21,9 @@ class DonorController extends Controller
             $donorInfo = DonorInfo::where('donor_id', $donor->id)->first();
     
             $donations = $donor->donations()
-                ->with(['locations', 'delivery']) // Include the delivery relationship
+                ->with(['locations', 'delivery']) 
                 ->get();
     
-            // Transform the donations to include delivery name
             $transformedDonations = $donations->map(function ($donation) {
                 $deliveryName = $donation->delivery ? $donation->delivery->first_name . ' ' . $donation->delivery->last_name : null;
     
