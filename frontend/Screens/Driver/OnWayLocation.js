@@ -174,7 +174,7 @@ const OnWayLocation = ({ route }) => {
       <Animated.View style={{ ...styles.textContainer, opacity: fadeAnim }}>
         <Text style={styles.text}>{locationText}</Text>
       </Animated.View>
-
+      {/* 
       <View style={styles.buttonContainer}>
         <TouchableOpacity style={styles.button} onPress={handleMyLocationPress}>
           <Text style={styles.buttonText}> My Location</Text>
@@ -185,7 +185,7 @@ const OnWayLocation = ({ route }) => {
         >
           <Text style={styles.buttonText}> Order Location</Text>
         </TouchableOpacity>
-      </View>
+      </View> */}
     </View>
   );
 };
