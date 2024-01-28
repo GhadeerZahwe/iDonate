@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import "./style.css"; // Import the CSS file
 import UseHttp from "../../hooks/http-hook";
 
 const ConfirmDeletionModal = ({ show, onClose, onConfirm }) => {
@@ -102,7 +101,7 @@ const Tr = (props) => {
         {props.data.first_name} {props.data.last_name}
       </td>
       <td>{props.data.email}</td>
-      <td>{props.data.phone}</td>
+      {/* <td>{props.data.phone}</td> */}
       <td>{props.data.delivery_info.mobility_type}</td>
       <td>{props.data.delivery_info.license_number}</td>
 

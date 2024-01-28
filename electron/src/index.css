@@ -88,7 +88,7 @@ body {
   text-align: center;
   margin-top: 1vh;
   padding: 2vh;
-  font-size: 1.7rem;
+  font-size: 1.6rem;
   color: #fff;
   cursor: pointer;
   font-weight: 400;
@@ -106,7 +106,7 @@ body {
   text-align: center;
   margin-top: 5vh;
   padding: 2vh;
-  font-size: 1.7rem;
+  font-size: 1.6rem;
   color: #fff;
   cursor: pointer;
   font-weight: 400;
@@ -155,7 +155,7 @@ tr:hover {
 }
 
 .content-title {
-  font-size: 34px;
+  font-size: 1.6rem;
   margin-left: 24.5vw;
   margin-top: 20vh;
 }
@@ -288,7 +288,7 @@ a {
 }
 
 .approve_btn {
-  background-color: #06283d8c;
+  background-color: #00b60fcb;
   padding-top: 8px;
   padding-bottom: 8px;
   border-radius: 1px;

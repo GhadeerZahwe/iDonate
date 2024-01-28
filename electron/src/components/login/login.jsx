@@ -46,7 +46,7 @@ const Login = () => {
           <input
             type="password"
             id="password"
-            placeholder="Enter your Password"
+            placeholder="Enter your password"
             ref={passwordRef}
           />
           <div className="login-button-div">

@@ -39,7 +39,7 @@ const DeliveriesTable = () => {
             <tr>
               <th>Full Name</th>
               <th>Email</th>
-              <th>Phone</th>
+              {/* <th>Phone</th> */}
               <th>Mobility Type</th>
               <th>License Number</th>
               <th>Actions</th>
