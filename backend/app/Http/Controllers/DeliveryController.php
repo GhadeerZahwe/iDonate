@@ -347,7 +347,7 @@ class DeliveryController extends Controller
   }
  }
 
-
+  // Update delivery person's location (tracking)
   public function updateDeliveryLocation(Request $request)
   {
     try {
@@ -383,8 +383,8 @@ class DeliveryController extends Controller
    }
  }
 
-
- public function getWeatherTemperature(Request $request)
+ // Get weather temperature at the delivery person's location
+  public function getWeatherTemperature(Request $request)
     {
         $apiKey = 'JjrnFqkUC6sAzhUv1Bci4ZF0LBhdrOV4';
 
