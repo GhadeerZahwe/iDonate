@@ -76,11 +76,21 @@
 
 ### User Screens (Mobile)
 
-| Login screen                              | Register screen                         | Landing screen                          | Loading screen                          |
-| ----------------------------------------- | --------------------------------------- | --------------------------------------- | --------------------------------------- |
-| ![Landing](https://placehold.co/900x1600) | ![fsdaf](https://placehold.co/900x1600) | ![fsdaf](https://placehold.co/900x1600) | ![fsdaf](https://placehold.co/900x1600) |
-| Home screen                               | Menu Screen                             | Order Screen                            | Checkout Screen                         |
-| ![Landing](https://placehold.co/900x1600) | ![fsdaf](https://placehold.co/900x1600) | ![fsdaf](https://placehold.co/900x1600) | ![fsdaf](https://placehold.co/900x1600) |
+| Login screen                                | Register screen                           | Landing screen                            | Loading screen                            |
+| ------------------------------------------- | ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
+| ![Landing](./readme/screenshots/title1.jpg) | ![fsdaf](./readme/screenshots/title2.jpg) | ![fsdaf](./readme/screenshots/title3.jpg) | ![fsdaf](./readme/screenshots/title4.jpg) |
+
+| Home screen                                 | Menu Screen                               | Order Screen                              | Checkout Screen                           |
+| ------------------------------------------- | ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
+| ![Landing](./readme/screenshots/title5.jpg) | ![fsdaf](./readme/screenshots/title6.jpg) | ![fsdaf](./readme/screenshots/title7.jpg) | ![fsdaf](./readme/screenshots/title8.jpg) |
+
+| Login screen                                | Register screen                            | Landing screen                             | Loading screen                             |
+| ------------------------------------------- | ------------------------------------------ | ------------------------------------------ | ------------------------------------------ |
+| ![Landing](./readme/screenshots/title9.jpg) | ![fsdaf](./readme/screenshots/title10.jpg) | ![fsdaf](./readme/screenshots/title12.jpg) | ![fsdaf](./readme/screenshots/title11.jpg) |
+
+| Login screen                                 | Register screen                            | Landing screen                             | Loading screen                             |
+| -------------------------------------------- | ------------------------------------------ | ------------------------------------------ | ------------------------------------------ |
+| ![Landing](./readme/screenshots/title13.jpg) | ![fsdaf](./readme/screenshots/title14.jpg) | ![fsdaf](./readme/screenshots/title15.jpg) | ![fsdaf](./readme/screenshots/title16.jpg) |
 
 ### Admin Screens (Web)
 
