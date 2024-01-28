@@ -217,9 +217,10 @@ public function getOrdersByStatus(Request $request, $status)
     }
 }
 
-public function updateOrderStatusOnScan(Request $request, $orderId)
-{
-    try {
+
+ public function updateOrderStatusOnScan(Request $request, $orderId)
+   {
+     try {
         $delivery = Auth::user();
         if ($delivery->user_type !== 'delivery') {
             return response()->json(['ok' => false, 'error' => 'Permission Denied'], 403);
@@ -253,13 +254,13 @@ public function updateOrderStatusOnScan(Request $request, $orderId)
             return response()->json(['ok' => false, 'error' => 'Invalid status transition'], 400);
         }
 
-    } catch (\Exception $e) {
+     } catch (\Exception $e) {
         return response()->json(['ok' => false, 'error' => $e->getMessage()], 500);
     }
  } 
 
  public function getLocationByOrderId(Request $request, $orderId)
-{
+  {
     try {
         $delivery = Auth::user();
 
@@ -279,13 +280,14 @@ public function updateOrderStatusOnScan(Request $request, $orderId)
 
         return response()->json(['locations' => $order->locations], 200);
 
-    } catch (\Exception $e) {
+      } catch (\Exception $e) {
         return response()->json(['error' => $e->getMessage()], 500);
     }
 }
 
-public function updateOrderWeight(Request $request, $deliveryId, $orderId)
-{
+
+ public function updateOrderWeight(Request $request, $deliveryId, $orderId)
+ {
     echo "Received request for Delivery ID: $deliveryId, Order ID: $orderId, Weight: " . $request->input('total_weight');
 
     $order = Order::where('id', $orderId)
@@ -304,15 +306,12 @@ public function updateOrderWeight(Request $request, $deliveryId, $orderId)
     return DB::transaction(function () use ($order, $request) {
         $newWeight = $request->input('total_weight');
 
-        // Check if the updated total weight is negative
         if ($newWeight < 0) {
-            // Return an error response, indicating that updating to a negative value is not allowed
             return response()->json(['error' => 'Cannot update to a negative total weight value'], 400);
         }
 
         info("Updating order weight: Order ID - $order->id, Delivery ID - $order->delivery_id, New Weight - $newWeight");
 
-        // Update the total weight
         $order->update([
             'total_weight' => $newWeight,
         ]);
@@ -348,8 +347,9 @@ public function getTotalWeight(Request $request, $orderId)
     }
 }
 
-public function updateDeliveryLocation(Request $request)
-{
+
+ public function updateDeliveryLocation(Request $request)
+ {
     try {
         $delivery = Auth::user();
 
@@ -378,9 +378,9 @@ public function updateDeliveryLocation(Request $request)
         ]);
 
         return response()->json(['message' => 'Delivery location updated successfully.'], 200);
-    } catch (\Exception $e) {
+     } catch (\Exception $e) {
         return response()->json(['error' => $e->getMessage()], 500);
-    }
+   }
 }
 
 }

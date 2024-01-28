@@ -35,29 +35,7 @@ class AdminController extends Controller
             return response()->json(['error' => $e->getMessage()], 500);
         }
     }
-    
-//   public function getAllDonors()
-//     {
-//         try {
-//             if (auth()->check()) {
-//                 $user = Auth::user();
 
-//                 if ($user->user_type === 'admin') {
-//                     $deliveries = User::where('user_type', 'donor')
-//                         ->with('donorInfo') 
-//                         ->get();
-
-//                     return response()->json(['Donors' => $deliveries]);
-//                 } else {
-//                     return response()->json(['error' => 'Permission Denied'], 403);
-//                 }
-//             } else {
-//                 return response()->json(['error' => 'User not authenticated'], 401);
-//             }
-//         } catch (\Exception $e) {
-//             return response()->json(['error' => $e->getMessage()], 500);
-//         }
-//     }
 
     public function acceptDelivery(Request $request, $deliveryId){
         try{
@@ -110,8 +88,9 @@ class AdminController extends Controller
         }
     }
 
+
     public function deleteDelivery(Request $request, $deliveryId)
-{
+   {
     try {
         if (auth()->user()->user_type !== 'admin') {
             return response()->json([
@@ -152,6 +131,7 @@ class AdminController extends Controller
         ], 500);
 
     }}
+
 
     public function deleteDonor(Request $request, $donorId)
     {
