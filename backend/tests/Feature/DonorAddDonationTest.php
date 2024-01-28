@@ -11,10 +11,8 @@ use Illuminate\Support\Facades\Hash;
 class DonorAddDonationTest extends TestCase
 {
 
-    // Test adding a donation by a donor
     public function testAddDonationByDonor()
     {
-        // Authenticate as the donor user
         $response = $this->postJson('/api/login', [
             'email' => 'nabiha@gmail.com',
             'password' => 'password123',
@@ -24,7 +22,6 @@ class DonorAddDonationTest extends TestCase
 
         $token = $response['authorisation']['token'];
 
-        // Send authenticated request to add donation
         $response = $this->withHeaders([
             'Authorization' => 'Bearer ' . $token,
         ])->postJson('/api/addDonation', [
@@ -44,7 +41,6 @@ class DonorAddDonationTest extends TestCase
                 'message' => 'Donation added successfully',
             ]);
 
-        // Assert the donation and associated location were created
         $this->assertDatabaseHas('orders', [
             'description' => 'Fifth Donation',
             'total_weight' => '20',
