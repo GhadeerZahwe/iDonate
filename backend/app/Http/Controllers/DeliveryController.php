@@ -102,9 +102,9 @@ class DeliveryController extends Controller
     }
  }
 
-
- public function returnToOnTheWay(Request $request, $orderId)
- {
+  // Return order to "on the way" status by a delivery person
+  public function returnToOnTheWay(Request $request, $orderId)
+  {
     try {
         $delivery = Auth::user();
         if ($delivery->user_type !== 'delivery') {
