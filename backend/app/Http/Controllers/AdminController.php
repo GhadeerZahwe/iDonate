@@ -11,7 +11,8 @@ use Illuminate\Http\Request;
 
 class AdminController extends Controller
 {   
-
+    
+    // Retrieve all delivery users
     public function getAllDeliveries()
     {
         try {
@@ -37,6 +38,7 @@ class AdminController extends Controller
     }
 
 
+    // Accept a delivery user
     public function acceptDelivery(Request $request, $deliveryId){
         try{
          $user = Auth::user();
@@ -63,6 +65,8 @@ class AdminController extends Controller
 
     }
 
+
+    // Cancel acceptance of a delivery user
     public function cancelDeliveryAcceptance(Request $request, $deliveryId){
         try{
           $user=Auth::user();
@@ -89,9 +93,10 @@ class AdminController extends Controller
     }
 
 
+    // Delete a delivery user
     public function deleteDelivery(Request $request, $deliveryId)
-   {
-    try {
+    {
+     try {
         if (auth()->user()->user_type !== 'admin') {
             return response()->json([
                 'status' => 'error',
@@ -133,6 +138,7 @@ class AdminController extends Controller
     }}
 
 
+    // Delete a donor user
     public function deleteDonor(Request $request, $donorId)
     {
         try {
@@ -175,6 +181,8 @@ class AdminController extends Controller
         }
     }
     
+
+    //Retrieve all donors
     public function getAllDonors()
     {
         try {
