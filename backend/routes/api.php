@@ -7,6 +7,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DonorController;
 use App\Http\Controllers\ChatBotController;
 use App\Http\Controllers\DeliveryController;
+use App\Http\Controllers\GeneralController;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,7 +20,7 @@ use App\Http\Controllers\DeliveryController;
 |
 */
 
-
+Route::get('/healthy',[GeneralController::class,"checkServerStatus"])->name("server.status");
 Route::post('/register', [AuthController::class, "register"]);
 Route::post('/login', [AuthController::class, "login"]);
 Route::post('/adminLogin', [AuthController::class, "adminLogin"]);
