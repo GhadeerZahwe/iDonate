@@ -27,7 +27,7 @@ const WeatherComponent = () => {
     const fetchWeatherData = async () => {
       try {
         const token = await getToken();
-        const weatherData = await UseHttp("getWeatherAdvice", "GET", "", {
+        const weatherData = await UseHttp("getWeatherTemperature", "GET", "", {
           Authorization: "bearer " + token,
         });
 

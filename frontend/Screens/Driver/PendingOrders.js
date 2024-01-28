@@ -51,9 +51,10 @@ const PendingOrders = () => {
       const result = await UseHttp("getOrdersByStatus/pending", "GET", "", {
         Authorization: "bearer " + token,
       });
+      console.log(result);
       setDonations(result.orders);
     } catch (error) {
-      // console.log(error);
+      console.log(error);
       setError(error);
     }
   }, [isFocused]);
@@ -93,15 +94,25 @@ const PendingOrders = () => {
   );
 
   const renderPendingOrders = () => {
+    if (!donations || donations.length === 0) {
+      return (
+        <View style={styles.cardContainer}>
+          <Text>No pending orders</Text>
+        </View>
+      );
+    }
     return donations.map((item) => (
       <View style={styles.cardContainer} key={item.id}>
         <View style={styles.card}>
           <Text style={styles.boldText}>
             Donor Name:{" "}
             <Text style={styles.value}>
-              {item.donor.first_name} {item.donor.last_name}
+              {item.donor
+                ? `${item.donor.first_name} ${item.donor.last_name}`
+                : "Unknown Donor"}
             </Text>
           </Text>
+
           <Text style={styles.boldText}>
             Weight: <Text style={styles.value}> {item.total_weight} kg </Text>
           </Text>
