@@ -169,7 +169,7 @@ _Below are the steps to follow to run the project_
 
 ### Second, let's start the server
 
-In `iDonate-server`:
+In `backend`:
 
 1. Copy `.env.example` file and rename it `.env` you can run
    ```sh
