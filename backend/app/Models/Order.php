@@ -36,5 +36,4 @@ class Order extends Model
         return $this->belongsTo(Location::class, 'location_id');
     }
 
-  
 }
