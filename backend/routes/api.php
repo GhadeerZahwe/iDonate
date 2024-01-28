@@ -7,7 +7,6 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DonorController;
 use App\Http\Controllers\ChatBotController;
 use App\Http\Controllers\DeliveryController;
-use App\Http\Controllers\WeatherController;
 
 /*
 |--------------------------------------------------------------------------
