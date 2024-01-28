@@ -48,9 +48,17 @@
 
 ### Mockups
 
-| Home screen                             | Menu Screen                           | Order Screen                          |
-| --------------------------------------- | ------------------------------------- | ------------------------------------- |
-| ![Landing](./readme/demo/1440x1024.png) | ![fsdaf](./readme/demo/1440x1024.png) | ![fsdaf](./readme/demo/1440x1024.png) |
+| Login Screen                           | Register Screen                       | Donor Register Screen                 |
+| -------------------------------------- | ------------------------------------- | ------------------------------------- |
+| ![Landing](./readme/mockups/login.svg) | ![fsdaf](./readme/mockups/title3.svg) | ![fsdaf](./readme/mockups/title4.svg) |
+
+| Donor Main                                  | Add Donation Order                       | Current Orders                                |
+| ------------------------------------------- | ---------------------------------------- | --------------------------------------------- |
+| ![Landing](./readme/mockups/donor_home.svg) | ![fsdaf](./readme/mockups/add_order.svg) | ![fsdaf](./readme/mockups/current_orders.svg) |
+
+| Delivery Main                                  | Current Orders                               | Completed Orders                         |
+| ---------------------------------------------- | -------------------------------------------- | ---------------------------------------- |
+| ![Landing](./readme/mockups/delivery_home.svg) | ![fsdaf](./readme/mockups/on_way_orders.svg) | ![fsdaf](./readme/mockups/completed.svg) |
 
 <br><br>
 
