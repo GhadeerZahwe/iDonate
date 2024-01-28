@@ -11,7 +11,6 @@ class GetCompletedOrdersTest extends TestCase
 {
     public function testGetCompletedOrders()
     {
-        // Log in as the delivery user
         $response = $this->postJson('/api/login', [
             'email' => 'Hadi@gmail.com',
             'password' => '123456',
@@ -19,18 +18,14 @@ class GetCompletedOrdersTest extends TestCase
 
         $response->assertStatus(200);
 
-        // Extract the token from the response
         $token = $response['authorisation']['token'];
 
-        // Make a request to get completed orders
         $response = $this->withHeaders([
             'Authorization' => 'Bearer ' . $token,
         ])->getJson('/api/getCompletedOrders');
 
-        // Assert that the response is successful
         $response->assertStatus(200);
 
-        // Assert the structure of the response JSON
         $response->assertJsonStructure([
             'completed_orders' => [
                 '*' => [
@@ -48,7 +43,6 @@ class GetCompletedOrdersTest extends TestCase
             ],
         ]);
 
-        // Assert that the completed orders are retrieved successfully
-        $response->assertJson(['completed_orders' => []]); // Assuming no completed orders initially
+        $response->assertJson(['completed_orders' => []]); 
     }
 }

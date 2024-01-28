@@ -11,7 +11,6 @@ class GetPendingOrdersTest extends TestCase
 {
     public function testGetPendingOrders()
     {
-        // Log in as the delivery user
         $response = $this->postJson('/api/login', [
             'email' => 'Hadi@gmail.com',
             'password' => '123456',
@@ -19,18 +18,14 @@ class GetPendingOrdersTest extends TestCase
 
         $response->assertStatus(200);
 
-        // Extract the token from the response
         $token = $response['authorisation']['token'];
 
-        // Make a request to get pending orders
         $response = $this->withHeaders([
             'Authorization' => 'Bearer ' . $token,
         ])->getJson('/api/getPendingOrders');
 
-        // Assert that the response is successful
         $response->assertStatus(200);
 
-        // Assert the structure of the response JSON
         $response->assertJsonStructure([
             'pending_orders' => [
                 '*' => [
@@ -48,7 +43,6 @@ class GetPendingOrdersTest extends TestCase
             ],
         ]);
 
-        // Assert that the pending orders are retrieved successfully
         $response->assertJson(['pending_orders' => []]); // Assuming no pending orders initially
     }
 }

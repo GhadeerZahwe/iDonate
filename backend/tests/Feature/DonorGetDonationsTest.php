@@ -21,18 +21,14 @@ class DonorGetDonationsTest extends TestCase
 
         $response->assertStatus(200);
 
-        // Extract the token from the response
         $token = $response['authorisation']['token'];
 
-        // Retrieve the donor's donations
         $response = $this->withHeaders([
             'Authorization' => 'Bearer ' . $token,
         ])->getJson('/api/getDonorDonations');
 
-        // Assert that the response is successful
         $response->assertStatus(200);
 
-        // Assert the structure of the response JSON
         $response->assertJsonStructure([
             'donor_info',
             'donations' => [
