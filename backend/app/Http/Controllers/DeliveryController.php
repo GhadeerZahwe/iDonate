@@ -130,7 +130,7 @@ class DeliveryController extends Controller
     }
  }
 
-  // Get completed orders assigned to the delivery person
+  // Get completed orders assigned to the delivery 
   public function getCompletedOrders(Request $request)
   {
     try {
@@ -151,8 +151,9 @@ class DeliveryController extends Controller
     }
  }
 
- public function getOnTheWayOrders(Request $request)
- {
+  // Get on the way orders assigned to the delivery 
+  public function getOnTheWayOrders(Request $request)
+  {
     try {
         $delivery = Auth::user();
         if ($delivery->user_type !== 'delivery') {
@@ -172,8 +173,9 @@ class DeliveryController extends Controller
  }
 
 
+  // Get pending orders assigned to the delivery 
   public function getPendingOrders(Request $request)
- {
+  {
     try {
         $delivery = Auth::user();
         if ($delivery->user_type !== 'delivery') {
@@ -214,7 +216,8 @@ class DeliveryController extends Controller
  }
 
 
- public function updateOrderStatusOnScan(Request $request, $orderId)
+  // Update order status based on scanning by a delivery person
+  public function updateOrderStatusOnScan(Request $request, $orderId)
    {
      try {
         $delivery = Auth::user();
@@ -255,7 +258,8 @@ class DeliveryController extends Controller
    }
  } 
 
-  
+
+  // Get location information of an order
   public function getLocationByOrderId(Request $request, $orderId)
   {
     try {
