@@ -94,9 +94,9 @@
 
 ### Admin Screens (Web)
 
-| Login screen                            | Register screen                       | Landing screen                        |
-| --------------------------------------- | ------------------------------------- | ------------------------------------- |
-| ![Landing](./readme/demo/1440x1024.png) | ![fsdaf](./readme/demo/1440x1024.png) | ![fsdaf](./readme/demo/1440x1024.png) |
+| Login screen                                | Register screen                                | Landing screen                                    |
+| ------------------------------------------- | ---------------------------------------------- | ------------------------------------------------- |
+| ![Landing](./readme/screenshots/admin1.jpg) | ![fsdaf](./readme/screenshots/admin_donor.jpg) | ![fsdaf](./readme/screenshots/admin_delivery.jpg) |
 
 <br><br>
 
