@@ -73,8 +73,9 @@ class DeliveryController extends Controller
     }
   }
 
-
- public function updateOrderStatus(Request $request, $orderId)
+   
+  // Update order status to completed by a delivery 
+  public function updateOrderStatus(Request $request, $orderId)
   {
     try {
         $delivery = Auth::user();
