@@ -7,7 +7,7 @@ use GuzzleHttp\Client;
 
 class WeatherController extends Controller
 {
-    public function getWeatherAdvice(Request $request)
+    public function getWeatherTemperature(Request $request)
     {
         $apiKey = 'JjrnFqkUC6sAzhUv1Bci4ZF0LBhdrOV4';
 

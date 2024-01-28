@@ -90,7 +90,7 @@
 
 | Login screen                                 | Register screen                            | Landing screen                             | Loading screen                             |
 | -------------------------------------------- | ------------------------------------------ | ------------------------------------------ | ------------------------------------------ |
-| ![Landing](./readme/screenshots/title13.jpg) | ![fsdaf](./readme/screenshots/title14.jpg) | ![fsdaf](./readme/screenshots/title15.jpg) | ![fsdaf](./readme/screenshots/title16.jpg) |
+| ![Landing](./readme/screenshots/title13.jpg) | ![fsdaf](./readme/screenshots/title14.jpg) | ![fsdaf](./readme/screenshots/title16.jpg) | ![fsdaf](./readme/screenshots/title20.jpg) |
 
 ### Admin Screens (Web)
 

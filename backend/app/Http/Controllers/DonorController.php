@@ -70,7 +70,6 @@ class DonorController extends Controller
             return response()->json(['error' => $validator->errors()], 400);
         }
 
-    
         return DB::transaction(function () use ($donor, $request) {
             $location = new Location([
                 'user_id' => $donor->id, 
@@ -80,7 +79,6 @@ class DonorController extends Controller
             ]);
     
             $location->save();
-    
             $order = new Order([
                 'donor_id' => $donor->id, 
                 'description' => $request->input('description'),
@@ -99,7 +97,8 @@ class DonorController extends Controller
     }
 
 
-    public function editDonation(Request $request, $orderId){
+   public function editDonation(Request $request, $orderId)
+   {
      $donor= Auth::user();
 
      $order= Order::findOrFail($orderId);
@@ -138,12 +137,12 @@ class DonorController extends Controller
         'date'=>$request->input('date'),
         'location_pickup'=>$request->input('location_pickup'),
       ]);
-
-
+      
        return response()->json(['message'=> 'Donation updated successfully.'],200);
       });
 
     }
+
 
     public function cancelDonation($orderId)
     {

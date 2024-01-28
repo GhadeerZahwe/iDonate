@@ -65,6 +65,6 @@ Route::post('/updateOrderWeight/{deliveryId}/{orderId}', [DeliveryController::cl
       Route::get('/getOnTheWayOrders', [DeliveryController::class, "getOnTheWayOrders"]);
       Route::get('/getCompletedOrders', [DeliveryController::class, "getCompletedOrders"]);
       Route::get('/getOrdersByStatus/{status}', [DeliveryController::class, "getOrdersByStatus"]);
-      Route::get('/getWeatherAdvice', [WeatherController::class, "getWeatherAdvice"]);
+      Route::get('/getWeatherTemperature', [DeliveryController::class, "getWeatherTemperature"]);
    });
 });

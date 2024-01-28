@@ -10,6 +10,7 @@ use App\Models\Location;
 use App\Models\User;
 use App\Models\Order;
 use Illuminate\Http\Request;
+use GuzzleHttp\Client;
 
 class DeliveryController extends Controller
 {
@@ -30,14 +31,6 @@ class DeliveryController extends Controller
             if (!$order) {
                 return response()->json(['error' => 'Order not found or already assigned'], 404);
             }
-    
-            // $totalWeight = $order->total_weight;
-    
-            // if (($totalWeight > 30 && $delivery->mobility_type === 'motorcycle') ||
-            //     ($totalWeight > 40 && !in_array($delivery->mobility_type, ['car', 'van'])) ||
-            //     ($totalWeight > 50 && $delivery->mobility_type !== 'van')) {
-            //     return response()->json(['error' => 'Cannot take this order with your current vehicle type.'], 400);
-            // }
     
             $order->is_approved = true;
             $order->delivery_id = $delivery->id; 
@@ -382,6 +375,28 @@ public function getTotalWeight(Request $request, $orderId)
         return response()->json(['error' => $e->getMessage()], 500);
    }
 }
+
+ public function getWeatherTemperature(Request $request)
+    {
+        $apiKey = 'JjrnFqkUC6sAzhUv1Bci4ZF0LBhdrOV4';
+
+        $latitude = 33.8469148;
+        $longitude = 35.5214354;
+
+        $apiUrl = "https://api.tomorrow.io/v4/timelines?location={$latitude},{$longitude}&fields=temperature&timesteps=1h&units=metric&apikey={$apiKey}";
+
+        $client = new Client();
+
+        $response = $client->get($apiUrl);
+
+        $weatherData = json_decode($response->getBody(), true);
+
+        $temperature = $weatherData['data']['timelines'][0]['intervals'][0]['values']['temperature'];
+
+        $responseText = "The current temperature in Beirut is {$temperature}°C.";
+
+        return response()->json(['response' => $responseText]);
+    }
 
 }
 
