@@ -111,4 +111,3 @@
 <br><br>
 
 <!-- How to run -->
-<img src="./readme/title10.svg"/>
