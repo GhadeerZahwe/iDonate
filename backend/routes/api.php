@@ -29,26 +29,26 @@ Route::post('/refresh', [AuthController::class, "refresh"]);
 Route::get('/getFullName', [AuthController::class, "getFullName"]);
 Route::post('/updateOrderWeight/{deliveryId}/{orderId}', [DeliveryController::class, "updateOrderWeight"]);
 
-Route::group(['middleware'=>'idonate_authenticate'],function(){
 
-   Route::group(['middleware'=>'admin_authorize'],function(){
-    Route::get('/getAllDonors', [AdminController::class, "getAllDonors"]);
-    Route::get('/getAllDeliveries', [AdminController::class, "getAllDeliveries"]);
-    Route::post('/acceptDelivery/{deliveryId}',[AdminController::class,"acceptDelivery"]);
-    Route::post('/cancelDeliveryAcceptance/{deliveryId}',[AdminController::class,"cancelDeliveryAcceptance"]);
-    Route::delete('/deleteDelivery/{id}',[AdminController::class,"deleteDelivery"]);
-    Route::delete('/deleteDonor/{id}',[AdminController::class,"deleteDonor"]);
+   Route::group(['middleware'=>'idonate_authenticate'],function(){
+      Route::group(['middleware'=>'admin_authorize'],function(){
+      Route::get('/getAllDonors', [AdminController::class, "getAllDonors"]);
+      Route::get('/getAllDeliveries', [AdminController::class, "getAllDeliveries"]);
+      Route::post('/acceptDelivery/{deliveryId}',[AdminController::class,"acceptDelivery"]);
+      Route::post('/cancelDeliveryAcceptance/{deliveryId}',[AdminController::class,"cancelDeliveryAcceptance"]);
+      Route::delete('/deleteDelivery/{id}',[AdminController::class,"deleteDelivery"]);
+      Route::delete('/deleteDonor/{id}',[AdminController::class,"deleteDonor"]);
    });
     
    Route::group(['middleware'=>'donor_authorize'],function(){
-    Route::get('/getDonorDonations', [DonorController::class, "getDonorDonations"]);
-    Route::get('/getDonorLocation/{donor_id}', [DonorController::class, "getDonorLocation"]);
-    Route::post('/addDonation', [DonorController::class, "addDonation"]);
-    Route::post('/editDonation/{orderId}',[DonorController::class, "editDonation"]);
-    Route::delete('/cancelDonation/{orderId}',[DonorController::class, "cancelDonation"]);
-    Route::get('/generateQrCode/{orderId}',[DonorController::class, "generateQrCode"]);
-    Route::get('/getDeliveryLocation/{orderId}',[DonorController::class,"getDeliveryLocation"]);
-    Route::post('/sendChat',[ChatBotController::class,"sendChat"]);
+      Route::get('/getDonorDonations', [DonorController::class, "getDonorDonations"]);
+      Route::get('/getDonorLocation/{donor_id}', [DonorController::class, "getDonorLocation"]);
+      Route::post('/addDonation', [DonorController::class, "addDonation"]);
+      Route::post('/editDonation/{orderId}',[DonorController::class, "editDonation"]);
+      Route::delete('/cancelDonation/{orderId}',[DonorController::class, "cancelDonation"]);
+      Route::get('/generateQrCode/{orderId}',[DonorController::class, "generateQrCode"]);
+      Route::get('/getDeliveryLocation/{orderId}',[DonorController::class,"getDeliveryLocation"]);
+      Route::post('/sendChat',[ChatBotController::class,"sendChat"]);
    });
     
    Route::group(['middleware'=>'delivery_authorize'],function(){
@@ -67,7 +67,4 @@ Route::group(['middleware'=>'idonate_authenticate'],function(){
       Route::get('/getOrdersByStatus/{status}', [DeliveryController::class, "getOrdersByStatus"]);
       Route::get('/getWeatherAdvice', [WeatherController::class, "getWeatherAdvice"]);
    });
-    
-
-
 });
