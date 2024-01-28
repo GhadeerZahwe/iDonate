@@ -46,7 +46,7 @@ class DonorAddDonationTest extends TestCase
             'total_weight' => '20',
             'pickup_within' => '24',
             'phone_number' => '+96103899901',
-            'date' => '2024-01-12',
+            'date' => '2024-01-28',
             'location_pickup' => '123 Street',
         ]);
         $this->assertDatabaseHas('locations', [
