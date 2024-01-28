@@ -19,11 +19,12 @@ class AuthControllerRegisterTest extends TestCase
     public function testUserRegistration()
     {
         $userData = [
-            'first_name' => 'John',
-            'last_name' => 'Doe',
-            'email' => 'john@example.com',
+            'first_name' => 'Nabiha',
+            'last_name' => 'Daoud',
+            'email' => 'nabiha@gmail.com',
             'password' => 'password123',
             'phone' => '123456789',
+            'user_type' => 'donor',
         ];
 
         $response = $this->post('/api/register', $userData);
