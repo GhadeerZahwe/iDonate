@@ -140,10 +140,8 @@ class AuthController extends Controller
             ]
         ]);
     } catch (QueryException $e) {
-        // Handle database query exceptions
         return response()->json(['error' => $e->getMessage()], 500);
     } catch (\Exception $e) {
-        // Handle other exceptions
         return response()->json(['error' => $e->getMessage()], 500);
     }}
 
