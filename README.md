@@ -111,3 +111,137 @@
 <br><br>
 
 <!-- How to run -->
+<img src="./readme/title10.svg"/>
+
+> To set up iDonate locally, follow these steps:
+
+### Prerequisites
+
+- Install NPM from: [NPM](https://nodejs.org/en/download)
+
+- Install composer from: [Composer](https://getcomposer.org/download)
+
+- Database server: Any Apache HTTP Server, MariaDB database server, recommended [XAMPP](https://www.apachefriends.org)
+  This is an example of how to list things you need to use the software and how to install them.
+
+## Installation
+
+### First, Cloning and Installing Packages
+
+_Below are the steps to follow to run the project_
+
+1. Clone the repo
+   ```sh
+   git clone https://github.com/GhadeerZahwe/iDonate.git
+   ```
+2. Install NPM packages for admin by opening terminal in `electron` and run
+   ```sh
+   npm install
+   ```
+3. Install NPM packages for user react native by opening terminal in `frontend` and run
+   ```sh
+   npm install
+   ```
+4. Install Composer packages for server by opening terminal in `backend` and run
+   ```sh
+   composer install
+   ```
+   Or if error occurs
+   ```sh
+   composer update
+   ```
+
+### Second, let's start the server
+
+In `iDonate-server`:
+
+1. Copy `.env.example` file and rename it `.env` you can run
+   ```sh
+   cp .env.example .env
+   ```
+2. Open your `.env` file and change the database name (DB_DATABASE) to whatever you need or to `idonate_db`, username (DB_USERNAME) and password (DB_PASSWORD) field correspond to your configuration if you configured them.
+
+3. Run the following command for laravel ,JWT and Database (you must have your XAMPP server running)
+
+   ```sh
+      php artisan key:generate
+   ```
+
+   ```sh
+      php artisan jwt:secret
+   ```
+
+   ```sh
+      php artisan migrate
+   ```
+
+   ```sh
+      php artisan storage:link
+   ```
+
+   ```sh
+      php artisan serve --host <YOUR_LOCAL_IPv4@> --port 8000
+   ```
+
+   you can get your IPV4@ by running
+
+   on windows
+
+   ```sh
+      ipconfig
+   ```
+
+   on linux
+
+   ```sh
+      ifconfig
+   ```
+
+### Now the Admin part
+
+Go to `electron`:
+
+1. IN `\src\hooks\http-hook.js` change IP to you IPV4@ or server IP@
+
+   ```js
+   URL = "SERVER_IP@/api/ony";
+   ```
+
+2. In The Terminal Run
+
+   ```sh
+     npm start
+   ```
+
+   ### Finally for User Application
+
+In `frontend` :
+
+1. Copy "or Create" `.env.example` file and rename it `.env` you can run
+   ```sh
+   cp .env.example .env
+   ```
+2. Add Server IP@ /Link
+   ```js
+      BASE_URL=<SERVER_IP>/api/ony
+   ```
+3. In `\hooks\request.js` change IP to you IPV4@ or server IP@
+
+   ```js
+   const URL = "SERVER_IP@/api/ony";
+   ```
+
+4. In The Terminal Run
+
+   ```sh
+     npx expo start
+   ```
+
+   <br>
+
+Congratulations, The App Must be Working Now.
+
+Some Installation may be different on different OS.
+The app was never tested on an ios devices .
+
+Enjoy your tour and please provide me with feedback. 🎉
