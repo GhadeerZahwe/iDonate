@@ -139,7 +139,7 @@ const Donate = () => {
         <Text style={styles.selectedWeightText}>
           {`Selected Weight: <${selectedWeight}kg`}
         </Text>
-        <Text style={styles.subText}>Pickup within</Text>
+        <Text style={styles.subText}>Pickup Within</Text>
         <View style={styles.buttonContainer}>
           <TouchableOpacity
             style={[

@@ -68,7 +68,7 @@ const TrackLocation = () => {
       const longitude = location.coords.longitude || 0;
       const currentLocationText = `Current Latitude: ${latitude}, Current Longitude: ${longitude}`;
       // console.log(currentLocationText);
-      setLocationText(currentLocationText);
+      // setLocationText(currentLocationText);
 
       Animated.timing(fadeAnim, {
         toValue: 1,
@@ -148,7 +148,7 @@ const TrackLocation = () => {
         <Text style={styles.text}>{locationText}</Text>
       </Animated.View>
 
-      <View style={styles.buttonContainer}>
+      {/* <View style={styles.buttonContainer}>
         <TouchableOpacity style={styles.button} onPress={animateLocation}>
           <Text style={styles.buttonText}> My Location</Text>
         </TouchableOpacity>
@@ -158,7 +158,7 @@ const TrackLocation = () => {
         >
           <Text style={styles.buttonText}> Delivery Location</Text>
         </TouchableOpacity>
-      </View>
+      </View> */}
     </View>
   );
 };
