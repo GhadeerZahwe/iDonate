@@ -162,7 +162,7 @@ By following these steps, we deployed the backend to Amazon Linux 2023.
 
 > Commands are available in the [backend folder](./backend/deploy_to_aws.md)
 
-    <br><br>
+<br>
 
 <!-- Unit Testing -->
 <img src="./readme/title9.svg"/>
