@@ -115,7 +115,7 @@
 
 ### Arduino (Smart Weight Sensor)
 
-The Arduino IoT weight sensor system includes components like an ESP8266 chip for WiFi connectivity, an HX711 amplifier for accurate weight measurements, and an EKT464885 load cell body scale sensor for real-time weight data retrieval. Integrating these modules on a breadboard and programming them using the Arduino IDE, we've created a reliable sensor weight tracker. The system consistently updates the weight of food donations for orders to the backend at set intervals.
+The Arduino IoT weight sensor system includes components like an ESP8266 chip for WiFi connectivity, an HX711 amplifier for accurate weight measurements, and an EKT464885 load cell body scale sensor for real-time weight data retrieval. Integrating these modules on a breadboard and programming them using the Arduino IDE, we've created a reliable sensor weight. The system consistently updates the weight of food donations for orders to the backend.
 
 For a more detailed understanding of the Arduino setup and code intricacies, please refer to the comprehensive documentation: [Smart Weight Sensor](./Arduino/README.md).
 
