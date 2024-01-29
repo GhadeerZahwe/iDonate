@@ -36,6 +36,8 @@
 
 - This project uses the [React Native app development framework](https://reactnative.dev/). React Native is a cross-platform hybrid app development platform which allows us to use a single codebase for apps on mobile, desktop, and the web.
 - For persistent storage (database), the app uses the [MySQL](https://www.mysql.com/) package which allows the app to create a custom storage and save it to a local database.
+- For location tracking, the app uses [Expo Location Library](https://docs.expo.dev/versions/latest/sdk/location/) which supports Android and iOS.
+- For the IoT smart weight sensor that detects any change in the food weight value, the app utilizes the[ESP8266 Module](https://www.espressif.com/en/products/socs/esp8266), which employs [HTTPClient](https://www.arduino.cc/reference/en/libraries/httpclient/) to send requests and update the current food weight.
 
 <br><br>
 
@@ -67,7 +69,7 @@
 
 ### Architecting Data Excellence: Innovative Database Design Strategies:
 
-- Insert ER Diagram here
+![Screenshot](./readme/screenshots/iDonate_ER_Diagram.png)
 
 <br><br>
 
@@ -129,6 +131,19 @@
 
 - This project leverages AWS deployment strategies to seamlessly integrate and deploy natural language processing models. With a focus on scalability, reliability, and performance, we ensure that AI applications powered by these models deliver robust and responsive solutions for diverse use cases.
 
+By following these steps, we deployed the backend to Amazon Linux 2023.
+
+1. Update Amazon Linux 2023 Packages
+2. Install LAMP Stack
+3. Start and enable the Apache and MariaDB services
+4. Create Database
+5. Install PHP Composer for Laravel on on.Linux 2023
+6. Download the Laravel framework project
+7. Install Laravel on Amazon Linux 2023
+8. Create the Laravel environment configuration file
+9. Apache Configuration for PHP Laravel App
+10. Get the Laravel demo page
+
 <br><br>
 
 <!-- Unit Testing -->
@@ -138,6 +153,7 @@
 
 - This project employs rigorous unit testing methodologies to ensure the reliability and accuracy of code components. By systematically evaluating individual units of the software, we guarantee a robust foundation, identifying and addressing potential issues early in the development process.
 
+![Screenshot](./readme/screenshots/feature_tests.png)
 <br><br>
 
 <!-- How to run -->
