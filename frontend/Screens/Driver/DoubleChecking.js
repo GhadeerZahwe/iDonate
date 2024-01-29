@@ -33,7 +33,6 @@ const DoubleChecking = () => {
   const handleCheckWeight = async () => {
     try {
       const result = await route.params.handleWeightCheck(route.params.orderId);
-      // Update checkedWeight with the newly retrieved value
       // console.log(result.total_weight);
       setCheckedWeight(result.total_weight);
 

@@ -86,7 +86,7 @@
 
 | Search                                      | Reserve Trip                     | Finish Trip                        |
 | ------------------------------------------- | -------------------------------- | ---------------------------------- |
-| ![Landing](./readme/demo/scan_delivery.gif) | ![fsdaf](./readme/demo/temp.gif) | ![fsdaf](./readme/demo/weight.gif) |
+| ![Landing](./readme/demo/scan_delivery.gif) | ![fsdaf](./readme/demo/temp.gif) | ![fsdaf](./readme/demo/sensor.png) |
 
 ### User Screens (Mobile)
 
