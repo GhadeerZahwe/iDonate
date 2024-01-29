@@ -69,7 +69,7 @@
 
 ### Architecting Data Excellence: Innovative Database Design Strategies:
 
-![Screenshot](./readme/screenshots/idonate_ER_Diagram.png)
+![Screenshot](./readme/screenshots/idonate_er.png)
 
 <br><br>
 
