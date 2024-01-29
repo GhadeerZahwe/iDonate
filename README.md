@@ -121,6 +121,9 @@
 ### Mastering AI Interaction: Unveiling the Power of Prompt Engineering:
 
 - This project uses advanced prompt engineering techniques to optimize the interaction with natural language processing models. By skillfully crafting input instructions, we tailor the behavior of the models to achieve precise and efficient language understanding and generation for various tasks and preferences.
+  | OpenAi prompt screen |
+  | ---------------------------------- |
+  | ![Home](./Readme/screenshots/openAi.png) |
 
 <br><br>
 
@@ -143,8 +146,7 @@ By following these steps, we deployed the backend to Amazon Linux 2023.
 8. Create the Laravel environment configuration file
 9. Apache Configuration for PHP Laravel App
 10. Get the Laravel demo page
-
-<br><br>
+    <br><br>
 
 <!-- Unit Testing -->
 <img src="./readme/title9.svg"/>
