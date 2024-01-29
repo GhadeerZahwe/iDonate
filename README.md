@@ -108,7 +108,7 @@
 | ------------------------------------------- | ---------------------------------------------- | ------------------------------------------------- |
 | ![Landing](./readme/screenshots/admin1.jpg) | ![fsdaf](./readme/screenshots/admin_donor.jpg) | ![fsdaf](./readme/screenshots/admin_delivery.jpg) |
 
-<br><br>
+<br>
 
 ### Arduino (Smart Weight Sensor)
 
@@ -138,10 +138,9 @@ Key Features:
 
 This OpenAI donor chatbot enhances the user experience by providing valuable information and guidance on food donation-related inquiries, empowering donors to make a positive impact on their communities. For further details on the chatbot's functionality and implementation, please refer to the provided code.
 
-  <br/>
-| OpenAi prompt screen |
-| ---------------------------------- |
-| ![Home](./readme/openAi.png) |
+| OpenAi prompt screen
+| ------------------------------------------
+| ![Home ](./readme/openAi.png)
 
 <br><br>
 
