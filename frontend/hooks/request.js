@@ -20,5 +20,3 @@ const UseHttp = async (url, method = "GET", body, header = {}) => {
 };
 
 export default UseHttp;
-
-// const URL = "http://ec2-13-39-108-7.eu-west-3.compute.amazonaws.com:80/api/";
