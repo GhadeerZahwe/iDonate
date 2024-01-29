@@ -35,6 +35,7 @@
 ### iDonate is built using the following technologies:
 
 - This project uses the [React Native app development framework](https://reactnative.dev/). React Native is a cross-platform hybrid app development platform which allows us to use a single codebase for apps on mobile, desktop, and the web.
+- This Project uses [Laravel framework](https://laravel.com/)for backend,Laravel serves as a backend framework for PHP web development, offering features and tools that streamline backend processes, such as routing, database management, authentication, and API development, empowering developers to build robust and scalable server-side applications efficiently.
 - For persistent storage (database), the app uses the [MySQL](https://www.mysql.com/) package which allows the app to create a custom storage and save it to a local database.
 - For location tracking, the app uses [Expo Location Library](https://docs.expo.dev/versions/latest/sdk/location/) which supports Android and iOS.
 - For the IoT smart weight sensor that detects any change in the food weight value, the app utilizes the[ESP8266 Module](https://www.espressif.com/en/products/socs/esp8266), which employs [HTTPClient](https://www.arduino.cc/reference/en/libraries/httpclient/) to send requests and update the current food weight.
@@ -46,21 +47,13 @@
 
 > We designed iDonate using wireframes and mockups, iterating on the design until we reached the ideal layout for easy navigation and a seamless user experience.
 
-- Project Figma design [figma](https://www.figma.com/file/jy1EGWm9adA8Ke0EZDEZ08/Final-Project?type=design&node-id=20%3A144&mode=design&t=Mo1Ua8LI1zp9k3Fe-1)
+### Mockups Examples
 
-### Mockups
+- Check more Mockups on Figma [figma](https://www.figma.com/file/jy1EGWm9adA8Ke0EZDEZ08/Final-Project?type=design&node-id=20%3A144&mode=design&t=Mo1Ua8LI1zp9k3Fe-1)
 
-| Login Screen                           | Register Screen                       | Donor Register Screen                 |
-| -------------------------------------- | ------------------------------------- | ------------------------------------- |
-| ![Landing](./readme/mockups/login.svg) | ![fsdaf](./readme/mockups/title3.svg) | ![fsdaf](./readme/mockups/title4.svg) |
-
-| Donor Main                                  | Add Donation Order                       | Current Orders                                |
-| ------------------------------------------- | ---------------------------------------- | --------------------------------------------- |
-| ![Landing](./readme/mockups/donor_home.svg) | ![fsdaf](./readme/mockups/add_order.svg) | ![fsdaf](./readme/mockups/current_orders.svg) |
-
-| Delivery Main                                  | Current Orders                               | Completed Orders                         |
-| ---------------------------------------------- | -------------------------------------------- | ---------------------------------------- |
-| ![Landing](./readme/mockups/delivery_home.svg) | ![fsdaf](./readme/mockups/on_way_orders.svg) | ![fsdaf](./readme/mockups/completed.svg) |
+| Donor Main                                  | Donor Current Order                           | Delivery Current Orders                      |
+| ------------------------------------------- | --------------------------------------------- | -------------------------------------------- |
+| ![Landing](./readme/mockups/donor_home.svg) | ![fsdaf](./readme/mockups/current_orders.svg) | ![fsdaf](./readme/mockups/on_way_orders.svg) |
 
 <br><br>
 
