@@ -9,20 +9,20 @@
 
 ## User Stories
 
-### Donor:
+### Donor
 
 - As a donor (individual, restaurant, or store), I want to donate excess food easily, so that I can contribute to reducing food waste in my community.
 - As a donor, I want to be able to chat with an AI bot specialized in answering questions about food waste donation, so I can inquire further about donations and receive answers to my queries.
 - As a donor, I want to be able to track the live location of the delivery, so that I can stay updated about whether my order is received and donation completed or not yet.
 
-### Delivery:
+### Delivery
 
 - As a delivery driver, I want to be able to check the weight of the donated food using an IoT smart weight sensor, so that I can accurately verify the weight of the food waste donation before delivering it.
 - As a delivery driver, I want to scan the QR code of the donor, so that the order status is updated.
 - As a delivery driver, I want to be able to call the donor so that I can reach him for more details or inform him about any update.
 - As a delivery driver, I want to check the weather temperature based on my current location, so that I can make informed decisions about the mode of transportation to use (e.g., motorcycle or car) for the delivery.
 
-### Admin:
+### Admin
 
 - As an admin, I want to be able to view real-time information about both users, so that I can monitor the system's performance.
 - As an admin, I want to be able to approve registered delivery drivers, so that only authorized drivers can provide their services.
@@ -35,13 +35,13 @@
 ### iDonate is built using the following technologies:
 
 - This project uses the [React Native app development framework](https://reactnative.dev/). React Native is a cross-platform hybrid app development platform which allows us to use a single codebase for apps on mobile, desktop, and the web.
-- This project uses [Laravel framework](https://laravel.com/)for backend,Laravel serves as a backend framework for PHP web development, offering features and tools that streamline backend processes, such as routing, database management, authentication, and API development, empowering developers to build robust and scalable server-side applications efficiently.
+- This project uses [Laravel framework](https://laravel.com/) for backend,Laravel serves as a backend framework for PHP web development, offering features and tools that streamline backend processes, such as routing, database management, authentication, and API development, empowering developers to build robust and scalable server-side applications efficiently.
 - This project uses [Electron.js](https://www.electronjs.org/) for crafting the desktop application. Electron.js enables the creation of native desktop applications using web technologies.
 - For persistent storage (database), the app uses the [MySQL](https://www.mysql.com/) package which allows the app to create a custom storage and save it to a local database.
 - For location tracking, the app uses [Expo Location Library](https://docs.expo.dev/versions/latest/sdk/location/) which supports Android and iOS.
 - This project uses third-party integration with [OpenAI](https://openai.com/) to empower AI-driven chat capabilities.
 - For the IoT smart weight sensor that detects any change in the food weight value, the app utilizes
-  the [EKT 464885] Load Cell Sensor, designed as a half-bridge body scale component, to accurately measure the weight of food in addition to the [ESP8266 Module](https://www.espressif.com/en/products/socs/esp8266), which employs [HTTPClient](https://www.arduino.cc/reference/en/libraries/httpclient/) to send requests and update the current food weight.
+  the EKT464885 Load Cell Sensor, designed as a half-bridge body scale component, to accurately measure the weight of food in addition to the [ESP8266 Module](https://www.espressif.com/en/products/socs/esp8266), which employs [HTTPClient](https://www.arduino.cc/reference/en/libraries/httpclient/) to send requests and update the current food weight.
 
 <br><br>
 
@@ -54,16 +54,16 @@
 
 - Check more Mockups on Figma [figma](https://www.figma.com/file/jy1EGWm9adA8Ke0EZDEZ08/Final-Project?type=design&node-id=20%3A144&mode=design&t=Mo1Ua8LI1zp9k3Fe-1)
 
-| Donor Main                                  | Donor Current Order                           | Delivery Current Orders                      |
-| ------------------------------------------- | --------------------------------------------- | -------------------------------------------- |
-| ![Landing](./readme/mockups/donor_home.svg) | ![fsdaf](./readme/mockups/current_orders.svg) | ![fsdaf](./readme/mockups/on_way_orders.svg) |
+| Donor Main                                  | Add Donation                             | Donor Current Order                           | Delivery Current Orders                      |
+| ------------------------------------------- | ---------------------------------------- | --------------------------------------------- | -------------------------------------------- |
+| ![Landing](./readme/mockups/donor_home.svg) | ![fsdaf](./readme/mockups/add_order.svg) | ![fsdaf](./readme/mockups/current_orders.svg) | ![fsdaf](./readme/mockups/on_way_orders.svg) |
 
 <br><br>
 
 <!-- Database Design -->
 <img src="./readme/title5.svg"/>
 
-![Screenshot](./readme/screenshots/idonate_er.png)
+## ![Screenshot](./readme/screenshots/idonate_er.png)
 
 <br><br>
 
@@ -104,9 +104,9 @@
 
 ### Admin Screens (Web)
 
-| Login screen                                | Donor Screen                                   | Delivery Screen                                   |
-| ------------------------------------------- | ---------------------------------------------- | ------------------------------------------------- |
-| ![Landing](./readme/screenshots/admin1.jpg) | ![fsdaf](./readme/screenshots/admin_donor.jpg) | ![fsdaf](./readme/screenshots/admin_delivery.jpg) |
+| Login screen                                | Donor Screen                                   |
+| ------------------------------------------- | ---------------------------------------------- |
+| ![Landing](./readme/screenshots/admin1.jpg) | ![fsdaf](./readme/screenshots/admin_donor.jpg) |
 
 <br>
 
