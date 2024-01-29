@@ -74,6 +74,20 @@
 <!-- Implementation -->
 <img src="./readme/title6.svg"/>
 
+### gifs
+
+| Search                                     | Reserve Trip                      | Finish Trip                      |
+| ------------------------------------------ | --------------------------------- | -------------------------------- |
+| ![Landing](./readme/demo/add_donation.gif) | ![fsdaf](./readme/demo/track.gif) | ![fsdaf](./readme/demo/scan.gif) |
+
+| Search                             | Reserve Trip                          | Finish Trip                        |
+| ---------------------------------- | ------------------------------------- | ---------------------------------- |
+| ![Landing](./readme/demo/chat.gif) | ![fsdaf](./readme/demo/delivery1.gif) | ![fsdaf](./readme/demo/weight.gif) |
+
+| Search                                      | Reserve Trip                     | Finish Trip                        |
+| ------------------------------------------- | -------------------------------- | ---------------------------------- |
+| ![Landing](./readme/demo/scan_delivery.gif) | ![fsdaf](./readme/demo/temp.gif) | ![fsdaf](./readme/demo/weight.gif) |
+
 ### User Screens (Mobile)
 
 | Login screen                                | Register screen                           | Landing screen                            | Loading screen                            |

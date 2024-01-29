@@ -12,7 +12,7 @@ class AuthControllerLoginTest extends TestCase
     public function testUserLogin()
     {
         $user = User::where('email', 'Ghadeer@gmail.com')->first();
-        $this->assertNotNull($user, 'User with email Hadi@gmail.com not found.');
+        $this->assertNotNull($user, 'User with email Ghadeer@gmail.com not found.');
 
         $hashedPassword = Hash::make('123456');
 
