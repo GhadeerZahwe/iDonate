@@ -58,7 +58,7 @@
 | ------------------------------------------- | ---------------------------------------- | --------------------------------------------- | -------------------------------------------- |
 | ![Landing](./readme/mockups/donor_home.svg) | ![fsdaf](./readme/mockups/add_order.svg) | ![fsdaf](./readme/mockups/current_orders.svg) | ![fsdaf](./readme/mockups/on_way_orders.svg) |
 
-<br><br>
+<br>
 
 <!-- Database Design -->
 <img src="./readme/title5.svg"/>
