@@ -35,10 +35,13 @@
 ### iDonate is built using the following technologies:
 
 - This project uses the [React Native app development framework](https://reactnative.dev/). React Native is a cross-platform hybrid app development platform which allows us to use a single codebase for apps on mobile, desktop, and the web.
-- This Project uses [Laravel framework](https://laravel.com/)for backend,Laravel serves as a backend framework for PHP web development, offering features and tools that streamline backend processes, such as routing, database management, authentication, and API development, empowering developers to build robust and scalable server-side applications efficiently.
+- This project uses [Laravel framework](https://laravel.com/)for backend,Laravel serves as a backend framework for PHP web development, offering features and tools that streamline backend processes, such as routing, database management, authentication, and API development, empowering developers to build robust and scalable server-side applications efficiently.
+- This project uses [Electron.js](https://www.electronjs.org/) for crafting the desktop application. Electron.js enables the creation of native desktop applications using web technologies.
 - For persistent storage (database), the app uses the [MySQL](https://www.mysql.com/) package which allows the app to create a custom storage and save it to a local database.
 - For location tracking, the app uses [Expo Location Library](https://docs.expo.dev/versions/latest/sdk/location/) which supports Android and iOS.
-- For the IoT smart weight sensor that detects any change in the food weight value, the app utilizes the[ESP8266 Module](https://www.espressif.com/en/products/socs/esp8266), which employs [HTTPClient](https://www.arduino.cc/reference/en/libraries/httpclient/) to send requests and update the current food weight.
+- This project uses third-party integration with [OpenAI](https://openai.com/) to empower AI-driven chat capabilities.
+- For the IoT smart weight sensor that detects any change in the food weight value, the app utilizes
+  the [EKT 464885] Load Cell Sensor, designed as a half-bridge body scale component, to accurately measure the weight of food in addition to the [ESP8266 Module](https://www.espressif.com/en/products/socs/esp8266), which employs [HTTPClient](https://www.arduino.cc/reference/en/libraries/httpclient/) to send requests and update the current food weight.
 
 <br><br>
 
@@ -59,8 +62,6 @@
 
 <!-- Database Design -->
 <img src="./readme/title5.svg"/>
-
-### Architecting Data Excellence: Innovative Database Design Strategies:
 
 ![Screenshot](./readme/screenshots/idonate_er.png)
 
@@ -109,22 +110,43 @@
 
 <br><br>
 
+### Arduino (Smart Weight Sensor)
+
+The Arduino IoT weight sensor system includes components like an ESP8266 chip for WiFi connectivity, an HX711 amplifier for accurate weight measurements, and an EKT464885 load cell body scale sensor for real-time weight data retrieval. Integrating these modules on a breadboard and programming them using the Arduino IDE, we've created a reliable sensor weight tracker. The system consistently updates the weight of food donations for orders to the backend at set intervals.
+
+For a more detailed understanding of the Arduino setup and code intricacies, please refer to the comprehensive documentation: [Smart Weight Sensor](./Arduino/README.md).
+
+| Smart Weight Sensor
+| -----------------------------------------
+| ![Smart Weight Sensor ](./readme/demo/weight_sensor.jpg)
+
 <!-- Prompt Engineering -->
 
-### Mastering AI Interaction: Unveiling the Power of Prompt Engineering:
+### Prompt Engineering:
 
-- This project uses advanced prompt engineering techniques to optimize the interaction with natural language processing models. By skillfully crafting input instructions, we tailor the behavior of the models to achieve precise and efficient language understanding and generation for various tasks and preferences.
+In this project, I leverage OpenAI's powerful natural language processing capabilities to develop an AI chatbot dedicated to assisting donors with inquiries related to food donation. The chatbot intelligently responds to user prompts, providing information and guidance on various aspects of food donation, waste reduction, and community support.
+
+The chatbot incorporates sophisticated prompt engineering techniques to ensure contextually relevant and informative responses. By constructing detailed prompts that encapsulate user intent and conversational context, the chatbot effectively guides the AI model to provide tailored answers that align with the user's needs and preferences.
+
+Key Features:
+
+1- Keyword Recognition: The chatbot identifies relevant keywords related to food donation, waste, and community support to trigger appropriate responses.
+
+2- Dynamic Interaction: Continuously updating prompts based on the conversation history allows the chatbot to maintain a natural and engaging dialogue flow with the user.
+
+3- Role Specification: Clear definition of the chatbot's role as a donor assistance AI ensures that responses are aligned with the user's expectations and the context of the conversation.
+
+This OpenAI donor chatbot enhances the user experience by providing valuable information and guidance on food donation-related inquiries, empowering donors to make a positive impact on their communities. For further details on the chatbot's functionality and implementation, please refer to the provided code.
+
   <br/>
-  | OpenAi prompt screen |
-  | ---------------------------------- |
-  | ![Home](./readme/openAi.png) |
+| OpenAi prompt screen |
+| ---------------------------------- |
+| ![Home](./readme/openAi.png) |
 
 <br><br>
 
 <!-- AWS Deployment -->
 <img src="./readme/title8.svg"/>
-
-### Efficient AI Deployment: Unleashing the Potential with AWS Integration:
 
 - This project leverages AWS deployment strategies to seamlessly integrate and deploy natural language processing models. With a focus on scalability, reliability, and performance, we ensure that AI applications powered by these models deliver robust and responsive solutions for diverse use cases.
 
@@ -140,12 +162,13 @@ By following these steps, we deployed the backend to Amazon Linux 2023.
 8. Create the Laravel environment configuration file
 9. Apache Configuration for PHP Laravel App
 10. Get the Laravel demo page
+
+> Commands are available in the [backend folder](./backend/deploy_to_aws.md)
+
     <br><br>
 
 <!-- Unit Testing -->
 <img src="./readme/title9.svg"/>
-
-### Precision in Development: Harnessing the Power of Unit Testing:
 
 - This project employs rigorous unit testing methodologies to ensure the reliability and accuracy of code components. By systematically evaluating individual units of the software, we guarantee a robust foundation, identifying and addressing potential issues early in the development process.
 
