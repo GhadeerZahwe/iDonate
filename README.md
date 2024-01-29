@@ -76,41 +76,41 @@
 <!-- Implementation -->
 <img src="./readme/title6.svg"/>
 
-### gifs
+### Gifs
 
-| Search                                     | Reserve Trip                      | Finish Trip                      |
+| Add Donation                               | Track Order                       | Scan Order                       |
 | ------------------------------------------ | --------------------------------- | -------------------------------- |
 | ![Landing](./readme/demo/add_donation.gif) | ![fsdaf](./readme/demo/track.gif) | ![fsdaf](./readme/demo/scan.gif) |
 
-| Search                             | Reserve Trip                          | Finish Trip                        |
+| Chat                               | Delivery Current Orders               | Check Weight Trip                  |
 | ---------------------------------- | ------------------------------------- | ---------------------------------- |
 | ![Landing](./readme/demo/chat.gif) | ![fsdaf](./readme/demo/delivery1.gif) | ![fsdaf](./readme/demo/weight.gif) |
 
-| Search                                      | Reserve Trip                     | Finish Trip                        |
+| Delivery Scan                               | Check Current Temperature        | Iot Smart Sensor Weight (Arduino)  |
 | ------------------------------------------- | -------------------------------- | ---------------------------------- |
 | ![Landing](./readme/demo/scan_delivery.gif) | ![fsdaf](./readme/demo/temp.gif) | ![fsdaf](./readme/demo/sensor.png) |
 
 ### User Screens (Mobile)
 
-| Login screen                                | Register screen                           | Landing screen                            | Loading screen                            |
+| Login screen                                | Register screen                           | Register Donor                            | Register Delivery                         |
 | ------------------------------------------- | ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
 | ![Landing](./readme/screenshots/title1.jpg) | ![fsdaf](./readme/screenshots/title2.jpg) | ![fsdaf](./readme/screenshots/title3.jpg) | ![fsdaf](./readme/screenshots/title4.jpg) |
 
-| Home screen                                 | Menu Screen                               | Order Screen                              | Checkout Screen                           |
+| Home screen                                 | Add Donation                              | Add Current Location                      | Current Orders                            |
 | ------------------------------------------- | ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
 | ![Landing](./readme/screenshots/title5.jpg) | ![fsdaf](./readme/screenshots/title6.jpg) | ![fsdaf](./readme/screenshots/title7.jpg) | ![fsdaf](./readme/screenshots/title8.jpg) |
 
-| Login screen                                | Register screen                            | Landing screen                             | Loading screen                             |
+| Donor Current Orders                        | Completed Orders                           | ChatBot Screen                             | Settings screen                            |
 | ------------------------------------------- | ------------------------------------------ | ------------------------------------------ | ------------------------------------------ |
 | ![Landing](./readme/screenshots/title9.jpg) | ![fsdaf](./readme/screenshots/title10.jpg) | ![fsdaf](./readme/screenshots/title12.jpg) | ![fsdaf](./readme/screenshots/title11.jpg) |
 
-| Login screen                                 | Register screen                            | Landing screen                             | Loading screen                             |
+| Track Location screen                        | Delivery Pending                           | Delivery On The Way                        | Check Weight                               |
 | -------------------------------------------- | ------------------------------------------ | ------------------------------------------ | ------------------------------------------ |
 | ![Landing](./readme/screenshots/title13.jpg) | ![fsdaf](./readme/screenshots/title14.jpg) | ![fsdaf](./readme/screenshots/title16.jpg) | ![fsdaf](./readme/screenshots/title20.jpg) |
 
 ### Admin Screens (Web)
 
-| Login screen                                | Register screen                                | Landing screen                                    |
+| Login screen                                | Donor Screen                                   | Delivery Screen                                   |
 | ------------------------------------------- | ---------------------------------------------- | ------------------------------------------------- |
 | ![Landing](./readme/screenshots/admin1.jpg) | ![fsdaf](./readme/screenshots/admin_donor.jpg) | ![fsdaf](./readme/screenshots/admin_delivery.jpg) |
 
