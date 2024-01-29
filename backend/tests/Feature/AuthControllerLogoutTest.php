@@ -1,10 +1,9 @@
 <?php
 
 namespace Tests\Feature;
-
-use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
+use App\Models\User;
 
 class AuthControllerLogoutTest extends TestCase
 {
@@ -25,8 +24,8 @@ class AuthControllerLogoutTest extends TestCase
 
    $logoutResponse->assertStatus(200)
    ->assertJson([
-    'status'=>'success',
-    'message'=>'successfully logged out',
+    'status' => 'success',
+    'message' => 'Successfully logged out'
    ]);
   }
 }

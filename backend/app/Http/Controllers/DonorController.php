@@ -110,6 +110,7 @@ class DonorController extends Controller
      if($donor->id !== $order->donor_id){
         return response()->json(['error'=>'Permission Denied!',403]);
      }
+     
      $validator = Validator::make($request->all(), [
         'description' => 'required|string',
         'total_weight' => 'required|numeric',
@@ -195,7 +196,7 @@ class DonorController extends Controller
     }
    }
 
-   
+
    // Generate QR code for each donation
    public function generateQrCode($orderId)
    {
