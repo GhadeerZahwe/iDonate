@@ -76,7 +76,7 @@
 | ------------------------------------------ | --------------------------------- | -------------------------------- |
 | ![Landing](./readme/demo/add_donation.gif) | ![fsdaf](./readme/demo/track.gif) | ![fsdaf](./readme/demo/scan.gif) |
 
-| Chat                               | Delivery Current Orders               | Check Weight Trip                  |
+| Chat                               | Delivery Current Orders               | Check Weight                       |
 | ---------------------------------- | ------------------------------------- | ---------------------------------- |
 | ![Landing](./readme/demo/chat.gif) | ![fsdaf](./readme/demo/delivery1.gif) | ![fsdaf](./readme/demo/weight.gif) |
 
