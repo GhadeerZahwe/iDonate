@@ -22,7 +22,6 @@ const DeliveriesTable = () => {
     sendRequest();
   }, []);
 
-  // Function to handle delivery deletion
   const handleDeliveryDeletion = (deletedDeliveryId) => {
     setData((prevData) =>
       prevData.filter((item) => item.id !== deletedDeliveryId)

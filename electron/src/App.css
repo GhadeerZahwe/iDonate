@@ -107,7 +107,7 @@ a {
   display: flex;
   align-items: end;
   justify-content: end;
-  height: 200px; /* Adjust height as needed */
+  height: 200px;
   font-size: 1.5rem;
   margin-left: 150;
 }
