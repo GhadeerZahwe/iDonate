@@ -80,7 +80,7 @@
 | ---------------------------------- | ------------------------------------- | ---------------------------------- |
 | ![Landing](./readme/demo/chat.gif) | ![fsdaf](./readme/demo/delivery1.gif) | ![fsdaf](./readme/demo/weight.gif) |
 
-| Delivery Scan                               | Check Current Temperature        | Iot Smart Sensor Weight (Arduino)  |
+| Delivery Scan                               | Check Current Temperature        | Iot Smart Weight Sensor(Arduino)   |
 | ------------------------------------------- | -------------------------------- | ---------------------------------- |
 | ![Landing](./readme/demo/scan_delivery.gif) | ![fsdaf](./readme/demo/temp.gif) | ![fsdaf](./readme/demo/sensor.png) |
 
