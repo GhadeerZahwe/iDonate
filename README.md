@@ -40,6 +40,7 @@
 
 - This project uses [Electron.js](https://www.electronjs.org/) for crafting the desktop application. Electron.js enables the creation of native desktop applications using web technologies.
 - For persistent storage (database), the app uses the [MySQL](https://www.mysql.com/) package which allows the app to create a custom storage and save it to a local database.
+
 - For location tracking, the app uses [Expo Location Library](https://docs.expo.dev/versions/latest/sdk/location/) which supports Android and iOS.
 - This project uses third-party integration with [OpenAI](https://openai.com/) to empower AI-driven chat capabilities.
 - For the IoT smart weight sensor that detects any change in the food weight value, the app utilizes
