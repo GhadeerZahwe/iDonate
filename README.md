@@ -299,8 +299,6 @@ In `frontend` :
      npx expo start
    ```
 
-   <br>
-
 Congratulations, The App Must be Working Now.
 
 Some Installation may be different on different OS.
