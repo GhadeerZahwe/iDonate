@@ -171,6 +171,15 @@ For a more detailed understanding of the Arduino setup and code intricacies, ple
 | -----------------------------------------
 | ![Smart Weight Sensor ](./readme/demo/weight_sensor.jpg)
 
+<table>
+<tr>
+ <td align="center">
+
+https://github.com/GhadeerZahwe/iDonate/assets/88279980/307bf0a0-9225-4816-a3d3-64965d8faea0
+
+</td>
+  </tr>
+</table>
 <!-- Prompt Engineering -->
 
 ### Prompt Engineering:
