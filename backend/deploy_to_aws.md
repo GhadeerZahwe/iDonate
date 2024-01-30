@@ -52,15 +52,15 @@ sudo dnf install git -y
 sudo git clone https://github.com/GhadeerZahwe/iDonate.git
 ```
 
-## Step 7: Install Barber Byte
+## Step 7: Install iDonate Byte
 
 ```bash
-cd /var/www/barber-byte
-sudo chown -R $USER /var/www/barber-byte
+cd /var/www/iDonate
+sudo chown -R $USER /var/www/iDonate
 composer install
-sudo chown -R apache.apache /var/www/barber-byte
-sudo chmod -R 755 /var/www/barber-byte
-sudo chmod -R 777 /var/www/barber-byte/storage
+sudo chown -R apache.apache /var/www/iDonate
+sudo chmod -R 755 /var/www/iDonate
+sudo chmod -R 777 /var/www/iDonate/storage
 ```
 
 ## Step 8: Create the Laravel environment configuration file
