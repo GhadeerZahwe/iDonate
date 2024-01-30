@@ -89,25 +89,20 @@
 <table>
   <tr>
     <td align="center">
-      <video width="320" height="240" controls>
-        <source src="https://github.com/GhadeerZahwe/iDonate/assets/88279980/66bdc44e-d3c3-4c6d-a69f-88c4aba829ed" type="video/mp4">
-        Your browser does not support the video tag.
-      </video>
-    </td>
+      
+https://github.com/GhadeerZahwe/iDonate/assets/88279980/66bdc44e-d3c3-4c6d-a69f-88c4aba829ed
+
+</td>
     <td align="center">
-      <video width="320" height="240" controls>
-        <source src="https://github.com/GhadeerZahwe/iDonate/assets/88279980/6eb81002-c3e7-4482-9840-f2b373126767" type="video/mp4">
-        Your browser does not support the video tag.
-      </video>
-    </td>
+      
+https://github.com/GhadeerZahwe/iDonate/raw/main/assets/88279980/6eb81002-c3e7-4482-9840-f2b373126767
+</td>
     <td align="center">
-      <video width="320" height="240" controls>
-        <source src="https://github.com/GhadeerZahwe/iDonate/assets/88279980/63e7e0b9-70ea-4ee8-96bd-1dd65439facf" type="video/mp4">
-        Your browser does not support the video tag.
-      </video>
-    </td>
+
+https://github.com/GhadeerZahwe/iDonate/raw/main/assets/88279980/63e7e0b9-70ea-4ee8-96bd-1dd65439facf
+
+</td>
   </tr>
- 
 </table>
 
 <!--
