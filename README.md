@@ -107,7 +107,10 @@
       </video>
     </td>
   </tr>
-  <tr>
+</table>
+
+<table>
+ <tr>
     <td align="center">
       <video width="320" height="240" controls>
         <source src="https://github.com/GhadeerZahwe/iDonate/assets/88279980/5dd5e0c6-2999-47bf-8823-79948a393792" type="video/mp4">
@@ -127,7 +130,7 @@
       </video>
     </td>
   </tr>
-</table>
+  </table>
 
 <!--
 
