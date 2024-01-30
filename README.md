@@ -107,26 +107,6 @@
       </video>
     </td>
   </tr>
-  <tr>
-    <td align="center">
-      <video width="320" height="240" controls>
-        <source src="https://github.com/GhadeerZahwe/iDonate/assets/88279980/5dd5e0c6-2999-47bf-8823-79948a393792" type="video/mp4">
-        Your browser does not support the video tag.
-      </video>
-    </td>
-    <td align="center">
-      <video width="320" height="240" controls>
-        <source src="https://github.com/GhadeerZahwe/iDonate/assets/88279980/4708760a-a2ca-4492-9263-11abf27de2c1" type="video/mp4">
-        Your browser does not support the video tag.
-      </video>
-    </td>
-    <td align="center">
-      <video width="320" height="240" controls>
-        <source src="https://github.com/GhadeerZahwe/iDonate/assets/88279980/50b3cb59-b35b-45bd-9d16-e6197d38ebab" type="video/mp4">
-        Your browser does not support the video tag.
-      </video>
-    </td>
-  </tr>
 </table>
 
 <!--
