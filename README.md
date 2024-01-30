@@ -89,7 +89,15 @@
 | Donor | Delivery | Track
 |
 | ------------------------------------- | ------------------------------------- | ----------------------------------------- |
-| ![Landing](./readme/videos/Donor.mp4) | ![fsdaf](./readme/demo/delivery1.gif) | ![fsdaf](./readme/demo/scan_delivery.gif) |
+
+
+https://github.com/GhadeerZahwe/iDonate/assets/88279980/66bdc44e-d3c3-4c6d-a69f-88c4aba829ed
+
+https://github.com/GhadeerZahwe/iDonate/assets/88279980/6eb81002-c3e7-4482-9840-f2b373126767
+
+https://github.com/GhadeerZahwe/iDonate/assets/88279980/63e7e0b9-70ea-4ee8-96bd-1dd65439facf
+
+
 
 <!--
 
