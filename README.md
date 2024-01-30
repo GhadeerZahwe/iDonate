@@ -165,7 +165,122 @@ This OpenAI donor chatbot enhances the user experience by providing valuable inf
 9. Apache Configuration for PHP Laravel App
 10. Get the Laravel demo page
 
-> Commands are available in the [backend folder](./backend/deploy_to_aws.md)
+Here are the AWS deployment commands I used to deploy my Laravel server:
+
+1. Update Amazon Linux 2023 Packages:
+
+   ```sh
+   sudo dnf update
+   ```
+
+2. Install LAMP Stack (Linux, Apache, MySQL, PHP):
+
+   ```sh
+   sudo dnf install httpd mariadb*-server php php-mysqlnd
+   ```
+
+3. Start and Enable the Apache and MariaDB Services:
+
+   ```sh
+   sudo systemctl enable --now httpd
+   sudo systemctl enable --now mariadb
+   ```
+
+4. LogIn to MySWL and CREATE Database:
+
+   ```sh
+    sudo mysql
+    CREATE DATABASE yourdb;
+    CREATE USER 'youruser'@'localhost' IDENTIFIED BY 'password';
+    GRANT ALL ON yourdb.* to 'youruser'@'localhost';
+    FLUSH PRIVILEGES;
+    quit;
+   ```
+
+5. Install PHP Composer for Laravel on Amazon Linux 2023:
+
+   ```sh
+   curl -sS https://getcomposer.org/installer | php
+   sudo mv composer.phar /usr/local/bin/composer
+   sudo chmod +x /usr/local/bin/composer
+   ```
+
+6. Clone the Laravel Project:
+
+   ```sh
+   cd /var/www
+   sudo dnf install git -y
+   sudo git clone RepoLink
+   ```
+
+7. Give Permission to Your Current to Access the Laravel Folder:
+
+   ```sh
+   cd /var/www/RepoNameLaravel
+   sudo chown -R $USER /var/www/laravel
+   ```
+
+8. Install Laravel on Amazon Linux 2023:
+
+   ```sh
+   composer install
+   sudo chown -R apache.apache /var/www/laravel
+   sudo chmod -R 755 /var/www/laravel
+   sudo chmod -R 777 /var/www/laravel/storage
+   ```
+
+9. Create the Laravel Environment Configuration File:
+
+   ```sh
+   sudo cp .env.example .env
+   sudo php artisan key:generate
+   sudo nano .env
+   ```
+
+10. Go to the Database Section and Change the Values:
+
+    ```sh
+    Database Name
+    Database Username
+    Database Password
+    Save the file using Ctrl+O, hit the Enter key, and then exit the file using Ctrl+X.
+    ```
+
+11. Apache Configuration for PHP Laravel App:
+
+    ```sh
+    sudo nano /etc/httpd/conf.d/laravel.conf
+    ```
+
+12. Add the Following Lines:
+
+    ```sh
+     <VirtualHost *:80>
+        ServerName laravel.example.com
+        DocumentRoot /var/www/laravel/public
+
+        <Directory /var/www/laravel>
+               AllowOverride All
+        </Directory>
+      </VirtualHost>
+    ```
+
+13. Restart the Apache:
+
+    ```sh
+    sudo systemctl restart httpd
+    ```
+
+14. Get Access to Your IP:
+    ```sh
+    curl ipinfo.io
+    ```
+    You will receive a list of details about your server. 'ip' is the IP adress of your new server. You can access it in the url of your browser.
+
+NOTE: To access Laravel's Server APIs, use the following IP address: 80.79.145.161/api
+<br><br>
+
+> For more details, check [Backend](./backend/deploy_to_aws.md)
 
 <br>
 
