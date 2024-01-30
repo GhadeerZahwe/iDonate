@@ -77,6 +77,17 @@
 
 ### Gifs
 
+| Add Donation                               | Track Order                       | Chat                             | Scan Order                       |
+| ------------------------------------------ | --------------------------------- | -------------------------------- | -------------------------------- |
+| ![Landing](./readme/demo/add_donation.gif) | ![fsdaf](./readme/demo/track.gif) | ![fsdaf](./readme/demo/chat.gif) | ![fsdaf](./readme/demo/scan.gif) |
+
+| Check Weight                         | Delivery Current Orders               | Delivery Scan Screen                      | Check Current Temperature        |
+| ------------------------------------ | ------------------------------------- | ----------------------------------------- | -------------------------------- |
+| ![Landing](./readme/demo/weight.gif) | ![fsdaf](./readme/demo/delivery1.gif) | ![fsdaf](./readme/demo/scan_delivery.gif) | ![fsdaf](./readme/demo/temp.gif) |
+
+<!--
+
+
 | Add Donation                               | Track Order                       | Scan Order                       |
 | ------------------------------------------ | --------------------------------- | -------------------------------- |
 | ![Landing](./readme/demo/add_donation.gif) | ![fsdaf](./readme/demo/track.gif) | ![fsdaf](./readme/demo/scan.gif) |
@@ -87,7 +98,7 @@
 
 | Delivery Scan                               | Check Current Temperature        | Iot Smart Weight Sensor(Arduino)   |
 | ------------------------------------------- | -------------------------------- | ---------------------------------- |
-| ![Landing](./readme/demo/scan_delivery.gif) | ![fsdaf](./readme/demo/temp.gif) | ![fsdaf](./readme/demo/sensor.png) |
+| ![Landing](./readme/demo/scan_delivery.gif) | ![fsdaf](./readme/demo/temp.gif) | ![fsdaf](./readme/demo/sensor.png) | -->
 
 ### User Screens (Mobile)
 
