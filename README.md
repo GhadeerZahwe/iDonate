@@ -84,9 +84,12 @@
 | ------------------------------------ | ------------------------------------- | ----------------------------------------- | -------------------------------- |
 | ![Landing](./readme/demo/weight.gif) | ![fsdaf](./readme/demo/delivery1.gif) | ![fsdaf](./readme/demo/scan_delivery.gif) | ![fsdaf](./readme/demo/temp.gif) |
 
-| Check Weight                         | Delivery Current Orders               | Delivery Scan Screen                      | Check Current Temperature        |
-| ------------------------------------ | ------------------------------------- | ----------------------------------------- | -------------------------------- |
-| ![Landing](./readme/demo/weight.gif) | ![fsdaf](./readme/demo/delivery1.gif) | ![fsdaf](./readme/demo/scan_delivery.gif) | ![fsdaf](./readme/demo/temp.gif) |
+### Videos
+
+| Donor | Delivery | Track
+|
+| ------------------------------------- | ------------------------------------- | ----------------------------------------- |
+| ![Landing](./readme/videos/Donor.mp4) | ![fsdaf](./readme/demo/delivery1.gif) | ![fsdaf](./readme/demo/scan_delivery.gif) |
 
 <!--
 
@@ -135,6 +138,7 @@ For a more detailed understanding of the Arduino setup and code intricacies, ple
 
 | Smart Weight Sensor
 | -----------------------------------------
+| ![Smart Weight Sensor ](./readme/demo/weight_sensor.jpg)
 | ![Smart Weight Sensor ](./readme/demo/weight_sensor.jpg)
 
 <!-- Prompt Engineering -->
