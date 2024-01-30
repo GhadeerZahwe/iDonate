@@ -289,7 +289,6 @@ class DeliveryController extends Controller
   // Update order weight (using Arduino IoT smart weight sensor)
   public function updateOrderWeight(Request $request, $deliveryId, $orderId)
   {
-    echo "Received request for Delivery ID: $deliveryId, Order ID: $orderId, Weight: " . $request->input('total_weight');
     $order = Order::where('id', $orderId)
         ->where('delivery_id', $deliveryId)
         ->where('status', 'on_the_way')

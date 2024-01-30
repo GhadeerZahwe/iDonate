@@ -51,7 +51,7 @@ const PendingOrders = () => {
       const result = await UseHttp("getOrdersByStatus/pending", "GET", "", {
         Authorization: "bearer " + token,
       });
-      console.log(result);
+      // console.log(result);
       setDonations(result.orders);
     } catch (error) {
       console.log(error);
